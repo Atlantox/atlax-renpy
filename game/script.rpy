@@ -4,11 +4,9 @@
 
 define e = Character("Eileen")
 define saijo = Character('Saijo', color='#8709B4')
+define kike = Character('Mutou', color='#2595d2')
 
-define dialogues = [
-    "Pareces tener mala cara, acuéstate donde quieras para revisarte bien", 
-    "XDXDXD"
-]
+define currentLanguage = 0
 
 label start:
     # Muestra una imagen de fondo: Aquí se usa un marcador de posición por
@@ -26,14 +24,28 @@ label start:
     # Presenta las líneas del diálogo.
 
     #for d in dialogues:
-        #saijo "{d}"
-    $ i = 0
-    while i < len(dialogues):
-        $ crtDialogue = dialogues[i]
-        saijo "[crtDialogue]"
-        $ i+=1
+        #saijo "{d}
+    init python:
+        sentences = []
+        f = open(renpy.loader.transfn("001_Demo_Ch1.csv"),"r")
+        sentences = f.readlines()
+        f.close()
+
+        def getNextDialogue():
+            for sentence in sentences[1:]:
+                yield str(sentence.split(';'))
+
+        dialogueGenerator = getNextDialogue()
+    
+    while True:
+        $ dialogue = next(dialogueGenerator)
+        $ sentence = dialogue[currentLanguage + 2]
+        $ speaker = dialogue[1]
+        call speaker "[speaker] [sentence]"
+        
 
 
     # Finaliza el juego:
 
     return
+
