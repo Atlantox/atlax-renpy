@@ -26,6 +26,8 @@ label start:
             # First, the backgrounds
             if(dialogue['Background'] != ''):
                 backgroundManager.ChangeBackground(dialogue['Background'])
+
+            
             
             renpy.say(saijo, dialogue[currentLanguage])
     

@@ -1,0 +1,43 @@
+Columna Background
+
+Nombre de la imagen:tipo de transición:parámetros(opcionales)
+Ej: campus_night:fade:1:3:1 
+(Eso pone el background campus_night con un fundido a negro donde el fondo anterior se funde en un segundo, permanece 3 segundos la pantalla en negro y aparece campus_night a lo largo de un segundo)
+
+Tipos de transiciones:
+
+dissolve: 
+    El fondo actual se desvanece a la vez que el siguiente aparece
+    Parámetros:
+        1: Los segundos que tardan los fondos en cambiar (2)
+
+fade: 
+    El fondo actual se funde en negro a lo largo de X segundos, se mantiene la pantalla negra por Y segundos y el nuevo fondo aparece a lo largo de Z segundos
+    Parámetros:
+        1: Los segundos en que el fondo actual se funde a negro (1)
+        2: Los segundos en que permanece la pantala en negro (0.5)
+        3: Los segundos en que el siguiente fondo aparece paulatinamente (1)
+
+pixel:
+    El fondo actual se pixela hasta el color de mayor presencia de este, luego cambia de color y muestra el siguiente fondo haciendo el proceso inverso. (Se recomienda dejarlo por defecto)
+    Parámetros:
+        1: Los segundos de la duración (3)
+        2: La cantidad de pasos para llegar a la pixelación final (18) 
+
+Deslizamientos:
+    El fondo actual se desliza hacia la dirección que indiques
+
+    Parámetros:
+        1: Los segundos que dura la transición: (1.5)
+        2: Escribir: "pushup", "pushright", "pushdown", "pushleft"
+
+Rotaciones:
+    El fondo actual rota horizontal o verticalmente hacia una dirección perpendicular
+    rup: Rota horizontalmente de abajo hacia arriba
+    rright: Rota verticalmente de izquierda a derecha
+    rdown; Rota horizontalmente de arriba hacia abajo
+    rleft: Rota vertcalmente de derecha a izquierda
+
+    Parámetros:
+        1: Los segundos que dura la transicion (1.5)
+        2: Escribir: "pushup", "pushright", "pushdown", "pushleft"

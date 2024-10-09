@@ -49,13 +49,23 @@ init python:
                 elif tentativeTransition == 'pixel':
                     transition = Pixellate
                     time = [3, 18]
-                elif tentativeTransition == 'inright':
-                    transition = Move
-                elif tentativeTransition == 'onright':
-                    transition = MoveOnRigth
+                elif tentativeTransition == 'push':
+                    transition = PushMove
+                    time = [1.5, 'pushup']
+                elif tentativeTransition == 'rup':
+                    transition = Swing
+                    time = [1.5, True, False]
+                elif tentativeTransition == 'rright':
+                    transition = Swing
+                    time = [1.5, False, False]
+                elif tentativeTransition == 'rdown':
+                    transition = Swing
+                    time = [1.5, True, True]
+                elif tentativeTransition == 'rleft':
+                    transition = Swing
+                    time = [1.5, False, True]
                 else:
                     transition = Dissolve
-
             
             if len(bgSplits) == 3:
                 params = [float(p.strip()) for p in bgSplits[2].split(',') if p != '']
@@ -72,5 +82,12 @@ init python:
             else:
                 renpy.transition(transition(*time))
 
+
+    class AudioManager:
+        def PlayMusic(self, musicData):
+            splittedMusic = musicData.split(':')
+            fileName = 'music/{0}.wav'.format(splittedMusic[0])
+            args = []
+            renpy.music.play(fileName, channel='music')
 
     backgroundManager = BackgroundManager()
