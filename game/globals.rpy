@@ -87,7 +87,14 @@ init python:
         def PlayMusic(self, musicData):
             splittedMusic = musicData.split(':')
             fileName = 'music/{0}.wav'.format(splittedMusic[0])
-            args = []
-            renpy.music.play(fileName, channel='music')
+            fadein = 3
 
+            if len(splittedMusic) == 2:
+                fadein = float(splittedMusic[1])
+
+            renpy.music.play(fileName, channel='music', fadein=fadein)
+
+    
+    
     backgroundManager = BackgroundManager()
+    audioManager = AudioManager()

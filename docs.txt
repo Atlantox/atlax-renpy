@@ -1,4 +1,13 @@
-Columna Background
+##########   COLUMNA KEY    ##########
+
+Es la columna que contiene el identificador único del diálogo, la nomeclatura es la siguiente:
+RUTA_CAPITULO_ESCENA_DIALOGO
+Ej: Rin_3_12_91 ( Ruta de Rin, Capítulo 3, escena 12, diálogo 91)
+
+
+
+
+##########    COLUMNA BACKGROUND    ##########
 
 Nombre de la imagen:tipo de transición:parámetros(opcionales)
 Ej: campus_night:fade:1:3:1 
@@ -41,3 +50,19 @@ Rotaciones:
     Parámetros:
         1: Los segundos que dura la transicion (1.5)
         2: Escribir: "pushup", "pushright", "pushdown", "pushleft"
+
+
+
+
+##########    COLUMNA MUSIC    ##########
+
+Nombres de las canciones que van a sonar de fondo mientras suceden los diálogos y acciones
+Deben estar en formato .wav
+Fade-in: Cuando un sonido pasa de 0 volumen a 100 (Cuando la música entra)
+Fade-out: Cuando un sonido pasa de 100 volumen a 0 (Cuando la música sale)
+Por defecto las músicas de fondo harán un fade-in y un fade-out de 3 segundos
+
+NOMECLATURA
+nombre con espacios:segundos de fade-in
+Ej: While we speak:4
+Ej: Stride 

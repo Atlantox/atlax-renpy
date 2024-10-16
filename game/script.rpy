@@ -6,6 +6,7 @@ define saijo = Character('Saijo', color='#8709B4')
 define mutou = Character('Mutou', color='#2595d2')
 
 define currentLanguage = 'Spanish'
+define config.fadeout_audio = 3
 
 image bg sex_dungeon = 'images/backgrounds/sex dungeon.png'
 image bg madera = 'images/backgrounds/madera.jpg'
@@ -23,9 +24,13 @@ label start:
         for i in range(5):
             dialogue = next(dialogueGenerator.generator)
 
-            # First, the backgrounds
+            # Backgrounds changes
             if(dialogue['Background'] != ''):
                 backgroundManager.ChangeBackground(dialogue['Background'])
+
+            # Music changes
+            if(dialogue['Music'] != ''):
+                audioManager.PlayMusic(dialogue['Music'])
 
             
             
