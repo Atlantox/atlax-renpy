@@ -66,3 +66,20 @@ NOMECLATURA
 nombre con espacios:segundos de fade-in
 Ej: While we speak:4
 Ej: Stride 
+
+SILENCIO 
+Para silenciar la nomeclatura es la siguiente
+*:segundos de fade-out
+Ej: *:5  Para que la música actual haga un fade-out de 5 segundos hasta quedar en completo silencio
+Ej: *:0  Para que la música se detenga de golpe
+Si no se le coloca fade-out, por defecto será de 3 segundos
+
+
+
+##########    COLUMNA SOUND    ##########
+
+Nombre de los sonidos que se van a reproducir al momento que el jugador de click para pasar al diálogo.
+Deben estar en formato .wav
+No tiene nomeclatura, simplemente el nombre del sonido
+Ej: Golpe
+Ej: Latido

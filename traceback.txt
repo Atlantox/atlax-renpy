@@ -1,23 +1,30 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+  File "game/script.rpy", line 23, in script
+    python:
+  File "game/script.rpy", line 33, in <module>
+    audioManager.PlayMusic(dialogue['Music'])
+  File "game/globals.rpy", line 97, in PlayMusic
+    renpy.music.stop(channel='music', fadein=fadein)
+TypeError: stop() got an unexpected keyword argument 'fadein'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\bootstrap.py", line 359, in bootstrap
-    renpy.main.main()
-  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\main.py", line 658, in main
-    renpy.audio.audio.fadeout_all()
-  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\audio\audio.py", line 1083, in fadeout_all
-    c.fadeout(renpy.config.fadeout_audio)
-  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\audio\audio.py", line 671, in fadeout
-    renpysound.fadeout(self.number, secs)
-  File "renpysound.pyx", line 269, in renpy.audio.renpysound.fadeout
-TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+  File "game/script.rpy", line 23, in script
+    python:
+  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\ast.py", line 821, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/script.rpy", line 33, in <module>
+    audioManager.PlayMusic(dialogue['Music'])
+  File "game/globals.rpy", line 97, in PlayMusic
+    renpy.music.stop(channel='music', fadein=fadein)
+TypeError: stop() got an unexpected keyword argument 'fadein'
 
 Windows-10-10.0.19041 AMD64
 Ren'Py 8.3.2.24090902
 TheNextStepDemo 1.0
-Tue Oct 15 19:46:38 2024
+Thu Oct 17 18:53:49 2024

@@ -86,13 +86,22 @@ init python:
     class AudioManager:
         def PlayMusic(self, musicData):
             splittedMusic = musicData.split(':')
+
             fileName = 'music/{0}.wav'.format(splittedMusic[0])
             fadein = 3
 
             if len(splittedMusic) == 2:
                 fadein = float(splittedMusic[1])
 
-            renpy.music.play(fileName, channel='music', fadein=fadein)
+            if splittedMusic[0] == '*':
+                renpy.music.stop(channel='music', fadeout=fadein)
+            else:
+                renpy.music.play(fileName, channel='music', fadein=fadein)
+
+        def PlaySound(self, soundData):
+            fileName = 'sounds/{0}.wav'.format(soundData)
+            renpy.music.play(fileName, channel='sound')
+
 
     
     

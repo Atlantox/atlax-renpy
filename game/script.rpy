@@ -32,6 +32,10 @@ label start:
             if(dialogue['Music'] != ''):
                 audioManager.PlayMusic(dialogue['Music'])
 
+            # Playing sounds
+            if(dialogue['Sound'] != ''):
+                audioManager.PlaySound(dialogue['Sound'])
+
             
             
             renpy.say(saijo, dialogue[currentLanguage])
