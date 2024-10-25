@@ -103,7 +103,56 @@ init python:
             renpy.music.play(fileName, channel='sound')
 
 
+    class EffectManager:       
+        continuousEffect = None
+        duringEffect = False
+
+        def ProcessEffect(self, effectData):
+            splits = effectData.split(':')
+
+            if splits[0] in ['vertical', 'horizontal']:
+                self.ShakeData(splits)
+            elif splits[0] in ['blur']:
+                self.ProcessContinuousEffect(splits)
+                
+
+        def ScreenShake(self, shakeData):
+            intensity = 20
+
+            if len(shakeData) >= 2:
+                intensity = int(shakeData[1])
+
+            print(intensity * -1)
+            if shakeData[0] == 'vertical':
+                myTransition = Move((0, intensity), (0, intensity * -1), .10, bounce=True, repeat=True, delay=.275)
+                
+            if shakeData[0] == 'horizontal':
+                myTransition = Move((intensity, 0), (intensity * -1, 0), .10, bounce=True, repeat=True, delay=.275)
+
+            renpy.transition(myTransition)
+
+        
+        def ProcessContinuousEffect(self, blurData):
+            effectName = blurData[0]
+
+            # If another effect it's in progress, ignore the effect
+            if(self.duringEffect is True) and (self.continuousEffect != effectName):
+                return
+
+            # Probar una especie de cambio de fondo con el blur aplicado y transición
+            blurIntensity = 10
+            duration = 1
+
+            if effectName == 'blur':
+                renpy.with_statement(Dissolve(duration))
+                if self.duringEffect:
+                    renpy.layer_at_list("master", [])
+                    self.duringEffect = False
+                else:
+                    renpy.layer_at_list("master", [Transform(blur=blurIntensity)])                
+                    self.duringEffect = True
     
     
     backgroundManager = BackgroundManager()
     audioManager = AudioManager()
+    effectManager = EffectManager()

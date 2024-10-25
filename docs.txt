@@ -83,3 +83,20 @@ Deben estar en formato .wav
 No tiene nomeclatura, simplemente el nombre del sonido
 Ej: Golpe
 Ej: Latido
+
+
+
+##########    COLUMNA EFFECTS    ##########
+
+Para colocar efectos en pantalla, existen dos tipos de efecto, los efectos de una sola aparición y los efectos continuos 
+Los de una sola aparición suceden y nada más
+Los continuos se mantienen en pantalla hasta que en un diálogo posterior lo detengas
+
+Llamando un efecto de una sola aparición
+Sacudidas: Sacude la pantalla horizontal o verticalmente
+Nombre_del_efecto:intensidad
+horizontal:20
+vertical:50
+La intensidad simboliza los pixeles que se desplazará el fondo, por defecto serán 20
+10 sería un golpe sutil
+50 un golpe exagerado

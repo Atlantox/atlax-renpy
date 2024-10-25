@@ -36,6 +36,10 @@ label start:
             if(dialogue['Sound'] != ''):
                 audioManager.PlaySound(dialogue['Sound'])
 
+            # Creating effets
+            if(dialogue['Effect'] != ''):
+                effectManager.ProcessEffect(dialogue['Effect'])
+
             
             
             renpy.say(saijo, dialogue[currentLanguage])
