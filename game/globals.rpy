@@ -30,6 +30,8 @@ init python:
     class BackgroundManager:
         def __init__(self):
             self.backgroundPlaced = False
+            self.currentBackgroundImage = None
+            self.currentBackgroundPath = None
 
         def ChangeBackground(self, bgPrompt):
             transition = Dissolve
@@ -75,12 +77,25 @@ init python:
             renpy.scene()      
 
             commandString = 'bg ' + bgName 
+            backgroundPath = f'images/backgrounds/{bgName}.png'
+            self.currentBackgroundImage = Image(backgroundPath)
+            self.currentBackgroundPath = backgroundPath
+            
             renpy.show(commandString)
 
-            if not self.backgroundPlaced:
+            if not self.backgroundPlaced:                
                 self.backgroundPlaced = True
             else:
                 renpy.transition(transition(*time))
+
+        def DissolveBackgroundTo(self, image):
+            #myImage = At('madera', Transform(blur=10))
+
+            ImageDissolve(image, 1)
+            #renpy.show(myImage)
+            #renpy.with_statement(Dissolve(1))
+            #renpy.transition(Dissolve(image))
+            
 
 
     class AudioManager:
@@ -132,27 +147,30 @@ init python:
             renpy.transition(myTransition)
 
         
-        def ProcessContinuousEffect(self, blurData):
-            effectName = blurData[0]
+        def ProcessContinuousEffect(self, effectData):
+            effectName = effectData[0]
 
             # If another effect it's in progress, ignore the effect
             if(self.duringEffect is True) and (self.continuousEffect != effectName):
                 return
 
-            # Probar una especie de cambio de fondo con el blur aplicado y transición
+            if effectName == 'blur':
+                self.ToggleBlur(effectData)
+                
+
+        def ToggleBlur(self, effectData):
             blurIntensity = 10
             duration = 1
 
-            if effectName == 'blur':
-                renpy.with_statement(Dissolve(duration))
-                if self.duringEffect:
-                    renpy.layer_at_list("master", [])
-                    self.duringEffect = False
-                else:
-                    renpy.layer_at_list("master", [Transform(blur=blurIntensity)])                
-                    self.duringEffect = True
-    
-    
+            if self.duringEffect:
+                renpy.layer_at_list("master", [])
+                self.duringEffect = False
+            else:
+                bluredImage = Transform(backgroundManager.currentBackgroundImage, blur=blurIntensity)
+                backgroundManager.DissolveBackgroundTo(bluredImage)
+                self.duringEffect = True
+
+
     backgroundManager = BackgroundManager()
     audioManager = AudioManager()
     effectManager = EffectManager()

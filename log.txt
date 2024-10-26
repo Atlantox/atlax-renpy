@@ -1,37 +1,37 @@
-2024-10-25 00:48:16 UTC
+2024-10-26 23:19:24 UTC
 Windows-10-10.0.19041
 Ren'Py 8.3.2.24090902
 
-Early init took 0.13s
-Loading error handling took 0.06s
-Loading script took 0.25s
+Early init took 0.14s
+Loading error handling took 0.05s
+Loading script took 0.24s
 Loading save slot metadata took 0.04s
 Loading persistent took 0.00s
-Running init code took 0.09s
-Loading analysis data took 0.02s
+Running init code took 0.08s
+Loading analysis data took 0.03s
 Analyze and compile ATL took 0.00s
-Reloading save slot metadata took 0.03s
+Reloading save slot metadata took 0.02s
 Index archives took 0.00s
 Backing up script files to 'C:\\Users\\Atlantox\\AppData\\Roaming/RenPy/backups\\TheNextStepDemo':
-Dump and make backups took 0.09s
+Dump and make backups took 0.10s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
-Initial gc took 0.09s
+Initial gc took 0.10s
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: b"Couldn't load nvlib." (can be ignored)
 Creating interface object took 0.01s
 Cleaning stores took 0.00s
-Init translation took 0.07s
+Init translation took 0.10s
 Build styles took 0.00s
 Load screen analysis took 0.00s
-Analyze screens took 0.02s
-Save screen analysis took 0.03s
-Prepare screens took 0.25s
+Analyze screens took 0.05s
+Save screen analysis took 0.06s
+Prepare screens took 0.21s
 Save pyanalysis. took 0.00s
-Save bytecode. took 0.06s
+Save bytecode. took 0.03s
 Running _start took 0.00s
-Interface start took 0.15s
+Interface start took 0.14s
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1920, 1080)
@@ -44,33 +44,3 @@ Display Info: None
 Screen sizes: virtual=(1920, 1080) physical=(1739, 978) drawable=(1739, 978)
 Maximum texture size: 4096x4096
 ['\ufeffKey', 'Background', 'Music', 'Sound', 'Effect', 'Events', 'Delay', 'Emisor', 'Spanish', 'English']
-
-Full traceback:
-  File "game/script.rpy", line 23, in script
-    python:
-  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\ast.py", line 821, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\python.py", line 1178, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "game/script.rpy", line 41, in <module>
-    effectManager.ProcessEffect(dialogue['Effect'])
-  File "game/globals.rpy", line 116, in ProcessEffect
-    self.ProcessContinuousEffect(splits)
-  File "game/globals.rpy", line 151, in ProcessContinuousEffect
-    renpy.layer_at_list("master", [Transform(blur=blurIntensity)])
-  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\exports\displayexports.py", line 800, in show_layer_at
-    renpy.game.context().scene_lists.set_layer_at_list(layer, at_list, reset=reset, camera=camera)
-  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\display\scenelists.py", line 633, in set_layer_at_list
-    self.layer_at_list[layer] = (None, list(at_list))
-TypeError: unhashable type: 'RevertableList'
-
-While running game code:
-  File "game/script.rpy", line 23, in script
-    python:
-  File "game/script.rpy", line 41, in <module>
-    effectManager.ProcessEffect(dialogue['Effect'])
-  File "game/globals.rpy", line 116, in ProcessEffect
-    self.ProcessContinuousEffect(splits)
-  File "game/globals.rpy", line 151, in ProcessContinuousEffect
-    renpy.layer_at_list("master", [Transform(blur=blurIntensity)])
-TypeError: unhashable type: 'RevertableList'

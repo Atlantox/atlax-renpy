@@ -1,38 +1,44 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 23, in script
+  File "game/script.rpy", line 24, in script
     python:
-  File "game/script.rpy", line 41, in <module>
+  File "game/script.rpy", line 42, in <module>
     effectManager.ProcessEffect(dialogue['Effect'])
-  File "game/globals.rpy", line 116, in ProcessEffect
+  File "game/globals.rpy", line 129, in ProcessEffect
     self.ProcessContinuousEffect(splits)
-  File "game/globals.rpy", line 151, in ProcessContinuousEffect
-    renpy.layer_at_list("master", [Transform(blur=blurIntensity)])
-TypeError: unhashable type: 'RevertableList'
+  File "game/globals.rpy", line 156, in ProcessContinuousEffect
+    self.ToggleBlur(effectData)
+  File "game/globals.rpy", line 168, in ToggleBlur
+    backgroundManager.DissolveBackgroundTo(bluredImage)
+  File "game/globals.rpy", line 93, in DissolveBackgroundTo
+    renpy.show(myImage)
+AttributeError: 'Transform' object has no attribute 'split'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 23, in script
+  File "game/script.rpy", line 24, in script
     python:
   File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\ast.py", line 821, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\python.py", line 1178, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/script.rpy", line 41, in <module>
+  File "game/script.rpy", line 42, in <module>
     effectManager.ProcessEffect(dialogue['Effect'])
-  File "game/globals.rpy", line 116, in ProcessEffect
+  File "game/globals.rpy", line 129, in ProcessEffect
     self.ProcessContinuousEffect(splits)
-  File "game/globals.rpy", line 151, in ProcessContinuousEffect
-    renpy.layer_at_list("master", [Transform(blur=blurIntensity)])
-  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\exports\displayexports.py", line 800, in show_layer_at
-    renpy.game.context().scene_lists.set_layer_at_list(layer, at_list, reset=reset, camera=camera)
-  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\display\scenelists.py", line 633, in set_layer_at_list
-    self.layer_at_list[layer] = (None, list(at_list))
-TypeError: unhashable type: 'RevertableList'
+  File "game/globals.rpy", line 156, in ProcessContinuousEffect
+    self.ToggleBlur(effectData)
+  File "game/globals.rpy", line 168, in ToggleBlur
+    backgroundManager.DissolveBackgroundTo(bluredImage)
+  File "game/globals.rpy", line 93, in DissolveBackgroundTo
+    renpy.show(myImage)
+  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\exports\displayexports.py", line 442, in show
+    name = tuple(name.split())
+AttributeError: 'Transform' object has no attribute 'split'
 
 Windows-10-10.0.19041 AMD64
 Ren'Py 8.3.2.24090902
 TheNextStepDemo 1.0
-Thu Oct 24 20:48:22 2024
+Sat Oct 26 19:11:53 2024
