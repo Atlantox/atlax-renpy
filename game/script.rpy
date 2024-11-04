@@ -10,7 +10,7 @@ define config.fadeout_audio = 3
 
 image bg sex_dungeon = 'images/backgrounds/sex dungeon.png'
 image bg madera = 'images/backgrounds/madera.png'
-image bg madera_blur = Transform(Image('images/backgrounds/madera.png'), blur=15.0)
+#image bg madera_blur = Transform(Image('images/backgrounds/madera.png'), blur=15.0)
 
 
 $ import globals
@@ -25,22 +25,31 @@ label start:
         for i in range(5):
             dialogue = next(dialogueGenerator.generator)
 
-            # CREAR UNA FASE DE PREPARACIÓN Y LUEGO UNA DE EJECUCIÓN
-            # Backgrounds changes
+            '''  STATEMENT PREPARATION  '''
+
             if(dialogue['Background'] != ''):
-                backgroundManager.ChangeBackground(dialogue['Background'])
+                backgroundManager.PrepareBackground(dialogue['Background'])
 
-            # Music changes
             if(dialogue['Music'] != ''):
-                audioManager.PlayMusic(dialogue['Music'])
+                audioManager.PrepareMusic(dialogue['Music'])
 
-            # Playing sounds
             if(dialogue['Sound'] != ''):
-                audioManager.PlaySound(dialogue['Sound'])
+                audioManager.PrepareSound(dialogue['Sound'])
 
-            # Creating effets
             if(dialogue['Effect'] != ''):
-                effectManager.ProcessEffect(dialogue['Effect'])
+                effectManager.PrepareEffects(dialogue['Effect'])
+
+
+            '''  STATEMENT EXECUTION  '''
+
+            if(backgroundManager.prepared):
+                backgroundManager.HandleBackground()
+
+            if(audioManager.prepared):
+                audioManager.HandleSFX()
+
+            if(effectManager.prepared):
+                effectManager.HandleEffects()
 
             
             

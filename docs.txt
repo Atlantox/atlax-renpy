@@ -88,7 +88,7 @@ Ej: Latido
 
 ##########    COLUMNA EFFECTS    ##########
 
-Para colocar efectos en pantalla, existen dos tipos de efecto, los efectos de una sola aparición y los efectos continuos 
+Efectos en pantalla. Existen dos tipos de efecto, los efectos de una sola aparición y los efectos continuos 
 Los de una sola aparición suceden y nada más
 Los continuos se mantienen en pantalla hasta que en un diálogo posterior lo detengas
 
@@ -100,3 +100,7 @@ vertical:50
 La intensidad simboliza los pixeles que se desplazará el fondo, por defecto serán 20
 10 sería un golpe sutil
 50 un golpe exagerado
+
+
+Los continuos 
+efecto1:parametro, efecto2:parametro, efecto3:parametro

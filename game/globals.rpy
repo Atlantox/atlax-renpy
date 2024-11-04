@@ -29,146 +29,211 @@ init python:
     
     class BackgroundManager:
         def __init__(self):
+            self.prepared = False
+            self.defaultTransition = Dissolve
+            self.defaultDuration = 2.0
+
             self.backgroundPlaced = False
-            self.currentBackgroundImage = None
-            self.currentBackgroundPath = None
 
-        def ChangeBackground(self, bgPrompt):
-            transition = Dissolve
-            time = [2.0]
+            self.targetTransition = None
+            self.currentBgPath = None
+            self.currentBgName = None
+            self.params = None
+
+        def PrepareBackground(self, bgPrompt):
+            self.prepared = True
+            currentTransition = self.defaultTransition
+            params = [self.defaultDuration]
                 
-            bgSplits = bgPrompt.split(':')
-            bgName = bgSplits[0]            
+            promptSplits = bgPrompt.split(':')
+            bgName = promptSplits[0]            
 
-            if len(bgSplits) >= 2:
-                tentativeTransition = bgSplits[1].lower()
+            if len(promptSplits) >= 2:
+                recievedTransition = promptSplits[1].lower()
 
-                if tentativeTransition == 'dissolve':
-                    transition = Dissolve
-                elif tentativeTransition == 'fade':
-                    transition = Fade
-                    time = [1, 0.5, 1]
-                elif tentativeTransition == 'pixel':
-                    transition = Pixellate
-                    time = [3, 18]
-                elif tentativeTransition == 'push':
-                    transition = PushMove
-                    time = [1.5, 'pushup']
-                elif tentativeTransition == 'rup':
-                    transition = Swing
-                    time = [1.5, True, False]
-                elif tentativeTransition == 'rright':
-                    transition = Swing
-                    time = [1.5, False, False]
-                elif tentativeTransition == 'rdown':
-                    transition = Swing
-                    time = [1.5, True, True]
-                elif tentativeTransition == 'rleft':
-                    transition = Swing
-                    time = [1.5, False, True]
-                else:
-                    transition = Dissolve
+                if recievedTransition == 'fade':
+                    currentTransition = Fade
+                    params = [1, 0.5, 1]
+                elif recievedTransition == 'pixel':
+                    currentTransition = Pixellate
+                    params = [3, 18]
+                elif recievedTransition == 'push':
+                    currentTransition = PushMove
+                    params = [1.5, 'pushup']
+                elif recievedTransition == 'rup':
+                    currentTransition = Swing
+                    params = [1.5, True, False]
+                elif recievedTransition == 'rright':
+                    currentTransition = Swing
+                    params = [1.5, False, False]
+                elif recievedTransition == 'rdown':
+                    currentTransition = Swing
+                    params = [1.5, True, True]
+                elif recievedTransition == 'rleft':
+                    currentTransition = Swing
+                    params = [1.5, False, True]
             
-            if len(bgSplits) == 3:
-                params = [float(p.strip()) for p in bgSplits[2].split(',') if p != '']
-                time = params
+            if len(promptSplits) == 3:
+                params = [float(s.strip()) for s in promptSplits[2].split(',') if s != '']
 
 
-            renpy.scene()      
-
-            commandString = 'bg ' + bgName 
             backgroundPath = f'images/backgrounds/{bgName}.png'
-            self.currentBackgroundImage = Image(backgroundPath)
-            self.currentBackgroundPath = backgroundPath
-            
+
+            self.currentBgPath = backgroundPath
+            self.currentBgImage = Image(backgroundPath)
+            self.currentBgName = bgName
+            self.targetTransition = currentTransition
+            self.params = params
+
+
+        def HandleBackground(self):
+            self.prepared = False
+            renpy.scene()
+            commandString = 'bg ' + self.currentBgName
             renpy.show(commandString)
 
-            if not self.backgroundPlaced:                
+            if not self.backgroundPlaced: # Placing the background without transition             
                 self.backgroundPlaced = True
             else:
-                renpy.transition(transition(*time))
-
-        def DissolveBackgroundTo(self, image):
-            #myImage = At('madera', Transform(blur=10))
-
-            ImageDissolve(image, 1)
-            #renpy.show(myImage)
-            #renpy.with_statement(Dissolve(1))
-            #renpy.transition(Dissolve(image))
-            
+                renpy.transition(self.targetTransition(*self.params))
+                currentTransition = self.defaultTransition
+                params = [self.defaultDuration]
 
 
     class AudioManager:
-        def PlayMusic(self, musicData):
-            splittedMusic = musicData.split(':')
+        def __init__(self):
+            self.prepared = False
+            self.defaultFadeIn = 3.0
 
-            fileName = 'music/{0}.wav'.format(splittedMusic[0])
-            fadein = 3
+            self.currentMusicName = None
+            self.currentMusicPath = None
+            self.currentSoundPath = None
+            self.currentFadeIn = None
+            self.musicChanged = False
+            self.soundChanged = False
 
-            if len(splittedMusic) == 2:
-                fadein = float(splittedMusic[1])
+        def PrepareMusic(self,musicPrompt):
+            self.prepared = True
+            self.musicChanged = True
+            fadein = self.defaultFadeIn
 
-            if splittedMusic[0] == '*':
-                renpy.music.stop(channel='music', fadeout=fadein)
+            promptSplits = musicPrompt.split(':')
+            musicName = promptSplits[0]
+
+            if len(promptSplits) == 2:
+                fadein = float(promptSplits[1])
+
+            self.currentMusicPath = f'music/{musicName}.wav'
+            self.currentMusicName = musicName
+            self.currentFadeIn = fadein
+
+        def PrepareSound(self, soundPrompt):
+            self.prepared = True
+            self.soundChanged = True
+            self.currentSoundPath = 'sounds/{0}.wav'.format(soundPrompt)
+
+        def HandleSFX(self):
+            self.prepared = False
+
+            if self.musicChanged:
+                self.musicChanged = False
+                self.PlayMusic()
+
+            if self.soundChanged:
+                self.soundChanged = False
+                self.PlaySound()
+
+        def PlayMusic(self):                 
+            if self.currentMusicName == '*':
+                renpy.music.stop(channel='music', fadeout=self.currentFadeIn)
             else:
-                renpy.music.play(fileName, channel='music', fadein=fadein)
+                renpy.music.play(self.currentMusicPath, channel='music', fadein=self.currentFadeIn)
 
-        def PlaySound(self, soundData):
-            fileName = 'sounds/{0}.wav'.format(soundData)
-            renpy.music.play(fileName, channel='sound')
+        def PlaySound(self):
+            renpy.music.play(self.currentSoundPath, channel='sound')
 
 
-    class EffectManager:       
-        continuousEffect = None
-        duringEffect = False
+    class EffectManager:
+        def __init__(self):
+            self.prepared = False
+            self.defaultShakeIntensity = 20
+            self.defaultBlurIntensity = 15.0
 
-        def ProcessEffect(self, effectData):
-            splits = effectData.split(':')
+            self.continuousEffectQueue = []
+            self.effectQueue = []
 
-            if splits[0] in ['vertical', 'horizontal']:
-                self.ShakeData(splits)
-            elif splits[0] in ['blur']:
-                self.ProcessContinuousEffect(splits)
+            self.currentContinuousEffects = []
+
+        def PrepareEffects(self, effectPrompt):
+            self.prepared = True
+            promptSplits = effectPrompt.split(',')
+
+            for effect in promptSplits: # Iterating between the effects
+                splittedEffect = effect.split(':')
+                if splittedEffect[0] in ['vertical', 'horizontal']:
+                    self.PrepareShake(promptSplits)
+                elif splittedEffect[0] in ['blur']:
+                    self.PrepareContinuousEffect(splittedEffect)            
+
+        def PrepareShake(self, shakeSplits):
+            intensity = self.defaultShakeIntensity
+
+            if len(shakeSplits) >= 2:
+                intensity = int(shakeSplits[1])
+
+            if shakeSplits[0] == 'vertical':
+                shakeTransition = Move((0, intensity), (0, intensity * -1), .10, bounce=True, repeat=True, delay=.275)
                 
+            if shakeSplits[0] == 'horizontal':
+                shakeTransition = Move((intensity, 0), (intensity * -1, 0), .10, bounce=True, repeat=True, delay=.275)
 
-        def ScreenShake(self, shakeData):
-            intensity = 20
-
-            if len(shakeData) >= 2:
-                intensity = int(shakeData[1])
-
-            print(intensity * -1)
-            if shakeData[0] == 'vertical':
-                myTransition = Move((0, intensity), (0, intensity * -1), .10, bounce=True, repeat=True, delay=.275)
-                
-            if shakeData[0] == 'horizontal':
-                myTransition = Move((intensity, 0), (intensity * -1, 0), .10, bounce=True, repeat=True, delay=.275)
-
-            renpy.transition(myTransition)
-
+            self.effectQueue.append(shakeTransition)
         
-        def ProcessContinuousEffect(self, effectData):
-            effectName = effectData[0]
+        def PrepareContinuousEffect(self, effectSplits):
+            effectName = effectSplits[0]            
 
-            # If another effect it's in progress, ignore the effect
-            if(self.duringEffect is True) and (self.continuousEffect != effectName):
-                return
+            if effectName in ['blur']:  # Effects that depends of the current background
+                self.PrepareBackgroundTransform(effectSplits)
+            elif effectName in ['suffocation']:  # Effects that displays an image on the current background
+                pass
 
-            if effectName == 'blur':
-                self.ToggleBlur(effectData)
-                
+        def PrepareBackgroundTransform(self, effectSplits):
+            effectName = effectSplits[0]
+            backgroundManager.prepared = True
 
-        def ToggleBlur(self, effectData):
-            blurIntensity = 10
-            duration = 1
+            if effectName in self.currentContinuousEffects:  # The effect it's in progress, then stop it
+                pass
+            else: # The effect isn't in progress, then prepare it
+                self.currentContinuousEffects.append(effectName)
+                if effectName == 'blur':
+                    self.PrepareBlur(effectSplits)
+        
+        def PrepareBlur(self, effectSplits):
+            intensity = self.defaultBlurIntensity
 
-            if self.duringEffect:
-                renpy.layer_at_list("master", [])
-                self.duringEffect = False
-            else:
-                bluredImage = Transform(backgroundManager.currentBackgroundImage, blur=blurIntensity)
-                backgroundManager.DissolveBackgroundTo(bluredImage)
-                self.duringEffect = True
+            if len(effectSplits) > 1:
+                intensity = float(effectSplits[1])
+
+            bgPath = backgroundManager.currentBgPath
+            backgroundManager.currentBgName += '_blur'
+
+            print('Path:', bgPath)
+            print('Name:', backgroundManager.currentBgName)
+            # Tratar de mostrar el fondo con el efecto de blur declarando el fondo antes de cambiar a este por el backgroundManager mediante un string
+            # Aquí tratamos de definir el fondo "madera_blur" pero no fuciona, todavía
+            bluredImage = Transform(Image(bgPath), blur=intensity)
+            renpy.register_statement('define bg', bluredImage, backgroundManager.currentBgName)
+            
+
+        def HandleEffects(self):
+            self.prepared = False
+            if len(self.effectQueue) > 0:
+                for e in self.effectQueue:
+                    renpy.transition(e)
+                self.effectQueue = []
+
+            if len(self.continuousEffectQueue) > 0:
+                pass
 
 
     backgroundManager = BackgroundManager()

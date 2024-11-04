@@ -3,17 +3,17 @@
 While running game code:
   File "game/script.rpy", line 24, in script
     python:
-  File "game/script.rpy", line 42, in <module>
-    effectManager.ProcessEffect(dialogue['Effect'])
-  File "game/globals.rpy", line 129, in ProcessEffect
-    self.ProcessContinuousEffect(splits)
-  File "game/globals.rpy", line 156, in ProcessContinuousEffect
-    self.ToggleBlur(effectData)
-  File "game/globals.rpy", line 168, in ToggleBlur
-    backgroundManager.DissolveBackgroundTo(bluredImage)
-  File "game/globals.rpy", line 93, in DissolveBackgroundTo
-    renpy.show(myImage)
-AttributeError: 'Transform' object has no attribute 'split'
+  File "game/script.rpy", line 40, in <module>
+    effectManager.PrepareEffects(dialogue['Effect'])
+  File "game/globals.rpy", line 152, in PrepareEffects
+    self.PrepareContinuousEffect(splittedEffect)
+  File "game/globals.rpy", line 178, in PrepareContinuousEffect
+    self.PrepareBackgroundTransform(effectSplits)
+  File "game/globals.rpy", line 190, in PrepareBackgroundTransform
+    self.PrepareBlur(effectSplits)
+  File "game/globals.rpy", line 201, in PrepareBlur
+    renpy.add(bluredImage)
+AttributeError: module 'renpy.exports' has no attribute 'add'
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -24,21 +24,19 @@ Full traceback:
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\python.py", line 1178, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/script.rpy", line 42, in <module>
-    effectManager.ProcessEffect(dialogue['Effect'])
-  File "game/globals.rpy", line 129, in ProcessEffect
-    self.ProcessContinuousEffect(splits)
-  File "game/globals.rpy", line 156, in ProcessContinuousEffect
-    self.ToggleBlur(effectData)
-  File "game/globals.rpy", line 168, in ToggleBlur
-    backgroundManager.DissolveBackgroundTo(bluredImage)
-  File "game/globals.rpy", line 93, in DissolveBackgroundTo
-    renpy.show(myImage)
-  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\exports\displayexports.py", line 442, in show
-    name = tuple(name.split())
-AttributeError: 'Transform' object has no attribute 'split'
+  File "game/script.rpy", line 40, in <module>
+    effectManager.PrepareEffects(dialogue['Effect'])
+  File "game/globals.rpy", line 152, in PrepareEffects
+    self.PrepareContinuousEffect(splittedEffect)
+  File "game/globals.rpy", line 178, in PrepareContinuousEffect
+    self.PrepareBackgroundTransform(effectSplits)
+  File "game/globals.rpy", line 190, in PrepareBackgroundTransform
+    self.PrepareBlur(effectSplits)
+  File "game/globals.rpy", line 201, in PrepareBlur
+    renpy.add(bluredImage)
+AttributeError: module 'renpy.exports' has no attribute 'add'
 
 Windows-10-10.0.19041 AMD64
 Ren'Py 8.3.2.24090902
 TheNextStepDemo 1.0
-Sat Oct 26 19:11:53 2024
+Sun Nov  3 19:56:50 2024
