@@ -39,6 +39,7 @@ init python:
             self.currentBgPath = None
             self.currentBgName = None
             self.params = None
+            self.transformsToApply = {}
 
         def PrepareBackground(self, bgPrompt):
             self.prepared = True
@@ -80,7 +81,6 @@ init python:
             backgroundPath = f'images/backgrounds/{bgName}.png'
 
             self.currentBgPath = backgroundPath
-            self.currentBgImage = Image(backgroundPath)
             self.currentBgName = bgName
             self.targetTransition = currentTransition
             self.params = params
@@ -90,7 +90,12 @@ init python:
             self.prepared = False
             renpy.scene()
             commandString = 'bg ' + self.currentBgName
-            renpy.show(commandString)
+
+            transforms = []
+            for ker, value in self.transformsToApply.items():
+                transforms.append(value)
+
+            renpy.show(commandString, transforms)
 
             if not self.backgroundPlaced: # Placing the background without transition             
                 self.backgroundPlaced = True
@@ -156,6 +161,9 @@ init python:
     class EffectManager:
         def __init__(self):
             self.prepared = False
+            self.availableContinuousEffects = ['blur'] # Rotación, Zoom, Blanco y negro
+            self.availableSingleEffects = ['vpunch', 'hpunch']  # Centelleo, Apagón
+
             self.defaultShakeIntensity = 20
             self.defaultBlurIntensity = 15.0
 
@@ -166,14 +174,17 @@ init python:
 
         def PrepareEffects(self, effectPrompt):
             self.prepared = True
-            promptSplits = effectPrompt.split(',')
-
+            promptSplits = [e.strip() for e in effectPrompt.split(',')]
             for effect in promptSplits: # Iterating between the effects
-                splittedEffect = effect.split(':')
-                if splittedEffect[0] in ['vertical', 'horizontal']:
-                    self.PrepareShake(promptSplits)
-                elif splittedEffect[0] in ['blur']:
-                    self.PrepareContinuousEffect(splittedEffect)            
+                splittedEffect = [e.strip() for e in effect.split(':')]
+                if splittedEffect[0] in self.availableSingleEffects:
+                    self.PrepareSingleEffect(splittedEffect)
+                elif splittedEffect[0] in self.availableContinuousEffects:
+                    self.PrepareContinuousEffect(splittedEffect)   
+
+        def PrepareSingleEffect(self, effectSplits):
+            if effectSplits[0] in ['vpunch', 'hpunch']:
+                self.PrepareShake(effectSplits)
 
         def PrepareShake(self, shakeSplits):
             intensity = self.defaultShakeIntensity
@@ -181,20 +192,22 @@ init python:
             if len(shakeSplits) >= 2:
                 intensity = int(shakeSplits[1])
 
-            if shakeSplits[0] == 'vertical':
+            if shakeSplits[0] == 'vpunch':
                 shakeTransition = Move((0, intensity), (0, intensity * -1), .10, bounce=True, repeat=True, delay=.275)
                 
-            if shakeSplits[0] == 'horizontal':
+            if shakeSplits[0] == 'hpunch':
                 shakeTransition = Move((intensity, 0), (intensity * -1, 0), .10, bounce=True, repeat=True, delay=.275)
 
+            print(shakeSplits)
             self.effectQueue.append(shakeTransition)
         
         def PrepareContinuousEffect(self, effectSplits):
             effectName = effectSplits[0]            
 
-            if effectName in ['blur']:  # Effects that depends of the current background
+            if effectName in self.availableContinuousEffects:  # Effects that depends of the current background
                 self.PrepareBackgroundTransform(effectSplits)
             elif effectName in ['suffocation']:  # Effects that displays an image on the current background
+                # TODO: effects that displays a PNG over the current background
                 pass
 
         def PrepareBackgroundTransform(self, effectSplits):
@@ -202,7 +215,9 @@ init python:
             backgroundManager.prepared = True
 
             if effectName in self.currentContinuousEffects:  # The effect it's in progress, then stop it
-                pass
+                effectIdx = self.currentContinuousEffects.index(effectName)
+                del self.currentContinuousEffects[effectIdx]
+                del backgroundManager.transformsToApply[effectName]
             else: # The effect isn't in progress, then prepare it
                 self.currentContinuousEffects.append(effectName)
                 if effectName == 'blur':
@@ -214,16 +229,7 @@ init python:
             if len(effectSplits) > 1:
                 intensity = float(effectSplits[1])
 
-            bgPath = backgroundManager.currentBgPath
-            backgroundManager.currentBgName += '_blur'
-
-            print('Path:', bgPath)
-            print('Name:', backgroundManager.currentBgName)
-            # Tratar de mostrar el fondo con el efecto de blur declarando el fondo antes de cambiar a este por el backgroundManager mediante un string
-            # Aquí tratamos de definir el fondo "madera_blur" pero no fuciona, todavía
-            bluredImage = Transform(Image(bgPath), blur=intensity)
-            renpy.register_statement('define bg', bluredImage, backgroundManager.currentBgName)
-            
+            backgroundManager.transformsToApply[effectSplits[0]] = Transform(blur=intensity)            
 
         def HandleEffects(self):
             self.prepared = False

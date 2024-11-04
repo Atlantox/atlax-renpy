@@ -89,18 +89,34 @@ Ej: Latido
 ##########    COLUMNA EFFECTS    ##########
 
 Efectos en pantalla. Existen dos tipos de efecto, los efectos de una sola aparición y los efectos continuos 
-Los de una sola aparición suceden y nada más
-Los continuos se mantienen en pantalla hasta que en un diálogo posterior lo detengas
 
 Llamando un efecto de una sola aparición
-Sacudidas: Sacude la pantalla horizontal o verticalmente
+    hpunch:intensidad(20) La pantalla se balancea hacia la derecha e izquierda simulando un golpe
+    vpunch:intensidad(20) La pantalla se balancea hacia arriba y abajo simulando un golpe
+    flash:duracion(0.1) La pantalla se vuelve blanca repentinamente según la duración en segundos
+    blackout:duracion(0.1) La pantalla se vuelve negra repentinamente según la duración en segundos
+
+NOMECLATURA
 Nombre_del_efecto:intensidad
-horizontal:20
-vertical:50
-La intensidad simboliza los pixeles que se desplazará el fondo, por defecto serán 20
+Ej: hpunch:20
+Ej: vpunch:50
+
 10 sería un golpe sutil
-50 un golpe exagerado
+60 un golpe fuerte
+100 un golpe exagerado
 
 
-Los continuos 
+Efectos continuos
+Estos efectos también se dividen en 2, los que deforman el fondo actual y los que colocan una imagen por encima del fondo
+Un ejemplo de cada uno sería: 
+Volver borroso el fondo actual
+Colocar una imagen rojiza con venas en las esquinas para simular un efecto de sofoco
+El motor será capaz de procesar varios de estos a la vez así que úsalos múltiples veces sin miedo
+Para que aparezca un efecto continuo debes invocarlo por su nombre, lo mismo para quitarlo
+Procura que no se te olvide remover los efectos ya que puede ocasionar que se queden puestos por el resto de la escena
+
+Efectos:
+    blur:intensidad(20) vuelve borroso el fondo actual y los futuros
+
+NOMECLATURA
 efecto1:parametro, efecto2:parametro, efecto3:parametro

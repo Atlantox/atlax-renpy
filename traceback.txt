@@ -5,15 +5,9 @@ While running game code:
     python:
   File "game/script.rpy", line 40, in <module>
     effectManager.PrepareEffects(dialogue['Effect'])
-  File "game/globals.rpy", line 152, in PrepareEffects
-    self.PrepareContinuousEffect(splittedEffect)
-  File "game/globals.rpy", line 178, in PrepareContinuousEffect
-    self.PrepareBackgroundTransform(effectSplits)
-  File "game/globals.rpy", line 190, in PrepareBackgroundTransform
-    self.PrepareBlur(effectSplits)
-  File "game/globals.rpy", line 201, in PrepareBlur
-    renpy.add(bluredImage)
-AttributeError: module 'renpy.exports' has no attribute 'add'
+  File "game/globals.rpy", line 182, in PrepareEffects
+    self.PrepareSingleEffect(promptSplits)
+TypeError: PrepareSingleEffect() takes 1 positional argument but 2 were given
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -26,17 +20,11 @@ Full traceback:
     exec(bytecode, globals, locals)
   File "game/script.rpy", line 40, in <module>
     effectManager.PrepareEffects(dialogue['Effect'])
-  File "game/globals.rpy", line 152, in PrepareEffects
-    self.PrepareContinuousEffect(splittedEffect)
-  File "game/globals.rpy", line 178, in PrepareContinuousEffect
-    self.PrepareBackgroundTransform(effectSplits)
-  File "game/globals.rpy", line 190, in PrepareBackgroundTransform
-    self.PrepareBlur(effectSplits)
-  File "game/globals.rpy", line 201, in PrepareBlur
-    renpy.add(bluredImage)
-AttributeError: module 'renpy.exports' has no attribute 'add'
+  File "game/globals.rpy", line 182, in PrepareEffects
+    self.PrepareSingleEffect(promptSplits)
+TypeError: PrepareSingleEffect() takes 1 positional argument but 2 were given
 
 Windows-10-10.0.19041 AMD64
 Ren'Py 8.3.2.24090902
 TheNextStepDemo 1.0
-Sun Nov  3 19:56:50 2024
+Mon Nov  4 18:56:40 2024

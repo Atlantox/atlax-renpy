@@ -1,8 +1,8 @@
 ﻿Key;Background;Music;Sound;Effect;Events;Delay;Emisor;Spanish;English
 Demo_1_1_1;sex_dungeon;While we speak;;;;;saijo;No se que hora o que día es hoy, creo que es miércoles en la tarde.;Inglés
-Demo_1_1_2;madera:pushup;;Golpe;;;;saijo;Lo unico que tengo verdaderamente claro, es que debo estar postrado en esta cama de hospital hasta Dios sabe cuando...;Más inglés
-Demo_1_1_3;;;;blur;;;saijo;Algunos chicos de mi edad tienen asma, puede tratarse bien, otros apendicitis, facil se quita el apéndice y yo... bueno.. una condición la cual tiene un nombre particular..;
-Demo_1_1_4;madera:rdown;;;;;;mutou;Sin embargo, el hecho de que me haya topado con esa con esa terminología en esta circunstancia es basicamente frustrante y desalentador. Sin causas definidas, sin factores que influyan... ;
+Demo_1_1_2;madera:pushup;;Golpe;hpunch:60;;;saijo;Lo unico que tengo verdaderamente claro, es que debo estar postrado en esta cama de hospital hasta Dios sabe cuando...;Más inglés
+Demo_1_1_3;;;;blur:50;;;saijo;Algunos chicos de mi edad tienen asma, puede tratarse bien, otros apendicitis, facil se quita el apéndice y yo... bueno.. una condición la cual tiene un nombre particular..;
+Demo_1_1_4;;;;blur;;;mutou;Sin embargo, el hecho de que me haya topado con esa con esa terminología en esta circunstancia es basicamente frustrante y desalentador. Sin causas definidas, sin factores que influyan... ;
 Demo_1_1_5;sex_dungeon:rleft;;;;;;mutou;Sin cura. Solo tratamiento.;
 Demo_1_1_6;madera;;;;;;mutou;Mis pensamientos se ponen a divagar por las noches mientras observo la luz de la luna entrando a través de las pequeñas ranuras que se generan en la cortina blanquecina.;
 
