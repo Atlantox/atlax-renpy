@@ -117,6 +117,9 @@ Procura que no se te olvide remover los efectos ya que puede ocasionar que se qu
 
 Efectos:
     blur:intensidad(20) vuelve borroso el fondo actual y los futuros
+    rotate:grados(45) Gira el fondo una cantidad de grados (No se refcomienda utilizar ya que la imagen se gira de forma extraña y deja ver el fondo)
+    vward:factor de deformación(1.1) Deforma el fondo según el factor de deformación vertical, siendo el valor 1 la el alto normal de la imagen
+    hward:factor de deformación(1.1) Deforma el fondo según el factor de deformación horizontal, siendo el valor 1 la el ancho normal de la imagen
 
 NOMECLATURA
 efecto1:parametro, efecto2:parametro, efecto3:parametro

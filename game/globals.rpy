@@ -161,11 +161,13 @@ init python:
     class EffectManager:
         def __init__(self):
             self.prepared = False
-            self.availableContinuousEffects = ['blur'] # Rotación, Zoom, Blanco y negro
+            self.availableContinuousEffects = ['blur', 'rotate', 'hwarp', 'vwarp'] # Rotación, Zoom, Blanco y negro
             self.availableSingleEffects = ['vpunch', 'hpunch']  # Centelleo, Apagón
 
             self.defaultShakeIntensity = 20
             self.defaultBlurIntensity = 15.0
+            self.defaultRotationDegrees = 45
+            self.defaultWarp = 1.1
 
             self.continuousEffectQueue = []
             self.effectQueue = []
@@ -198,7 +200,6 @@ init python:
             if shakeSplits[0] == 'hpunch':
                 shakeTransition = Move((intensity, 0), (intensity * -1, 0), .10, bounce=True, repeat=True, delay=.275)
 
-            print(shakeSplits)
             self.effectQueue.append(shakeTransition)
         
         def PrepareContinuousEffect(self, effectSplits):
@@ -220,16 +221,24 @@ init python:
                 del backgroundManager.transformsToApply[effectName]
             else: # The effect isn't in progress, then prepare it
                 self.currentContinuousEffects.append(effectName)
+                recievedParam = len(effectSplits) > 1  # A param was recieved
+
                 if effectName == 'blur':
-                    self.PrepareBlur(effectSplits)
-        
-        def PrepareBlur(self, effectSplits):
-            intensity = self.defaultBlurIntensity
+                    intensity = float(effectSplits[1]) if recievedParam else self.defaultBlurIntensity
+                    targetEffect = Transform(blur=intensity)
+                elif effectName == 'rotate':
+                    degrees = float(effectSplits[1]) if recievedParam else self.defaultRotationDegrees
+                    targetEffect = Transform(rotate=degrees, rotate_pad=False, transform_anchor=True)
+                elif effectName in ['hwarp', 'vwarp']:
+                    factor = float(effectSplits[1]) if recievedParam else self.defaultWarp
+                    if effectName == 'hwarp':                        
+                        targetEffect = Transform(xsize=factor)
+                    else:
+                        targetEffect = Transform(ysize=factor)
+                else:
+                    return
 
-            if len(effectSplits) > 1:
-                intensity = float(effectSplits[1])
-
-            backgroundManager.transformsToApply[effectSplits[0]] = Transform(blur=intensity)            
+                backgroundManager.transformsToApply[effectSplits[0]] = targetEffect
 
         def HandleEffects(self):
             self.prepared = False
