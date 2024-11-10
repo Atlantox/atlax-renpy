@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/globals.rpy", line 92: invalid syntax
-            renpy.show('madera' atl=Transform(blur=10))
-                                 ^
+File "game/globals.rpy", line 124: expected an indented block
+    class AudioManager:
+    ^
 
 Ren'Py Version: Ren'Py 8.3.2.24090902
-Sat Oct 26 18:56:04 2024
+Sat Nov  9 22:48:24 2024

@@ -12,6 +12,7 @@ Ej: Rin_3_12_91 ( Ruta de Rin, Capítulo 3, escena 12, diálogo 91)
 Nombre de la imagen:tipo de transición:parámetros(opcionales)
 Ej: campus_night:fade:1:3:1 
 (Eso pone el background campus_night con un fundido a negro donde el fondo anterior se funde en un segundo, permanece 3 segundos la pantalla en negro y aparece campus_night a lo largo de un segundo)
+Nombres ignorados para fondos: "flash", "blackout"
 
 Tipos de transiciones:
 
@@ -91,10 +92,14 @@ Ej: Latido
 Efectos en pantalla. Existen dos tipos de efecto, los efectos de una sola aparición y los efectos continuos 
 
 Llamando un efecto de una sola aparición
-    hpunch:intensidad(20) La pantalla se balancea hacia la derecha e izquierda simulando un golpe
-    vpunch:intensidad(20) La pantalla se balancea hacia arriba y abajo simulando un golpe
-    flash:duracion(0.1) La pantalla se vuelve blanca repentinamente según la duración en segundos
-    blackout:duracion(0.1) La pantalla se vuelve negra repentinamente según la duración en segundos
+    Golpes: El fondo se balancea rápidamente con X intensidad hacia alguna dirección
+    hpunch:intensidad(20) La pantalla se balancea hacia la derecha e izquierda
+    vpunch:intensidad(20) La pantalla se balancea hacia arriba y abajo
+
+    Parpadeos: Efectos donde una imagen aparece X veces por intervalos de X segundos alternando entre la imagen seleccionada y el fondo actual
+    flash:duracion:veces(0.1, 4) Una imagen aparece haciendo un efecto de centelleo blanco
+    blackout:duracion:veces(0.1, 4) Un imagen negra aparece haciendo un efecto de apagón o parpadeo
+    nombre_de_un_fondo:duracion:veces (0.1, 4) La pantalla parpadea intermietentemente mostrando el fondo elegido
 
 NOMECLATURA
 Nombre_del_efecto:intensidad
@@ -117,9 +122,9 @@ Procura que no se te olvide remover los efectos ya que puede ocasionar que se qu
 
 Efectos:
     blur:intensidad(20) vuelve borroso el fondo actual y los futuros
-    rotate:grados(45) Gira el fondo una cantidad de grados (No se refcomienda utilizar ya que la imagen se gira de forma extraña y deja ver el fondo)
     vward:factor de deformación(1.1) Deforma el fondo según el factor de deformación vertical, siendo el valor 1 la el alto normal de la imagen
     hward:factor de deformación(1.1) Deforma el fondo según el factor de deformación horizontal, siendo el valor 1 la el ancho normal de la imagen
+    rotate:grados(45) Gira el fondo una cantidad de grados (No se recomienda utilizar ya que la imagen se gira deja ver el fondo)
 
 NOMECLATURA
 efecto1:parametro, efecto2:parametro, efecto3:parametro

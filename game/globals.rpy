@@ -7,7 +7,7 @@ init python:
             f.close()
 
             self.headers = [s.strip() for s in lines[0].split(';')]
-            print(self.headers)
+
             self.dialogues = lines[1:] # Ignoramos la primera fila que es la leyenda
             f.close()
             self.generator = self.getNextDialogue()
@@ -29,9 +29,11 @@ init python:
     
     class BackgroundManager:
         def __init__(self):
-            self.prepared = False
+            self.baseBgPath = 'images/backgrounds/'
             self.defaultTransition = Dissolve
             self.defaultDuration = 2.0
+
+            self.prepared = False
 
             self.backgroundPlaced = False
 
@@ -40,6 +42,9 @@ init python:
             self.currentBgName = None
             self.params = None
             self.transformsToApply = {}
+
+            self.postHandleEvents = []
+            self.postHandleParams = []
 
         def PrepareBackground(self, bgPrompt):
             self.prepared = True
@@ -78,13 +83,12 @@ init python:
                 params = [float(s.strip()) for s in promptSplits[2].split(',') if s != '']
 
 
-            backgroundPath = f'images/backgrounds/{bgName}.png'
+            backgroundPath = self.baseBgPath + f'{bgName}.png'
 
             self.currentBgPath = backgroundPath
             self.currentBgName = bgName
             self.targetTransition = currentTransition
             self.params = params
-
 
         def HandleBackground(self):
             self.prepared = False
@@ -103,6 +107,16 @@ init python:
                 renpy.transition(self.targetTransition(*self.params))
                 currentTransition = self.defaultTransition
                 params = [self.defaultDuration]
+
+        def HandlePostEventsEffects(self):
+            print('Ejeutando eventos post realización')
+            for i in range(len(self.postHandleEvents)):
+                # Calling functions with corresponded params
+                print(i)
+                self.postHandleEvents[i](*self.postHandleParams[i])
+
+            self.postHandleEvents = []
+            self.postHandleParams = []
 
 
     class AudioManager:
@@ -161,13 +175,15 @@ init python:
     class EffectManager:
         def __init__(self):
             self.prepared = False
-            self.availableContinuousEffects = ['blur', 'rotate', 'hwarp', 'vwarp'] # Rotación, Zoom, Blanco y negro
-            self.availableSingleEffects = ['vpunch', 'hpunch']  # Centelleo, Apagón
+            self.availableContinuousEffects = ['blur', 'rotate', 'hwarp', 'vwarp'] # Suffocation
+            self.availableSingleEffects = ['vpunch', 'hpunch', 'flash', 'blackout']  # Centelleo, Apagón
 
             self.defaultShakeIntensity = 20
             self.defaultBlurIntensity = 15.0
             self.defaultRotationDegrees = 45
             self.defaultWarp = 1.1
+            self.defaultSingleEffetDuration = 0.1
+            self.defaultBlinkTimes = 4
 
             self.continuousEffectQueue = []
             self.effectQueue = []
@@ -178,15 +194,23 @@ init python:
             self.prepared = True
             promptSplits = [e.strip() for e in effectPrompt.split(',')]
             for effect in promptSplits: # Iterating between the effects
-                splittedEffect = [e.strip() for e in effect.split(':')]
-                if splittedEffect[0] in self.availableSingleEffects:
-                    self.PrepareSingleEffect(splittedEffect)
-                elif splittedEffect[0] in self.availableContinuousEffects:
-                    self.PrepareContinuousEffect(splittedEffect)   
+                effectSplits = [e.strip() for e in effect.split(':')]
+                effectName = effectSplits[0]
+
+                if effectName in self.availableContinuousEffects:
+                    self.PrepareContinuousEffect(effectSplits)   
+                else:
+                    if effectName in self.availableSingleEffects:
+                        self.PrepareSingleEffect(effectSplits)
+                    else: # Maybe it's a background flashing
+                        exists = renpy.exists(backgroundManager.baseBgPath + effectName + '.png')
+                        self.PrepareSuddenImage(effectSplits, exists)
 
         def PrepareSingleEffect(self, effectSplits):
             if effectSplits[0] in ['vpunch', 'hpunch']:
                 self.PrepareShake(effectSplits)
+            elif effectSplits[0] in ['flash', 'blackout']:
+                self.PrepareSuddenImage(effectSplits)
 
         def PrepareShake(self, shakeSplits):
             intensity = self.defaultShakeIntensity
@@ -239,6 +263,34 @@ init python:
                     return
 
                 backgroundManager.transformsToApply[effectSplits[0]] = targetEffect
+
+        def PrepareSuddenImage(self, effectSplits, imageExists = True):
+            if imageExists is False: return
+            effectName = effectSplits[0]
+            duration = self.defaultSingleEffetDuration
+            times = self.defaultBlinkTimes
+
+            if len(effectSplits) > 1:
+                duration = float(effectSplits[1])
+
+            if len(effectSplits) > 2:
+                times = int(effectSplits[2])
+
+            imageToShow = 'bg ' + effectName
+            
+
+            # Building the function to pass to the backgroundManager
+            def BlinkImage(imageToShow, times, duration):
+                for _ in range(times):
+                    renpy.show(imageToShow, [Transform(alpha=1.0)])
+                    renpy.pause(duration)
+                    #renpy.show(imageToShow, [Transform(alpha=0.0)])
+                    renpy.show('bg ' + backgroundManager.currentBgName)
+                    renpy.pause(duration)
+
+            
+            backgroundManager.postHandleEvents.append(BlinkImage)
+            backgroundManager.postHandleParams.append([imageToShow, times, duration])
 
         def HandleEffects(self):
             self.prepared = False

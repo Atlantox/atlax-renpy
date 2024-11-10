@@ -1,8 +1,4 @@
-﻿# Coloca el código de tu juego en este archivo.
-
-# Declara los personajes usados en el juego como en el ejemplo:
-
-define saijo = Character('Saijo', color='#8709B4')
+﻿define saijo = Character('Saijo', color='#8709B4')
 define mutou = Character('Mutou', color='#2595d2')
 
 define currentLanguage = 'Spanish'
@@ -10,16 +6,14 @@ define config.fadeout_audio = 3
 
 image bg sex_dungeon = 'images/backgrounds/sex dungeon.png'
 image bg madera = 'images/backgrounds/madera.png'
-#image bg madera_blur = Transform(Image('images/backgrounds/madera.png'), blur=15.0)
+image bg flash = 'images/backgrounds/flash.png'
+image bg blackout = 'images/backgrounds/blackout.png'
 
 
 $ import globals
-#$ import scenes.example.my_scene1
 
 label start:
     $ dialogueGenerator = DialogueGenerator('my_scene1.csv')
-    #show sex dungeon
-    #show saijo
 
     python:
         for i in range(5):
@@ -45,6 +39,9 @@ label start:
             if(backgroundManager.prepared):
                 backgroundManager.HandleBackground()
 
+            if len(backgroundManager.postHandleEvents) > 0:
+                backgroundManager.HandlePostEventsEffects()
+
             if(audioManager.prepared):
                 audioManager.HandleSFX()
 
@@ -52,11 +49,8 @@ label start:
                 effectManager.HandleEffects()
 
             
-            
             renpy.say(saijo, dialogue[currentLanguage])
     
-    
-
     # Finaliza el juego:
 
     return
