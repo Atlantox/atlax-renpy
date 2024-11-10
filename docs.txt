@@ -64,8 +64,8 @@ Fade-out: Cuando un sonido pasa de 100 volumen a 0 (Cuando la música sale)
 Por defecto las músicas de fondo harán un fade-in y un fade-out de 3 segundos
 
 NOMECLATURA
-nombre con espacios:segundos de fade-in
-Ej: While we speak:4
+nombre sin espacios:segundos de fade-in
+Ej: While_we_speak:4
 Ej: Stride 
 
 SILENCIO 
@@ -81,28 +81,45 @@ Si no se le coloca fade-out, por defecto será de 3 segundos
 
 Nombre de los sonidos que se van a reproducir al momento que el jugador de click para pasar al diálogo.
 Deben estar en formato .wav
-No tiene nomeclatura, simplemente el nombre del sonido
-Ej: Golpe
-Ej: Latido
+
+NOMECLATURA
+Nombre del sonido
+
+Ej: Golpe  # Reproduciendo el sonido Golpe una vez
+Ej: Latido, Golpe  # Reproduciendo el sonido Latido y Golpe una vez al mismo tiempo
+
+Loop
+Si deseas que el sonido se repita indefinidamente deberás agregarle :loop al final del sonido
+
+Ej: Golpe:loop  # Reproduciendo el sonido Golpe infinitamente
+
+Para detener el loop, en un diálogo posterior debes llamar Golpe:loop tal cual como hiciste para iniciar el loop
+IMPORTANTE: Si un sonido está en loop NO se deben reproducir sonidos ya que eso romperá el loop y luego sonará el sonido escrito
+
+Ej:
+Golpe:loop
+--Diálogos
+Latido 
+# El loop de Golpe se rompe y se reproducen los latidos
+
+Ej:
+Golpe:loop
+--Diálogos
+Golpe:loop
+# El loop de Golpe se inicia y tras X diálogos de detiene
+
+Al detenerse un loop este hará un fadein de 1.5 segundos
 
 
 
-##########    COLUMNA EFFECTS    ##########
 
-Efectos en pantalla. Existen dos tipos de efecto, los efectos de una sola aparición y los efectos continuos 
+##########    COLUMNA SINGLE EFFECTS    ##########
 
-Llamando un efecto de una sola aparición
-    Golpes: El fondo se balancea rápidamente con X intensidad hacia alguna dirección
+Son efectos de una sola aparición, es decir, efectos que aparecen cuando los llamas.
+Golpes: El fondo se balancea rápidamente con X intensidad hacia alguna dirección
     hpunch:intensidad(20) La pantalla se balancea hacia la derecha e izquierda
     vpunch:intensidad(20) La pantalla se balancea hacia arriba y abajo
 
-    Parpadeos: Efectos donde una imagen aparece X veces por intervalos de X segundos alternando entre la imagen seleccionada y el fondo actual
-    flash:duracion:veces(0.1, 4) Una imagen aparece haciendo un efecto de centelleo blanco
-    blackout:duracion:veces(0.1, 4) Un imagen negra aparece haciendo un efecto de apagón o parpadeo
-    nombre_de_un_fondo:duracion:veces (0.1, 4) La pantalla parpadea intermietentemente mostrando el fondo elegido
-
-NOMECLATURA
-Nombre_del_efecto:intensidad
 Ej: hpunch:20
 Ej: vpunch:50
 
@@ -111,20 +128,45 @@ Ej: vpunch:50
 100 un golpe exagerado
 
 
-Efectos continuos
-Estos efectos también se dividen en 2, los que deforman el fondo actual y los que colocan una imagen por encima del fondo
+Parpadeos: Efectos donde una imagen aparece X veces por intervalos de X segundos alternando entre la imagen seleccionada y el fondo actual
+    Por defecto la duración es de 0.1 segundos y aparece 4 veces
+    flash:duracion:veces  # Una imagen aparece haciendo un efecto de centelleo blanco
+    blackout:duracion:veces  # Un imagen negra aparece haciendo un efecto de apagón o parpadeo
+    nombre_de_un_fondo:duracion:veces  # La pantalla parpadea intermietentemente mostrando el fondo elegido, puede utiliarse para simular flashbacks repentinos
+
+Ej: flash:0.25:1  Genera un flashazo blanco que dura 0.25 segundos
+Ej: hospital:0.1:2  Muestra el fondo llamado hospital durante 0.1 segundos 2 veces
+
+Estos efectos se pueden acumular es decir, puedes declarar varios efectos en un mismo diálogo, para ello sepáralos por comas
+vpunch:50,flash:0.1:1 # Esto sería un golpe vertical combinado a un flashazo blanco dando énfasis al impacto de un golpe recibido
+
+
+
+
+##########    COLUMNA CONTINUOUS EFFECTS    ##########
+
+Estos efectos continuos se dividen en 2, los que deforman o interactúan con el fondo actual y los que colocan una imagen por encima del fondo
 Un ejemplo de cada uno sería: 
 Volver borroso el fondo actual
-Colocar una imagen rojiza con venas en las esquinas para simular un efecto de sofoco
-El motor será capaz de procesar varios de estos a la vez así que úsalos múltiples veces sin miedo
-Para que aparezca un efecto continuo debes invocarlo por su nombre, lo mismo para quitarlo
-Procura que no se te olvide remover los efectos ya que puede ocasionar que se queden puestos por el resto de la escena
+Colocar una imagen rojiza con venas para simular un efecto de sofoco
+Estos efectos tienen la particularidad de que una vez los invocas, permanecen en pantalla hasta que los vuelvas a llamar, por eso se le llaman efectos continuos
 
-Efectos:
-    blur:intensidad(20) vuelve borroso el fondo actual y los futuros
-    vward:factor de deformación(1.1) Deforma el fondo según el factor de deformación vertical, siendo el valor 1 la el alto normal de la imagen
-    hward:factor de deformación(1.1) Deforma el fondo según el factor de deformación horizontal, siendo el valor 1 la el ancho normal de la imagen
-    rotate:grados(45) Gira el fondo una cantidad de grados (No se recomienda utilizar ya que la imagen se gira deja ver el fondo)
+Efectos que interactúan con el fondo actual:
+    blur:intensidad(20)  # Vuelve borroso el fondo actual y los futuros
+    hwarp:factor de deformación(1.1)  # Deforma el fondo según el factor de deformación vertical, siendo el valor 1 la el alto normal de la imagen
+    hwarp:factor de deformación(1.1)  # Deforma el fondo según el factor de deformación horizontal, siendo el valor 1 la el ancho normal de la imagen
+    rotate:grados(45)  # Gira el fondo una cantidad de grados (No se recomienda utilizar ya que la imagen se gira deja ver el fondo)
 
-NOMECLATURA
-efecto1:parametro, efecto2:parametro, efecto3:parametro
+Ej: blur:100  # Gran borrosidad
+Ej: hwarp:1.5  # Estira el fondo horizontalmente 1.5 veces más de lo normal
+
+Efectos que muestran una imagen por encima del fondo:
+    nombre_de_un_fondo:opacidad(0.4)  # Muestra el fondo elegido con la opacidad dada
+
+Ej: suffocation:0.8  # Muestra un fondo rojizo con unas venas por encima del fondo actual
+
+El motor será capaz de procesar varios efectos a la vez
+blur:60,suffocation:0.9  # Nubla el fondo actual y coloca encima el fondo rojizo
+
+Por supuesto, puedes combinar distintos efectos continuos y de una sola aparición para lograr interesantes resultados para que el usuario se sienta más inmerso en la trama
+Recuerda desactivar los efectos continuos, si no lo hacen permanecerán por el resto de la partida

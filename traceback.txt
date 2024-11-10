@@ -1,36 +1,30 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 18, in script
+  File "game/script.rpy", line 15, in script
     python:
-  File "game/script.rpy", line 43, in <module>
-    backgroundManager.HandlePostEventsEffects()
-  File "game/globals.rpy", line 116, in HandlePostEventsEffects
-    self.postHandleEvents[i](*self.postHandleParams[i])
-  File "game/globals.rpy", line 284, in BlinkImage
-    for _ in range(times):
-TypeError: 'float' object cannot be interpreted as an integer
+  File "game/script.rpy", line 33, in <module>
+    audioManager.PrepareSound(dialogue['Sound'])
+  File "game/managers/AudioManager.rpy", line 48, in PrepareSound
+    soundQueue.append(soundElement)
+NameError: name 'soundQueue' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 18, in script
+  File "game/script.rpy", line 15, in script
     python:
   File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\ast.py", line 821, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\python.py", line 1178, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/script.rpy", line 43, in <module>
-    backgroundManager.HandlePostEventsEffects()
-  File "game/globals.rpy", line 116, in HandlePostEventsEffects
-    self.postHandleEvents[i](*self.postHandleParams[i])
-  File "game/globals.rpy", line 284, in BlinkImage
-    for _ in range(times):
-  File "D:\Program Files\Renpy\renpy-8.1.3-sdk\renpy\revertable.py", line 266, in revertable_range
-    return RevertableList(range(*args))
-TypeError: 'float' object cannot be interpreted as an integer
+  File "game/script.rpy", line 33, in <module>
+    audioManager.PrepareSound(dialogue['Sound'])
+  File "game/managers/AudioManager.rpy", line 48, in PrepareSound
+    soundQueue.append(soundElement)
+NameError: name 'soundQueue' is not defined
 
 Windows-10-10.0.19041 AMD64
 Ren'Py 8.3.2.24090902
 TheNextStepDemo 1.0
-Sat Nov  9 22:53:48 2024
+Sun Nov 10 17:25:19 2024

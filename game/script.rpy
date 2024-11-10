@@ -4,18 +4,22 @@ define mutou = Character('Mutou', color='#2595d2')
 define currentLanguage = 'Spanish'
 define config.fadeout_audio = 3
 
-image bg sex_dungeon = 'images/backgrounds/sex dungeon.png'
-image bg madera = 'images/backgrounds/madera.png'
-image bg flash = 'images/backgrounds/flash.png'
-image bg blackout = 'images/backgrounds/blackout.png'
+$ import backgroundsDefine
 
-
-$ import globals
+$ import DialogueGenerator
+$ import BackgroundManager
+$ import AudioManager
+$ import EffectManager
+$ import EventManager
 
 label start:
-    $ dialogueGenerator = DialogueGenerator('my_scene1.csv')
-
     python:
+        dialogueGenerator = DialogueGenerator('my_scene1.csv')
+        backgroundManager = BackgroundManager()
+        audioManager = AudioManager()
+        effectManager = EffectManager()
+        eventManager = EventManager()
+
         for i in range(5):
             dialogue = next(dialogueGenerator.generator)
 
@@ -30,8 +34,14 @@ label start:
             if(dialogue['Sound'] != ''):
                 audioManager.PrepareSound(dialogue['Sound'])
 
-            if(dialogue['Effect'] != ''):
-                effectManager.PrepareEffects(dialogue['Effect'])
+            if(dialogue['Single effect'] != ''):
+                effectManager.PrepareSingleEffect(dialogue['Single effect'])
+            
+            if(dialogue['Continuous effect'] != ''):
+                effectManager.PrepareContinuousEffect(dialogue['Continuous effect'])
+
+            if(dialogue['Events'] != ''):
+                eventManager.PrepareEvents(dialogue['Events'])
 
 
             '''  STATEMENT EXECUTION  '''
@@ -47,6 +57,9 @@ label start:
 
             if(effectManager.prepared):
                 effectManager.HandleEffects()
+
+            if(eventManager.prepared):
+                eventManager.HandleEvents()
 
             
             renpy.say(saijo, dialogue[currentLanguage])

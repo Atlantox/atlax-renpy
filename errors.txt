@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/globals.rpy", line 124: expected an indented block
-    class AudioManager:
-    ^
+File "game/globals.rpy", line 1: python block expects a non-empty block.
+    init python:    
+                    ^
 
 Ren'Py Version: Ren'Py 8.3.2.24090902
-Sat Nov  9 22:48:24 2024
+Sun Nov 10 15:31:16 2024
