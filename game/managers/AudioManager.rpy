@@ -67,10 +67,10 @@ init python:
         def PlaySound(self):
             if len(self.oneTimeSoundsQueue) > 0:
                 renpy.music.play(self.oneTimeSoundsQueue, channel='sound')
-
+                
+            toPlaySounds = []
+            toStopSounds = []
             for sound in self.loopedSoundsQueue:
-                toPlaySounds = []
-                toStopSounds = []
 
                 if sound in self.currentLoopedSounds:
                     toStopSounds.append(self.baseSoundPath.format(sound))
@@ -80,8 +80,8 @@ init python:
                     toPlaySounds.append(self.baseSoundPath.format(sound))
                     self.currentLoopedSounds.append(sound)
 
-                if len(toPlaySounds) > 0: renpy.music.play(toPlaySounds, channel='sound', loop=True)
-                if len(toStopSounds) > 0: renpy.music.stop(channel='sound')
+            if len(toPlaySounds) > 0: renpy.music.play(toPlaySounds, channel='sound', loop=True)
+            if len(toStopSounds) > 0: renpy.music.stop(channel='sound')
 
             self.oneTimeSoundsQueue = []
             self.loopedSoundsQueue = []

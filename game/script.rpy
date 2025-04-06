@@ -1,10 +1,8 @@
-﻿define saijo = Character('Saijo', color='#8709B4')
-define mutou = Character('Mutou', color='#2595d2')
-
-define currentLanguage = 'Spanish'
+﻿define currentLanguage = 'Spanish'
 define config.fadeout_audio = 3
 
 $ import backgroundsDefine
+$ import charactersDefine
 
 $ import DialogueGenerator
 $ import BackgroundManager

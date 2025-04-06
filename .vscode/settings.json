@@ -4,5 +4,8 @@
         "**/*.rpa": true,
         "**/*.rpymc": true,
         "**/cache/": true
-    }
+    },
+    "rainbow_csv.autodetect_separators": [
+        ";"
+    ]
 }
