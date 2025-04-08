@@ -60,7 +60,7 @@ label start:
                 eventManager.HandleEvents()
 
             
-            renpy.say(saijo, dialogue[currentLanguage])
+            renpy.say(dialogue['Emisor'], dialogue[currentLanguage])
     
     # Finaliza el juego:
 

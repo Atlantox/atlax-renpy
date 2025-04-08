@@ -200,20 +200,20 @@ Por otro lado, los eventos de movimiento, cambio de sprite, etc solo se podrán 
 Nomeclatura:
     personaje sprite:acción:parámetros
 
-    personaje: El nombre del personaje
-    sprite: El sprite del personaje, es opcional
+    personaje: El nombre del personaje en MINÚSCULA
+    sprite: El sprite del personaje, por ejemplo, happy, sad, mad, etc, si no se coloca nada se muestra el sprite normal
     acción: El método de aparición/Tipo de movimiento
     parámetros: Los parámetros separados por dos puntos (:), dependen de la acción
 
 Eventos de aparición de personajes:
     1. appear: El personaje aparece lentamente
         Parámetros:
-            posición del personaje: Número del 1 al 100 donde 50 es la mitad de la pantalla
+            posición del personaje: Número del 1 al 100 donde 50 es la mitad de la pantalla, 150 el personaje estará oculto en la parte derecha de la pantalla y -50 por la izquierda
             tiempo de aparición: La duración del personaje apareciendo
     
     2. pop: El personaje aparece de golpe
         Parámetros:
-            posicion del personaje: Número del 1 al 100 donde 50 es la mitad de la pantalla
+            posicion del personaje: Número del 1 al 100 donde 50 es la mitad de la pantalla, 150 el personaje estará oculto en la parte derecha de la pantalla y -50 por la izquierda
 
 
 Eventos de acciones de personajes:
@@ -221,6 +221,11 @@ Eventos de acciones de personajes:
         Parámetros:
         lugar destino: Número del 1 al 100 donde 50 es la mitad de la pantalla
         duración: Duración del movimiento
+
+Limitantes
+    Parece que Renpy no soporta que ocurran transiciones de tipo "appear" a la vez, ya sea un personaje y un fondo o un personaje y un efecto, etc
+    Por ejemplo si mostramos un efecto de sofocación que aparezca a lo largo de 3 segundos y a la vez queremos mostrar un personaje con appear de 1 segundo
+    Tanto el efecto de sofocación como el personaje harán un appear de 1 segundo
 
     jump
     tremble

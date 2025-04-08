@@ -5,8 +5,8 @@ init python:
             self.characterSpawnEvents = ['appear', 'pop']
             self.characterActionsEvents = ['move', 'jump', 'shake', 'destroy', 'zoom']
             self.defaultCharacterSpawn = self.characterSpawnEvents[0]
+            self.defaultCharacterSpawnTime = 2
             self.defaultCharacterXPos = 50
-            self.defaultCharacterYPos = 100
 
             self.onScreenCharacters = []
             self.eventQueue = []
@@ -29,71 +29,107 @@ init python:
                 if len(character_data) > 1:
                     sprite = first_split[len(character_name) + 1:]
 
-                if not renpy.has_image((character_name + ' ' + sprite).strip()):
-                    raise Exception('El sprite "' + sprite + '" del personaje "' + character_name + '" no existe')
-
-                action = self.defaultCharacterSpawn
-                if len(splits) == 3:
-                    action = splits[2]
-
-                params = []
-                if len(splits) > 3:
-                    params =  splits[3:]
+                fullname = (character_name + ' ' + sprite).strip()
+                
+                if not renpy.has_image(fullname):
+                    raise Exception('El sprite "' + sprite + '" del personaje "' + character_name + '" no existe') 
 
                 currentEvent = {
                     'character_name': character_name,
+                    'fullname': fullname,
                     'sprite': sprite,
-                    'action': action,
-                    'params': params,                    
+                    'splits': splits[1:],
+                }  
+
+                if character_name not in self.onScreenCharacters:
+                    self.ProcessCharacterOnScreen(currentEvent)
+                else:
+                    self.ProcessNewCharacter(currentEvent)
+
+                params = []
+                if len(splits) > 2:
+                    params =  splits[2:]
+
+                currentEvent = {
+                    'character_name': character_name,
+                    'fullname': fullname,
+                    'sprite': sprite,
+                    'params': params,
                 }
 
                 if character_name not in self.onScreenCharacters:
                     # The character aren't on the screen
-                    spawnMethod = action
-                    if spawnMethod not in self.characterSpawnEvents:
-                        raise Exception('El método de aparición "' + spawnMethod + '" para el personaje "' + character_name + '" no existe')
+                    action = self.defaultCharacterSpawn
 
-                    currentEvent['spawnMethod'] = spawnMethod                   
+                    if len(splits) >= 2:
+                        action = splits[1]
+
+                    if action not in self.characterSpawnEvents:
+                        raise Exception('El método de aparición "' + action + '" para el personaje "' + character_name + '" no existe')                    
                     
                 else:
                     # The character are on screen
-                    if currentEvent['action'] in self.characterSpawnEvents:
-                        raise Exception('La acción de aparición "' + currentEvent['action'] + '" para el personaje "' + character_name + '" es inválida (ya está en escena)')
 
-                    if currentEvent['action'] not in self.characterActionsEvents:
-                        raise Exception('La acción "' + currentEvent['action'] + '" para el personaje "' + character_name + '" no existe')
+                    if len(splits) == 1:
+                        # It's a sprite change
+                        self.eventQueue.append(currentEvent)
+                        continue
 
+                    if len(splits) >= 2:
+                        action = splits[1]
+
+                    if action in self.characterSpawnEvents:
+                        raise Exception('La acción de aparición "' + action + '" para el personaje "' + character_name + '" es inválida (ya está en escena)')
+
+                    if action not in self.characterActionsEvents:
+                        raise Exception('La acción "' + action + '" para el personaje "' + character_name + '" no existe')
+
+                currentEvent['action'] = action
                 self.eventQueue.append(currentEvent)
+
+        def ProcessCharacterOnScreen(eventData):
+            # TODO
+            pass
+
+        def ProcessNewCharacter(eventData):
+            # TODO
+            pass
 
         def HandleEvents(self):
             self.prepared = False
 
             for event in self.eventQueue:
-                di = Dissolve(5)
-                renpy.show(event['character_name'])
-                renpy.with_statement(di)
-                continue
                 if event['character_name'] not in self.onScreenCharacters:
                     # The character aren't on the screen
-                    pass
+                    xposition = self.defaultCharacterXPos
+                    dissolveTime = self.defaultCharacterSpawnTime
+
+                    if len(event['params']) == 1:
+                        xposition = float(event['params'][0])
+
+                    if len(event['params']) == 2:
+                        dissolveTime = float(event['params'][1])
+
+                    if event['action'] == 'pop':
+                        dissolveTime = 0
+
+                    animation = Dissolve(dissolveTime)
+                    position = Position(xalign=xposition / 100, yalign=1)
+
+                    
+                    renpy.show(event['fullname'], at_list=[position])
+                    renpy.with_statement(animation)
+                    self.onScreenCharacters.append(event['character_name'])
                 else:
                     # The character are on screen
-                    pass
-                    '''
-                    xposition = self.defaultCharacterXPos
-                        yposition = self.defaultCharacterYPos
-                        if len(params) >= 1:
-                            xposition = float(params[0])
+                    if 'action' not in event:
+                        # It's a sprite change
+                        renpy.show(event['fullname'])
+                        return
 
-                        if len(params) >= 2:
-                            yposition = float(params[1])
-
-                        xposition /= 100
-                        yposition /= 100
-
-                        position = Position(xalign=xposition, yalign=yposition)
-                        renpy.show(character + sprite, at_list=[position])
-                    '''
+                    
+                    movement = Transform(xalign=100, duration=1.5)
+                    renpy.show('saijo', at_list=[movement])
 
             
             self.eventQueue = []
