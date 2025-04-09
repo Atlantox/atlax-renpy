@@ -9,7 +9,8 @@ init python:
             self.defaultCharacterXPos = 50
 
             self.onScreenCharacters = []
-            self.eventQueue = []
+            self.newCharacterQueue = []
+            self.onScreenCharacterQueue = []
         
         def PrepareEvents(self, eventPrompt:str):
             self.prepared = True
@@ -37,14 +38,13 @@ init python:
                 currentEvent = {
                     'character_name': character_name,
                     'fullname': fullname,
-                    'sprite': sprite,
                     'splits': splits[1:],
                 }  
 
                 if character_name not in self.onScreenCharacters:
-                    self.ProcessCharacterOnScreen(currentEvent)
+                    self.PrepareNewCharacter(currentEvent)
                 else:
-                    self.ProcessNewCharacter(currentEvent)
+                    self.PrepareCharacterOnScreen(currentEvent)
 
                 params = []
                 if len(splits) > 2:
@@ -59,41 +59,44 @@ init python:
 
                 if character_name not in self.onScreenCharacters:
                     # The character aren't on the screen
-                    action = self.defaultCharacterSpawn
-
-                    if len(splits) >= 2:
-                        action = splits[1]
-
-                    if action not in self.characterSpawnEvents:
-                        raise Exception('El método de aparición "' + action + '" para el personaje "' + character_name + '" no existe')                    
+                           
                     
                 else:
                     # The character are on screen
 
-                    if len(splits) == 1:
-                        # It's a sprite change
-                        self.eventQueue.append(currentEvent)
-                        continue
-
-                    if len(splits) >= 2:
-                        action = splits[1]
-
-                    if action in self.characterSpawnEvents:
-                        raise Exception('La acción de aparición "' + action + '" para el personaje "' + character_name + '" es inválida (ya está en escena)')
-
-                    if action not in self.characterActionsEvents:
-                        raise Exception('La acción "' + action + '" para el personaje "' + character_name + '" no existe')
+                    
 
                 currentEvent['action'] = action
                 self.eventQueue.append(currentEvent)
 
-        def ProcessCharacterOnScreen(eventData):
-            # TODO
-            pass
+        def PrepareNewCharacter(eventData):
+            spawnMethod = self.defaultCharacterSpawn
 
-        def ProcessNewCharacter(eventData):
-            # TODO
-            pass
+            if len(eventData['params']) >= 1:
+                spawnMethod = eventData['params'][0]
+
+            if spawnMethod not in self.characterSpawnEvents:
+                raise Exception('El método de aparición "' + action + '" para el personaje "' + character_name + '" no existe')             
+
+            self.newCharacterQueue.append(eventData)
+
+        def PrepareCharacterOnScreen(eventData):
+            if len(eventData['params']) == 0:
+                # It's a sprite change
+                self.onScreenCharacterQueue.append(eventData)
+                return
+
+            if len(eventData['params']) === 1:
+                if eventData['params'].isnumeric():
+                    # It's a sprite change
+                    self.onScreenCharacterQueue.append(eventData)
+                    return
+
+            action = eventData['params'][0]
+            if action not in self.characterActionsEvents:
+                raise Exception('La acción "' + action + '" para el personaje "' + character_name + '" no existe')
+
+            self.onScreenCharacterQueue.append(eventData)
 
         def HandleEvents(self):
             self.prepared = False
