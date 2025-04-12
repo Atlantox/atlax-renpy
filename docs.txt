@@ -196,6 +196,7 @@ Los eventos son todas las interacciones que tienen que ver con mostrar personaje
 Estos eventos se pueden dividir en 2 categorías, aquellos eventos de personajes que no están en pantalla y los que sí están
 Los eventos de aparición solo se pueden aplicar a los personajes que NO estén en pantalla
 Por otro lado, los eventos de movimiento, cambio de sprite, etc solo se podrán ejecutar si el personaje ya está en pantalla
+Los eventos ocurren por orden de escritura, sin embargo, se puede hacer que ciertos eventos ocurran a la vez, se le llaman eventos simultáneos, se explicará más adelante
 
 Nomeclatura:
     personaje sprite:acción:parámetros
@@ -208,19 +209,35 @@ Nomeclatura:
 Eventos de aparición de personajes:
     1. appear: El personaje aparece lentamente
         Parámetros:
-            posición del personaje: Número del 1 al 100 donde 50 es la mitad de la pantalla, 150 el personaje estará oculto en la parte derecha de la pantalla y -50 por la izquierda
+            posición del personaje: Número del -50 al 150, más adelante se explica
             tiempo de aparición: La duración del personaje apareciendo
     
     2. pop: El personaje aparece de golpe
         Parámetros:
-            posicion del personaje: Número del 1 al 100 donde 50 es la mitad de la pantalla, 150 el personaje estará oculto en la parte derecha de la pantalla y -50 por la izquierda
+            posicion del personaje: Número del -50 al 150, más adelante se explica
 
 
-Eventos de acciones de personajes:
-    1. move: El personaje se mueve desde su posición a la posición dada
+Posición del personaje: Es un número del 0 al 100 que representa en qué porcentaje de la pantalla se ve el personaje horizontalmente
+    -50: El personaje se oculta completamente desde la izquierda, útil para en una escena posterior hacerlo entrar desde la izquierda con un movimiento
+    0: El personaje completamente visible en la parte más a la izquierda de la pantalla
+    25: El personaje ubicado en un tercio de la pantalla horizontalmente
+    50: El personaje ubicado en todo el centro (es el valor que se tiene por defecto si no se le da la posición)
+    75: El personaje ubicado en dos tercios de la pantalla horizontalmente
+    100: El personaje completamente visible en la parte más a la izquierda de la pantalla
+    150: El personaje se oculta completamente desde la derecha, útil para en una escena posterior hacerlo entrar desde la derecha con un movimiento
+
+Por supuesto puedes colocar el valor que desees, si quieres que el personaje se vea solo la mitad del sprite asomado de una de las esquinas usas un -25 o 125
+Puedes colocarle el número que quieras
+
+
+Eventos de acciones de personajes en pantalla:
+    1. cambio de sprite: El sprite del personaje cambia al sprite dando
         Parámetros:
-        lugar destino: Número del 1 al 100 donde 50 es la mitad de la pantalla
-        duración: Duración del movimiento
+            duración: el tiempo en que el sprite actual transiciona al nuevo (0)
+    2. move: El personaje se mueve desde su posición a la posición dada
+        Parámetros:
+            lugar destino: Número del 1 al 100 donde 50 es la mitad de la pantalla
+            duración: Duración del movimiento
 
 Limitantes
     Parece que Renpy no soporta que ocurran transiciones de tipo "appear" a la vez, ya sea un personaje y un fondo o un personaje y un efecto, etc
@@ -231,3 +248,13 @@ Limitantes
     tremble
     zoom
     Ej: saijo:appear:1
+
+
+Eventos simultáneos:
+    Son eventos que ocurren con varios personajes a la vez, para esto se requiere que todos los personajes nombrados se encuentren en pantalla o no
+    Para hacer un evento simultáneo debemos separar los nombres completos de los personajes (nombre + sprite) separados por "&"
+    Los eventos simultáneos de aparición colocarán automáticamente los personajes de forma equitativa en pantalla, por lo tanto, el único parámetro recibido será el de la duración de la aparición
+
+    Ej:
+        saijo & mutou :appear:1  # Saijo y Mutou aparecen a la vez a o largo de un segundo, aparecerán equitativamente en pantalla
+        saijo happy & dereck surprised:pop  # Saijo aparece con la expresión happy y dereck con la expresión surprised, ambos a la vez y aparecen de golpe
