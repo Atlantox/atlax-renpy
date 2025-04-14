@@ -1,4 +1,4 @@
-Sat Apr 12 18:08:34 2025
+Mon Apr 14 18:00:22 2025
 Windows-10-10.0.26100
 Ren'Py 8.1.3.23091805
  
@@ -6,14 +6,14 @@ Ren'Py 8.1.3.23091805
 Bootstrap to the start of init.init. took 0.05s
 Early init. took 0.00s
 Loader init. took 0.05s
-Loading error handling. took 0.04s
-Loading script. took 0.22s
+Loading error handling. took 0.03s
+Loading script. took 0.20s
 Loading save slot metadata. took 0.05s
 Loading persistent. took 0.00s
-Running init code. took 0.07s
+Running init code. took 0.06s
 Loading analysis data. took 0.02s
 Analyze and compile ATL. took 0.00s
-Reloading save slot metadata. took 0.04s
+Reloading save slot metadata. took 0.03s
 Index archives took 0.00s
 Backing up script files to 'C:\\Users\\Atlantox\\AppData\\Roaming/RenPy/backups\\TheNextStepDemo':
 Dump and make backups. took 0.08s
@@ -29,13 +29,13 @@ Init translation took 0.05s
 Build styles took 0.01s
 Load screen analysis took 0.00s
 Analyze screens took 0.02s
-Save screen analysis took 0.03s
+Save screen analysis took 0.02s
 Prepare screens took 0.09s
-Save pyanalysis. took 0.00s
+Save pyanalysis. took 0.02s
 Save bytecode. took 0.03s
 Running _start took 0.00s
 Performance test:
-Interface start. took 0.16s
+Interface start. took 0.14s
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1920, 1080)
@@ -45,6 +45,6 @@ Vendor: "b'ATI Technologies Inc.'"
 Renderer: b'AMD Radeon(TM) R5 240'
 Version: b'4.6.14830 Compatibility Profile Context 22.6.1 27.20.20912.1002'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1150, 647) drawable=(1150, 647)
+Screen sizes: virtual=(1920, 1080) physical=(1225, 689) drawable=(1225, 689)
 Maximum texture size: 4096x4096
 Ejeutando eventos post realización

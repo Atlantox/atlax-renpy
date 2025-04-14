@@ -10,6 +10,8 @@ $ import AudioManager
 $ import EffectManager
 $ import EventManager
 
+$ import animations.animations
+
 label start:
     python:
         dialogueGenerator = DialogueGenerator('my_scene1.csv')

@@ -197,8 +197,21 @@ Estos eventos se pueden dividir en 2 categorías, aquellos eventos de personajes
 Los eventos de aparición solo se pueden aplicar a los personajes que NO estén en pantalla
 Por otro lado, los eventos de movimiento, cambio de sprite, etc solo se podrán ejecutar si el personaje ya está en pantalla
 Los eventos ocurren por orden de escritura, sin embargo, se puede hacer que ciertos eventos ocurran a la vez, se le llaman eventos simultáneos, se explicará más adelante
+Antes que nada se debe aclarar cómo funcionan las posiciones horizontales de los personajes
 
-Nomeclatura:
+Posición del personaje: 
+    Es un número del 0 al 100 que representa en qué porcentaje de la pantalla se ve el personaje horizontalmente
+        -50: El personaje se oculta completamente desde la izquierda, útil para en una escena posterior hacerlo entrar desde la izquierda con un movimiento
+        0: El personaje completamente visible en la parte más a la izquierda de la pantalla
+        25: El personaje ubicado en un tercio de la pantalla horizontalmente
+        50: El personaje ubicado en todo el centro (es el valor que se tiene por defecto si no se le da la posición)
+        75: El personaje ubicado en dos tercios de la pantalla horizontalmente
+        100: El personaje completamente visible en la parte más a la derecha de la pantalla
+        150: El personaje se oculta completamente desde la derecha, útil para en una escena posterior hacerlo entrar desde la derecha con un movimiento
+
+Por supuesto puedes colocar el valor que desees, si quieres que el personaje se vea solo la mitad del sprite asomado de una de las esquinas usas un -25 o 125
+
+Nomeclatura de los eventos:
     personaje sprite:acción:parámetros
 
     personaje: El nombre del personaje en MINÚSCULA
@@ -209,25 +222,12 @@ Nomeclatura:
 Eventos de aparición de personajes:
     1. appear: El personaje aparece lentamente
         Parámetros:
-            posición del personaje: Número del -50 al 150, más adelante se explica
+            posición del personaje: Número del -50 al 150
             tiempo de aparición: La duración del personaje apareciendo
     
     2. pop: El personaje aparece de golpe
         Parámetros:
-            posicion del personaje: Número del -50 al 150, más adelante se explica
-
-
-Posición del personaje: Es un número del 0 al 100 que representa en qué porcentaje de la pantalla se ve el personaje horizontalmente
-    -50: El personaje se oculta completamente desde la izquierda, útil para en una escena posterior hacerlo entrar desde la izquierda con un movimiento
-    0: El personaje completamente visible en la parte más a la izquierda de la pantalla
-    25: El personaje ubicado en un tercio de la pantalla horizontalmente
-    50: El personaje ubicado en todo el centro (es el valor que se tiene por defecto si no se le da la posición)
-    75: El personaje ubicado en dos tercios de la pantalla horizontalmente
-    100: El personaje completamente visible en la parte más a la izquierda de la pantalla
-    150: El personaje se oculta completamente desde la derecha, útil para en una escena posterior hacerlo entrar desde la derecha con un movimiento
-
-Por supuesto puedes colocar el valor que desees, si quieres que el personaje se vea solo la mitad del sprite asomado de una de las esquinas usas un -25 o 125
-Puedes colocarle el número que quieras
+            posicion del personaje: Número del -50 al 150
 
 
 Eventos de acciones de personajes en pantalla:
@@ -236,11 +236,19 @@ Eventos de acciones de personajes en pantalla:
             duración: el tiempo en que el sprite actual transiciona al nuevo (0)
     2. move: El personaje se mueve desde su posición a la posición dada
         Parámetros:
-            lugar destino: Número del 1 al 100 donde 50 es la mitad de la pantalla
-            duración: Duración del movimiento
+            lugar destino: Número del -50 al 150
+            duración: Duración del movimiento en segundos
+
+    3. jump: El personaje da un pequeño salto hacia arriba
+        Parámetros:
+            intensidad: La intensidad del salto, se recomienda usar valores entre 1 y 5 (pueden ser decimales)
+
+    4. tremble: El personaje tiembla, útil para expresar miedo o ira
+        Parámetros:
+            veces: Veces que el tembleque sucede (10)
 
 Limitantes
-    Parece que Renpy no soporta que ocurran transiciones de tipo "appear" a la vez, ya sea un personaje y un fondo o un personaje y un efecto, etc
+    Parece que Renpy no soporta que ocurran transiciones de tipo "appear" a la vez con distintos tiempos, ya sea un personaje y un fondo o un personaje y un efecto, etc
     Por ejemplo si mostramos un efecto de sofocación que aparezca a lo largo de 3 segundos y a la vez queremos mostrar un personaje con appear de 1 segundo
     Tanto el efecto de sofocación como el personaje harán un appear de 1 segundo
 

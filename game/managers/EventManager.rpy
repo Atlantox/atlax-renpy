@@ -3,7 +3,9 @@ init python:
         def __init__(self):
             self.prepared = False
             self.characterSpawnEvents = ['appear', 'pop']
-            self.characterActionsEvents = ['move', 'jump', 'shake', 'destroy', 'zoom']
+            self.characterAnimations = ['jump', 'tremble', 'zoom', 'hitl', 'hitr']
+            self.characterActionsEvents = ['move', 'destroy'] + self.characterAnimations
+            self.fixedHeight = Transform(size=(None, config.screen_height))
 
             self.defaultCharacterSpawn = self.characterSpawnEvents[0]
             self.defaultCharacterSpawnTime = 2
@@ -13,13 +15,15 @@ init python:
             self.defaultSpriteChangeTime = 0
             self.defaultMovementTime = 1
             self.defaultCharacterMovementTime = 1.5
-
+            self.defaultJumpIntensity = 2.5
+            self.defaultTrembleTimes = 10
+            self.defaultHitIntensity = 10
 
             self.multiCharacterAppearPositions = {
                 '2': [25, 75],
-                '3': [20, 50, 80],
-                '4': [10, 40, 70, 90]
-            }            
+                '3': [10, 50, 90],
+                '4': [0, 35, 70, 100]
+            }
 
             self.onScreenCharacters = []
             self.characterPositions = {}
@@ -127,13 +131,12 @@ init python:
 
                     if len(event['params']) > 2:
                         appearTime = float(event['params'][2])                       
-
                 
                 if(len(event['characters']) == 1):
                     fixedPosition = appearPosition / 100
                     position = Position(xalign=fixedPosition)
                     character = event['characters'][0]
-                    renpy.show(character['fullname'], at_list=[position])
+                    renpy.show(character['fullname'], at_list=[position, self.fixedHeight])
                     renpy.with_statement(Dissolve(appearTime))
                     self.onScreenCharacters.append(character['name'])
                     self.characterPositions[character['name']] = fixedPosition
@@ -143,7 +146,7 @@ init python:
                     for character in event['characters']:
                         fixedPosition = spawnPositions[positionId] / 100
                         position = Position(xalign=fixedPosition)
-                        renpy.show(character['fullname'], at_list=[position])
+                        renpy.show(character['fullname'], at_list=[position, self.fixedHeight])
                         positionId += 1
                         self.onScreenCharacters.append(character['name'])
                         self.characterPositions[character['name']] = fixedPosition
@@ -159,6 +162,12 @@ init python:
                     self.HandleSpriteChange(event)
                 elif event['action'] == 'move':
                     self.HandleMovement(event)
+                elif event['action'] == 'jump':
+                    self.HandleJump(event)
+                elif event['action'] == 'tremble':
+                    self.HandleTremble(event)
+                elif event['action'] in ['hitl', 'hitr']:
+                    self.HandleHit(event)
 
                     
             self.onScreenCharactersQueue = []
@@ -183,13 +192,51 @@ init python:
             if len(event['params']) > 2:
                 duration = float(event['params'][2])
 
-            for character in event['characters']:
-                currentPosition = self.characterPositions[character['name']]
-                
-                #currentPosition = Position(xalign=currentPosition, yalign=1)
-                #movement = Interpolator(currentPosition, newPosition, duration)
+            for character in event['characters']:                
                 renpy.show(character['fullname'], at_list=[newPosition])
-                renpy.show('mutou', at_list=[newPosition])
                 renpy.with_statement(MoveTransition(duration))
                 
-            
+        def HandleJump(self, event):
+            intensity = self.defaultJumpIntensity
+
+            if len(event['params']) > 1:
+                intensity = float(event['params'][1])
+
+            intensity /= 100            
+
+            for character in event['characters']:
+                renpy.hide(character['fullname'])
+                renpy.with_statement(Dissolve(0))
+
+                animation = Jump(self.characterPositions[character['name']], intensity)
+                renpy.show(character['fullname'], at_list=[self.fixedHeight, animation])
+
+        def HandleTremble(self, event):
+            times = self.defaultTrembleTimes
+
+            if len(event['params']) > 1:
+                times = float(event['params'][1])          
+
+            for character in event['characters']:
+                renpy.hide(character['fullname'])
+                renpy.with_statement(Dissolve(0))
+
+                animation = Tremble(self.characterPositions[character['name']], times)
+                renpy.show(character['fullname'], at_list=[self.fixedHeight, animation])
+        
+        def HandleHit(self, event):
+            intensity = self.defaultHitIntensity
+
+            if len(event['params']) > 1:
+                intensity = float(event['params'][1])
+
+            for character in event['characters']:
+                renpy.hide(character['fullname'])
+                renpy.with_statement(Dissolve(0))
+                
+                if event['action'] == 'hitr':
+                    animation = HitR(self.characterPositions[character['name']], intensity)
+                elif event['action'] == 'hitl':
+                    animation = HitL(self.characterPositions[character['name']], intensity)
+                
+                renpy.show(character['fullname'], at_list=[self.fixedHeight, animation])
