@@ -5,7 +5,7 @@ init python:
             self.characterSpawnEvents = ['appear', 'pop']
             self.characterAnimations = ['jump', 'tremble', 'zoom', 'hitl', 'hitr']
             self.characterActionsEvents = ['move', 'destroy'] + self.characterAnimations
-            self.fixedHeight = Transform(size=(None, config.screen_height))
+            self.fixedHeight = Transform(size=(None, config.screen_height), anchor=(0.5, 0.0))
 
             self.defaultCharacterSpawn = self.characterSpawnEvents[0]
             self.defaultCharacterSpawnTime = 2
@@ -233,7 +233,7 @@ init python:
             for character in event['characters']:
                 renpy.hide(character['fullname'])
                 renpy.with_statement(Dissolve(0))
-                
+
                 if event['action'] == 'hitr':
                     animation = HitR(self.characterPositions[character['name']], intensity)
                 elif event['action'] == 'hitl':

@@ -2,9 +2,13 @@
 errors listed below, and try again.
 
 
-File "game/managers/EventManager.rpy", line 235: invalid syntax
-            if event['action'] === 'hitr':
-                                  ^
+File "game/animations/animations.rpy", line 24: properties 'xalign' and 'anchor' conflict with each other
+    xalign x
+            ^
+
+File "game/animations/animations.rpy", line 29: properties 'xalign' and 'anchor' conflict with each other
+    xalign x
+            ^
 
 Ren'Py Version: Ren'Py 8.1.3.23091805
-Mon Apr 14 17:12:13 2025
+Tue Apr 15 10:37:23 2025

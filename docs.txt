@@ -201,13 +201,15 @@ Antes que nada se debe aclarar cómo funcionan las posiciones horizontales de lo
 
 Posición del personaje: 
     Es un número del 0 al 100 que representa en qué porcentaje de la pantalla se ve el personaje horizontalmente
-        -50: El personaje se oculta completamente desde la izquierda, útil para en una escena posterior hacerlo entrar desde la izquierda con un movimiento
-        0: El personaje completamente visible en la parte más a la izquierda de la pantalla
-        25: El personaje ubicado en un tercio de la pantalla horizontalmente
+        -20: El personaje se oculta completamente desde la izquierda, útil para en una escena posterior hacerlo entrar desde la izquierda con un movimiento
+        0: El personaje se asoma por la izquierda, la mitad de su sprite es visible
+        15: El personaje completamente visible en la parte más a la izquierda de la pantalla (depende de lo ancho que sea el personaje)
+        33: El personaje ubicado en un tercio de la pantalla horizontalmente
         50: El personaje ubicado en todo el centro (es el valor que se tiene por defecto si no se le da la posición)
-        75: El personaje ubicado en dos tercios de la pantalla horizontalmente
-        100: El personaje completamente visible en la parte más a la derecha de la pantalla
-        150: El personaje se oculta completamente desde la derecha, útil para en una escena posterior hacerlo entrar desde la derecha con un movimiento
+        66: El personaje ubicado en dos tercios de la pantalla horizontalmente
+        85: El personaje completamente visible en la parte más a la derecha de la pantalla (depende de lo ancho que sea el personaje)
+        100: El personaje se asoma por la derecha, la mitad de su sprite es visible
+        120: El personaje se oculta completamente desde la derecha, útil para en una escena posterior hacerlo entrar desde la derecha con un movimiento
 
 Por supuesto puedes colocar el valor que desees, si quieres que el personaje se vea solo la mitad del sprite asomado de una de las esquinas usas un -25 o 125
 

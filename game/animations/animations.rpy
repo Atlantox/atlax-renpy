@@ -5,9 +5,11 @@ transform Jump(x, intensity):
     linear 0.1 ypos 0.
 
 transform HitR(x, intensity):
-    animation
+    animation    
     ypos -0.059
-    linear 0.1:         
+    xalign x
+    anchor (0.5, 0.0)
+    linear 0.1:
         rotate intensity
 
     linear 0.1:
@@ -15,9 +17,11 @@ transform HitR(x, intensity):
 
     
 transform HitL(x, intensity):
-    animation
+    animation    
     ypos -0.059
-    linear 0.1:         
+    xalign x
+    anchor (0.5, 0.0)
+    linear 0.1:
         rotate (intensity * -1)
 
     linear 0.1:
