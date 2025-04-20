@@ -243,21 +243,79 @@ Eventos de acciones de personajes en pantalla:
 
     3. jump: El personaje da un pequeño salto hacia arriba
         Parámetros:
-            intensidad: La intensidad del salto, se recomienda usar valores entre 1 y 5 (pueden ser decimales)
+            intensidad: La intensidad del salto, se recomienda usar valores entre 1 y 5, pueden ser decimales (2.5)
 
     4. tremble: El personaje tiembla, útil para expresar miedo o ira
         Parámetros:
             veces: Veces que el tembleque sucede (10)
+
+    5. hitr y hitl: El personaje rota ligeramente dando la impresión de que acaba de recibir un golpe, hitl=golpe hacia la izquierda, hitr=golpe hacia la derecha, la animación se da a lo largo de 0.2 segundos
+        Parámetros:
+            intensidad: Los grados de inclinación del golpe (10)
+
+    7. knockl y knockr: El personaje hace una rotación hacia la dirección dada mientras cae, simulando un derribo, está relacionado con raisel y raiser
+        Parámetros:
+            duración: La duración en segundos del derribo (0.5)
+
+    8. raisel y raiser: El personaje se levanta desde el suelo desde la dirección dada, está pensado para usarse con knock en la misma dirección, es decir si se usa knockr y luego knockl, verias la misma animación al derecho y al revés
+        Parámetros:
+            duración: La duración en segundos del derribo (0.5)
+
+    9. movey: El personaje se mueve verticalmente hacia donde le indiques, hay que entender que la posición por defecto de un personaje es 0
+        Parámetros:
+            posición: La posicion vertical hacia donde se va a mover, si se coloca -1 el personaje se elevará hasta salir completamente de pantalla, si se coloca 1 el personaje bajará hasta salirse de pantalla
+            duración: La duración en segundos del movimiento (1)
+
+    10. zoom: El personaje se acerca a la pantalla, por lo general acercando el rostro al centro de la pantalla dependiendo del sprite, si hacemos un zoom, luego debemos deshacerlo para que el personaje no se quede acercado a la pantalla siempre
+        Parámetros:
+            factor: El factor del zoom representado en un número decimal, no se recomienda utilizar más de 2 ya que el personaje se verá muy cortado (2)
+            duración: Los segundos que tarda el zoom en completarse (2)
+
+    11. destroy: El personaje es destruido y removido de la escena con un efecto de desaparecimiento
+        Parámetros:
+            duración: Duración en segundos del desaparecimiento (0)
+
+
+Animaciones constantes:
+    Es posible hacer que un personaje haga una animación constantemente hasta que se desee, estas acciones son similares a los efectos continuos, es decir, escribes al personaje junto a su evento continuo para iniciarlo y para detenerlo debes escribirlo tal cual
+
+    1. trembling: El personaje tiembla, útil para expresar miedo o un terremoto en los personajes
+
+    2. jumping: El personaje salta a intervalos de un segundo
+        Parámetros:
+            intensidad: La intensidad del salto, se recomienda usar valores entre 1 y 5, pueden ser decimales (2.5)
 
 Limitantes
     Parece que Renpy no soporta que ocurran transiciones de tipo "appear" a la vez con distintos tiempos, ya sea un personaje y un fondo o un personaje y un efecto, etc
     Por ejemplo si mostramos un efecto de sofocación que aparezca a lo largo de 3 segundos y a la vez queremos mostrar un personaje con appear de 1 segundo
     Tanto el efecto de sofocación como el personaje harán un appear de 1 segundo
 
-    jump
-    tremble
-    zoom
-    Ej: saijo:appear:1
+
+Ejemplos:
+Saijo aparece y corre hacia una puerta a intentar abrirla dándole golpes
+saijo:appear     # saijo aparece en mitad de la pantalla
+saijo:move:90    # Saijo se mueve hacia la derecha
+saijo:hitr       # Saijo se inclina hacia la derecha simulando que está golpeando la puerta
+
+
+El protagonista entra a una habitación donde están 2 personajes, hablan y uno de ellos se va, pero regresa para decir algo y luego si se va
+saijo & dereck     # saijo y dereck aparecen en pantalla repartidos equitativamente
+dereck:move:-25:5  # dereck sale de la pantalla por el lado izquierdo a lo largo de 5 segundos (con lentitud)
+dereck:move:18:1   # dereck reaparece por el lado izquierdo
+dereck:move:-25    # dereck vuelve a ir a la izquierda hasta salir de la pantalla
+dereck:destroy     # Como dereck no aparecerá más en esta escena, lo destruimos para ahorrar recursos
+
+
+El protagonista le juega una broma a un personaje y lo asusta
+dereck:pop:120                  # dereck aparece afuera de la pantalla, por el lado derecho
+dereck:move:33                  # dereck se mueve hasta un tercio de la pantalla 
+dereck surprised, dereck:jump   # dereck se sorprende e inmediatamente después da un salto
+
+
+Hay una pelea entre mutou y dereck, mutou lo golpea y logra derribarlo pero dereck se levanta y derriba a mutou quedando victorioso
+mutou:hitl, dereck:knockl   # Mutou golpea hacia la izquierda y dereck cae hacia la izquierda
+dereck:raisel               # Dereck se levanta desde la izquierda
+dereck:hitr, mutou:knockr   # Dereck golpea hacia la derecha y Mutou cae hacia la derecha
 
 
 Eventos simultáneos:

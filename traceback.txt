@@ -1,38 +1,38 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-After initialization, but before game start.
-SyntaxError: invalid syntax (game/animations/animations.rpy, line 19)
+While running game code:
+  File "game/script.rpy", line 16, in script
+    python:
+  File "game/script.rpy", line 62, in <module>
+    eventManager.HandleEvents()
+  File "game/managers/EventManager.rpy", line 122, in HandleEvents
+    self.HandleActionEvents()
+  File "game/managers/EventManager.rpy", line 186, in HandleActionEvents
+    self.HandleMoveY(event)
+  File "game/managers/EventManager.rpy", line 305, in HandleMoveY
+    self.characterPositions[character['name'][0]],
+KeyError: 's'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "D:\renpy\renpy-8.1.3-sdk\renpy\bootstrap.py", line 275, in bootstrap
-    renpy.main.main()
-  File "D:\renpy\renpy-8.1.3-sdk\renpy\main.py", line 600, in main
-    renpy.game.script.analyze()
-  File "D:\renpy\renpy-8.1.3-sdk\renpy\script.py", line 1052, in analyze
-    i.analyze()
-  File "D:\renpy\renpy-8.1.3-sdk\renpy\ast.py", line 1312, in analyze
-    self.atl.analyze(parameters)
-  File "D:\renpy\renpy-8.1.3-sdk\renpy\atl.py", line 761, in analyze
-    self.mark_constant(analysis)
-  File "D:\renpy\renpy-8.1.3-sdk\renpy\atl.py", line 789, in mark_constant
-    i.mark_constant(analysis)
-  File "D:\renpy\renpy-8.1.3-sdk\renpy\atl.py", line 1120, in mark_constant
-    constant = min(constant, is_constant_expr(expr))
-  File "D:\renpy\renpy-8.1.3-sdk\renpy\py3analysis.py", line 558, in is_constant_expr
-    node, literal = ccache.ast_eval_literal(expr)
-  File "D:\renpy\renpy-8.1.3-sdk\renpy\py3analysis.py", line 790, in ast_eval_literal
-    expr = py_compile(expr, 'eval', ast_node=True)
-  File "D:\renpy\renpy-8.1.3-sdk\renpy\python.py", line 1088, in py_compile
-    raise e
-  File "D:\renpy\renpy-8.1.3-sdk\renpy\python.py", line 1034, in py_compile
-    raise orig_e
-  File "D:\renpy\renpy-8.1.3-sdk\renpy\python.py", line 1027, in py_compile
-    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, 1)
-SyntaxError: invalid syntax (game/animations/animations.rpy, line 19)
+  File "game/script.rpy", line 16, in script
+    python:
+  File "D:\renpy\renpy-8.1.3-sdk\renpy\ast.py", line 1138, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "D:\renpy\renpy-8.1.3-sdk\renpy\python.py", line 1122, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/script.rpy", line 62, in <module>
+    eventManager.HandleEvents()
+  File "game/managers/EventManager.rpy", line 122, in HandleEvents
+    self.HandleActionEvents()
+  File "game/managers/EventManager.rpy", line 186, in HandleActionEvents
+    self.HandleMoveY(event)
+  File "game/managers/EventManager.rpy", line 305, in HandleMoveY
+    self.characterPositions[character['name'][0]],
+KeyError: 's'
 
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.1.3.23091805
 TheNextStepDemo 1.0
-Tue Apr 15 10:20:23 2025
+Sat Apr 19 20:47:24 2025

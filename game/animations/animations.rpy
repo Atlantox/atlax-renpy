@@ -1,8 +1,47 @@
 transform Jump(x, intensity):
     animation
     xalign x
+    anchor (0.5, 0.0)
     linear 0.1 ypos (intensity * -1)
     linear 0.1 ypos 0.
+
+transform Jumping(x, intensity):
+    animation
+    xalign x
+    anchor (0.5, 0.0)
+    linear 0.1 ypos (intensity * -1)
+    linear 0.1 ypos 0.
+    0.8
+    repeat
+
+
+transform Tremble(x, times):
+    animation
+    xalign x
+    anchor (0.5, 0.0)
+
+    linear 0.05:
+        anchor (0.52, 0.0)
+
+    linear 0.05:
+        anchor (0.48, 0.0)
+
+    repeat times
+    anchor (0.5, 0.0)
+    
+
+transform Trembling(x):
+    xalign x
+    anchor (0.5, 0.0)
+    animation
+
+    linear 0.05:
+        anchor (0.52, 0.0)
+
+    linear 0.05:
+        anchor (0.48, 0.0)
+
+    repeat
 
 transform HitR(x, intensity):
     animation    
@@ -25,31 +64,57 @@ transform HitL(x, intensity):
         rotate (intensity * -1)
 
     linear 0.1:
-        rotate 0
-    
+        rotate 0    
 
-
-transform Tremble(x, times):
+transform MyZoom(x, factor, duration):
     animation
     xalign x
+    anchor (0.5, 0.0)
+    linear duration zoom factor
 
-    linear 0.05:
-        xalign (x + .005)
 
-    linear 0.05:
-        xalign (x - .005)
-
-    repeat times
-    
-
-transform Trembling(x):
+transform KnockR(x, duration):
     animation
     xalign x
+    ypos -0.059
+    anchor (0.5, 0.0)
+    linear duration:
+        yanchor -1.0
+        rotate 90
 
-    linear 0.05:
-        xalign (x + .005)
+transform KnockL(x, duration):
+    animation
+    xalign x
+    ypos -0.059
+    anchor (0.5, 0.0)
+    linear duration:
+        yanchor -1.0
+        rotate -90   
+    
+transform RaiseR(x, duration):
+    animation
+    xalign x
+    ypos -0.059
+    anchor (0.5, -1.0)
+    rotate 90    
+    linear duration:
+        rotate 0    
+        anchor (0.5, 0.0)
 
-    linear 0.05:
-        xalign (x - .005)
+transform RaiseL(x, duration):
+    animation
+    xalign x
+    ypos -0.059
+    anchor (0.5, -1.0)
+    rotate -90
+    linear duration:
+        rotate 0    
+        anchor (0.5, 0.0)
 
-    repeat
+
+transform MoveY(x, y, destination, duration):
+    animation
+    xalign x
+    ypos y
+    anchor (0.5, 0.0)
+    linear duration ypos destination
