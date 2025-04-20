@@ -298,7 +298,7 @@ saijo:move:90    # Saijo se mueve hacia la derecha
 saijo:hitr       # Saijo se inclina hacia la derecha simulando que está golpeando la puerta
 
 
-El protagonista entra a una habitación donde están 2 personajes, hablan y uno de ellos se va, pero regresa para decir algo y luego si se va
+El protagonista entra a una habitación donde está saijo y dereck, dereck sale de la habitación pero luego regresa y nuevamente se retira
 saijo & dereck     # saijo y dereck aparecen en pantalla repartidos equitativamente
 dereck:move:-25:5  # dereck sale de la pantalla por el lado izquierdo a lo largo de 5 segundos (con lentitud)
 dereck:move:18:1   # dereck reaparece por el lado izquierdo
@@ -306,7 +306,7 @@ dereck:move:-25    # dereck vuelve a ir a la izquierda hasta salir de la pantall
 dereck:destroy     # Como dereck no aparecerá más en esta escena, lo destruimos para ahorrar recursos
 
 
-El protagonista le juega una broma a un personaje y lo asusta
+El protagonista le juega una broma a dereck y este se asusta
 dereck:pop:120                  # dereck aparece afuera de la pantalla, por el lado derecho
 dereck:move:33                  # dereck se mueve hasta un tercio de la pantalla 
 dereck surprised, dereck:jump   # dereck se sorprende e inmediatamente después da un salto
