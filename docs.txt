@@ -243,7 +243,7 @@ Eventos de acciones de personajes en pantalla:
 
     3. jump: El personaje da un pequeño salto hacia arriba
         Parámetros:
-            intensidad: La intensidad del salto, se recomienda usar valores entre 1 y 5, pueden ser decimales (2.5)
+            intensidad: La intensidad del salto, se recomienda usar valores entre 0.01 y 0.05
 
     4. tremble: El personaje tiembla, útil para expresar miedo o ira
         Parámetros:
@@ -283,7 +283,7 @@ Animaciones constantes:
 
     2. jumping: El personaje salta a intervalos de un segundo
         Parámetros:
-            intensidad: La intensidad del salto, se recomienda usar valores entre 1 y 5, pueden ser decimales (2.5)
+            intensidad: La intensidad del salto, se recomienda usar valores entre 0.01 y 0.05
 
 Limitantes
     Parece que Renpy no soporta que ocurran transiciones de tipo "appear" a la vez con distintos tiempos, ya sea un personaje y un fondo o un personaje y un efecto, etc

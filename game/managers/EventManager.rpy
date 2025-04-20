@@ -3,20 +3,22 @@ init python:
         def __init__(self):
             self.prepared = False
             self.characterSpawnEvents = ['appear', 'pop']
-            self.characterAnimations = ['jump', 'tremble', 'zoom', 'hitl', 'hitr', 'knockl', 'knockr', 'raiser', 'raisel', 'movey']
+            self.characterAnimations = ['jump', 'tremble', 'zoom', 'hitl', 'hitr', 'knockl', 'knockr', 'raiser', 'raisel', 'movey']           
             self.characterContinuousEvents = ['jumping', 'trembling']
             self.characterActionsEvents = ['move', 'destroy'] + self.characterAnimations + self.characterContinuousEvents
             self.fixedHeight = Transform(size=(None, config.screen_height), anchor=(0.5, 0.0))
 
+            #  Default spawn values
             self.defaultCharacterSpawn = self.characterSpawnEvents[0]
             self.defaultCharacterSpawnTime = 2
             self.defaultCharacterAppearTime = 1.25
             self.defaultCharacterAppearPosition = 50
 
+            #  Default event values
             self.defaultSpriteChangeTime = 0
             self.defaultMovementTime = 1
             self.defaultCharacterMovementTime = 1.5
-            self.defaultJumpIntensity = 2.5
+            self.defaultJumpIntensity = 0.025
             self.defaultTrembleTimes = 10
             self.defaultHitIntensity = 10
             self.defaultKnockDuration = 0.5
@@ -30,6 +32,21 @@ init python:
                 '2': [25, 75],
                 '3': [10, 50, 90],
                 '4': [0, 35, 70, 100]
+            }
+
+            self.oneParameterEvents = {
+                'jump' : Jump, 
+                'tremble': Tremble, 
+                'hitl': HitL, 
+                'hitr': HitR, 
+                'knockl': KnockL, 
+                'knockr': KnockR, 
+                'raisel': RaiseL, 
+                'raiser': RaiseR
+            }
+
+            self.twoParameterEvents = {
+                'zoom': MyZoom
             }
 
             self.onScreenCharacters = []
@@ -117,7 +134,6 @@ init python:
 
         def HandleEvents(self):
             self.prepared = False
-
             self.HandleSpawnEvents()
             self.HandleActionEvents()
 
@@ -163,25 +179,16 @@ init python:
 
             self.newCharactersQueue = []               
 
-
         def HandleActionEvents(self):
             for event in self.onScreenCharactersQueue:
-                if event['action'] == 'sprite':
+                if event['action'] in self.oneParameterEvents:
+                    self.HandleOneParameterEvent(event)
+                elif event['action'] in self.twoParameterEvents:
+                    self.HandleTwoParametersEvent(event)
+                elif event['action'] == 'sprite':
                     self.HandleSpriteChange(event)
                 elif event['action'] == 'move':
                     self.HandleMovement(event)
-                elif event['action'] == 'jump':
-                    self.HandleJump(event)
-                elif event['action'] == 'tremble':
-                    self.HandleTremble(event)
-                elif event['action'] in ['hitl', 'hitr']:
-                    self.HandleHit(event)
-                elif event['action'] in ['knockl', 'knockr']:
-                    self.HandleKnock(event)
-                elif event['action'] in ['raisel', 'raiser']:
-                    self.HandleRaise(event)
-                elif event['action'] == 'zoom':
-                    self.HandleZoom(event)
                 elif event['action'] == 'movey':
                     self.HandleMoveY(event)
                 elif event['action'] == 'destroy':
@@ -215,82 +222,53 @@ init python:
             for character in event['characters']:                
                 renpy.show(character['fullname'], at_list=[newPosition])
                 renpy.with_statement(MoveTransition(duration))
-                self.characterPositions[character['name']] = [position, 1.0]
-                
-        def HandleJump(self, event):
-            intensity = self.defaultJumpIntensity
-
-            if len(event['params']) > 1:
-                intensity = float(event['params'][1])
-
-            intensity /= 100            
-
-            for character in event['characters']:
-                self.DestroyCharacter(character['name'])
-
-                animation = Jump(self.characterPositions[character['name']][0], intensity)
-                renpy.show(character['fullname'], at_list=[self.fixedHeight, animation])
-
-        def HandleTremble(self, event):
-            times = self.defaultTrembleTimes
-
-            if len(event['params']) > 1:
-                times = float(event['params'][1])          
-
-            for character in event['characters']:
-                self.DestroyCharacter(character['name'])
-
-                animation = Tremble(self.characterPositions[character['name']][0], times)
-                renpy.show(character['fullname'], at_list=[self.fixedHeight, animation])
+                self.characterPositions[character['name']] = [position, 1.0]                
         
-        def HandleHit(self, event):
-            intensity = self.defaultHitIntensity
+        def HandleOneParameterEvent(self, event):            
+            params = self.GetDefaultParametersOfAnimation(event['action'])
 
             if len(event['params']) > 1:
-                intensity = float(event['params'][1])
+                params[0] = float(event['params'][1])
 
             for character in event['characters']:
                 self.DestroyCharacter(character['name'])
-
-                if event['action'] == 'hitr':
-                    animation = HitR(self.characterPositions[character['name']][0], intensity)
-                elif event['action'] == 'hitl':
-                    animation = HitL(self.characterPositions[character['name']][0], intensity)
-                
+                params = [self.characterPositions[character['name']][0]] + params
+                animation = self.oneParameterEvents[event['action']](*params)
                 renpy.show(character['fullname'], at_list=[self.fixedHeight, animation])
 
-        def HandleKnock(self, event):
-            duration = self.defaultKnockDuration
+        def HandleTwoParametersEvent(self, event):            
+            params = self.GetDefaultParametersOfAnimation(event['action'])
 
             if len(event['params']) > 1:
-                duration = float(event['params'][1])
+                params[0] = float(event['params'][1])
+
+            if len(event['params']) > 2:
+                params[1] = float(event['params'][2])
 
             for character in event['characters']:
                 self.DestroyCharacter(character['name'])
-
-                if event['action'] == 'knockr':
-                    animation = KnockR(self.characterPositions[character['name']][0], duration)
-                elif event['action'] == 'knockl':
-                    animation = KnockL(self.characterPositions[character['name']][0], duration)
-                
+                params = [self.characterPositions[character['name']][0]] + params
+                animation = self.twoParameterEvents[event['action']](*params)
                 renpy.show(character['fullname'], at_list=[self.fixedHeight, animation])
 
-        def HandleRaise(self, event):
-            duration = self.defaultKnockDuration
+        def GetDefaultParametersOfAnimation(self, animation):
+            params = []
 
-            if len(event['params']) > 1:
-                duration = float(event['params'][1])
+            if animation == 'jump':
+                params.append(self.defaultJumpIntensity)
+            elif animation == 'tremble':
+                params.append(self.defaultTrembleTimes)
+            elif animation in ['hitr', 'hitl']:
+                params.append(self.defaultHitIntensity)
+            elif animation in ['knockr', 'knockl']:
+                params.append(self.defaultKnockDuration)
+            elif animation in ['raiser', 'raisel']:
+                params.append(self.defaultRaiseDuration)
+            elif animation == 'zoom':
+                params.append(self.defaultZoomFactor)
+                params.append(self.defaultZoomDuration)
 
-            for character in event['characters']:
-                self.DestroyCharacter(character['name'])
-
-                if event['action'] == 'raiser':
-                    animation = RaiseR(self.characterPositions[character['name']][0], duration)
-                elif event['action'] == 'raisel':
-                    animation = RaiseL(self.characterPositions[character['name']][0], duration)
-                
-                renpy.show(character['fullname'], at_list=[self.fixedHeight, animation])
-
+            return params
 
         def HandleMoveY(self, event):
             yPos = float(event['params'][1])
@@ -309,21 +287,6 @@ init python:
                 
                 renpy.show(character['name'], at_list=[self.fixedHeight, movement])
                 self.characterPositions[character['name']][1] = yPos
-
-        def HandleZoom(self, event):
-            factor = self.defaultZoomFactor
-            duration = self.defaultZoomDuration
-
-            if len(event['params']) > 1:
-                factor = float(event['params'][1])
-
-            if len(event['params']) > 2:
-                duration = float(event['params'][2])
-
-            for character in event['characters']:
-                self.DestroyCharacter(character['name'])
-                zoom = MyZoom(self.characterPositions[character['name']][0], factor, duration)
-                renpy.show(character['name'], at_list=[self.fixedHeight, zoom])
 
         def HandleDestroy(self, event):
             duration = self.defaultDestroyCharacterTime
@@ -353,8 +316,7 @@ init python:
                 if character['name'] in self.continuousEvents:
                     del self.continuousEvents[character['name']]
                 else:
-                    self.continuousEvents[character['name']] = event['action']
-                    
+                    self.continuousEvents[character['name']] = event['action']                    
 
         def HandleJumping(self, event):
             intensity = self.defaultJumpIntensity
@@ -362,24 +324,22 @@ init python:
             if len(event['params']) > 1:
                 intensity = float(event['params'][1])
 
-            intensity /= 100
-
             for character in event['characters']:
                 if character['name'] in self.continuousEvents:
-                    position = Position(xalign=self.characterPositions[character['name']][0])
-                    renpy.show(character['fullname'], at_list=[position, self.fixedHeight])
-                    renpy.with_statement(Dissolve(0))
+                    self.ResetCharacterPosition(character)
                 else:
                     animation = Jumping(self.characterPositions[character['name']][0], intensity)
                     renpy.show(character['name'], at_list=[self.fixedHeight, animation])
-
             
         def HandleTrembling(self, event):
             for character in event['characters']:
                 if character['name'] in self.continuousEvents:
-                    position = Position(xalign=self.characterPositions[character['name']][0])
-                    renpy.show(character['fullname'], at_list=[position, self.fixedHeight])
-                    renpy.with_statement(Dissolve(0))
+                    self.ResetCharacterPosition(character)
                 else:
                     animation = Trembling(self.characterPositions[character['name']][0])
                     renpy.show(character['name'], at_list=[self.fixedHeight, animation])
+
+        def ResetCharacterPosition(self, character):
+            position = Position(xalign=self.characterPositions[character['name']][0])
+            renpy.show(character['fullname'], at_list=[position, self.fixedHeight])
+            renpy.with_statement(Dissolve(0))
