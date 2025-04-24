@@ -12,7 +12,9 @@ $ import EventManager
 
 $ import animations.animations
 
+
 label start:
+    $ currentKey = None
     python:
         dialogueGenerator = DialogueGenerator('my_scene1.csv')
         backgroundManager = BackgroundManager()
@@ -20,9 +22,17 @@ label start:
         effectManager = EffectManager()
         eventManager = EventManager()
 
-        for i in range(5):
+        if currentKey is not None:
+
+        while True:
             dialogue = next(dialogueGenerator.generator)
 
+            if currentKey is not None:
+                if currentKey != dialogue['Key']:
+                    continue
+
+            
+            currentKey = dialogue['Key']
             '''  STATEMENT PREPARATION  '''
 
             if(dialogue['Background'] != ''):
@@ -63,7 +73,7 @@ label start:
 
             
             renpy.say(dialogue['Emisor'], dialogue[currentLanguage])
-    
+            print('terminando dialogo', dialogue['Key'])
     # Finaliza el juego:
 
     return
