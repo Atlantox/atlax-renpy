@@ -2,9 +2,45 @@
 errors listed below, and try again.
 
 
-File "game/animations/animations.rpy", line 103: properties 'anchor' and 'yanchor' conflict with each other
-    anchor (0.5, 0.0)
-                     ^
+File "game/script.rpy", line 33: if statement expects a non-empty block.
+    if(dialogue['Music'] != ''):
+                                ^
+
+File "game/script.rpy", line 36: if statement expects a non-empty block.
+    if(dialogue['Sound'] != ''):
+                                ^
+
+File "game/script.rpy", line 39: if statement expects a non-empty block.
+    if(dialogue['Single effect'] != ''):
+                                        ^
+
+File "game/script.rpy", line 42: if statement expects a non-empty block.
+    if(dialogue['Continuous effect'] != ''):
+                                            ^
+
+File "game/script.rpy", line 45: if statement expects a non-empty block.
+    if(dialogue['Events'] != ''):
+                                 ^
+
+File "game/script.rpy", line 51: if statement expects a non-empty block.
+    if(backgroundManager.prepared):
+                                   ^
+
+File "game/script.rpy", line 54: if statement expects a non-empty block.
+    if len(backgroundManager.postHandleEvents) > 0:
+                                                   ^
+
+File "game/script.rpy", line 57: if statement expects a non-empty block.
+    if(audioManager.prepared):
+                              ^
+
+File "game/script.rpy", line 60: if statement expects a non-empty block.
+    if(effectManager.prepared):
+                               ^
+
+File "game/script.rpy", line 63: if statement expects a non-empty block.
+    if(eventManager.prepared):
+                              ^
 
 Ren'Py Version: Ren'Py 8.1.3.23091805
-Sat Apr 19 20:17:57 2025
+Fri Apr 25 21:20:29 2025

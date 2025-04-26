@@ -84,7 +84,6 @@ init python:
                 params = [self.defaultDuration]
 
         def HandlePostEventsEffects(self):
-            print('Ejeutando eventos post realización')
             for i in range(len(self.postHandleEvents)):
                 # Calling functions with corresponded params
                 self.postHandleEvents[i](*self.postHandleParams[i])

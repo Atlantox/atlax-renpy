@@ -4,7 +4,7 @@ define config.fadeout_audio = 3
 $ import backgroundsDefine
 $ import charactersDefine
 
-$ import DialogueGenerator
+$ import DialogueManager
 $ import BackgroundManager
 $ import AudioManager
 $ import EffectManager
@@ -15,65 +15,58 @@ $ import animations.animations
 
 label start:
     $ currentKey = None
-    python:
-        dialogueGenerator = DialogueGenerator('my_scene1.csv')
-        backgroundManager = BackgroundManager()
-        audioManager = AudioManager()
-        effectManager = EffectManager()
-        eventManager = EventManager()
+    $ dialogueManager = DialogueManager('my_scene1.csv')
+    $ dialogueManager.PrepareDialogues()
+    $ backgroundManager = BackgroundManager()
+    $ audioManager = AudioManager()
+    $ effectManager = EffectManager()
+    $ eventManager = EventManager()
 
-        if currentKey is not None:
-
-        while True:
-            dialogue = next(dialogueGenerator.generator)
-
-            if currentKey is not None:
-                if currentKey != dialogue['Key']:
-                    continue
-
+    while True:
+        $ dialogue = dialogueManager.GetNextDialogue()
             
-            currentKey = dialogue['Key']
-            '''  STATEMENT PREPARATION  '''
+        $ currentKey = dialogue['Key']
+        #  STATEMENT PREPARATION 
 
-            if(dialogue['Background'] != ''):
-                backgroundManager.PrepareBackground(dialogue['Background'])
+        if(dialogue['Background'] != ''):
+            $ backgroundManager.PrepareBackground(dialogue['Background'])
 
-            if(dialogue['Music'] != ''):
-                audioManager.PrepareMusic(dialogue['Music'])
+        if(dialogue['Music'] != ''):
+            $ audioManager.PrepareMusic(dialogue['Music'])
 
-            if(dialogue['Sound'] != ''):
-                audioManager.PrepareSound(dialogue['Sound'])
+        if(dialogue['Sound'] != ''):
+            $ audioManager.PrepareSound(dialogue['Sound'])
 
-            if(dialogue['Single effect'] != ''):
-                effectManager.PrepareSingleEffect(dialogue['Single effect'])
-            
-            if(dialogue['Continuous effect'] != ''):
-                effectManager.PrepareContinuousEffect(dialogue['Continuous effect'])
+        if(dialogue['Single effect'] != ''):
+            $ effectManager.PrepareSingleEffect(dialogue['Single effect'])
+        
+        if(dialogue['Continuous effect'] != ''):
+            $ effectManager.PrepareContinuousEffect(dialogue['Continuous effect'])
 
-            if(dialogue['Events'] != ''):
-                eventManager.PrepareEvents(dialogue['Events'])
+        if(dialogue['Events'] != ''):
+            $ eventManager.PrepareEvents(dialogue['Events'])
 
 
-            '''  STATEMENT EXECUTION  '''
+        #  STATEMENT EXECUTION  
 
-            if(backgroundManager.prepared):
-                backgroundManager.HandleBackground()
+        if(backgroundManager.prepared):
+            $ backgroundManager.HandleBackground()
 
-            if len(backgroundManager.postHandleEvents) > 0:
-                backgroundManager.HandlePostEventsEffects()
+        if len(backgroundManager.postHandleEvents) > 0:
+            $ backgroundManager.HandlePostEventsEffects()
 
-            if(audioManager.prepared):
-                audioManager.HandleSFX()
+        if(audioManager.prepared):
+            $ audioManager.HandleSFX()
 
-            if(effectManager.prepared):
-                effectManager.HandleEffects()
+        if(effectManager.prepared):
+            $ effectManager.HandleEffects()
 
-            if(eventManager.prepared):
-                eventManager.HandleEvents()
+        if(eventManager.prepared):
+            $ eventManager.HandleEvents()
 
-            
-            renpy.say(dialogue['Emisor'], dialogue[currentLanguage])
-            print('terminando dialogo', dialogue['Key'])
+        
+        $ renpy.say(dialogue['Emisor'], dialogue[currentLanguage])
+
     # Finaliza el juego:
 
     return
