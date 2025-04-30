@@ -86,7 +86,16 @@ init python:
         def HandlePostEventsEffects(self):
             for i in range(len(self.postHandleEvents)):
                 # Calling functions with corresponded params
-                self.postHandleEvents[i](*self.postHandleParams[i])
+                if self.postHandleEvents[i] == 'DisplayOverlayImage':
+                    self.DisplayOverlayImage(*self.postHandleParams[i])
+                elif self.postHandleEvents[i] == 'DestroyOverlayImage':
+                    self.DestroyOverlayImage(*self.postHandleParams[i])
 
             self.postHandleEvents = []
-            self.postHandleParams = []
+            self.postHandleParams = []        
+
+        def DisplayOverlayImage(self, bgName, opacity):
+            renpy.show(bgName, at_list=[Transform(alpha=opacity)])
+
+        def DestroyOverlayImage(self, bgName):
+            renpy.hide(bgName)

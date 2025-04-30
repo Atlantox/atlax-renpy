@@ -127,20 +127,14 @@ init python:
             if len(effectSplits) > 1:
                 opacity = float(effectSplits[1])
 
-            def DisplayOverlayImage(bgName, opacity):
-                renpy.show(bgName, at_list=[Transform(alpha=opacity)])
-
-            def DestroyOverlayImage(bgName):
-                renpy.hide(bgName)
-
             if bgName in self.currentContinuousEffects:
                 effectIdx = self.currentContinuousEffects.index(bgName)
                 del self.currentContinuousEffects[effectIdx]
-                targetFunction = DestroyOverlayImage
+                targetFunction = 'DestroyOverlayImage'
                 params = [bgName]
             else:
                 self.currentContinuousEffects.append(bgName)
-                targetFunction = DisplayOverlayImage
+                targetFunction = 'DisplayOverlayImage'
                 params = [bgName, opacity]
             
             backgroundManager.postHandleEvents.append(targetFunction)

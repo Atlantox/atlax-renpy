@@ -326,3 +326,43 @@ Eventos simultáneos:
     Ej:
         saijo & mutou :appear:1  # Saijo y Mutou aparecen a la vez a o largo de un segundo, aparecerán equitativamente en pantalla
         saijo happy & dereck surprised:pop  # Saijo aparece con la expresión happy y dereck con la expresión surprised, ambos a la vez y aparecen de golpe
+
+
+
+
+########################################    COLUMNA DELAY    ########################################
+
+Esta columna solo recibe 2 parámetros numéricos que representan segundos
+El primero es el tiempo que se desea que el juego espere antes de mostrar el diálogo
+El segundo es el tiempo de los caracteres por segundo, es decir, la velocidad del texto
+
+7 caracteres por segundo: lento
+20 caracteres por segundo: velocidad media
+40 caracteres por segundo: velocidad alta
+
+Por supuesto, puedes colocarle la velocidad que desees
+
+Ej:
+  5:10  # Espera 5 segundos antes de mostrar el diálogo y muestra el diálogo a velocidad lenta
+  0:60  # Sin tiempo de espera, el personaje habla a velocidad sobrehumana, sería interesante llenar la caja de texto para hacer mayor énfasis
+
+
+
+
+########################################    DIÁLOGOS    ########################################
+
+Los diálogos son los textos que serán mostrados en pantalla, notarás que a partir de aquí los nombres de las columnas pasan a ser idiomas
+Esto es para facilitar enormemente la localización del proyecto, simplemente se debe añadir otra columna con su respectivo ;
+El tamaño máximo para mostrar en la caja de texto no se rige por caracteres sino por pixeles, por ejemplo, la caja de texto se llena con el siguiente diálogo:
+"No se que hora o que día es hoy, creo que es miércoles en la tarde.No se que hora o que día es hoy, creo que es miércoles en la tarde.No se que hora o que día es hoy, creo que es miércoles en la tarde.No se que hora o que día es hoy, creo que es miércoles en la tarde.No se que hora o que día es hoy, creo que es miércoles en la"
+Son 328 caracteres en total, sin embargo si colocamos 328 "i", te darás cuenta de que caben muchas más "i"s, eso es porque la letra i ocupa menos pixeles en pantalla
+
+La caja de texto soporta cerca de 2359 píxeles, si quieres saber cuantos pixeles tiene un texto puedes ayduarte del siguente sitio web
+https://webutility.io/pixel-width-calculator
+
+A su vez, renpy posee distintos modificadores que puedes escribir directamente en el diálogo, por ejemplo para cambiar la velocidad del texto en la columna DELAY, el juego hace lo siguiente
+Toma el diálogo y le pone al inicio y al final "{cps=velocidad_indicada}" texto del diálogo "{/cps}"
+cps significa caracteres por segundo
+Puedes modificar la velocidad del texto así como el color de ciertas palabras y muchas otras funciones interesantes que puedes investigar aquí
+https://www.renpy.org/doc/html/text.html#text-tag-alpha
+Si requieres de ayuda para entender como funciona puedes comunicarte con tu desarrollador.
