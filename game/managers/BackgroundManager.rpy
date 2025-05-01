@@ -90,6 +90,8 @@ init python:
                     self.DisplayOverlayImage(*self.postHandleParams[i])
                 elif self.postHandleEvents[i] == 'DestroyOverlayImage':
                     self.DestroyOverlayImage(*self.postHandleParams[i])
+                elif self.postHandleEvents[i] == 'BlinkImage':
+                    self.BlinkImage(*self.postHandleParams[i])
 
             self.postHandleEvents = []
             self.postHandleParams = []        
@@ -99,3 +101,11 @@ init python:
 
         def DestroyOverlayImage(self, bgName):
             renpy.hide(bgName)
+
+                        # Building the function to pass to the backgroundManager
+        def BlinkImage(self, imageToShow, times, duration):
+            for _ in range(times):
+                renpy.show(imageToShow)
+                renpy.pause(duration)
+                renpy.show('bg ' + backgroundManager.currentBgName)
+                renpy.pause(duration)

@@ -60,18 +60,8 @@ init python:
             if len(effectSplits) > 2:
                 times = int(effectSplits[2])
 
-            imageToShow = 'bg ' + effectName            
-
-            # Building the function to pass to the backgroundManager
-            def BlinkImage(imageToShow, times, duration):
-                for _ in range(times):
-                    renpy.show(imageToShow)
-                    renpy.pause(duration)
-                    renpy.show('bg ' + backgroundManager.currentBgName)
-                    renpy.pause(duration)
-
-            
-            backgroundManager.postHandleEvents.append(BlinkImage)
+            imageToShow = 'bg ' + effectName                        
+            backgroundManager.postHandleEvents.append('BlinkImage')
             backgroundManager.postHandleParams.append([imageToShow, times, duration])
         
         def PrepareContinuousEffect(self, effectPrompt):
@@ -143,8 +133,9 @@ init python:
         def HandleEffects(self):
             self.prepared = False
             if len(self.effectQueue) > 0:
-                for e in self.effectQueue:
-                    renpy.transition(e)
+                for e in self.effectQueue:                    
+                    #renpy.transition(e)
+                    renpy.with_statement(e)
                 self.effectQueue = []
 
             if len(self.continuousEffectQueue) > 0:

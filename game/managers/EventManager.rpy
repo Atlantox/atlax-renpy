@@ -210,19 +210,41 @@ init python:
 
             renpy.with_statement(Dissolve(changeTime))
 
-        def HandleMovement(self, event):
-            position = float(event['params'][1]) / 100
-            newPosition = Position(xalign=position)
-            
+        def HandleMovement(self, event):            
+            movements = {}
+            characterCount = len(event['characters'])
             duration = self.defaultCharacterMovementTime
+            
 
-            if len(event['params']) > 2:
-                duration = float(event['params'][2])
+            if characterCount == 1:
+                position = float(event['params'][1]) / 100
+                newPosition = Position(xalign=position)
+                
+                if len(event['params']) > 2:
+                    duration = float(event['params'][2])
 
-            for character in event['characters']:                
-                renpy.show(character['fullname'], at_list=[newPosition])
-                renpy.with_statement(MoveTransition(duration))
-                self.characterPositions[character['name']] = [position, 1.0]                
+                character = event['characters'][0]
+                movements[character['fullname']] = dict(newPosition=newPosition, x=position)
+            else:
+                i = 0
+                params = event['params'][1:]
+                for character in event['characters']:
+                    position = float(params[i]) / 100
+                    newPosition = Position(xalign=position)
+
+                    movements[character['fullname']] = dict(newPosition=newPosition, x=position)
+                    i += 1
+
+                if len(params) > i:
+                    duration = float(params[i])
+            
+
+            for character, positionData in movements.items():
+                renpy.show(character, at_list=[positionData['newPosition']])
+                characterName = character.split(' ')[0]
+                self.characterPositions[characterName] = [positionData['x'], 1.0]
+
+            renpy.with_statement(MoveTransition(duration))
         
         def HandleOneParameterEvent(self, event):            
             params = self.GetDefaultParametersOfAnimation(event['action'])

@@ -54,28 +54,28 @@ label start:
         #  STATEMENT EXECUTION  
 
         if backgroundManager.prepared:
-            $ backgroundManager.HandleBackground()
+            $ backgroundManager.HandleBackground()       
 
-        if len(backgroundManager.postHandleEvents) > 0:
-            $ backgroundManager.HandlePostEventsEffects()
+        if eventManager.prepared:
+            $ eventManager.HandleEvents()
 
         if audioManager.prepared:
             $ audioManager.HandleSFX()
 
         if effectManager.prepared:
-            $ effectManager.HandleEffects()
+            $ effectManager.HandleEffects()        
 
-        if eventManager.prepared:
-            $ eventManager.HandleEvents()
+        if len(backgroundManager.postHandleEvents) > 0:
+            $ backgroundManager.HandlePostEventsEffects()
 
         if delayManager.prepared:
             $ delayManager.HandleDelay()
         
-        $ to_say = dialogue[currentLanguage]
+        $ sentence = dialogue[currentLanguage]
         if delayManager.textSpeedDelay != False:
-            $ to_say = '{cps=' + str(delayManager.textSpeedDelay) + '}' + to_say + '{/cps}'
+            $ sentence = '{cps=' + str(delayManager.textSpeedDelay) + '}' + sentence + '{/cps}'
 
-        $ renpy.say(dialogue['Emisor'], to_say)
+        $ renpy.say(dialogue['Emisor'], sentence)
 
         $ delayManager.textSpeedDelay = False
 

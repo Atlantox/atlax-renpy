@@ -366,3 +366,16 @@ cps significa caracteres por segundo
 Puedes modificar la velocidad del texto así como el color de ciertas palabras y muchas otras funciones interesantes que puedes investigar aquí
 https://www.renpy.org/doc/html/text.html#text-tag-alpha
 Si requieres de ayuda para entender como funciona puedes comunicarte con tu desarrollador.
+
+
+
+
+
+########################################    ORDEN DE EJECUCIÓN    ########################################
+
+1. Cambios de fondo
+2. Eventos
+3. Audios
+4. Efectos
+5. Efectos continuos y parpadeos
+6. Delay (tiempos de espera)
