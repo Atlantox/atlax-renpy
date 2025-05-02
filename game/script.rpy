@@ -4,6 +4,7 @@ define config.fadeout_audio = 3
 $ import backgroundsDefine
 $ import charactersDefine
 
+$ import RouterManager
 $ import DialogueManager
 $ import BackgroundManager
 $ import AudioManager
@@ -16,7 +17,11 @@ $ import animations.animations
 
 label start:
     $ currentKey = None
-    $ dialogueManager = DialogueManager('my_scene1.csv')
+    $ currentDialogue = None    
+    $ firstDialogue = 'my_scene1'
+
+    $ routerManager = RouterManager()
+    $ dialogueManager = DialogueManager(firstDialogue)
     $ dialogueManager.PrepareDialogues()
     $ backgroundManager = BackgroundManager()
     $ audioManager = AudioManager()
@@ -26,6 +31,7 @@ label start:
 
     while True:
         $ dialogue = dialogueManager.GetNextDialogue()
+        
             
         $ currentKey = dialogue['Key']
         #  STATEMENT PREPARATION 

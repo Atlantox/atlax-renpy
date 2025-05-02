@@ -7,3 +7,7 @@ Demo_1_1_5;sex_dungeon:rleft;;;;;;;mutou;Sin cura. Solo tratamiento.;
 Demo_1_1_6;madera;;;;;;;mutou;Mis pensamientos se ponen a divagar por las noches mientras observo la luz de la luna entrando a través de las pequeñas ranuras que se generan en la cortina blanquecina.;
 Demo_1_1_7;;;;;;;;mutou;A veces es tanto el tiempo que transcurre, que puedo percibir como nuestro satelite, la luna, se desvanece a medida que el astro solar anuncia su llegada con los primeros rayos.;
 Demo_1_1_8;;;;;;;;mutou;Dentro de aquellos pensamientos me cuestiono si alguna entidad superior y omnipotente es quien quizo jugar esta mala pasada para un deleite inentendible.;
+#decision
+katherine_birthday_sushi;Pedir sushi;amor:2, calificacion:-1;my_scene2
+katherine_birthday_beef;Pedir bistec;
+katherine_birthday_pasta;Pedir pasticho;
