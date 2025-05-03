@@ -16,6 +16,10 @@ $ import animations.animations
 
 
 label start:
+    $ globalPoints = dict()
+    $ globalDecisions = []
+    $ globalDialogues = []
+
     $ currentKey = None
     $ currentDialogue = None    
     $ firstDialogue = 'my_scene1'
@@ -30,6 +34,11 @@ label start:
     $ delayManager = DelayManager()
 
     while True:
+
+        if dialogueManager.dialogueFinished:
+            $ dialogueManager.HandleDialogueEnd()
+            
+
         $ dialogue = dialogueManager.GetNextDialogue()
         
             

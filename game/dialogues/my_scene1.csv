@@ -3,11 +3,7 @@ Demo_1_1_1;sex_dungeon;While we speak;;;;saijo & mutou:pop:66;0:60;saijo;i i i i
 Demo_1_1_2;;;Golpe;flash:0.1:1, vpunch:35;suffocation:0.8,blackout:0.2;saijo & mutou:move:66:33:0.3;;saijo;Lo unico que tengo verdaderamente claro, es que debo estar postrado en esta cama de hospital hasta Dios sabe cuando...;Más inglés
 Demo_1_1_3;madera;;;;;saijo:zoom:1.5:0.5;;saijo;Algunos chicos de mi edad tienen asma, puede tratarse bien, otros apendicitis, facil se quita el apéndice y yo... bueno.. una condición la cual tiene un nombre particular..;
 Demo_1_1_4;;;;;blur;saijo:hitr:25;;mutou;Sin embargo, el hecho de que me haya topado con esa con esa terminología en esta circunstancia es basicamente frustrante y desalentador. Sin causas definidas, sin factores que influyan... ;
-Demo_1_1_5;sex_dungeon:rleft;;;;;;;mutou;Sin cura. Solo tratamiento.;
-Demo_1_1_6;madera;;;;;;;mutou;Mis pensamientos se ponen a divagar por las noches mientras observo la luz de la luna entrando a través de las pequeñas ranuras que se generan en la cortina blanquecina.;
-Demo_1_1_7;;;;;;;;mutou;A veces es tanto el tiempo que transcurre, que puedo percibir como nuestro satelite, la luna, se desvanece a medida que el astro solar anuncia su llegada con los primeros rayos.;
-Demo_1_1_8;;;;;;;;mutou;Dentro de aquellos pensamientos me cuestiono si alguna entidad superior y omnipotente es quien quizo jugar esta mala pasada para un deleite inentendible.;
 #decision
 katherine_birthday_sushi;Pedir sushi;amor:2, calificacion:-1;my_scene2
-katherine_birthday_beef;Pedir bistec;
-katherine_birthday_pasta;Pedir pasticho;
+katherine_birthday_beef;Pedir bistec;;my_scene3
+katherine_birthday_pasta;Pedir pasticho;;my_scene4
