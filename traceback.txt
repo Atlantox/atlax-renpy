@@ -1,34 +1,50 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 30, in script
-    $ dialogueManager.PrepareDialogues()
-  File "game/script.rpy", line 30, in <module>
-    $ dialogueManager.PrepareDialogues()
+  File "game/script.rpy", line 40, in script
+    $ dialogueManager.HandleDialogueEnd()
+  File "game/script.rpy", line 40, in <module>
+    $ dialogueManager.HandleDialogueEnd()
+  File "game/managers/DialogueManager.rpy", line 100, in HandleDialogueEnd
+    self.HandleDecision()
+  File "game/managers/DialogueManager.rpy", line 119, in HandleDecision
+    self.GoToNewDialogue(targetDecision['nextDialogue'])
+  File "game/managers/DialogueManager.rpy", line 134, in GoToNewDialogue
+    self.PrepareDialogues()
   File "game/managers/DialogueManager.rpy", line 38, in PrepareDialogues
     self.ProcessTerminationMethod(splittedDialogue)
-  File "game/managers/DialogueManager.rpy", line 66, in ProcessTerminationMethod
-    pointValue = int(pointSplits[1])
-IndexError: list index out of range
+  File "game/managers/DialogueManager.rpy", line 83, in ProcessTerminationMethod
+    results.append(self.GetConditionResult(condition))
+  File "game/managers/DialogueManager.rpy", line 161, in GetConditionResult
+    raise Exception('El punto ' + key + ' no existe')
+Exception: El punto amor no existe
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 30, in script
-    $ dialogueManager.PrepareDialogues()
+  File "game/script.rpy", line 40, in script
+    $ dialogueManager.HandleDialogueEnd()
   File "D:\renpy\renpy-8.1.3-sdk\renpy\ast.py", line 1138, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "D:\renpy\renpy-8.1.3-sdk\renpy\python.py", line 1122, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/script.rpy", line 30, in <module>
-    $ dialogueManager.PrepareDialogues()
+  File "game/script.rpy", line 40, in <module>
+    $ dialogueManager.HandleDialogueEnd()
+  File "game/managers/DialogueManager.rpy", line 100, in HandleDialogueEnd
+    self.HandleDecision()
+  File "game/managers/DialogueManager.rpy", line 119, in HandleDecision
+    self.GoToNewDialogue(targetDecision['nextDialogue'])
+  File "game/managers/DialogueManager.rpy", line 134, in GoToNewDialogue
+    self.PrepareDialogues()
   File "game/managers/DialogueManager.rpy", line 38, in PrepareDialogues
     self.ProcessTerminationMethod(splittedDialogue)
-  File "game/managers/DialogueManager.rpy", line 66, in ProcessTerminationMethod
-    pointValue = int(pointSplits[1])
-IndexError: list index out of range
+  File "game/managers/DialogueManager.rpy", line 83, in ProcessTerminationMethod
+    results.append(self.GetConditionResult(condition))
+  File "game/managers/DialogueManager.rpy", line 161, in GetConditionResult
+    raise Exception('El punto ' + key + ' no existe')
+Exception: El punto amor no existe
 
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.1.3.23091805
 TheNextStepDemo 1.0
-Wed May  7 19:34:23 2025
+Thu May  8 18:18:14 2025

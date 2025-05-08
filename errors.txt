@@ -2,8 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/managers/DialogueManager.rpy", line 79: invalid syntax
-            if self.currentDialogue + 1 == len(self.dialogues)
+File "game/managers/DialogueManager.rpy", line 158: invalid syntax
+                raise Exception('El punto ' + key ' no existe')
+                                                   ^
 
 Ren'Py Version: Ren'Py 8.1.3.23091805
-Fri May  2 18:09:06 2025
+Thu May  8 18:05:40 2025
