@@ -127,7 +127,7 @@ init python:
 
             action = buffer['params'][0]
             if action not in self.characterActionsEvents:
-                raise Exception('La acción "' + action + '" para el personaje "' + character_name + '" no existe')
+                raise Exception('La acción "' + action + '" para los personajes "' + str(buffer['characters']) + '" no existe')
 
             buffer['action'] = action
             self.onScreenCharactersQueue.append(buffer)
@@ -240,7 +240,7 @@ init python:
             
 
             for character, positionData in movements.items():
-                renpy.show(character, at_list=[positionData['newPosition']])
+                renpy.show(character, at_list=[positionData['newPosition'], self.fixedHeight])
                 characterName = character.split(' ')[0]
                 self.characterPositions[characterName] = [positionData['x'], 1.0]
 
@@ -256,7 +256,7 @@ init python:
                 self.DestroyCharacter(character['name'])
                 params = [self.characterPositions[character['name']][0]] + params
                 animation = self.oneParameterEvents[event['action']](*params)
-                renpy.show(character['fullname'], at_list=[self.fixedHeight, animation])
+                renpy.show(character['fullname'], at_list=[animation, self.fixedHeight])
 
         def HandleTwoParametersEvent(self, event):            
             params = self.GetDefaultParametersOfAnimation(event['action'])
@@ -271,7 +271,7 @@ init python:
                 self.DestroyCharacter(character['name'])
                 params = [self.characterPositions[character['name']][0]] + params
                 animation = self.twoParameterEvents[event['action']](*params)
-                renpy.show(character['fullname'], at_list=[self.fixedHeight, animation])
+                renpy.show(character['fullname'], at_list=[animation])
 
         def GetDefaultParametersOfAnimation(self, animation):
             params = []
@@ -307,7 +307,7 @@ init python:
                     yPos, 
                     duration)
                 
-                renpy.show(character['name'], at_list=[self.fixedHeight, movement])
+                renpy.show(character['name'], at_list=[movement, self.fixedHeight])
                 self.characterPositions[character['name']][1] = yPos
 
         def HandleDestroy(self, event):
@@ -351,7 +351,7 @@ init python:
                     self.ResetCharacterPosition(character)
                 else:
                     animation = Jumping(self.characterPositions[character['name']][0], intensity)
-                    renpy.show(character['name'], at_list=[self.fixedHeight, animation])
+                    renpy.show(character['name'], at_list=[animation, self.fixedHeight])
             
         def HandleTrembling(self, event):
             for character in event['characters']:
@@ -359,7 +359,7 @@ init python:
                     self.ResetCharacterPosition(character)
                 else:
                     animation = Trembling(self.characterPositions[character['name']][0])
-                    renpy.show(character['name'], at_list=[self.fixedHeight, animation])
+                    renpy.show(character['name'], at_list=[animation, self.fixedHeight])
 
         def ResetCharacterPosition(self, character):
             position = Position(xalign=self.characterPositions[character['name']][0])

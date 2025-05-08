@@ -379,3 +379,87 @@ Si requieres de ayuda para entender como funciona puedes comunicarte con tu desa
 4. Efectos
 5. Efectos continuos y parpadeos
 6. Delay (tiempos de espera)
+
+
+
+
+
+########################################    FIN DE DIÁLOGOS    ########################################
+
+Si bien es cierto que podemos hacer nuestra novela en un único archivo, no es lo recomendable, tanto por motivos de ahorrar recursos como por organización y legibilidad de la novela a nivel de desarrollador
+Por eso mismo los diálogos necesitan tener un final, esto lo hacemos colocando al final del diálogo un # junto al tipo de fin de diálogo
+Existen varios fines de diálogos y cada uno tiene su sintaxis:
+
+Decsión:
+    Se muestran unas opciones en pantalla, el jugador debe escoger una para continuar la historia
+
+    #decision
+    identficador_unico_1;punto1:valor, punto2:valor;ruta del archivo del siguiente diálogo;Texto de la decisión en el idioma 1;Texto de la decisión en el idioma 2
+    identficador_unico_2;punto1:valor, punto2:valor;ruta del archivo del siguiente diálogo;Texto de la decisión en el idioma 1;Texto de la decisión en el idioma 2
+    identficador_unico_3;punto1:valor, punto2:valor;ruta del archivo del siguiente diálogo;Texto de la decisión en el idioma 1;Texto de la decisión en el idioma 2
+
+    Columna 1:
+        La primera columna es el identificador unico, este identificador debe ser único, es decir, no se debe repetir en ningun lado
+        El juego guarda el identificador único de cada decisión tomada
+        El nombre sugerido para el identificador es: Nombre de la ruta_palabra que describa la situación_opción
+        katherine_birthday_sushi  # Decidir comprarle sushi a Katherine para su cumpleaños
+        katherine_birthday_tarta  # Decidir comprarle tarta a Katherine para su cumpleaños
+
+    Columna 2:
+        Lo siguiente son los puntos, estos puntos son variables con un valor numérico que pueden variar a lo largo de la ruta
+        Por ejemplo si planteamos una decisión en la que una implique molestar a un personaje y en la otra complacerlo, haríamos algo así
+        katherine_birthday_abrazar;amistad:1 # sumamos 1 de amistad
+        katherine_birthday_esquivar;amistad:-1  # Restamos 1 de amistad
+
+        Podemos colocar más de un tipo de puntos
+        protagonist_dialogue7_estudiar;calificacion:1,amistad:-1   # Sumamos 1 de calificación y restamos 1 de amistad
+        protagonist_dialogue7_salir;amistad:2                      # Sumamos 2 de amistad
+
+        Estos puntos pueden tener el nombre que tu quieras, solo asegúrate de que siempre los escribes correctamente
+        Son opcionales, no necesitas colocar obligatoriamente puntos en las decisiones
+
+    Columna 3:
+        La ruta del siguiente diálogo si el jugador escoge esa opción
+
+        katherine_birthday_sushi;amistad:2;birthday1_sushi  # Si el jugador escoge esta opción, el siguiente diálogo será birthday1_sushi
+        katherine_birthday_tarta;;birthday1_tarta           # Si el jugador escoge esta opción, el siguiente diálogo será birthday1_tarta
+
+        El diálogo puede ser tan corto o largo como sea necesario, puede ser de incluso una sola línea (por supuesto colocandole el debido fin de diálogo)
+        Varias decisiones pueden dirigir al mismo diálogo sin problema
+
+    Columna 4+:
+        El texto que se va a mostrar en pantalla del respectivo diálogo, debe respetar el orden de los idiomas
+
+        katherine_birthday_sushi;amistad:2;birthday1_sushi;Pedir sushi;Ask for sushi
+        katherine_birthday_tarta;;birthday1_tarta;Pedir tarta;Ask for cake
+
+
+
+Condiciones
+    Cuando un diálogo termina en una condición, dependiendo de la condición, automáticamente el juego toma el camino de la primera condición que se cumpla
+    Esto nos sirve para encaminar la ruta del jugador dependiendo de sus acciones anteriores
+    Aquí hay que tener especial cuidado y asegurarte al 100% de que las condiciones que colocas son, no solo posibles sino también probables
+    Existen 3 tipos de Condiciones
+    #condition points
+    #condition dialogues
+    #condition decisions
+
+    Condición de puntos:
+        Dependiendo de la cantidad de puntos que tenga el jugador, el juego tomará un camino u otro
+
+    #condition points
+    katherine_myscene2_positive_friendship;amor>1, calificacion>1;my_scene3
+    katherine_myscene2_negative_friendship;;my_scene4
+
+    #condition dialogues
+    katherine_myscene2_positive_friendship;target_dialogue_1, target_dialogue_3;my_scene3
+    katherine_myscene2_negative_friendship;target_dialogue_2;my_scene4
+    katherine_myscene2_neutral_friendship;;my_scene5
+
+    #condition decisions
+    katherine_myscene2_positive_friendship;target_decision_1;my_scene3
+    katherine_myscene2_negative_friendship;target_decision_2;my_scene4
+
+
+
+    Si ninguna de las condiciones se cumple, el juego tomará la opción que no tenga condición o en su defecto, la última opción

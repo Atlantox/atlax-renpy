@@ -2,7 +2,15 @@
 Demo_1_2_1;;;Golpe;flash:0.1:1, vpunch:35;suffocation:0.8,blackout:0.2;saijo:move:10:0.3;;saijo;Lo unico que tengo verdaderamente claro, es que debo estar postrado en esta cama de hospital hasta Dios sabe cuando...;Más inglés
 Demo_1_2_2;madera;;;;;saijo:zoom:1.5:0.5;;saijo;Algunos chicos de mi edad tienen asma, puede tratarse bien, otros apendicitis, facil se quita el apéndice y yo... bueno.. una condición la cual tiene un nombre particular..;
 Demo_1_2_3;;;;;blur;saijo:hitr:25;;mutou;Sin embargo, el hecho de que me haya topado con esa con esa terminología en esta circunstancia es basicamente frustrante y desalentador. Sin causas definidas, sin factores que influyan... ;
-#decision
-katherine_birthday_sushi;Pedir sushi;amor:2, calificacion:-1;my_scene2
-katherine_birthday_beef;Pedir bistec;;my_scene3
-katherine_birthday_pasta;Pedir pasticho;;my_scene4
+#condition points
+katherine_myscene2_positive_friendship;amor>1, calificacion>1;my_scene3
+katherine_myscene2_negative_friendship;;my_scene4
+
+#condition dialogue
+katherine_myscene2_positive_friendship;target_dialogue_1, target_dialogue_3;my_scene3
+katherine_myscene2_negative_friendship;target_dialogue_2;my_scene4
+katherine_myscene2_neutral_friendship;;my_scene5
+
+#condition decision
+katherine_myscene2_positive_friendship;target_decision_1;my_scene3
+katherine_myscene2_negative_friendship;target_decision_2;my_scene4

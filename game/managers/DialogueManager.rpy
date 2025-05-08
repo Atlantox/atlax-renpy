@@ -53,13 +53,13 @@ init python:
             if self.terminateMethod.lower() == 'decision':
                 to_add = {
                     'key': terminateSplits[0],
-                    'text': terminateSplits[1],
-                    'nextDialogue': terminateSplits[3],
+                    'nextDialogue': terminateSplits[2],
+                    'text': terminateSplits[allLanguages.index(currentLanguage) + 3],
                     'points': {},
                 }
 
-                if terminateSplits[2] != '':
-                    points = [s.strip() for s in terminateSplits[2].split(',')]
+                if terminateSplits[1] != '':
+                    points = [s.strip() for s in terminateSplits[1].split(',')]
                     for point in points:
                         pointSplits = point.split(':')
                         pointType = pointSplits[0]

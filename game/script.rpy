@@ -1,4 +1,5 @@
 ﻿define currentLanguage = 'Spanish'
+define allLanguages = ['Spanish']
 define config.fadeout_audio = 3
 
 $ import backgroundsDefine
