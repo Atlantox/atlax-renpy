@@ -1,38 +1,62 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 40, in script
-    $ dialogueManager.HandleDialogueEnd()
-  File "game/script.rpy", line 40, in <module>
-    $ dialogueManager.HandleDialogueEnd()
-  File "game/managers/DialogueManager.rpy", line 125, in HandleDialogueEnd
-    self.GoToNewDialogue(self.terminateData[0]['nextDialogue'])
-  File "game/managers/DialogueManager.rpy", line 162, in GoToNewDialogue
-    self.PrepareDialogues()
-  File "game/managers/DialogueManager.rpy", line 32, in PrepareDialogues
-    raise Exception(f'El método de terminación {method} no existe, los que se admiten son: ' + str(self.admittedTerminateMethods))
-Exception: El método de terminación decision dialogue no existe, los que se admiten son: ['decision', 'condition points', 'condition decision', 'condition dialogue', 'linear', 'end']
+  File "game/script.rpy", line 82, in script
+    $ effectManager.HandleEffects()
+  File "game/script.rpy", line 82, in <module>
+    $ effectManager.HandleEffects()
+  File "game/managers/EffectManager.rpy", line 138, in HandleEffects
+    renpy.with_statement(e)
+ValueError: need more than 2 values to unpack
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 40, in script
-    $ dialogueManager.HandleDialogueEnd()
+  File "game/script.rpy", line 82, in script
+    $ effectManager.HandleEffects()
   File "D:\renpy\renpy-8.1.3-sdk\renpy\ast.py", line 1138, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "D:\renpy\renpy-8.1.3-sdk\renpy\python.py", line 1122, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/script.rpy", line 40, in <module>
-    $ dialogueManager.HandleDialogueEnd()
-  File "game/managers/DialogueManager.rpy", line 125, in HandleDialogueEnd
-    self.GoToNewDialogue(self.terminateData[0]['nextDialogue'])
-  File "game/managers/DialogueManager.rpy", line 162, in GoToNewDialogue
-    self.PrepareDialogues()
-  File "game/managers/DialogueManager.rpy", line 32, in PrepareDialogues
-    raise Exception(f'El método de terminación {method} no existe, los que se admiten son: ' + str(self.admittedTerminateMethods))
-Exception: El método de terminación decision dialogue no existe, los que se admiten son: ['decision', 'condition points', 'condition decision', 'condition dialogue', 'linear', 'end']
+  File "game/script.rpy", line 82, in <module>
+    $ effectManager.HandleEffects()
+  File "game/managers/EffectManager.rpy", line 138, in HandleEffects
+    renpy.with_statement(e)
+  File "D:\renpy\renpy-8.1.3-sdk\renpy\exports.py", line 1758, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "D:\renpy\renpy-8.1.3-sdk\renpy\display\core.py", line 2978, in do_with
+    return self.interact(trans_pause=True,
+  File "D:\renpy\renpy-8.1.3-sdk\renpy\display\core.py", line 3582, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "D:\renpy\renpy-8.1.3-sdk\renpy\display\core.py", line 4175, in interact_core
+    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
+  File "D:\renpy\renpy-8.1.3-sdk\renpy\display\core.py", line 2782, in draw_screen
+    surftree = renpy.display.render.render_screen(
+  File "render.pyx", line 492, in renpy.display.render.render_screen
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "D:\renpy\renpy-8.1.3-sdk\renpy\display\layout.py", line 888, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "D:\renpy\renpy-8.1.3-sdk\renpy\display\motion.py", line 181, in render
+    child = render(self.child, width, height, st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "D:\renpy\renpy-8.1.3-sdk\renpy\display\layout.py", line 888, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "D:\renpy\renpy-8.1.3-sdk\renpy\display\layout.py", line 888, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "D:\renpy\renpy-8.1.3-sdk\renpy\display\transform.py", line 909, in render
+    return RenderTransform(self).render(width, height, st, at)
+  File "accelerator.pyx", line 999, in renpy.display.accelerator.RenderTransform.render
+  File "accelerator.pyx", line 326, in renpy.display.accelerator.RenderTransform.cropping
+ValueError: need more than 2 values to unpack
 
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.1.3.23091805
 TheNextStepDemo 1.0
-Sat May 10 11:40:21 2025
+Sat May 10 18:05:28 2025

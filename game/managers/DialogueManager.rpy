@@ -156,6 +156,12 @@ init python:
             self.GoToNewDialogue(targetFork['nextDialogue'])            
 
         def GoToNewDialogue(self, newDialogue):
+            #fade = Fade(1,1,1)
+            #renpy.transition(fade, layer='master', always=True)
+            #renpy.pause(3)
+
+            renpy.show('dmc5', at_list=[PassScene])
+            #renpy.transition(PassScene())
             self.currentFile = newDialogue
             self.ResetDialogueManager()
             self.LoadDialogue()

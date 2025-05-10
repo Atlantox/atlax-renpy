@@ -118,3 +118,10 @@ transform MoveY(x, y, destination, duration):
     ypos y
     anchor (0.5, 0.0)
     linear duration ypos destination
+
+
+transform PassScene():
+    xalign 0.5
+    yalign 0.5
+    anchor (0.5, 0.5)
+    crop (0, 0, 1.0, 1.0)
