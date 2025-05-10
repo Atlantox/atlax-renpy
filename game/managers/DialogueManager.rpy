@@ -4,7 +4,7 @@ init python:
             self.ResetDialogueManager()
 
             self.minHeaderCount = 10
-            self.admittedTerminateMethods = ['decision', 'condition points', 'condition decision', 'condition dialogue', 'end']
+            self.admittedTerminateMethods = ['decision', 'condition points', 'condition decision', 'condition dialogue', 'linear', 'end']
 
             self.currentFile = fileName
             self.LoadDialogue()
@@ -53,7 +53,11 @@ init python:
             to_add = {
                 'key': terminateSplits[0]
             }
-            if self.terminateMethod.lower() == 'decision':
+
+            if self.terminateMethod.lower() == 'linear':
+                to_add['nextDialogue'] = terminateSplits[1]
+
+            elif self.terminateMethod.lower() == 'decision':
                 to_add['nextDialogue'] = terminateSplits[2]
                 to_add['text'] = terminateSplits[allLanguages.index(currentLanguage) + 3]
                 to_add['points'] = {}
@@ -67,7 +71,6 @@ init python:
                         to_add['points'][pointType] = pointValue
                         
                 self.choices.append((to_add['text'], to_add['key'],))
-                self.terminateData.append(to_add)
 
             elif self.terminateMethod.lower() == 'condition points':
                 to_add['nextDialogue'] = terminateSplits[2]
@@ -85,7 +88,25 @@ init python:
                     if all(results):
                         to_add['match'] = True    
 
-                self.terminateData.append(to_add)
+            elif self.terminateMethod.lower() == 'condition decision':
+                to_add['nextDialogue'] = terminateSplits[2]
+                to_add['match'] = False
+
+                decisions = [s.strip() for s in terminateSplits[1].split(',')]
+                for decision in decisions:
+                    if decision in globalDecisions:
+                        to_add['match'] = True
+
+            elif self.terminateMethod.lower() == 'condition dialogue':
+                to_add['nextDialogue'] = terminateSplits[2]
+                to_add['match'] = False
+
+                dialogues = [s.strip() for s in terminateSplits[1].split(',')]
+                for dialogue in dialogues:
+                    if dialogue in globalDialogues:
+                        to_add['match'] = True
+
+            self.terminateData.append(to_add)
 
 
         def GetNextDialogue(self):
@@ -98,8 +119,10 @@ init python:
         def HandleDialogueEnd(self):
             if self.terminateMethod.lower() == 'decision':
                 self.HandleDecision()
-            elif self.terminateMethod.lower() == 'condition points':
-                self.HandleConditionPoints()                
+            elif 'condition' in self.terminateMethod.lower():
+                self.HandleFork()  
+            elif self.terminateMethod.lower() == 'linear':
+                self.GoToNewDialogue(self.terminateData[0]['nextDialogue'])
 
         def HandleDecision(self):
             result = renpy.display_menu(self.choices)
@@ -118,14 +141,19 @@ init python:
             globalDecisions.append(targetDecision['key'])      
             self.GoToNewDialogue(targetDecision['nextDialogue'])
 
-        def HandleConditionPoints(self):
-            
+        def HandleFork(self):            
+            targetFork = None
             for option in self.terminateData:
                 if option['match']:
-                    globalDecisions.append(option['key'])
-                    self.GoToNewDialogue(option['nextDialogue'])
+                    targetFork = option
                     break
-            
+                
+            # If no one condition matchs, take the last one
+            if targetFork == None:
+                targetFork = self.terminateData[-1]
+
+            globalDecisions.append(targetFork['key'])
+            self.GoToNewDialogue(targetFork['nextDialogue'])            
 
         def GoToNewDialogue(self, newDialogue):
             self.currentFile = newDialogue

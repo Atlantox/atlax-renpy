@@ -1,6 +1,8 @@
 ﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English
-Demo_1_2_1;;;Golpe;flash:0.1:1, vpunch:35;suffocation:0.8,blackout:0.2;saijo:move:66:0.3;;saijo;44444444444444444;
+Demo_1_2_1;;;Golpe;flash:0.1:1, vpunch:35;suffocation:0.8,blackout:0.2;saijo:move:66:0.3;;saijo;888888888888;
 Demo_1_2_2;madera;;;;;saijo:zoom:1.5:0.5;;saijo;Algunos chicos de mi edad tienen asma, puede tratarse bien, otros apendicitis, facil se quita el apéndice y yo... bueno.. una condición la cual tiene un nombre particular..;
 Demo_1_2_3;;;;;blur;saijo:hitr:25;;mutou;Sin embargo, el hecho de que me haya topado con esa con esa terminología en esta circunstancia es basicamente frustrante y desalentador. Sin causas definidas, sin factores que influyan... ;
-#linear
-my_scene4_end;my_scene5
+#decision
+katherine_birthday_sushi;amor:2, calificacion:-1;my_scene2;Pedir sushi;
+katherine_birthday_beef;;my_scene3;Pedir bistec;
+katherine_birthday_pasta;;my_scene4;Pedir pasticho;
