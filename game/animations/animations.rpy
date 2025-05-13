@@ -120,8 +120,15 @@ transform MoveY(x, y, destination, duration):
     linear duration ypos destination
 
 
-transform PassScene():
+transform FullCenter():
+    anchor (0.5, 0.5)
     xalign 0.5
     yalign 0.5
-    anchor (0.5, 0.5)
-    crop (0, 0, 1.0, 1.0)
+    alpha 1.0
+
+transform PassScene():   
+    xysize (10, 600)
+    rotate 0
+    linear 3.0 rotate 180
+    #pause 2.0
+    #linear 1.0 rotate 0

@@ -5,8 +5,10 @@ init python:
 
             self.minHeaderCount = 10
             self.admittedTerminateMethods = ['decision', 'condition points', 'condition decision', 'condition dialogue', 'linear', 'end']
+            self.admittedTerminateTransitions = ['fade', 'video']
 
             self.currentFile = fileName
+
             self.LoadDialogue()
 
 
@@ -27,15 +29,11 @@ init python:
 
                 if splittedDialogue[0][0] == '#':
                     endReached = True
-                    method = splittedDialogue[0][1:]
-                    if method not in self.admittedTerminateMethods:
-                        raise Exception(f'El método de terminación {method} no existe, los que se admiten son: ' + str(self.admittedTerminateMethods))
-
-                    self.terminateMethod = method
+                    self.ProcessTerminationMethod(splittedDialogue[0])
                     continue
 
                 if endReached:                    
-                    self.ProcessTerminationMethod(splittedDialogue)
+                    self.ProcessTerminationData(splittedDialogue)
                     continue             
 
                 if len(splittedDialogue) < self.minHeaderCount:
@@ -49,7 +47,23 @@ init python:
                     
                 self.dialogues.append(result)
 
-        def ProcessTerminationMethod(self, terminateSplits):
+        def ProcessTerminationMethod(self, splittedDialogue):  
+            terminateSplits = [s.strip() for s in splittedDialogue.split(',')] 
+            method = terminateSplits[0][1:]
+            if method not in self.admittedTerminateMethods:
+                raise Exception(f'El método de terminación {method} no existe, los que se admiten son: ' + str(self.admittedTerminateMethods))
+
+            self.terminateMethod = method
+
+            if len(terminateSplits) > 1:
+                transitionSplits = [s.strip() for s in terminateSplits[1].split(':')]
+                terminateTransition = transitionSplits[0]
+                if terminateTransition not in self.admittedTerminateTransitions:
+                    raise Exception(f'La transicion de terminación {terminateTransition} no existe, los que se admiten son: ' + str(self.admittedTerminateTransitions))
+
+                self.ProcesTerminationTransition(terminateSplits[1])
+
+        def ProcessTerminationData(self, terminateSplits):
             to_add = {
                 'key': terminateSplits[0]
             }
@@ -108,6 +122,19 @@ init python:
 
             self.terminateData.append(to_add)
 
+        def ProcesTerminationTransition(self, transitionData):
+            splits = [s.strip() for s in transitionData.split(',')]
+            transitionName = splits[0]
+
+            if transitionName == 'fade':
+                fadeOut = splits[1]
+                fadeDuration = splits[2]
+                fadeIn = splits[3]
+                self.terminateTransition = renpy.transition
+                self.terminateParams = [fadeOut, fadeDuration, fadeIn]
+            elif transitionName == 'video':
+                self.terminateTransition = renpy.movie_cutscene
+                self.terminateParams = [fadeOut, fadeDuration, fadeIn]
 
         def GetNextDialogue(self):
             self.currentDialogue += 1
@@ -118,11 +145,16 @@ init python:
 
         def HandleDialogueEnd(self):
             if self.terminateMethod.lower() == 'decision':
-                self.HandleDecision()
+                nextDialogue = self.HandleDecision()
             elif 'condition' in self.terminateMethod.lower():
-                self.HandleFork()  
+                nextDialogue = self.HandleFork()  
             elif self.terminateMethod.lower() == 'linear':
-                self.GoToNewDialogue(self.terminateData[0]['nextDialogue'])
+                nextDialogue = self.terminateData[0]['nextDialogue']
+
+            if self.terminateTransition is not None:
+                self.HandleTransition()
+
+            self.GoToNewDialogue(nextDialogue)
 
         def HandleDecision(self):
             result = renpy.display_menu(self.choices)
@@ -138,8 +170,8 @@ init python:
                     else:
                         globalPoints[point] = value
 
-            globalDecisions.append(targetDecision['key'])      
-            self.GoToNewDialogue(targetDecision['nextDialogue'])
+            globalDecisions.append(targetDecision['key'])    
+            return targetDecision['nextDialogue']
 
         def HandleFork(self):            
             targetFork = None
@@ -153,15 +185,19 @@ init python:
                 targetFork = self.terminateData[-1]
 
             globalDecisions.append(targetFork['key'])
-            self.GoToNewDialogue(targetFork['nextDialogue'])            
+            return targetFork['nextDialogue']
+
+        def HandleTransition(self):
+            self.terminateTransition(*self.terminateParams)
 
         def GoToNewDialogue(self, newDialogue):
-            #fade = Fade(1,1,1)
-            #renpy.transition(fade, layer='master', always=True)
-            #renpy.pause(3)
+            '''
+            fade = Fade(3,1,1)
+            renpy.transition(fade, layer='master', always=True)
+            renpy.pause(3.5)
 
-            renpy.show('dmc5', at_list=[PassScene])
-            #renpy.transition(PassScene())
+            renpy.movie_cutscene("videos/desierto.webm")
+            '''
             self.currentFile = newDialogue
             self.ResetDialogueManager()
             self.LoadDialogue()
@@ -175,6 +211,9 @@ init python:
             self.terminateMethod = ''
             self.dialogueFinished = False
             self.choices = []
+
+            self.terminateTransition = None
+            self.terminateParams = []
 
         def GetConditionResult(self, condition):
             operators = ['<', '>', '=']
