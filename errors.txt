@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/managers/DialogueManager.rpy", line 158: invalid syntax
-                raise Exception('El punto ' + key ' no existe')
-                                                   ^
+File "game/managers/BackgroundManager.rpy", line 78: invalid syntax
+            if commandString = 'bg madera':
+                              ^
 
 Ren'Py Version: Ren'Py 8.1.3.23091805
-Thu May  8 18:05:40 2025
+Tue May 20 18:07:46 2025

@@ -496,15 +496,15 @@ Condiciones
 
 
 
-    Transiciones luego de un fin de diálogo
+Transiciones luego de un fin de diálogo
 
-    Por supuesto, es posible que queramos mostrar una transición al terminar un diálogo, ya sea porque acaba el día, se toma una decisión importante
-    O simplemente porque el siguiente diálogo sucede en otro lugar y se quiere hacer una transición
+Por supuesto, es posible que queramos mostrar una transición al terminar un diálogo, ya sea porque acaba el día, se toma una decisión importante
+O simplemente porque el siguiente diálogo sucede en otro lugar y se quiere hacer una transición
 
-    En estos casos se debe tener en cuenta que la transición se aplicará luego del fin de diálogo, y este se ejecutará en todas sus posibles opciones
-    Es decir, si definimos que una transición suceda en un #decision, escoga la opción que escoga el jugador, la transición se hará siempre después de que este escoga
+En estos casos se debe tener en cuenta que la transición se aplicará luego del fin de diálogo, y este se ejecutará en todas sus posibles opciones
+Es decir, si definimos que una transición suceda en un #decision, escoga la opción que escoga el jugador, la transición se hará sin importar la opción que el jugador elija
 
-    Para crear estas trancisiones debemos separar por comas y por supuesto, las transiciones pueden llevar parámetros, los separaremos por :
+Para crear estas trancisiones debemos separar por punto y coma y por supuesto, las transiciones pueden llevar parámetros, los separaremos por :
 
-    #decision, fade:1:2:1      # Cuando el jugador escoja una opción, se hará un desvanecimiento a negro que dura 1 segundo en hacerse, 2 segundos manteniendose con la pantalla en engro y 1 segundo volviendo a la normalidad
-    #linear, video:nombre_video   # Cuando termine el diálogo se mostrará un video y luego se pasará al siguiente diálogo, el video debe estar en formaro .webm
+#decision;fade:1:2:1      # Cuando el jugador escoja una opción, se hará un desvanecimiento a negro que dura 1 segundo en hacerse, 2 segundos manteniendose con la pantalla en engro y 1 segundo volviendo a la normalidad
+#linear; video:nombre_video   # Cuando termine el diálogo se mostrará un video y luego se pasará al siguiente diálogo, el video debe estar en formaro .webm

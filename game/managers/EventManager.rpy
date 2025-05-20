@@ -160,7 +160,7 @@ init python:
                     fixedPosition = appearPosition / 100
                     position = Position(xalign=fixedPosition)
                     character = event['characters'][0]
-                    renpy.show(character['fullname'], at_list=[position, self.fixedHeight])
+                    self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
                     renpy.with_statement(Dissolve(appearTime))
                     self.onScreenCharacters.append(character['name'])
                     self.characterPositions[character['name']] = [fixedPosition, 0.0]
@@ -170,7 +170,7 @@ init python:
                     for character in event['characters']:
                         fixedPosition = spawnPositions[positionId] / 100
                         position = Position(xalign=fixedPosition)
-                        renpy.show(character['fullname'], at_list=[position, self.fixedHeight])
+                        self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
                         positionId += 1
                         self.onScreenCharacters.append(character['name'])
                         self.characterPositions[character['name']] = [fixedPosition, 0.0]
@@ -206,7 +206,7 @@ init python:
                 changeTime = float(event['params'][0])
 
             for character in event['characters']:
-                renpy.show(character['fullname'])
+                self.ShowCharacter(character['fullname'])
 
             renpy.with_statement(Dissolve(changeTime))
 
@@ -240,7 +240,7 @@ init python:
             
 
             for character, positionData in movements.items():
-                renpy.show(character, at_list=[positionData['newPosition'], self.fixedHeight])
+                self.ShowCharacter(character, [positionData['newPosition'], self.fixedHeight])
                 characterName = character.split(' ')[0]
                 self.characterPositions[characterName] = [positionData['x'], 1.0]
 
@@ -256,7 +256,7 @@ init python:
                 self.DestroyCharacter(character['name'])
                 params = [self.characterPositions[character['name']][0]] + params
                 animation = self.oneParameterEvents[event['action']](*params)
-                renpy.show(character['fullname'], at_list=[animation, self.fixedHeight])
+                self.ShowCharacter(character['fullname'], [animation, self.fixedHeight])
 
         def HandleTwoParametersEvent(self, event):            
             params = self.GetDefaultParametersOfAnimation(event['action'])
@@ -271,7 +271,7 @@ init python:
                 self.DestroyCharacter(character['name'])
                 params = [self.characterPositions[character['name']][0]] + params
                 animation = self.twoParameterEvents[event['action']](*params)
-                renpy.show(character['fullname'], at_list=[animation])
+                self.ShowCharacter(character['fullname'], [animation])
 
         def GetDefaultParametersOfAnimation(self, animation):
             params = []
@@ -307,7 +307,7 @@ init python:
                     yPos, 
                     duration)
                 
-                renpy.show(character['name'], at_list=[movement, self.fixedHeight])
+                self.ShowCharacter(character['name'], [movement, self.fixedHeight])
                 self.characterPositions[character['name']][1] = yPos
 
         def HandleDestroy(self, event):
@@ -351,7 +351,7 @@ init python:
                     self.ResetCharacterPosition(character)
                 else:
                     animation = Jumping(self.characterPositions[character['name']][0], intensity)
-                    renpy.show(character['name'], at_list=[animation, self.fixedHeight])
+                    self.ShowCharacter(character['name'], [animation, self.fixedHeight])
             
         def HandleTrembling(self, event):
             for character in event['characters']:
@@ -359,9 +359,12 @@ init python:
                     self.ResetCharacterPosition(character)
                 else:
                     animation = Trembling(self.characterPositions[character['name']][0])
-                    renpy.show(character['name'], at_list=[animation, self.fixedHeight])
+                    self.ShowCharacter(character['name'], [animation, self.fixedHeight])
 
         def ResetCharacterPosition(self, character):
             position = Position(xalign=self.characterPositions[character['name']][0])
-            renpy.show(character['fullname'], at_list=[position, self.fixedHeight])
+            self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
             renpy.with_statement(Dissolve(0))
+
+        def ShowCharacter(self, character, at_list = []):
+            renpy.show(character, at_list=at_list, zorder=10, tag='character')

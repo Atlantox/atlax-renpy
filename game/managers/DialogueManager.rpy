@@ -29,7 +29,7 @@ init python:
 
                 if splittedDialogue[0][0] == '#':
                     endReached = True
-                    self.ProcessTerminationMethod(splittedDialogue[0])
+                    self.ProcessTerminationMethod(splittedDialogue)
                     continue
 
                 if endReached:                    
@@ -48,20 +48,19 @@ init python:
                 self.dialogues.append(result)
 
         def ProcessTerminationMethod(self, splittedDialogue):  
-            terminateSplits = [s.strip() for s in splittedDialogue.split(',')] 
-            method = terminateSplits[0][1:]
+            method = splittedDialogue[0][1:]
             if method not in self.admittedTerminateMethods:
                 raise Exception(f'El método de terminación {method} no existe, los que se admiten son: ' + str(self.admittedTerminateMethods))
 
             self.terminateMethod = method
 
-            if len(terminateSplits) > 1:
-                transitionSplits = [s.strip() for s in terminateSplits[1].split(':')]
+            if len(splittedDialogue) > 1:
+                transitionSplits = [s.strip() for s in splittedDialogue[1].split(':')]
                 terminateTransition = transitionSplits[0]
                 if terminateTransition not in self.admittedTerminateTransitions:
                     raise Exception(f'La transicion de terminación {terminateTransition} no existe, los que se admiten son: ' + str(self.admittedTerminateTransitions))
 
-                self.ProcesTerminationTransition(terminateSplits[1])
+                self.ProcesTerminationTransition(splittedDialogue[1])
 
         def ProcessTerminationData(self, terminateSplits):
             to_add = {
@@ -123,18 +122,24 @@ init python:
             self.terminateData.append(to_add)
 
         def ProcesTerminationTransition(self, transitionData):
-            splits = [s.strip() for s in transitionData.split(',')]
+            splits = [s.strip() for s in transitionData.split(':')]
             transitionName = splits[0]
 
             if transitionName == 'fade':
-                fadeOut = splits[1]
-                fadeDuration = splits[2]
-                fadeIn = splits[3]
+                fadeOut = float(splits[1])
+                fadeDuration = float(splits[2])
+                fadeIn = float(splits[3])
+                fade = Fade(fadeOut, fadeDuration, fadeIn)
+                layer = 'master'
+                always = True
+
                 self.terminateTransition = renpy.transition
-                self.terminateParams = [fadeOut, fadeDuration, fadeIn]
+                self.terminateParams = [fade, layer, always]
+                self.terminatePause = fadeOut + fadeDuration + fadeIn
             elif transitionName == 'video':
+                videoName = splits[1]
                 self.terminateTransition = renpy.movie_cutscene
-                self.terminateParams = [fadeOut, fadeDuration, fadeIn]
+                self.terminateParams = ['videos/' + videoName]
 
         def GetNextDialogue(self):
             self.currentDialogue += 1
@@ -189,15 +194,9 @@ init python:
 
         def HandleTransition(self):
             self.terminateTransition(*self.terminateParams)
+            renpy.pause(self.terminatePause, hard=True)
 
         def GoToNewDialogue(self, newDialogue):
-            '''
-            fade = Fade(3,1,1)
-            renpy.transition(fade, layer='master', always=True)
-            renpy.pause(3.5)
-
-            renpy.movie_cutscene("videos/desierto.webm")
-            '''
             self.currentFile = newDialogue
             self.ResetDialogueManager()
             self.LoadDialogue()
@@ -211,6 +210,7 @@ init python:
             self.terminateMethod = ''
             self.dialogueFinished = False
             self.choices = []
+            self.terminatePause = 0
 
             self.terminateTransition = None
             self.terminateParams = []

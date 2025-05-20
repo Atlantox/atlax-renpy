@@ -74,7 +74,7 @@ init python:
             for ker, value in self.transformsToApply.items():
                 transforms.append(value)
 
-            renpy.show(commandString, at_list=transforms)
+            renpy.show(commandString, at_list=transforms, zorder=-10, tag='background', behind=['character'])
 
             if not self.backgroundPlaced: # Placing the background without transition             
                 self.backgroundPlaced = True
@@ -102,7 +102,6 @@ init python:
         def DestroyOverlayImage(self, bgName):
             renpy.hide(bgName)
 
-                        # Building the function to pass to the backgroundManager
         def BlinkImage(self, imageToShow, times, duration):
             for _ in range(times):
                 renpy.show(imageToShow)
