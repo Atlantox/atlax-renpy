@@ -516,4 +516,4 @@ Este parámetro va después de la transición y separado por un ;
 
 Al escribir clear, luego de hacer el cambio de diálogo se limpiará la escena para hacer una limpieza en la pantalla y borrar recursos que ocupan espacio en memoria
 Lo que hace clear es disolver los pensajes en pantalla a lo largo de 2 segundos y luego disuelve el fondo al siguiente fondo a lo largo de 2 segundos
-Al hacer esto, debemos empezar el siguiente diálogo mostrando el siguiente fondo
+Al hacer esto, debemos empezar el siguiente diálogo mostrando el siguiente fondo.
