@@ -1,6 +1,7 @@
 ﻿define currentLanguage = 'Spanish'
 define allLanguages = ['Spanish']
 define config.fadeout_audio = 3
+define config.layers = ['background', 'master', 'transient', 'screens', 'overlay']
 
 $ import backgroundsDefine
 $ import charactersDefine
@@ -14,6 +15,7 @@ $ import EventManager
 $ import DelayManager
 
 $ import animations.animations
+
 
 
 label start:
@@ -35,13 +37,10 @@ label start:
     $ delayManager = DelayManager()
 
     while True:
-
         if dialogueManager.dialogueFinished:
-            $ dialogueManager.HandleDialogueEnd()
-            
+            $ dialogueManager.HandleDialogueEnd()            
 
-        $ dialogue = dialogueManager.GetNextDialogue()
-        
+        $ dialogue = dialogueManager.GetNextDialogue()        
             
         $ currentKey = dialogue['Key']
         #  STATEMENT PREPARATION 

@@ -65,16 +65,13 @@ init python:
         def HandleBackground(self):
             self.prepared = False
 
-            if len(effectManager.currentContinuousEffects) == 0:
-                renpy.scene()
-
             commandString = 'bg ' + self.currentBgName
 
             transforms = []
             for ker, value in self.transformsToApply.items():
                 transforms.append(value)
 
-            renpy.show(commandString, at_list=transforms, zorder=-10, tag='background', behind=['character'])
+            renpy.show(commandString, at_list=transforms)             
 
             if not self.backgroundPlaced: # Placing the background without transition             
                 self.backgroundPlaced = True
@@ -97,14 +94,24 @@ init python:
             self.postHandleParams = []        
 
         def DisplayOverlayImage(self, bgName, opacity):
-            renpy.show(bgName, at_list=[Transform(alpha=opacity)])
+            renpy.show(bgName, at_list=[Transform(alpha=opacity)], layer='background', tag='bg')
 
         def DestroyOverlayImage(self, bgName):
             renpy.hide(bgName)
 
         def BlinkImage(self, imageToShow, times, duration):
             for _ in range(times):
-                renpy.show(imageToShow)
+                renpy.show(imageToShow, layer='background', tag="bg")
                 renpy.pause(duration)
-                renpy.show('bg ' + backgroundManager.currentBgName)
+                renpy.show('bg ' + backgroundManager.currentBgName, layer='background', tag='bg')
                 renpy.pause(duration)
+
+        def ResetBackgroundManager(self):
+            self.targetTransition = None
+            self.currentBgPath = None
+            self.currentBgName = None
+            self.params = None
+            self.transformsToApply = {}
+
+            self.postHandleEvents = []
+            self.postHandleParams = []

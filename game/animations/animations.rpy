@@ -132,3 +132,9 @@ transform PassScene():
     linear 3.0 rotate 180
     #pause 2.0
     #linear 1.0 rotate 0
+
+transform CharacterTransform():
+    zpos 100
+
+transform BackgroundTransform():
+    zpos 0

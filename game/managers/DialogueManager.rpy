@@ -6,11 +6,12 @@ init python:
             self.minHeaderCount = 10
             self.admittedTerminateMethods = ['decision', 'condition points', 'condition decision', 'condition dialogue', 'linear', 'end']
             self.admittedTerminateTransitions = ['fade', 'video']
+            self.admittedPostChangingFilter = ['clear']
 
             self.currentFile = fileName
+            self.clearAfterNewDialogue = False
 
             self.LoadDialogue()
-
 
         def LoadDialogue(self):
             globalDialogues.append(self.currentFile)
@@ -57,8 +58,13 @@ init python:
             if len(splittedDialogue) > 1:
                 transitionSplits = [s.strip() for s in splittedDialogue[1].split(':')]
                 terminateTransition = transitionSplits[0]
-                if terminateTransition not in self.admittedTerminateTransitions:
+
+                if terminateTransition not in self.admittedTerminateTransitions and terminateTransition != '':
                     raise Exception(f'La transicion de terminación {terminateTransition} no existe, los que se admiten son: ' + str(self.admittedTerminateTransitions))
+
+            if len(splittedDialogue) > 2:
+                if splittedDialogue[2] == 'clear':
+                    self.clearAfterNewDialogue = True
 
                 self.ProcesTerminationTransition(splittedDialogue[1])
 
@@ -158,6 +164,19 @@ init python:
 
             if self.terminateTransition is not None:
                 self.HandleTransition()
+
+            if self.clearAfterNewDialogue:
+                renpy.scene()
+                eventManager.DestroyAllCharacters()
+                eventManager.ResetEventManager()
+                
+                backgroundManager.transformsToApply = {'any': Dissolve(2)}
+                backgroundManager.currentBgName = 'blackout'
+                backgroundManager.HandleBackground()
+                backgroundManager.ResetBackgroundManager()
+
+                
+                self.clearAfterNewDialogue = False
 
             self.GoToNewDialogue(nextDialogue)
 

@@ -6,7 +6,7 @@ init python:
             self.characterAnimations = ['jump', 'tremble', 'zoom', 'hitl', 'hitr', 'knockl', 'knockr', 'raiser', 'raisel', 'movey']           
             self.characterContinuousEvents = ['jumping', 'trembling']
             self.characterActionsEvents = ['move', 'destroy'] + self.characterAnimations + self.characterContinuousEvents
-            self.fixedHeight = Transform(size=(None, config.screen_height), anchor=(0.5, 0.0))
+            self.fixedHeight = Transform(size=(None, config.screen_height), anchor=(0.5, 0.0),)
 
             #  Default spawn values
             self.defaultCharacterSpawn = self.characterSpawnEvents[0]
@@ -367,4 +367,13 @@ init python:
             renpy.with_statement(Dissolve(0))
 
         def ShowCharacter(self, character, at_list = []):
-            renpy.show(character, at_list=at_list, zorder=10, tag='character')
+            renpy.show(character, at_list=at_list)
+
+        def DestroyAllCharacters(self):
+            for character in self.onScreenCharacters:
+                eventManager.DestroyCharacter(character, 2)
+
+        def ResetEventManager(self):
+            self.onScreenCharacters = []
+            self.characterPositions = {}
+            self.continuousEvents = {}
