@@ -1,5 +1,5 @@
-image bg sex_dungeon = 'images/backgrounds/sex dungeon.png'
-image bg madera = 'images/backgrounds/madera.png'
 image bg flash = 'images/backgrounds/flash.png'
 image bg blackout = 'images/backgrounds/blackout.png'
+image bg sex_dungeon = 'images/backgrounds/sex dungeon.png'
+image bg madera = 'images/backgrounds/madera.png'
 image bg suffocation = 'images/backgrounds/suffocation.png'

@@ -38,8 +38,8 @@ init python:
                     continue             
 
                 if len(splittedDialogue) < self.minHeaderCount:
-                    error = 'El diálogo {0} no cumple con el mínimo número de columnas'.format(splittedDialogue[0])
-                    raise ZeroDivisionError(error)
+                    error = 'Error en el diálogo {0}: No cumple con el mínimo número de columnas'.format(splittedDialogue[0])
+                    raise Exception(error)
 
                 headerIdx = 0
                 for header in self.headers:
@@ -51,7 +51,8 @@ init python:
         def ProcessTerminationMethod(self, splittedDialogue):  
             method = splittedDialogue[0][1:]
             if method not in self.admittedTerminateMethods:
-                raise Exception(f'El método de terminación {method} no existe, los que se admiten son: ' + str(self.admittedTerminateMethods))
+                error = 'Error en el diálogo {0}: El método de terminación {1} no existe, los que se admiten son: '.format(splittedDialogue[0], method)
+                raise Exception(error + str(self.admittedTerminateMethods))
 
             self.terminateMethod = method
 
@@ -60,7 +61,8 @@ init python:
                 terminateTransition = transitionSplits[0]
 
                 if terminateTransition not in self.admittedTerminateTransitions and terminateTransition != '':
-                    raise Exception(f'La transicion de terminación {terminateTransition} no existe, los que se admiten son: ' + str(self.admittedTerminateTransitions))
+                    error = 'Error en el diálogo {0}: La transicion de terminación {1} no existe, los que se admiten son: '.format(splittedDialogue[0], terminateTransition)
+                    raise Exception(error + str(self.admittedTerminateTransitions))
 
             if len(splittedDialogue) > 2:
                 if splittedDialogue[2] == 'clear':

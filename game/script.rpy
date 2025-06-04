@@ -1,10 +1,9 @@
-﻿define currentLanguage = 'Spanish'
-define allLanguages = ['Spanish']
-define config.fadeout_audio = 3
-define config.layers = ['background', 'master', 'transient', 'screens', 'overlay']
+﻿$ import definitions.languageDefine
+$ import definitions.configDefine
+$ import definitions.backgroundsDefine
+$ import definitions.charactersDefine
 
-$ import backgroundsDefine
-$ import charactersDefine
+$ import animations.animations
 
 $ import RouterManager
 $ import DialogueManager
@@ -14,10 +13,6 @@ $ import EffectManager
 $ import EventManager
 $ import DelayManager
 
-$ import animations.animations
-
-
-
 label start:
     $ globalPoints = dict()
     $ globalDecisions = []
@@ -25,7 +20,7 @@ label start:
 
     $ currentKey = None
     $ currentDialogue = None    
-    $ firstDialogue = 'my_scene1'
+    $ firstDialogue = 'testing'
 
     $ routerManager = RouterManager()
     $ dialogueManager = DialogueManager(firstDialogue)
