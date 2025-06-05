@@ -34,7 +34,7 @@ pixel:
         1: Los segundos de la duración (3)
         2: La cantidad de pasos para llegar a la pixelación final (18) 
 
-Deslizamientos:
+push:
     El fondo actual se desliza hacia la dirección que indiques
 
     Parámetros:

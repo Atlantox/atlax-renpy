@@ -4,6 +4,16 @@ init python:
             self.baseBgPath = 'images/backgrounds/'
             self.defaultTransition = Dissolve
             self.defaultDuration = 2.0
+            self.defaultParams = [
+                'dissolve': [2.0],
+                'fade': [1, 0.5, 1],
+                'pixel': [3, 18],
+                'push': [1.5, 'pushup'],
+                'rup': [1.5, True, False],
+                'rright': [1.5, False, False],
+                'rdown': [1.5, True, True],
+                'rleft': [1.5, False, True]
+            ]
 
             self.prepared = False
 
@@ -29,27 +39,23 @@ init python:
             if len(promptSplits) >= 2:
                 recievedTransition = promptSplits[1].lower()
 
+                if recievedTransition in self.defaultParams:
+                    params = self.defaultParams[recievedTransition]
+
                 if recievedTransition == 'fade':
                     currentTransition = Fade
-                    params = [1, 0.5, 1]
                 elif recievedTransition == 'pixel':
                     currentTransition = Pixellate
-                    params = [3, 18]
                 elif recievedTransition == 'push':
                     currentTransition = PushMove
-                    params = [1.5, 'pushup']
                 elif recievedTransition == 'rup':
                     currentTransition = Swing
-                    params = [1.5, True, False]
                 elif recievedTransition == 'rright':
                     currentTransition = Swing
-                    params = [1.5, False, False]
                 elif recievedTransition == 'rdown':
                     currentTransition = Swing
-                    params = [1.5, True, True]
                 elif recievedTransition == 'rleft':
                     currentTransition = Swing
-                    params = [1.5, False, True]
             
             if len(promptSplits) == 3:
                 params = [float(s.strip()) for s in promptSplits[2].split(',') if s != '']
