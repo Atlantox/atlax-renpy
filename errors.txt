@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/managers/EventManager.rpy", line 376: invalid syntax
-        def.ResetEventManager(self):
-            ^
+File "game/managers/BackgroundManager.rpy", line 8: invalid syntax
+                    'dissolve': [2.0],
+                               ^
 
 Ren'Py Version: Ren'Py 8.1.3.23091805
-Sun May 25 17:56:08 2025
+Sat Jun  7 14:04:18 2025

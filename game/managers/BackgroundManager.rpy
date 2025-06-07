@@ -4,16 +4,19 @@ init python:
             self.baseBgPath = 'images/backgrounds/'
             self.defaultTransition = Dissolve
             self.defaultDuration = 2.0
-            self.defaultParams = [
+            self.defaultParams = {
                 'dissolve': [2.0],
                 'fade': [1, 0.5, 1],
                 'pixel': [3, 18],
-                'push': [1.5, 'pushup'],
+                'pushup': [1.5, 'pushup'],
+                'pushright': [1.5, 'pushright'],
+                'pushdown': [1.5, 'pushdown'],
+                'pushleft': [1.5, 'pushleft'],
                 'rup': [1.5, True, False],
                 'rright': [1.5, False, False],
                 'rdown': [1.5, True, True],
                 'rleft': [1.5, False, True]
-            ]
+            }
 
             self.prepared = False
 
@@ -46,19 +49,17 @@ init python:
                     currentTransition = Fade
                 elif recievedTransition == 'pixel':
                     currentTransition = Pixellate
-                elif recievedTransition == 'push':
+                elif recievedTransition in ['pushup', 'pushright', 'pushdown', 'pushleft']:
                     currentTransition = PushMove
-                elif recievedTransition == 'rup':
-                    currentTransition = Swing
-                elif recievedTransition == 'rright':
-                    currentTransition = Swing
-                elif recievedTransition == 'rdown':
-                    currentTransition = Swing
-                elif recievedTransition == 'rleft':
+                elif recievedTransition in ['rup', 'rright', 'rdown', 'rleft']:
                     currentTransition = Swing
             
             if len(promptSplits) == 3:
-                params = [float(s.strip()) for s in promptSplits[2].split(',') if s != '']
+                recievedParams = [float(s.strip()) for s in promptSplits[2].split(':') if s != '']
+                if recievedTransition in ['rup', 'rright', 'rdown', 'rleft', 'pushup', 'pushright', 'pushdown', 'pushleft']:
+                    params[0] = recievedParams[0]
+                else:
+                    params = recievedParams               
 
 
             backgroundPath = self.baseBgPath + f'{bgName}.png'

@@ -34,23 +34,17 @@ pixel:
         1: Los segundos de la duración (3)
         2: La cantidad de pasos para llegar a la pixelación final (18) 
 
-push:
+pushup/pushright/pushdown/pushleft:
     El fondo actual se desliza hacia la dirección que indiques
 
     Parámetros:
         1: Los segundos que dura la transición: (1.5)
-        2: Escribir: "pushup", "pushright", "pushdown", "pushleft" dependiendo de la dirección en la que quieras que el fondo sea empujado
 
-Rotaciones:
+rup/rright/rdown/rleft:
     El fondo actual rota horizontal o verticalmente hacia una dirección perpendicular
-    rup: Rota horizontalmente de abajo hacia arriba
-    rright: Rota verticalmente de izquierda a derecha
-    rdown; Rota horizontalmente de arriba hacia abajo
-    rleft: Rota vertcalmente de derecha a izquierda
 
     Parámetros:
         1: Los segundos que dura la transicion (1.5)
-        2: Escribir: "pushup", "pushright", "pushdown", "pushleft"
 
 
 

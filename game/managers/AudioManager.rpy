@@ -25,7 +25,7 @@ init python:
             if len(promptSplits) == 2:
                 fadein = float(promptSplits[1])
 
-            self.currentMusicName = musicName
+            self.currentMusicName = musicName.replace('_', ' ')
             self.currentFadeIn = fadein
 
         def PrepareSound(self, soundPrompt):
@@ -36,7 +36,7 @@ init python:
 
             for sound in recievedSounds:
                 splittedSound = [s.strip() for s in sound.split(':')]
-                soundName = splittedSound[0]
+                soundName = splittedSound[0].replace('_', ' ')
                 looped = False
 
                 if len(splittedSound) > 1:
@@ -67,9 +67,14 @@ init python:
         def PlaySound(self):
             if len(self.oneTimeSoundsQueue) > 0:
                 renpy.music.play(self.oneTimeSoundsQueue, channel='sound')
-                
+                if len(self.currentLoopedSounds) > 0:
+                    # If a sound are looped and play a single sound, all loops break, so restart the looped sound list
+                    self.currentLoopedSounds = []
+
             toPlaySounds = []
             toStopSounds = []
+            # TODO: sacar de la lista de sonidos en loop cuando se reproduce un sonido nuevo
+
             for sound in self.loopedSoundsQueue:
 
                 if sound in self.currentLoopedSounds:
