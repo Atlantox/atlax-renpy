@@ -78,7 +78,7 @@ init python:
             for ker, value in self.transformsToApply.items():
                 transforms.append(value)
 
-            renpy.show(commandString, at_list=transforms)             
+            renpy.show(commandString, at_list=transforms, layer='master', tag='bg')             
 
             if not self.backgroundPlaced: # Placing the background without transition             
                 self.backgroundPlaced = True
@@ -101,16 +101,16 @@ init python:
             self.postHandleParams = []        
 
         def DisplayOverlayImage(self, bgName, opacity):
-            renpy.show(bgName, at_list=[Transform(alpha=opacity)], layer='background', tag='bg')
+            renpy.show(bgName, at_list=[Transform(alpha=opacity)], layer='master', tag='filter')
 
         def DestroyOverlayImage(self, bgName):
             renpy.hide(bgName)
 
         def BlinkImage(self, imageToShow, times, duration):
             for _ in range(times):
-                renpy.show(imageToShow, layer='background', tag="bg")
+                renpy.show(imageToShow, layer='master', tag="bg")
                 renpy.pause(duration)
-                renpy.show('bg ' + backgroundManager.currentBgName, layer='background', tag='bg')
+                renpy.show('bg ' + backgroundManager.currentBgName, layer='master', tag='bg')
                 renpy.pause(duration)
 
         def ResetBackgroundManager(self):

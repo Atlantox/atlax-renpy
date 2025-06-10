@@ -163,7 +163,7 @@ Estos efectos tienen la particularidad de que una vez los invocas, permanecen en
 
 Efectos que interactúan con el fondo actual:
     blur:intensidad(20)  # Vuelve borroso el fondo actual y los futuros
-    hwarp:factor de deformación(1.1)  # Deforma el fondo según el factor de deformación vertical, siendo el valor 1 la el alto normal de la imagen
+    vwarp:factor de deformación(1.1)  # Deforma el fondo según el factor de deformación vertical, siendo el valor 1 la el alto normal de la imagen
     hwarp:factor de deformación(1.1)  # Deforma el fondo según el factor de deformación horizontal, siendo el valor 1 la el ancho normal de la imagen
     rotate:grados(45)  # Gira el fondo una cantidad de grados (No se recomienda utilizar ya que la imagen se gira deja ver el fondo)
 

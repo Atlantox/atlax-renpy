@@ -41,10 +41,10 @@ init python:
                 intensity = int(shakeSplits[1])
 
             if shakeSplits[0] == 'vpunch':
-                shakeTransition = Move((0, intensity), (0, intensity * -1), .10, bounce=True, repeat=True, delay=.275)
+                shakeTransition = Move((0, intensity), (0, intensity * -1), self.defaultSingleEffetDuration, bounce=True, repeat=True, delay=.275)
                 
             if shakeSplits[0] == 'hpunch':
-                shakeTransition = Move((intensity, 0), (intensity * -1, 0), .10, bounce=True, repeat=True, delay=.275)
+                shakeTransition = Move((intensity, 0), (intensity * -1, 0), self.defaultSingleEffetDuration, bounce=True, repeat=True, delay=.275)
 
             self.effectQueue.append(shakeTransition)
 
@@ -134,8 +134,10 @@ init python:
             self.prepared = False
             if len(self.effectQueue) > 0:
                 for e in self.effectQueue:                    
-                    #renpy.transition(e)
-                    renpy.with_statement(e)
+                    renpy.transition(e)
+                    #renpy.with_statement(e)
+                    renpy.pause(.5)
+
                 self.effectQueue = []
 
             if len(self.continuousEffectQueue) > 0:
