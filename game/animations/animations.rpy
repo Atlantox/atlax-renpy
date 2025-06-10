@@ -138,3 +138,13 @@ transform CharacterTransform():
 
 transform BackgroundTransform():
     zpos 0
+
+transform ItemOnScreen(opacity):
+    alpha 0.0
+    xalign 0.5
+    yalign 1.0
+    anchor (0.5, 0.5)
+
+    linear 0.7:
+        alpha opacity
+        yalign 0.2

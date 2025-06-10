@@ -100,8 +100,13 @@ init python:
             self.postHandleEvents = []
             self.postHandleParams = []        
 
-        def DisplayOverlayImage(self, bgName, opacity):
-            renpy.show(bgName, at_list=[Transform(alpha=opacity)], layer='master', tag='filter')
+        def DisplayOverlayImage(self, bgName, opacity, isBackground):
+            if isBackground:
+                displayTransform = Transform(alpha=opacity)
+            else:
+                displayTransform = ItemOnScreen(opacity)
+                
+            renpy.show(bgName, at_list=[displayTransform], layer='master', tag='filter')
 
         def DestroyOverlayImage(self, bgName):
             renpy.hide(bgName)

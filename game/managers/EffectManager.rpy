@@ -2,6 +2,7 @@ init python:
     class EffectManager:
         def __init__(self):
             self.prepared = False
+            self.imagesBasePath = 'images/displayables/'
             self.backgroundDeformEffects = ['blur', 'rotate', 'hwarp', 'vwarp']
             self.availableSingleEffects = ['vpunch', 'hpunch']
 
@@ -11,7 +12,7 @@ init python:
             self.defaultWarp = 1.1
             self.defaultSingleEffetDuration = 0.1
             self.defaultBlinkTimes = 4
-            self.defaultOverlayOpacity = 0.4
+            self.defaultOverlayOpacity = 1
 
             self.continuousEffectQueue = []
             self.effectQueue = []
@@ -76,8 +77,13 @@ init python:
                 if effectName in self.backgroundDeformEffects:
                     self.PrepareBackgroundTransform(effectSplits)
                 else:
-                    exists = renpy.exists(backgroundManager.baseBgPath + effectName + '.png')
-                    self.PrepareDisplayImageOverBackground(effectSplits, exists)
+                    bg_exists = renpy.exists(backgroundManager.baseBgPath + effectName + '.png')
+                    if bg_exists:
+                        self.PrepareDisplayImageOverBackground(effectSplits, True)
+                    else:
+                        image_exists = renpy.exists(self.imagesBasePath + effectName + '.png')
+                        if image_exists:
+                            self.PrepareDisplayImageOverBackground(effectSplits, False)
 
         def PrepareBackgroundTransform(self, effectSplits):
             effectName = effectSplits[0]
@@ -108,24 +114,22 @@ init python:
 
                 backgroundManager.transformsToApply[effectName] = targetEffect
 
-        def PrepareDisplayImageOverBackground(self, effectSplits, imageExists = True):
-            if imageExists is False: return
-
-            bgName = effectSplits[0]
+        def PrepareDisplayImageOverBackground(self, effectSplits, isBackbround = True):
+            imageName = effectSplits[0]
             opacity = self.defaultOverlayOpacity
 
             if len(effectSplits) > 1:
                 opacity = float(effectSplits[1])
 
-            if bgName in self.currentContinuousEffects:
-                effectIdx = self.currentContinuousEffects.index(bgName)
+            if imageName in self.currentContinuousEffects:
+                effectIdx = self.currentContinuousEffects.index(imageName)
                 del self.currentContinuousEffects[effectIdx]
                 targetFunction = 'DestroyOverlayImage'
-                params = [bgName]
+                params = [imageName]
             else:
-                self.currentContinuousEffects.append(bgName)
+                self.currentContinuousEffects.append(imageName)
                 targetFunction = 'DisplayOverlayImage'
-                params = [bgName, opacity]
+                params = [imageName, opacity, isBackbround]
             
             backgroundManager.postHandleEvents.append(targetFunction)
             backgroundManager.postHandleParams.append(params)           
