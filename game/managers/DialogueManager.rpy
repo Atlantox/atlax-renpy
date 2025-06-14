@@ -10,8 +10,26 @@ init python:
 
             self.currentFile = fileName
             self.clearAfterNewDialogue = False
+            self.lastEmisor = ''
 
             self.LoadDialogue()
+
+        def DisplayDialogue(self, dialogue, emisor):
+            finalSentence = dialogue
+            finalEmisor = emisor
+
+            if delayManager.textSpeedDelay != False:
+                finalSentence = "{cps=" + str(delayManager.textSpeedDelay) + "}" + dialogue + "{/cps}"           
+
+            if emisor == '':
+                finalEmisor = self.lastEmisor
+            elif emisor == '*':
+                finalEmisor = ''
+
+            self.lastEmisor = finalEmisor
+                
+            renpy.say(finalEmisor, finalSentence)
+            delayManager.textSpeedDelay = False
 
         def LoadDialogue(self):
             globalDialogues.append(self.currentFile)

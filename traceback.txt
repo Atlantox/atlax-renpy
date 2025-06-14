@@ -1,34 +1,30 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 79, in script
-    $ backgroundManager.HandlePostEventsEffects()
-  File "game/script.rpy", line 79, in <module>
-    $ backgroundManager.HandlePostEventsEffects()
-  File "game/managers/BackgroundManager.rpy", line 94, in HandlePostEventsEffects
-    self.DisplayOverlayImage(*self.postHandleParams[i])
-  File "game/managers/BackgroundManager.rpy", line 104, in DisplayOverlayImage
-    if isBackbround:
-NameError: name 'isBackbround' is not defined
+  File "game/script.rpy", line 85, in script
+    $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
+  File "game/script.rpy", line 85, in <module>
+    $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
+  File "game/managers/DialogueManager.rpy", line 30, in DisplayDialogue
+    renpy.say(finalEmisor, sentence)
+UnboundLocalError: local variable 'sentence' referenced before assignment
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 79, in script
-    $ backgroundManager.HandlePostEventsEffects()
+  File "game/script.rpy", line 85, in script
+    $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
   File "D:\renpy\renpy-8.1.3-sdk\renpy\ast.py", line 1138, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "D:\renpy\renpy-8.1.3-sdk\renpy\python.py", line 1122, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/script.rpy", line 79, in <module>
-    $ backgroundManager.HandlePostEventsEffects()
-  File "game/managers/BackgroundManager.rpy", line 94, in HandlePostEventsEffects
-    self.DisplayOverlayImage(*self.postHandleParams[i])
-  File "game/managers/BackgroundManager.rpy", line 104, in DisplayOverlayImage
-    if isBackbround:
-NameError: name 'isBackbround' is not defined
+  File "game/script.rpy", line 85, in <module>
+    $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
+  File "game/managers/DialogueManager.rpy", line 30, in DisplayDialogue
+    renpy.say(finalEmisor, sentence)
+UnboundLocalError: local variable 'sentence' referenced before assignment
 
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.1.3.23091805
 TheNextStepDemo 1.0
-Tue Jun 10 19:17:16 2025
+Sat Jun 14 15:24:21 2025

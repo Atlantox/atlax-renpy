@@ -343,6 +343,16 @@ Ej:
 
 
 
+########################################    EMISOR    ########################################
+
+El texto que sale arriba de la caja de texto, es decir, la persona o entidad que está hablando.
+Al colocar un nombre, ese emisor aparecerá hasta que se cambie.
+No es necesario escribir el nombre del personaje en cada línea de diálogo, con colocarlo una vez aparecerá hasta quitarlo o poner otro.
+Para quitar el emisor y que no salga ningún nombre se debe colocar *
+
+
+
+
 ########################################    DIÁLOGOS    ########################################
 
 Los diálogos son los textos que serán mostrados en pantalla, notarás que a partir de aquí los nombres de las columnas pasan a ser idiomas

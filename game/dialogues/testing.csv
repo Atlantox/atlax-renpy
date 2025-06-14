@@ -1,7 +1,7 @@
 ﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English
-Demo_1_1_1;sex_dungeon;While we speak;;;;saijo & mutou:pop:66;0:60;saijo;i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i ;Inglés
-Demo_1_1_2;madera:pushup;;golpe 2;vpunch:50;dmc5;;;saijo;Lo unico que tengo verdaderamente claro, es que debo estar postrado en esta cama de hospital hasta Dios sabe cuando...;Más inglés
-Demo_1_1_3;;;golpe 2;hpunch:50,flash:0.2:3;;;;saijo;Lo unico que tengo verdaderamente claro, es que debo estar postrado en esta cama de hospital hasta Dios sabe cuando...;Más inglés
+Demo_1_1_1;sex_dungeon;While we speak;;;;saijo & mutou:pop;0:60;saijo;i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i i ;Inglés
+Demo_1_1_2;madera:pushup;;golpe 2;vpunch:50;dmc5;saijo & mutou:move:10:90;;*;Lo unico que tengo verdaderamente claro, es que debo estar postrado en esta cama de hospital hasta Dios sabe cuando...;Más inglés
+Demo_1_1_3;;;golpe 2;hpunch:50,flash:0.2:3;;;;;Lo unico que tengo verdaderamente claro, es que debo estar postrado en esta cama de hospital hasta Dios sabe cuando...;Más inglés
 #decision;;clear
 katherine_birthday_sushi;amor:1, calificacion:-1;myTest/my_scene2;Pedir sushi
 katherine_birthday_beef;amor:-1, calificacion:1;myTest/my_scene3;Pedir bistec

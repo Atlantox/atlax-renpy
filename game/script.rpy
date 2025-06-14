@@ -21,6 +21,7 @@ label start:
     $ currentKey = None
     $ currentDialogue = None    
     $ firstDialogue = 'testing'
+    $ lastEmisor = ''
 
     $ routerManager = RouterManager()
     $ dialogueManager = DialogueManager(firstDialogue)
@@ -80,14 +81,8 @@ label start:
 
         if delayManager.prepared:
             $ delayManager.HandleDelay()
-        
-        $ sentence = dialogue[currentLanguage]
-        if delayManager.textSpeedDelay != False:
-            $ sentence = '{cps=' + str(delayManager.textSpeedDelay) + '}' + sentence + '{/cps}'
 
-        $ renpy.say(dialogue['Emisor'], sentence)
-
-        $ delayManager.textSpeedDelay = False
+        $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
 
     # Finaliza el juego:
 
