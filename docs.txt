@@ -447,7 +447,7 @@ Condiciones
     Aquí hay que tener especial cuidado y asegurarte al 100% de que las condiciones que colocas son, no solo posibles sino también probables
     Existen 3 tipos de Condiciones
     #condition points
-    #condition dialogue
+    #condition scene
     #condition decision
 
     Condición de puntos:
@@ -465,10 +465,10 @@ Condiciones
         Columna 3:
             El siguiente diálogo de esa opción
 
-    Condición por diálogo
+    Condición por escena
         Dependiendo de el o los diálogos que el jugador haya visto anteriormente, se tomará un camino u otro, puede haber más de un diálogo
 
-        #condition dialogue
+        #condition scene
         katherine_myscene2_positive_friendship;target_dialogue_1, target_dialogue_3;my_scene3
         katherine_myscene2_negative_friendship;target_dialogue_2;my_scene4
         katherine_myscene2_neutral_friendship;;my_scene5

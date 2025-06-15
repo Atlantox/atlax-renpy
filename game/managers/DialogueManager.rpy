@@ -4,7 +4,7 @@ init python:
             self.ResetDialogueManager()
 
             self.minHeaderCount = 10
-            self.admittedTerminateMethods = ['decision', 'condition points', 'condition decision', 'condition dialogue', 'linear', 'end']
+            self.admittedTerminateMethods = ['decision', 'condition points', 'condition decision', 'condition scene', 'linear', 'end']
             self.admittedTerminateTransitions = ['fade', 'video']
             self.admittedPostChangingFilter = ['clear']
 
@@ -32,7 +32,7 @@ init python:
             delayManager.textSpeedDelay = False
 
         def LoadDialogue(self):
-            globalDialogues.append(self.currentFile)
+            globalScenes.append(self.currentFile)
             with open(renpy.loader.transfn("dialogues/" + self.currentFile + '.csv'), mode="r", encoding='utf-8') as f:
                 lines = f.readlines()
                 f.close()
@@ -136,13 +136,13 @@ init python:
                     if decision in globalDecisions:
                         to_add['match'] = True
 
-            elif self.terminateMethod.lower() == 'condition dialogue':
+            elif self.terminateMethod.lower() == 'condition scene':
                 to_add['nextDialogue'] = terminateSplits[2]
                 to_add['match'] = False
 
                 dialogues = [s.strip() for s in terminateSplits[1].split(',')]
                 for dialogue in dialogues:
-                    if dialogue in globalDialogues:
+                    if dialogue in globalScenes:
                         to_add['match'] = True
 
             self.terminateData.append(to_add)

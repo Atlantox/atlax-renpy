@@ -16,7 +16,7 @@ $ import DelayManager
 label start:
     $ globalPoints = dict()
     $ globalDecisions = []
-    $ globalDialogues = []
+    $ globalScenes = []
 
     $ currentKey = None
     $ currentDialogue = None    
