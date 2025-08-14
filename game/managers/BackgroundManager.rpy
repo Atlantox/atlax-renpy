@@ -74,7 +74,7 @@ init python:
 
             commandString = 'bg ' + self.currentBgName
 
-            transforms = []
+            transforms = [AdjustImage()]
             for ker, value in self.transformsToApply.items():
                 transforms.append(value)
 

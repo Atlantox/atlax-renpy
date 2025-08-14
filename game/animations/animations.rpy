@@ -70,7 +70,7 @@ transform MyZoom(x, factor, duration):
     animation
     xalign x
     anchor (0.5, 0.0)
-    linear duration zoom factor
+    ease duration zoom factor
 
 
 transform KnockR(x, duration):

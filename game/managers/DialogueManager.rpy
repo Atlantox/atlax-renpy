@@ -27,13 +27,15 @@ init python:
                 finalEmisor = ''
 
             self.lastEmisor = finalEmisor
+
+            finalEmisor = characters[finalEmisor]
                 
             renpy.say(finalEmisor, finalSentence)
             delayManager.textSpeedDelay = False
 
         def LoadDialogue(self):
             globalScenes.append(self.currentFile)
-            with open(renpy.loader.transfn("dialogues/" + self.currentFile + '.csv'), mode="r", encoding='utf-8') as f:
+            with open(renpy.loader.transfn("scenes/" + self.currentFile + '.csv'), mode="r", encoding='utf-8') as f:
                 lines = f.readlines()
                 f.close()
 

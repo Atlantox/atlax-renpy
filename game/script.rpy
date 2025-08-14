@@ -20,7 +20,7 @@ label start:
 
     $ currentKey = None
     $ currentDialogue = None    
-    $ firstDialogue = 'testing'
+    $ firstDialogue = 'ejemplo1/ejemplo1_001_begin'
     $ lastEmisor = ''
 
     $ routerManager = RouterManager()

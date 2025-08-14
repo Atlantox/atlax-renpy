@@ -50,7 +50,14 @@ init python:
             }
 
             self.onScreenCharacters = []
-            self.characterPositions = {}
+            self.characterProperties = {
+                'berto':{
+                    'x': 0.5,
+                    'y': 0,
+                    'z': 0,
+                    'zoom': 1,
+                }
+            }
             self.continuousEvents = {}
 
             self.newCharactersQueue = []
@@ -163,7 +170,8 @@ init python:
                     self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
                     renpy.with_statement(Dissolve(appearTime))
                     self.onScreenCharacters.append(character['name'])
-                    self.characterPositions[character['name']] = [fixedPosition, 0.0]
+                    self.characterProperties[character['name']]['x'] = fixedPosition
+                    self.characterProperties[character['name']]['y'] = 0.0
                 else:
                     spawnPositions = self.multiCharacterAppearPositions[str(len(event['characters']))]
                     positionId = 0                    
@@ -173,7 +181,8 @@ init python:
                         self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
                         positionId += 1
                         self.onScreenCharacters.append(character['name'])
-                        self.characterPositions[character['name']] = [fixedPosition, 0.0]
+                        self.characterProperties[character['name']]['x'] = fixedPosition
+                        self.characterProperties[character['name']]['y'] = 0.0
 
                     renpy.with_statement(Dissolve(multiAppearTime))
 
@@ -242,7 +251,8 @@ init python:
             for character, positionData in movements.items():
                 self.ShowCharacter(character, [positionData['newPosition'], self.fixedHeight])
                 characterName = character.split(' ')[0]
-                self.characterPositions[characterName] = [positionData['x'], 1.0]
+                self.characterProperties[characterName]['x'] = positionData['x']
+                self.characterProperties[characterName]['y'] = 1.0
 
             renpy.with_statement(MoveTransition(duration))
         
@@ -254,7 +264,8 @@ init python:
 
             for character in event['characters']:
                 self.DestroyCharacter(character['name'])
-                params = [self.characterPositions[character['name']][0]] + params
+                #params = [self.characterPositions[character['name']][0]] + params
+                params = [self.characterProperties[character['name']]['x']] + params
                 animation = self.oneParameterEvents[event['action']](*params)
                 self.ShowCharacter(character['fullname'], [animation, self.fixedHeight])
 
@@ -269,7 +280,8 @@ init python:
 
             for character in event['characters']:
                 self.DestroyCharacter(character['name'])
-                params = [self.characterPositions[character['name']][0]] + params
+                #params = [self.characterPositions[character['name']][0]] + params
+                params = [self.characterProperties[character['name']]['x']] + params
                 animation = self.twoParameterEvents[event['action']](*params)
                 self.ShowCharacter(character['fullname'], [animation])
 
@@ -302,13 +314,13 @@ init python:
             for character in event['characters']:
                 self.DestroyCharacter(character['name'])
                 movement = MoveY(
-                    self.characterPositions[character['name']][0],
-                    self.characterPositions[character['name']][1],
+                    self.characterProperties[character['name']]['x'],
+                    self.characterProperties[character['name']]['y'],
                     yPos, 
                     duration)
                 
                 self.ShowCharacter(character['name'], [movement, self.fixedHeight])
-                self.characterPositions[character['name']][1] = yPos
+                self.characterProperties[character['name']]['y'] = yPos
 
         def HandleDestroy(self, event):
             duration = self.defaultDestroyCharacterTime
@@ -318,7 +330,7 @@ init python:
             
             for character in event['characters']:
                 self.DestroyCharacter(character['name'], duration)
-                del self.characterPositions[character['name']][0]
+                del self.characterProperties[character['name']]
                 del self.onScreenCharacters[self.onScreenCharacters.index(character['name'])]
 
         def DestroyCharacter(self, character, duration = 0):
@@ -350,7 +362,7 @@ init python:
                 if character['name'] in self.continuousEvents:
                     self.ResetCharacterPosition(character)
                 else:
-                    animation = Jumping(self.characterPositions[character['name']][0], intensity)
+                    animation = Jumping(self.characterProperties[character['name']]['x'], intensity)
                     self.ShowCharacter(character['name'], [animation, self.fixedHeight])
             
         def HandleTrembling(self, event):
@@ -358,16 +370,28 @@ init python:
                 if character['name'] in self.continuousEvents:
                     self.ResetCharacterPosition(character)
                 else:
-                    animation = Trembling(self.characterPositions[character['name']][0])
+                    animation = Trembling(self.characterProperties[character['name']]['x'])
                     self.ShowCharacter(character['name'], [animation, self.fixedHeight])
 
         def ResetCharacterPosition(self, character):
-            position = Position(xalign=self.characterPositions[character['name']][0])
+            position = Position(xalign=self.characterProperties[character['name']]['x'])
             self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
             renpy.with_statement(Dissolve(0))
 
         def ShowCharacter(self, character, at_list = []):
-            renpy.show(character, at_list=at_list)
+            final_at_list = at_list
+
+            if character in self.onScreenCharacters:
+                characterProperties = self.characterProperties[character]
+                initialPosition = SetCharacterProperties(
+                    characterProperties['x'],
+                    characterProperties['y'],
+                    characterProperties['z'],
+                    characterProperties['zoom'],
+                )
+                final_at_list = initialPosition + at_list
+            
+            renpy.show(character, at_list=final_at_list)
 
         def DestroyAllCharacters(self):
             for character in self.onScreenCharacters:
@@ -375,5 +399,5 @@ init python:
 
         def ResetEventManager(self):
             self.onScreenCharacters = []
-            self.characterPositions = {}
+            self.characterProperties = {}
             self.continuousEvents = {}

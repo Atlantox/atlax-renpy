@@ -1,34 +1,30 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 60, in script
-    $ eventManager.PrepareEvents(dialogue['Events'])
-  File "game/script.rpy", line 60, in <module>
-    $ eventManager.PrepareEvents(dialogue['Events'])
-  File "game/managers/EventManager.rpy", line 96, in PrepareEvents
-    self.PrepareNewCharacter(currentEvent)
-  File "game/managers/EventManager.rpy", line 107, in PrepareNewCharacter
-    raise Exception('El método de aparición "' + action + '" para el personaje "' + character_name + '" no existe')
-NameError: name 'action' is not defined
+  File "game/script.rpy", line 85, in script
+    $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
+  File "game/script.rpy", line 85, in <module>
+    $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
+  File "game/managers/DialogueManager.rpy", line 31, in DisplayDialogue
+    finalEmisor = characters[finalEmisor]
+KeyError: 'Berto'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 60, in script
-    $ eventManager.PrepareEvents(dialogue['Events'])
+  File "game/script.rpy", line 85, in script
+    $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
   File "D:\renpy\renpy-8.1.3-sdk\renpy\ast.py", line 1138, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "D:\renpy\renpy-8.1.3-sdk\renpy\python.py", line 1122, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/script.rpy", line 60, in <module>
-    $ eventManager.PrepareEvents(dialogue['Events'])
-  File "game/managers/EventManager.rpy", line 96, in PrepareEvents
-    self.PrepareNewCharacter(currentEvent)
-  File "game/managers/EventManager.rpy", line 107, in PrepareNewCharacter
-    raise Exception('El método de aparición "' + action + '" para el personaje "' + character_name + '" no existe')
-NameError: name 'action' is not defined
+  File "game/script.rpy", line 85, in <module>
+    $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
+  File "game/managers/DialogueManager.rpy", line 31, in DisplayDialogue
+    finalEmisor = characters[finalEmisor]
+KeyError: 'Berto'
 
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.1.3.23091805
 TheNextStepDemo 1.0
-Sun Jun 15 16:58:45 2025
+Wed Aug 13 16:30:24 2025
