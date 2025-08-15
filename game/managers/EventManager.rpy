@@ -50,14 +50,7 @@ init python:
             }
 
             self.onScreenCharacters = []
-            self.characterProperties = {
-                'berto':{
-                    'x': 0.5,
-                    'y': 0,
-                    'z': 0,
-                    'zoom': 1,
-                }
-            }
+            self.characterProperties = {}
             self.continuousEvents = {}
 
             self.newCharactersQueue = []
@@ -170,8 +163,11 @@ init python:
                     self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
                     renpy.with_statement(Dissolve(appearTime))
                     self.onScreenCharacters.append(character['name'])
+                    self.characterProperties[character['name']] = {}
                     self.characterProperties[character['name']]['x'] = fixedPosition
                     self.characterProperties[character['name']]['y'] = 0.0
+                    self.characterProperties[character['name']]['z'] = 0
+                    self.characterProperties[character['name']]['zoom'] = 1.0
                 else:
                     spawnPositions = self.multiCharacterAppearPositions[str(len(event['characters']))]
                     positionId = 0                    
@@ -181,8 +177,11 @@ init python:
                         self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
                         positionId += 1
                         self.onScreenCharacters.append(character['name'])
+                        self.characterProperties[character['name']] = {}
                         self.characterProperties[character['name']]['x'] = fixedPosition
                         self.characterProperties[character['name']]['y'] = 0.0
+                        self.characterProperties[character['name']]['z'] = 0
+                        self.characterProperties[character['name']]['zoom'] = 1.0
 
                     renpy.with_statement(Dissolve(multiAppearTime))
 
@@ -279,11 +278,14 @@ init python:
                 params[1] = float(event['params'][2])
 
             for character in event['characters']:
-                self.DestroyCharacter(character['name'])
+                #self.DestroyCharacter(character['name'])
                 #params = [self.characterPositions[character['name']][0]] + params
                 params = [self.characterProperties[character['name']]['x']] + params
                 animation = self.twoParameterEvents[event['action']](*params)
                 self.ShowCharacter(character['fullname'], [animation])
+
+                if event['action'] == 'zoom':
+                    self.characterProperties[character['name']]['zoom'] = params[1]
 
         def GetDefaultParametersOfAnimation(self, animation):
             params = []
@@ -389,9 +391,14 @@ init python:
                     characterProperties['z'],
                     characterProperties['zoom'],
                 )
-                final_at_list = initialPosition + at_list
-            
+                final_at_list = [initialPosition] + at_list
+                renpy.show(character, at_list=[initialPosition])
+                #renpy.with_statement(MoveTransition(2))
+                renpy.with_statement(zoomin)
+                #renpy.show(character, at_list=[MyZoom(0.5, 3.0, 4.0)])
+
             renpy.show(character, at_list=final_at_list)
+
 
         def DestroyAllCharacters(self):
             for character in self.onScreenCharacters:
