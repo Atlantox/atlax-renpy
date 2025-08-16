@@ -67,12 +67,8 @@ transform HitL(x, intensity):
         rotate 0    
 
 transform MyZoom(x, newFactor, duration):
-    animation
-    xalign x
-    anchor (0.5, 0.0)
     linear duration:
         zoom newFactor
-
 
 transform KnockR(x, duration):
     animation

@@ -12,7 +12,7 @@ init python:
             self.defaultCharacterSpawn = self.characterSpawnEvents[0]
             self.defaultCharacterSpawnTime = 2
             self.defaultCharacterAppearTime = 1.25
-            self.defaultCharacterAppearPosition = 50
+            self.defaultCharacterAppearPosition = 0.5
 
             #  Default event values
             self.defaultSpriteChangeTime = 0
@@ -29,9 +29,10 @@ init python:
             self.defaultDestroyCharacterTime = 0
 
             self.multiCharacterAppearPositions = {
-                '2': [25, 75],
-                '3': [10, 50, 90],
-                '4': [0, 35, 70, 100]
+                '1': [0.5],
+                '2': [0.25, 0.75],
+                '3': [0.1, 0.5, 0.9],
+                '4': [0.0, 0.35, 0.7, 1.0]
             }
 
             self.oneParameterEvents = {
@@ -154,35 +155,31 @@ init python:
                         multiAppearTime = appearPosition                     
 
                     if len(event['params']) > 2:
-                        appearTime = float(event['params'][2])                       
-                
-                if(len(event['characters']) == 1):
-                    fixedPosition = appearPosition / 100
+                        appearTime = float(event['params'][2])    
+
+                positionId = 0
+                spawnPositions = self.multiCharacterAppearPositions[str(len(event['characters']))]
+                for character in event['characters']:
+                    if(len(event['characters']) == 1):
+                        fixedPosition = appearPosition
+                    else:
+                        fixedPosition = spawnPositions[positionId]
+                        positionId += 1
+
                     position = Position(xalign=fixedPosition)
-                    character = event['characters'][0]
                     self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
-                    renpy.with_statement(Dissolve(appearTime))
+
+                    if(len(event['characters']) == 1):
+                        renpy.with_statement(Dissolve(appearTime))
+
                     self.onScreenCharacters.append(character['name'])
                     self.characterProperties[character['name']] = {}
                     self.characterProperties[character['name']]['x'] = fixedPosition
                     self.characterProperties[character['name']]['y'] = 0.0
                     self.characterProperties[character['name']]['z'] = 0
                     self.characterProperties[character['name']]['zoom'] = 1.0
-                else:
-                    spawnPositions = self.multiCharacterAppearPositions[str(len(event['characters']))]
-                    positionId = 0                    
-                    for character in event['characters']:
-                        fixedPosition = spawnPositions[positionId] / 100
-                        position = Position(xalign=fixedPosition)
-                        self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
-                        positionId += 1
-                        self.onScreenCharacters.append(character['name'])
-                        self.characterProperties[character['name']] = {}
-                        self.characterProperties[character['name']]['x'] = fixedPosition
-                        self.characterProperties[character['name']]['y'] = 0.0
-                        self.characterProperties[character['name']]['z'] = 0
-                        self.characterProperties[character['name']]['zoom'] = 1.0
-
+                
+                if(len(event['characters']) > 1):
                     renpy.with_statement(Dissolve(multiAppearTime))
 
             self.newCharactersQueue = []               
@@ -253,7 +250,7 @@ init python:
                 self.characterProperties[characterName]['x'] = positionData['x']
                 self.characterProperties[characterName]['y'] = 1.0
 
-            renpy.with_statement(MoveTransition(duration))
+            renpy.with_statement(MoveTransition(duration, enter_time_warp=_warper.easein))
         
         def HandleOneParameterEvent(self, event):            
             params = self.GetDefaultParametersOfAnimation(event['action'])
@@ -278,11 +275,9 @@ init python:
                 params[1] = float(event['params'][2])
 
             for character in event['characters']:
-                #self.DestroyCharacter(character['name'])
-                #params = [self.characterPositions[character['name']][0]] + params
                 params = [self.characterProperties[character['name']]['x']] + params
                 animation = self.twoParameterEvents[event['action']](*params)
-                self.ShowCharacter(character['fullname'], [animation])
+                self.ShowCharacter(character['name'], [animation])
 
                 if event['action'] == 'zoom':
                     self.characterProperties[character['name']]['zoom'] = params[1]
@@ -391,10 +386,10 @@ init python:
                     characterProperties['z'],
                     characterProperties['zoom'],
                 )
-                final_at_list = [initialPosition] + at_list
-                renpy.show(character, at_list=[initialPosition])
+                #final_at_list = [initialPosition] + at_list
+                #renpy.show(character, at_list=[initialPosition])
                 #renpy.with_statement(MoveTransition(2))
-                renpy.with_statement(zoomin)
+                #renpy.with_statement(zoomin)
                 #renpy.show(character, at_list=[MyZoom(0.5, 3.0, 4.0)])
 
             renpy.show(character, at_list=final_at_list)
