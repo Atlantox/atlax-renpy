@@ -1,9 +1,9 @@
-﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English
-ejemplo1_begin_001;city;whats a python;;;;;;berto;Luego de un ajetreado viaje en el autobús finalmente llego a mi destino, el centro comercial Tulipán Marrón. Hacía ya bastante tiempo que no pisaba estas calles.;
-ejemplo1_begin_002;;;;;;;;;La última vez que vine fue para ir al cine con mis padres cuando era niño, solo recuerdo que no me gustó la película.;
-ejemplo1_begin_003;mall;;;;;;;;Espero que el día de hoy si que sea especial.;
-ejemplo1_begin_004;;;;;;;;;Entro al centro comercial y apenas pongo un pie adentro puedo sentir el frío del aire acondicionado. Vaya cambio de temperatura.;
-ejemplo1_begin_005;;;;;;;;;A ver, si no me equivoco el puesto de donas estaba…  sí, caminando recto y al llegar a la estatua girar a la izquierda.;
+﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English;Chinese;
+ejemplo1_begin_001;city;whats a python;;;;;;berto;Luego de un ajetreado viaje en el autobús finalmente llego a mi destino, el centro comercial Tulipán Marrón. Hacía ya bastante tiempo que no pisaba estas calles.;english;ching cheng;
+ejemplo1_begin_002;;;;;;mesero;;mesero;La última vez que vine fue para ir al cine con mis padres cuando era niño, solo recuerdo que no me gustó la película.;English;ching chong;
+ejemplo1_begin_003;mall;;;;;katy;;;Espero que el día de hoy si que sea especial.;english;ching chung;
+ejemplo1_begin_004;;;;;;katy:behind:mesero;;;Entro al centro comercial y apenas pongo un pie adentro puedo sentir el frío del aire acondicionado. Vaya cambio de temperatura.;
+ejemplo1_begin_005;;;;;;mesero:behind:katy, mesero:move:33;;;A ver, si no me equivoco el puesto de donas estaba…  sí, caminando recto y al llegar a la estatua girar a la izquierda.;
 ejemplo1_begin_006;;;;;;;;;Inicio mi camino hacia el puesto de donas mientras miro los distintos locales, hay de todo, tiendas de perfumes, videojuegos, peluches, helados y muchas tiendas de ropa.;
 ejemplo1_begin_007;;;;;;;;;Una de las tiendas parece ser de ropa elegante, alcanzo ver mi sueldo de un mes escrito en la etiqueta del precio de uno de los trajes.;
 ejemplo1_begin_008;;;;;;;;;Vaya ¿por qué son tan caros los trajes? ¿están hechos de oro o qué?;

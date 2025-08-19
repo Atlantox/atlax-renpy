@@ -5,7 +5,7 @@ init python:
             self.characterSpawnEvents = ['appear', 'pop']
             self.characterAnimations = ['jump', 'tremble', 'zoom', 'hitl', 'hitr', 'knockl', 'knockr', 'raiser', 'raisel', 'movey']           
             self.characterContinuousEvents = ['jumping', 'trembling']
-            self.characterActionsEvents = ['move', 'destroy'] + self.characterAnimations + self.characterContinuousEvents
+            self.characterActionsEvents = ['move', 'destroy', 'behind'] + self.characterAnimations + self.characterContinuousEvents
             self.fixedHeight = Transform(size=(None, config.screen_height), anchor=(0.5, 0.0),)
 
             #  Default spawn values
@@ -27,6 +27,7 @@ init python:
             self.defaultZoomFactor = 2
             self.defaultZoomDuration = 2
             self.defaultDestroyCharacterTime = 0
+            self.defaultZPosition = 0
 
             self.multiCharacterAppearPositions = {
                 '1': [0.5],
@@ -176,7 +177,7 @@ init python:
                     self.characterProperties[character['name']] = {}
                     self.characterProperties[character['name']]['x'] = fixedPosition
                     self.characterProperties[character['name']]['y'] = 0.0
-                    self.characterProperties[character['name']]['z'] = 0
+                    self.characterProperties[character['name']]['behind'] = []
                     self.characterProperties[character['name']]['zoom'] = 1.0
                 
                 if(len(event['characters']) > 1):
@@ -198,6 +199,8 @@ init python:
                     self.HandleMoveY(event)
                 elif event['action'] == 'destroy':
                     self.HandleDestroy(event)
+                elif event['action'] == 'behind':
+                    self.HandleBehind(event)
 
                 if event['action'] in self.characterContinuousEvents:
                     self.HandleContinuousEffect(event)
@@ -281,6 +284,15 @@ init python:
 
                 if event['action'] == 'zoom':
                     self.characterProperties[character['name']]['zoom'] = params[1]
+
+        def HandleBehind(self, event):
+            behind = []
+            if len(event['params']) > 1:
+                behind = [p.strip() for p in event['params'][1].split(',')]                
+
+            for character in event['characters']:
+                self.characterProperties[character['name']]['behind'] = behind
+                self.ShowCharacter(character['name'])
 
         def GetDefaultParametersOfAnimation(self, animation):
             params = []
@@ -377,22 +389,24 @@ init python:
 
         def ShowCharacter(self, character, at_list = []):
             final_at_list = at_list
+            behind = []
+
 
             if character in self.onScreenCharacters:
                 characterProperties = self.characterProperties[character]
+                behind = characterProperties['behind']
                 initialPosition = SetCharacterProperties(
                     characterProperties['x'],
                     characterProperties['y'],
-                    characterProperties['z'],
                     characterProperties['zoom'],
                 )
-                #final_at_list = [initialPosition] + at_list
-                #renpy.show(character, at_list=[initialPosition])
-                #renpy.with_statement(MoveTransition(2))
-                #renpy.with_statement(zoomin)
-                #renpy.show(character, at_list=[MyZoom(0.5, 3.0, 4.0)])
+                final_at_list = [initialPosition] + at_list
 
-            renpy.show(character, at_list=final_at_list)
+            #if(character == 'katy'):
+                #renpy.show(character, at_list=final_at_list, layer='master')
+            #else:
+
+            renpy.show(character, at_list=final_at_list, behind=behind)
 
 
         def DestroyAllCharacters(self):

@@ -5,7 +5,9 @@ define keiko = Character('Keiko', color='#b1b1b1')
 
 define katy = Character('Katy', color='#ff3d3d')
 define berto = Character('Berto', color='#8709B4')
-define mesero = Character('Mesero', color='#fff')
+define mesero = Character('Mesero', color='#19f060')
+define tableman = Character('Tableman', color='#19f060')
+define mechero = Character('Mechero', color='#19f060')
 
 define characters = {
     '*': None,
@@ -18,5 +20,16 @@ define characters = {
 
     'katy':katy,
     'berto': berto,
-    'mesero': mesero
+    'mesero': mesero,
+    'tableman': tableman,
+    'mechero': mechero
+}
+
+define languageDependingNames = {
+    'mesero': {
+        'Spanish': 'mesero',
+        'English': 'tableman',
+        'Chinese': 'mechero'
+    },
+    
 }

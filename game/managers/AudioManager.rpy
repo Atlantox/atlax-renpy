@@ -49,6 +49,8 @@ init python:
 
         def HandleSFX(self):
             self.prepared = False
+            gui.name_text_size = 500
+            gui.rebuild()
 
             if self.musicPrepared:
                 self.musicPrepared = False
