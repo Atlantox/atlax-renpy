@@ -89,6 +89,8 @@ init python:
 
         def HandlePostEventsEffects(self):
             for i in range(len(self.postHandleEvents)):
+                print(self.postHandleEvents[i])
+                print(self.postHandleParams[i])
                 # Calling functions with corresponded params
                 if self.postHandleEvents[i] == 'DisplayOverlayImage':
                     self.DisplayOverlayImage(*self.postHandleParams[i])
@@ -106,9 +108,11 @@ init python:
             else:
                 displayTransform = ItemOnScreen(opacity)
                 
-            renpy.show(bgName, at_list=[displayTransform], layer='master', tag='filter')
+            renpy.show(bgName, at_list=[displayTransform], layer='master')
 
         def DestroyOverlayImage(self, bgName):
+            renpy.show(bgName, at_list=[HidingImage()])
+            renpy.pause(1.4)
             renpy.hide(bgName)
 
         def BlinkImage(self, imageToShow, times, duration):

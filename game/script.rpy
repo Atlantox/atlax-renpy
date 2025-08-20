@@ -2,6 +2,8 @@
 $ import definitions.configDefine
 $ import definitions.backgroundsDefine
 $ import definitions.charactersDefine
+$ import definitions.stylesDefine
+
 
 $ import animations.animations
 

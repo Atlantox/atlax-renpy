@@ -4,7 +4,8 @@ transform AdjustImage:
 transform SetCharacterProperties(x, y, zoomFactor):
     xalign x
     ypos y
-    zoom zoomFactor
+    anchor (0.5, 0.0)
+    #zoom zoomFactor
 
 transform EmisorEmphasis:
     ease 1:

@@ -251,7 +251,6 @@ init python:
                 self.ShowCharacter(character, [positionData['newPosition'], self.fixedHeight])
                 characterName = character.split(' ')[0]
                 self.characterProperties[characterName]['x'] = positionData['x']
-                self.characterProperties[characterName]['y'] = 1.0
 
             renpy.with_statement(MoveTransition(duration, enter_time_warp=_warper.easein))
         
@@ -278,7 +277,6 @@ init python:
                 params[1] = float(event['params'][2])
 
             for character in event['characters']:
-                params = [self.characterProperties[character['name']]['x']] + params
                 animation = self.twoParameterEvents[event['action']](*params)
                 self.ShowCharacter(character['name'], [animation])
 
@@ -343,8 +341,9 @@ init python:
                 del self.onScreenCharacters[self.onScreenCharacters.index(character['name'])]
 
         def DestroyCharacter(self, character, duration = 0):
+            renpy.show(character, at_list=[DisappearCharacter(duration)])
+            renpy.pause(duration * 1.1)
             renpy.hide(character)
-            renpy.with_statement(Dissolve(duration))
 
         def HandleContinuousEffect(self, event):
             for character in event['characters']:
@@ -390,7 +389,6 @@ init python:
         def ShowCharacter(self, character, at_list = []):
             final_at_list = at_list
             behind = []
-
 
             if character in self.onScreenCharacters:
                 characterProperties = self.characterProperties[character]

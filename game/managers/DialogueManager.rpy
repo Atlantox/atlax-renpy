@@ -29,6 +29,10 @@ init python:
             elif emisor == '*':
                 finalEmisor = ''
 
+            if finalEmisor != self.lastEmisor:                
+                pass
+                
+
             self.lastEmisor = finalEmisor
 
             

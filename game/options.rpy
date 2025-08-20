@@ -211,3 +211,12 @@ init python:
 ## separados por una barra.
 
 # define build.itch_project = "renpytom/test-project"
+
+
+
+# Atlax renpy settings
+define gui.text_font = 'fonts/playtime.ttf'
+define gui.interface_text_font = 'fonts/playtime.ttf'
+define gui.system_text_font = 'fonts/playtime.ttf'
+define gui.button_text_font = 'fonts/playtime.ttf'
+define gui.name_text_font = 'fonts/playtime.ttf'

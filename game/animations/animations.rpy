@@ -66,7 +66,7 @@ transform HitL(x, intensity):
     linear 0.1:
         rotate 0    
 
-transform MyZoom(x, newFactor, duration):
+transform MyZoom(newFactor, duration):
     linear duration:
         zoom newFactor
 
@@ -127,8 +127,6 @@ transform PassScene():
     xysize (10, 600)
     rotate 0
     linear 3.0 rotate 180
-    #pause 2.0
-    #linear 1.0 rotate 0
 
 transform CharacterTransform():
     zpos 100
@@ -142,6 +140,18 @@ transform ItemOnScreen(opacity):
     yalign 1.0
     anchor (0.5, 0.5)
 
-    linear 0.7:
+    ease 1.2:
         alpha opacity
         yalign 0.2
+
+transform DisappearCharacter(duration):
+    linear duration:
+        alpha 0
+
+
+transform HidingImage:
+    yalign 0.2
+
+    ease 1.2:
+        alpha 0
+        yalign 1.0
