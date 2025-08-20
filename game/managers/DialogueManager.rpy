@@ -46,7 +46,13 @@ init python:
             delayManager.textSpeedDelay = False
 
         def LoadDialogue(self):
-            globalScenes.append(self.currentFile)
+            fileName = self.currentFile.split('/')
+            if len(fileName) > 1:
+                fileName = fileName[-1]
+            else:
+                fileName = fileName[0]
+
+            globalScenes.append(fileName)
             with open(renpy.loader.transfn("scenes/" + self.currentFile + '.csv'), mode="r", encoding='utf-8') as f:
                 lines = f.readlines()
                 f.close()

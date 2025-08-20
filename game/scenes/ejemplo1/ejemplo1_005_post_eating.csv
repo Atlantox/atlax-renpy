@@ -8,6 +8,7 @@ ejemplo1_post_eating_06;;;;;;;;*;Caminamos por el centro comercial Katy me seña
 ejemplo1_post_eating_07;;;;;;;;;El tiempo pasa y miro mi reloj.;
 ejemplo1_post_eating_08;;;;;;;;berto;Vaya, ya son las 6:30 el tiempo pasó muy rápido.;
 ejemplo1_post_eating_09;;;;;;;;katy;Sí…;
-#condition scene;;;;;;;;berto;Lo lamento pero a esta hora ya debería estar en camino a mi casa, mi casa no está precisamente cerca.;
-post_eating_to_hotel_end;ejemplo1_004_reaction_chocolate_alice;ejemplo1/ejemplo1_006_hotel_end;;;;;;;;
+ejemplo1_post_eating_10;;;;;;;;berto;Lo lamento pero a esta hora ya debería estar en camino a mi casa, mi casa no está precisamente cerca.;
+#condition decision 
+post_eating_to_hotel_end;chocolate_alice_gived;ejemplo1/ejemplo1_006_hotel_end;;;;;;;;
 post_eating_to_bus_end;;ejemplo1/ejemplo1_006_bus_end;;;;;;;;

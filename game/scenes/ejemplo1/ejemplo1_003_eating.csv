@@ -1,10 +1,10 @@
 ﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English
 ejemplo1_eating_001;;;;;;mesero:move:120;;*;El mesero se retira hacia la cocina, espero que todo salga bien.;
-ejemplo1_eating_002;;;;;;katy:move:50:0.8;;katy;Oye ¿Y como sigue tu mamá?;
+ejemplo1_eating_002;;;;;;katy:move:50:0.5;;katy;Oye ¿Y como sigue tu mamá?;
 ejemplo1_eating_003;;;;;;;;berto;Oh muy bien, ya está mejor del resfriado, lo que pasa es que…;
 ejemplo1_eating_004;puerkokun:fade;;;;;;;katy;Por eso decidí dejarlo así, es mejor alejarse de la gente que no te aporta nada y solo consume tu tiempo y tu paciencia.;
 ejemplo1_eating_005;;;;;;;;berto;Sí, era lo correcto, na-;
-ejemplo1_eating_006;;;;;;katy & mesero:move:33:66;;*;El mesero se acerca a nosotros con una bandeja con comida.;
+ejemplo1_eating_006;;;;;;katy & mesero:move:33:66:1;;*;El mesero se acerca a nosotros con una bandeja con comida.;
 ejemplo1_eating_007;;;;;;;;katy;¡Oh que bien, la comida!;
 ejemplo1_eating_008;;;;;burger;;;*;El mesero nos deja sobre la mesa las hamburguesas que pedimos y también coloca unos platos que contienen las papas fritas.;
 ejemplo1_eating_009;;;;;;;;katy;Whoooo, hay más papas que en la oferta.;
@@ -32,7 +32,7 @@ ejemplo1_eating_030;;;;;;;;katy;Uf que llena estoy, y yo que pensaba que podría
 ejemplo1_eating_031;;;;;;;;berto;Jajajaja, no te voy a mentir yo también pensé en pedir dos, no estoy tan lleno pero sé que no me cabe otra.;
 ejemplo1_eating_032;;;;;;;;katy;De verdad que todo estuvo muy rico, tenemos que volver otro día.;
 ejemplo1_eating_033;;;;;;;;berto;Sí, tenlo por seguro.;
-ejemplo1_eating_034;;;;;;mesero:move:35;;*;El mesero camina detrás de Katy y me mira haciendo un gesto con la mano como si me dijera “¿Procedo?”;
+ejemplo1_eating_034;;;;;;mesero:move:35:3;;*;El mesero camina detrás de Katy y me mira haciendo un gesto con la mano como si me dijera “¿Procedo?”;
 ejemplo1_eating_035;;;;;;;;;Muy sutilmente asiento con la cabeza como para que Katy no se de cuenta, él capta la señal y regresa a la cocina.;
 ejemplo1_eating_036;;;;;;mesero:move:-15;;katy;¿Te parece si pagamos y paseamos un rato por el centro comercial?;
 ejemplo1_eating_037;;;;;;;;berto;S-sí pero…;

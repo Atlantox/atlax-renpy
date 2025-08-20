@@ -84,8 +84,15 @@ init python:
                 self.backgroundPlaced = True
             else:
                 renpy.transition(self.targetTransition(*self.params))
-                currentTransition = self.defaultTransition
-                params = [self.defaultDuration]
+
+                totalPause = 0.5
+                if self.targetTransition in [Dissolve, PushMove, Swing, Pixellate]:
+                    totalPause = self.params[0]
+                elif self.targetTransition == Fade:
+                    for param in self.params:
+                        totalPause += param
+
+                renpy.pause(totalPause)
 
         def HandlePostEventsEffects(self):
             for i in range(len(self.postHandleEvents)):

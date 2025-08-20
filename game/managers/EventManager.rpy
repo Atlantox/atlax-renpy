@@ -252,7 +252,7 @@ init python:
                 characterName = character.split(' ')[0]
                 self.characterProperties[characterName]['x'] = positionData['x']
 
-            renpy.with_statement(MoveTransition(duration, enter_time_warp=_warper.easein))
+            renpy.with_statement(MoveTransition(duration, enter_time_warp=_warper.easein, leave_time_warp=_warper.easein))
         
         def HandleOneParameterEvent(self, event):            
             params = self.GetDefaultParametersOfAnimation(event['action'])
