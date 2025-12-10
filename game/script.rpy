@@ -1,4 +1,6 @@
-﻿$ import definitions.languageDefine
+﻿$ from cryptography.fernet import Fernet
+
+$ import definitions.languageDefine
 $ import definitions.configDefine
 $ import definitions.backgroundsDefine
 $ import definitions.charactersDefine
