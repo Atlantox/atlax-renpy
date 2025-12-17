@@ -1,0 +1,7 @@
+﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English
+ejemplo1_chocolate_heart_01;;;;;;;;mesero;Mmmmm, a veces lo más sencillo es demostrar los sentimientos con detalles y acciones más directas.;
+ejemplo1_chocolate_heart_02;;;;;;;;;Tenemos un molde especial para crear corazones, lo tendremos listo como postre cuando acaben su comida.;
+ejemplo1_chocolate_heart_03;;;;;;;;berto;Entiendo, gracias.;
+ejemplo1_chocolate_heart_04;;;;;;mesero:zoom:1;;*;Quizás estoy siendo demasiado directo si le regalo un corazón pero de cierta forma demuestra lo que realmente siento.;
+#linear;;;;;;;;;;
+chocolate_heart_to_eating;ejemplo1/ejemplo1_003_eating;;;;;;;;;

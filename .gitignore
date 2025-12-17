@@ -1,0 +1,6 @@
+game/saves/
+game/cache/
+game/pythonlibs
+game/definitions/configDefine.rpy
+
+mypython/
