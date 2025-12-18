@@ -2,5 +2,6 @@ game/saves/
 game/cache/
 game/pythonlibs
 game/definitions/configDefine.rpy
+game/python-packages
 
 mypython/

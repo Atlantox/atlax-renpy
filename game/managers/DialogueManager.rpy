@@ -1,4 +1,6 @@
 init python:
+    import base64
+    import hashlib
     class DialogueManager:
         def __init__(self, fileName):        
             self.ResetDialogueManager()
@@ -32,9 +34,7 @@ init python:
             if finalEmisor != self.lastEmisor:                
                 pass
                 
-
             self.lastEmisor = finalEmisor
-
             
             if finalEmisor in languageDependingNames:
                 finalEmisor = languageDependingNames[finalEmisor][currentLanguage]
@@ -45,7 +45,15 @@ init python:
             renpy.say(finalEmisor, finalSentence)
             delayManager.textSpeedDelay = False
 
+        
+
+        def decrypt(self, token):
+            data = base64.b64decode(token)
+            decrypted = bytes([data[i] ^ self.key[i % len(self.key)] for i in range(len(data))])
+            return decrypted.decode("utf-8")
+
         def LoadDialogue(self):
+
             fileName = self.currentFile.split('/')
             if len(fileName) > 1:
                 fileName = fileName[-1]
@@ -53,9 +61,21 @@ init python:
                 fileName = fileName[0]
 
             globalScenes.append(fileName)
-            with open(renpy.loader.transfn("scenes/" + self.currentFile + '.csv'), mode="r", encoding='utf-8') as f:
-                lines = f.readlines()
+
+            with open(renpy.loader.transfn("scenes/" + self.currentFile + '.csv'), mode="rb") as f:
+                sceneContent = f.read()
                 f.close()
+
+            if require_encrypt:
+                data = base64.b64decode(sceneContent)
+                key = hashlib.sha256(encryption_key.encode()).digest()
+                sceneContent = bytes([data[i] ^ key[i % len(key)] for i in range(len(data))])
+                sceneContent = sceneContent.decode("utf-8")
+            
+            #sceneContent = sceneContent.decode('utf-8')
+            lines = sceneContent.split('\n')
+
+
 
             self.headers = [s.strip().replace('\ufeff', '') for s in lines[0].split(';')]
             self.rawDialogues = lines[1:] # Ignoramos la primera fila que es la leyenda
