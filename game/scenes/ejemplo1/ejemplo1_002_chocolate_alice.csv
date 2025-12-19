@@ -1,8 +1,1 @@
-﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English
-ejemplo1_chocolate_alice_01;;;;;;;;mesero;Alice? Eh… ¿del país de las maravillas?;
-ejemplo1_chocolate_alice_02;;;;;;;;berto;Oh no, es de una serie reciente bastante popular, quizás los cocineros la conozcan, sino… estaría bien un… ¿corazón?.;
-ejemplo1_chocolate_alice_03;;;;;;;;mesero;Comprendo, haremos lo posible para hacer el chocolate de esa Alice y lo traeremos cuando hayan terminado su comida.;
-ejemplo1_chocolate_alice_04;;;;;;mesero:zoom:1;;berto;Muy amable, muchas gracias.;
-ejemplo1_chocolate_alice_05;;;;;;;;*;Es muy probable que en la cocina nadie conozca a Alice pero con la suficiente suerte podré darle un buen detalle.;
-#linear;;;;;;;;;;
-chocolate_alice_to_eating;ejemplo1/ejemplo1_003_eating;;;;;;;;;
+hsId8eDL8o/HFqSUW10nSGyHWJ1YCX+7TRnYO7qwfiQHHs7fpdevq8MWu8hqXTxSYdJgh14TPOV4EMg2qrBoOwwX1sm+9qyhxwz0tkRbIUl6h0aYSg5183ZN6Du550Q+AXPH0ODfuaHJRJCQQV0xSWTdYY10AXDpfRPyZe+wFnZSQpmBvt+svsMHoMhoXjtFbYM1rUOCnCY+tBIxu+cNPQi6D8ml1qztyhS800RTIEd+1XmEShMjuxQTxzCz+0EiWCbB0urRpqHHAaqsSF47RW3jJdoQWye7JU2WbrzuXzkGQu3Spdym4YYQvNNNV3JTZt01m04SdeU+BMg2t+5DOQxZwNv2xqij0hDvg0ZCJ0ppzjnIWhV1+t3X3nWy5F5tChbB0+vXu6LVVaOSCVE9SGfGdolFTDzzdxjCt14tDSgaDcPIRh+o7cQcqp0JRzzEiBo1KpQDc/J/DG7msLQDdmMcyN/owqWilyqsm0ZRPUppyHC3Sgx143spnWblsBZ2UkKZgejXuqjUGvSwRl8iVG3ScYcHQHThbBPAOq2rQSJJCc3J7NClqIYFroFIEjpHa9lnyE4MPON2Gc46supZKEkdx5rgwajt5xmmkEwSKwZk0zWcWQF58nsbwib+6FgsBx3Nmu3TsKzIVbuWW187SGnYeshYFTzjcRvEMb+lFkcME8fX9d6m/PkWp5xKXT5HfNlKiUcJf+VBRplu5bAWdlIUx8ngwKb33BqgnhMDaR1q2WecRFtR9WdWzDi/6UEoRVnPz+baqL6GEr2SSlszVSaHH41BBXHwchmcCr3jQi4GFcPO4O2ooc8WqqwZB2kdM4cu0xBbNrtbBY04q/INPRsWwNvn3qzt1wCq00xcckppnHaHSAly4T4YzDG37g0uBhfNwObT6ayGNKOaSldyVm3OeshID3KgcheNJqvtRC4AHMzO4JK6uMMHu5YJQj1Cen+8yE8Bbux7Vtg7/ulYKAdZxt/x06Whw1v0+QpeO0ht3WfTEFsnuyVNlm7lgU4lBhrN1uTGrJLHGaaQTG0mSVfZdJxCDnu7exzIOK7nQnxGHMjf6MKlopcq/8MabTdHfNV7jxBbJ7slTZZu5YE=

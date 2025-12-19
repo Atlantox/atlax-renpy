@@ -1,3 +1,5 @@
+$ import definitions.EncryptionKey
+
 init python:
     import base64
     import hashlib
@@ -45,12 +47,20 @@ init python:
             renpy.say(finalEmisor, finalSentence)
             delayManager.textSpeedDelay = False
 
-        
+        def GetBytes(self, data):
+            print(atlax_encryption_key)
+            raise ZeroDivisionError()
+            key = hashlib.sha256(atlax_encryption_key.encode()).digest()
+            return bytes(
+                data[i] ^ key[i % len(key)]
+                for i in range(len(data))
+            )
 
-        def decrypt(self, token):
-            data = base64.b64decode(token)
-            decrypted = bytes([data[i] ^ self.key[i % len(self.key)] for i in range(len(data))])
+        def DecryptScene(self, sceneFileContent):           
+            data = base64.b64decode(sceneFileContent)
+            decrypted = self.GetBytes(data)
             return decrypted.decode("utf-8")
+            
 
         def LoadDialogue(self):
 
@@ -62,20 +72,14 @@ init python:
 
             globalScenes.append(fileName)
 
-            with open(renpy.loader.transfn("scenes/" + self.currentFile + '.csv'), mode="rb") as f:
+            with open(renpy.loader.transfn("scenes/" + self.currentFile + '.csv'), mode="r", encoding="utf-8") as f:
                 sceneContent = f.read()
                 f.close()
 
             if require_encrypt:
-                data = base64.b64decode(sceneContent)
-                key = hashlib.sha256(encryption_key.encode()).digest()
-                sceneContent = bytes([data[i] ^ key[i % len(key)] for i in range(len(data))])
-                sceneContent = sceneContent.decode("utf-8")
+                sceneContent = self.DecryptScene(sceneContent)
             
-            #sceneContent = sceneContent.decode('utf-8')
-            lines = sceneContent.split('\n')
-
-
+            lines = sceneContent.strip().split('\n')
 
             self.headers = [s.strip().replace('\ufeff', '') for s in lines[0].split(';')]
             self.rawDialogues = lines[1:] # Ignoramos la primera fila que es la leyenda
