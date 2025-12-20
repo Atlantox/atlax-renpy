@@ -3,7 +3,7 @@ $ import definitions.configDefine
 $ import definitions.backgroundsDefine
 $ import definitions.charactersDefine
 $ import definitions.stylesDefine
-
+$ import definitions.AtlaxEncryptionKey
 
 $ import animations.animations
 
@@ -15,7 +15,9 @@ $ import EffectManager
 $ import EventManager
 $ import DelayManager
 
-label start:
+
+
+label start:    
     $ globalPoints = dict()
     $ globalDecisions = []
     $ globalScenes = []

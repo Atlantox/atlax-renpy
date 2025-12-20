@@ -1,0 +1,12 @@
+﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English
+ejemplo1_chocolate_heart_01;;;;;;;;katy;¡Un corazón! ¡Qué lindo!;
+ejemplo1_chocolate_heart_02;;;;;;mesero:move:-15:1;;;Además tiene corazones grabados por todos lados además, ¡esos corazones grabados también tienen corazones grabados!;
+ejemplo1_chocolate_heart_03;;;;;;mesero:destroy;;;Es realmente una obra de arte con mucho detalle, ¡está muy lindo! Muchas gracias Berto.;
+ejemplo1_chocolate_heart_04;;;;;;;;berto;Jejejeje… una parte de mi quería obsequiarte algo hoy así que eso hice.;
+ejemplo1_chocolate_heart_05;;;;;;;;katy;Muchas gracias, ¿quieres?;
+ejemplo1_chocolate_heart_06;;;;;;;;berto;Claro;
+ejemplo1_chocolate_heart_07;;;;;;;;*;Ella comparte el corazón conmigo, antes de comérmelo lo miro.;
+ejemplo1_chocolate_heart_08;;;;;;;;;Es verdad, tiene grabados de corazones en los corazones grabados en el corazón, hoy descubrí un nuevo trabalenguas.;
+ejemplo1_chocolate_heart_09;;;;;;;;;Terminamos de comer y mi pulso vuelve a la normalidad.;
+#linear;;;;;;;;;;
+chocolate_heart_to_post_eating;ejemplo1/ejemplo1_005_post_eating;;;;;;;;;

@@ -1,7 +1,7 @@
 game/saves/
 game/cache/
 game/pythonlibs
-game/definitions/EncryptionKey.rpy
+game/definitions/AtlaxEncryptionKey.rpy
 game/python-packages
 
-mypython/
+mypython/sceneEncrypter/encryption.key

@@ -1,8 +1,7 @@
-$ import definitions.EncryptionKey
-
 init python:
     import base64
     import hashlib
+    
     class DialogueManager:
         def __init__(self, fileName):        
             self.ResetDialogueManager()
@@ -15,7 +14,7 @@ init python:
 
             self.currentFile = fileName
             self.clearAfterNewDialogue = False
-            self.lastEmisor = ''
+            self.lastEmisor = ''            
 
             self.LoadDialogue()
 
@@ -48,8 +47,6 @@ init python:
             delayManager.textSpeedDelay = False
 
         def GetBytes(self, data):
-            print(atlax_encryption_key)
-            raise ZeroDivisionError()
             key = hashlib.sha256(atlax_encryption_key.encode()).digest()
             return bytes(
                 data[i] ^ key[i % len(key)]
@@ -76,7 +73,7 @@ init python:
                 sceneContent = f.read()
                 f.close()
 
-            if require_encrypt:
+            if requireSceneEncryption:
                 sceneContent = self.DecryptScene(sceneContent)
             
             lines = sceneContent.strip().split('\n')
