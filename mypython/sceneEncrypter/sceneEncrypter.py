@@ -2,22 +2,37 @@ import os
 import base64
 import hashlib
 
-ENCRYPTION_TARGET = 'D:/Proyectos/Renpy/TheNextStepDemo/mypython/sceneEncrypter/to_encrypt'
-ENCRYPTION_OUTPUT = 'D:/Proyectos/Renpy/TheNextStepDemo/mypython/sceneEncrypter/encrypted'
 key = ''
 
 def main():
-    with open('encryption.key', 'r') as f:
-        my_key = f.read()
-        f.close()
-    global key
-    key = hashlib.sha256(my_key.encode()).digest()
+    try:
+        print('Initializing script')
+        with open('encryption.key', 'r') as f:
+            my_key = f.read()
+            f.close()
+        global key    
+        key = hashlib.sha256(my_key.encode()).digest()
 
-    for subdir, dirs, files in os.walk(ENCRYPTION_TARGET):
-        for file in files:
-            filePath = os.path.join(subdir, file)
+        print('Key loaded correctly')
+        print('Encrypting files from to_decrypt folder')
+        for subdir, dirs, files in os.walk('./to_encrypt'):
+            for file in files:
+                filePath = os.path.join(subdir, file)
 
-            encrypt_file(filePath, ENCRYPTION_OUTPUT + '/' + file)
+                finalPath = filePath.replace('./to_encrypt', './encrypted')
+
+                folderPath = finalPath.replace('\\' + file, '')
+                print('Encrypting:', filePath, ' => ', finalPath)
+
+                if not os.path.isdir(folderPath):
+                    os.makedirs(folderPath, exist_ok=True)
+
+                encrypt_file(filePath ,finalPath)
+
+        input('Encryption ready. Enter to exit')
+    except Exception as e:
+        print('ERROR', e)
+        input('Press enter to exit')
 
 
 def GetBytes(data):
@@ -60,16 +75,16 @@ def decrypt_file(encrypted_path):
 
 '''
 # ENCRYPTING THE FILES
-for subdir, dirs, files in os.walk(ENCRYPTION_TARGET):
+for subdir, dirs, files in os.walk('./to_encrypt'):
     for file in files:
         filePath = os.path.join(subdir, file)
 
-        encrypt_file(filePath, ENCRYPTION_OUTPUT + '/' + file)
+        encrypt_file(filePath, './encrypted' + '/' + file)
 '''
 
 '''
 # DECRYPTIUNG THE FILES
-for subdir, dirs, files in os.walk(ENCRYPTION_OUTPUT):
+for subdir, dirs, files in os.walk('./encrypted'):
     for file in files:
         filePath = os.path.join(subdir, file)
 

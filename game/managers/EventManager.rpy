@@ -262,7 +262,6 @@ init python:
 
             for character in event['characters']:
                 self.DestroyCharacter(character['name'])
-                #params = [self.characterPositions[character['name']][0]] + params
                 params = [self.characterProperties[character['name']]['x']] + params
                 animation = self.oneParameterEvents[event['action']](*params)
                 self.ShowCharacter(character['fullname'], [animation, self.fixedHeight])
@@ -399,10 +398,6 @@ init python:
                     characterProperties['zoom'],
                 )
                 final_at_list = [initialPosition] + at_list
-
-            #if(character == 'katy'):
-                #renpy.show(character, at_list=final_at_list, layer='master')
-            #else:
 
             renpy.show(character, at_list=final_at_list, behind=behind)
 

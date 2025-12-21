@@ -5,3 +5,11 @@ game/definitions/AtlaxEncryptionKey.rpy
 game/python-packages
 
 mypython/sceneEncrypter/encryption.key
+mypython/sceneEncrypter/to_encrypt/*
+mypython/sceneEncrypter/encrypted/*
+mypython/sceneEncrypter/build
+mypython/sceneEncrypter/dist
+mypython/sceneEncrypter/sceneEncrypter.spec
+
+apps/scene_encrypter/encrypted/*
+apps/scene_encrypter/to_encrypt/*

@@ -15,8 +15,6 @@ $ import EffectManager
 $ import EventManager
 $ import DelayManager
 
-
-
 label start:    
     $ globalPoints = dict()
     $ globalDecisions = []
