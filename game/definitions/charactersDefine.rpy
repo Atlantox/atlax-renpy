@@ -3,11 +3,18 @@ define mutou = Character('Mutou', color='#2595d2')
 define dereck = Character('Dereck', color='#e4e159')
 define keiko = Character('Keiko', color='#b1b1b1')
 
-define katy = Character('Katy', color='#ff3d3d')
 define berto = Character('Berto', color='#8709B4')
+
+# Ejemplo1
+define katy = Character('Katy', color='#ff3d3d')
 define mesero = Character('Mesero', color='#19f060')
 define tableman = Character('Tableman', color='#19f060')
 define mechero = Character('Mechero', color='#19f060')
+
+# Ejemplo2
+define rafarencio = Character('Rafarencio', color='#ffad65')
+define instructor = Character('Instructor', color='#c6c6c6')
+define flint = Character('Flint', color='#396c97')
 
 define characters = {
     '*': None,
@@ -18,11 +25,18 @@ define characters = {
     'dereck': dereck,
     'keiko': keiko,
 
-    'katy':katy,
     'berto': berto,
+
+    # Ejemplo1
+    'katy':katy,
     'mesero': mesero,
     'tableman': tableman,
     'mechero': mechero
+
+    # Ejemplo2
+    'rafarencio': rafarencio,
+    'instructor': instructor,
+    'flint': flint
 }
 
 define languageDependingNames = {
@@ -30,6 +44,12 @@ define languageDependingNames = {
         'Spanish': 'mesero',
         'English': 'tableman',
         'Chinese': 'mechero'
+    },
+
+    'instructor': {
+        'Spanish': 'instructor',
+        'English': 'instructor',
+        'Chinese': 'instructor'
     },
     
 }
