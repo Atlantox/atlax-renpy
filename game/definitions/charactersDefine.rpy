@@ -31,12 +31,12 @@ define characters = {
     'katy':katy,
     'mesero': mesero,
     'tableman': tableman,
-    'mechero': mechero
+    'mechero': mechero,
 
     # Ejemplo2
     'rafarencio': rafarencio,
     'instructor': instructor,
-    'flint': flint
+    'flint': flint,
 }
 
 define languageDependingNames = {
