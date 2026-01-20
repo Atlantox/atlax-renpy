@@ -155,3 +155,6 @@ transform HidingImage:
     ease 1.2:
         alpha 0
         yalign 1.0
+
+# Import here your custom animations files
+$ import animations.combat

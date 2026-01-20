@@ -1,5 +1,5 @@
 ﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English
-example2_training_field_001;training_field;Laps arount the air;;;;rafarencio;;*;Ugh… La verdad no quería regresar aquí pero es mi deber, no me queda de otra, tengo que seguir a pesar del dolor;
+example2_training_field_001;training_field;Laps arount the air;;;;;;*;Ugh… La verdad no quería regresar aquí pero es mi deber, no me queda de otra, tengo que seguir a pesar del dolor;
 example2_training_field_002;;;;;;;;instructor;Muy bien chicos, hoy continuarán practicando el combate con espada.;
 example2_training_field_003;;;;;;;;;Recuerden que luego podrán aprender a utilizar el arma que ustedes quieran, sin embargo todos ustedes deben ser capaces de manejar una espada correctamente.;
 example2_training_field_004;;;;;;;;;Ya lo saben, lo mismo de siempre, trabajen en sus posturas de combate y sobre todo tengan cuidado al momento de terminar los enfrentamientos.;
@@ -33,14 +33,13 @@ example2_training_field_031;;;;;;;;rafarencio;Jajaja, ya me imagino, seguro que 
 example2_training_field_032;;;;;;;;berto;Me pillaste, estoy algo cansado de siempre luchar contra los más robustos y fuertes.;
 example2_training_field_033;;;;;;;;rafarencio;No pudiste venir a un lugar mejor, aunque tienes que prestar mucha atención, todos mis movimientos tienen un porqué y no pienso explicárselo a nadie así que abre bien los ojos.;
 example2_training_field_034;;;;;;;;berto;Entendido;
-example2_training_field_035;;;;;;;;*;Mientras nos preparamos y hacemos los estiramientos previos, los al rededores se llenan de sonidos de madera chocando contra madera, parece que la gente comenzó a practicar.;
-example2_training_field_036;;;;;;;;;Ya todo listo nos ponemos en posición de combate y nos miramos a los ojos.;
+example2_training_field_036;;;;;;;;*;Ya todo listo nos ponemos en posición de combate y nos miramos a los ojos.;
 example2_training_field_037;;;;;;;;;Miro bien su postura y es algo distinta a lo usual, noto algo peculiar, no apoya los pies del todo en el suelo, solo se apoya con las puntas.;
-example2_training_field_038;;;;;;;;rafarencio;Ven cuando quieras;
+example2_training_field_038;;;;;;;;rafarencio;Ven cuando quieras.;
 example2_training_field_039;;;;;;;;*;Sin más titubear me aferro a mi espada y cargo contra él.;
-example2_training_field_040;;;;;;;;;Ataco con un barrido y él salta hacia atrás, contraataca con un corte vertical.;
+example2_training_field_040;;;;;;rafarencio:dodge;;;Ataco con un barrido y él salta hacia atrás, contraataca con un corte vertical.;
 example2_training_field_041;;;;;;;;;Logro evitarlo pivotando mi cuerpo, gran error.;
-example2_training_field_042;;;;;;;;;Rafa rápidamente reposiciona su espada y la dirige hacia mi cuello, intento mover mi mano izquierda para sujetar su mano agresora pero él la detiene primero y de esa forma termina el primer combate.;
+example2_training_field_042;;;;;;rafarencio:attack;;;Rafa rápidamente reposiciona su espada y la dirige hacia mi cuello, intento mover mi mano izquierda para sujetar su mano agresora pero él la detiene primero y de esa forma termina el primer combate.;
 example2_training_field_043;;;;;;;;berto;Agh, la cagué.;
 example2_training_field_044;;;;;;;;rafarencio;Dime ¿Qué hiciste mal?;
 example2_training_field_045;;;;;;;;berto;Mi error fue haber pivotado, expuse todo mi lado derecho a tu espada.;

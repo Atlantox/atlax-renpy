@@ -3,7 +3,7 @@ init python:
         def __init__(self):
             self.prepared = False
             self.characterSpawnEvents = ['appear', 'pop']
-            self.characterAnimations = ['jump', 'tremble', 'zoom', 'hitl', 'hitr', 'knockl', 'knockr', 'raiser', 'raisel', 'movey']           
+            self.characterAnimations = ['jump', 'tremble', 'zoom', 'hitl', 'hitr', 'knockl', 'knockr', 'raiser', 'raisel', 'movey', 'dodge', 'attack']           
             self.characterContinuousEvents = ['jumping', 'trembling']
             self.characterActionsEvents = ['move', 'destroy', 'behind'] + self.characterAnimations + self.characterContinuousEvents
             self.fixedHeight = Transform(size=(None, config.screen_height), anchor=(0.5, 0.0),)
@@ -44,11 +44,15 @@ init python:
                 'knockl': KnockL, 
                 'knockr': KnockR, 
                 'raisel': RaiseL, 
-                'raiser': RaiseR
+                'raiser': RaiseR,
+
+                
             }
 
             self.twoParameterEvents = {
-                'zoom': MyZoom
+                'zoom': MyZoom,
+                'dodge': Dodge,
+                'attack': Attack
             }
 
             self.onScreenCharacters = []
@@ -392,6 +396,7 @@ init python:
             if character in self.onScreenCharacters:
                 characterProperties = self.characterProperties[character]
                 behind = characterProperties['behind']
+                
                 initialPosition = SetCharacterProperties(
                     characterProperties['x'],
                     characterProperties['y'],

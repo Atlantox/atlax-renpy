@@ -6,10 +6,23 @@ While running game code:
   File "game/script.rpy", line 87, in <module>
     $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 43, in DisplayDialogue
-    finalEmisor = characters[finalEmisor]
-                  ~~~~~~~~~~^^^^^^^^^^^^^
-KeyError: 'Berto'
+  File "game/managers/DialogueManager.rpy", line 46, in DisplayDialogue
+    renpy.say(finalEmisor, finalSentence)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/render.pyx", line 494, in renpy.display.render.render_screen
+  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
+  File "renpy/display/accelerator.pyx", line 1020, in renpy.display.accelerator.RenderTransform.render
+  File "renpy/display/accelerator.pyx", line 439, in renpy.display.accelerator.RenderTransform.render_child
+  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
+  File "renpy/display/accelerator.pyx", line 1043, in renpy.display.accelerator.RenderTransform.render
+  File "renpy/display/accelerator.pyx", line 555, in renpy.display.accelerator.RenderTransform.size_zoom_rotate
+TypeError: must be real number, not tuple
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -25,12 +38,79 @@ Traceback (most recent call last):
   File "game/script.rpy", line 87, in <module>
     $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 43, in DisplayDialogue
-    finalEmisor = characters[finalEmisor]
-                  ~~~~~~~~~~^^^^^^^^^^^^^
-KeyError: 'Berto'
+  File "game/managers/DialogueManager.rpy", line 46, in DisplayDialogue
+    renpy.say(finalEmisor, finalSentence)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/exports/sayexports.py", line 129, in say
+    who(what, *args, **kwargs)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/character.py", line 1565, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/character.py", line 1220, in do_display
+    display_say(who, what, self.do_show, **display_args)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/character.py", line 902, in display_say
+    rv = renpy.ui.interact(mouse="say", type=type, roll_forward=roll_forward)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/ui.py", line 306, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/core.py", line 2154, in interact
+    repeat, rv = self.interact_core(
+                 ~~~~~~~~~~~~~~~~~~^
+        preloads=preloads,
+        ^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "renpy/display/core.py", line 2833, in interact_core
+    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/core.py", line 1279, in draw_screen
+    surftree = renpy.display.render.render_screen(
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        root_widget,
+        ^^^^^^^^^^^^
+        renpy.config.screen_width,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        renpy.config.screen_height,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "renpy/display/render.pyx", line 494, in renpy.display.render.render_screen
+  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
+  File "renpy/display/layout.py", line 896, in render
+    surf = render(child, width, height, cst, cat)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
+  File "renpy/display/layout.py", line 896, in render
+    surf = render(child, width, height, cst, cat)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
+  File "renpy/display/layout.py", line 896, in render
+    surf = render(child, width, height, cst, cat)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
+  File "renpy/display/transform.py", line 1077, in render
+    return RenderTransform(self).render(width, height, st, at)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/accelerator.pyx", line 1020, in renpy.display.accelerator.RenderTransform.render
+  File "renpy/display/accelerator.pyx", line 439, in renpy.display.accelerator.RenderTransform.render_child
+  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
+  File "renpy/display/transform.py", line 1077, in render
+    return RenderTransform(self).render(width, height, st, at)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/accelerator.pyx", line 1043, in renpy.display.accelerator.RenderTransform.render
+  File "renpy/display/accelerator.pyx", line 555, in renpy.display.accelerator.RenderTransform.size_zoom_rotate
+TypeError: must be real number, not tuple
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Mon Jan 19 18:30:43 2026
+Tue Jan 20 19:16:52 2026
