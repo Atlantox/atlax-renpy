@@ -1,9 +1,9 @@
 ﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English
-ejemplo2_prepare_powerfull_hit_001;;;;;;;;*;Dejo de golpearlo por un momento y preparo mi brazo para darle un gran golpe fuerte.;
+ejemplo2_prepare_powerfull_hit_001;training_field;;;;;rafarencio:pop;;*;Dejo de golpearlo por un momento y preparo mi brazo para darle un gran golpe fuerte.;
 ejemplo2_prepare_powerfull_hit_002;;;;;;;;;Tomo aire y libero mi golpe, puedo ver sus ojos como se fijan en mi puño mientras avanza y veo como esboza una pequeña sonrisa.;
 ejemplo2_prepare_powerfull_hit_003;;;;;;;;;Él realiza una maniobra digna de un circo echándose para atrás como si estuviese jugando limbo.;
-ejemplo2_prepare_powerfull_hit_004;;;;;;rafarencio:dodge;;;Dicho movimiento tira de mis dientes hasta que la tela de su manga se desgarra, despegándose de mi mordisco.;
-ejemplo2_prepare_powerfull_hit_005;;;;red:0.1:1;;;;;De esa forma evita mi golpe al mismo tiempo eleva una de sus piernas y logra impactar una patada cerca de mi cabeza.;
+ejemplo2_prepare_powerfull_hit_004;;;;vpunch;;rafarencio:dodge;;;Dicho movimiento tira de mis dientes hasta que la tela de su manga se desgarra, despegándose de mi mordisco.;
+ejemplo2_prepare_powerfull_hit_005;;;;;;;;;De esa forma evita mi golpe al mismo tiempo eleva una de sus piernas y logra impactar una patada cerca de mi cabeza.;
 ejemplo2_prepare_powerfull_hit_006;;;;;;;;;Me toma unos instantes recomponerme pero cuando enfoco mi mirada hacia él, lo único que veo es una espada de madera volando directo hacia mi.;
 ejemplo2_prepare_powerfull_hit_007;;;;;;;;;Sin tiempo a reaccionar su espada impacta contra mi cuello y luego cae al suelo.;
 ejemplo2_prepare_powerfull_hit_008;;;;;;;;;Él me habla con una voz agitada ;
@@ -25,9 +25,9 @@ ejemplo2_prepare_powerfull_hit_023;;;;;;;;*;Su rostro cambia por completo a uno 
 ejemplo2_prepare_powerfull_hit_024;;;;;;;;rafarencio;Oye no estás parando de sangrar, creo que deberías ir a revisarte.;
 ejemplo2_prepare_powerfull_hit_025;;;;;;;;*;Esta vez me llevo la mano a la boca y veo que en efecto sigo sangrando.;
 ejemplo2_prepare_powerfull_hit_026;;;;;;;;berto;Ay…. Yo quería seguir luchando.;
-ejemplo2_prepare_powerfull_hit_027;;;;;;;;*;Él se abre de brazos.;
+*;training_field;;;;;rafarencio:pop;;*;Él se abre de brazos.;
 ejemplo2_prepare_powerfull_hit_028;;;;;;;;rafarencio;La próxima vez será, aquí estaré para enseñarte cómo se esquiva.;
 ejemplo2_prepare_powerfull_hit_029;;;;;;;;berto;Claro.;
-ejemplo2_prepare_powerfull_hit_030;;;;;;rafarencio:destroy;;*;Sin más, me acerco al instructor y solo con verme señala la puerta para que me vaya a enfermería.;
+ejemplo2_prepare_powerfull_hit_030;;;;;;rafarencio:destroy:1;;*;Sin más, me acerco al instructor y solo con verme señala la puerta para que me vaya a enfermería.;
 #linear;fade:1:3:1;;;;;;;;;
-to_ruined_future;;ejemplo2/ejemplo2_005_ruined_future;;;;;;;;
+to_ruined_future;ejemplo2/ejemplo2_005_ruined_future;;;;;;;;;

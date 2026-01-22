@@ -124,9 +124,10 @@ init python:
 
         def BlinkImage(self, imageToShow, times, duration):
             for _ in range(times):
-                renpy.show(imageToShow, layer='master', tag="bg")
-                renpy.pause(duration)
-                renpy.show('bg ' + backgroundManager.currentBgName, layer='master', tag='bg')
+                renpy.show('bg red_2', layer='screens')
+                renpy.pause(duration)                
+                renpy.hide(imageToShow, layer="screens")
+                #renpy.show('bg ' + backgroundManager.currentBgName, layer='master', tag='bg')
                 renpy.pause(duration)
 
         def ResetBackgroundManager(self):

@@ -6,10 +6,10 @@ While running game code:
   File "game/script.rpy", line 39, in <module>
     $ dialogueManager.HandleDialogueEnd()
                   ~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 245, in HandleDialogueEnd
+  File "game/managers/DialogueManager.rpy", line 255, in HandleDialogueEnd
     self.GoToNewDialogue(nextDialogue)
     ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 285, in GoToNewDialogue
+  File "game/managers/DialogueManager.rpy", line 295, in GoToNewDialogue
     self.LoadDialogue()
     ~~~~~~~~~~~~~~~~~^^
   File "game/managers/DialogueManager.rpy", line 72, in LoadDialogue
@@ -31,10 +31,10 @@ Traceback (most recent call last):
   File "game/script.rpy", line 39, in <module>
     $ dialogueManager.HandleDialogueEnd()
                   ~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 245, in HandleDialogueEnd
+  File "game/managers/DialogueManager.rpy", line 255, in HandleDialogueEnd
     self.GoToNewDialogue(nextDialogue)
     ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 285, in GoToNewDialogue
+  File "game/managers/DialogueManager.rpy", line 295, in GoToNewDialogue
     self.LoadDialogue()
     ~~~~~~~~~~~~~~~~~^^
   File "game/managers/DialogueManager.rpy", line 72, in LoadDialogue
@@ -47,4 +47,4 @@ Exception: Couldn't find file 'scenes/.csv'.
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Wed Jan 21 20:19:20 2026
+Thu Jan 22 19:55:46 2026

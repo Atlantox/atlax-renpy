@@ -3,7 +3,12 @@ init python:
         def __init__(self):
             self.prepared = False
             self.characterSpawnEvents = ['appear', 'pop']
-            self.characterAnimations = ['jump', 'tremble', 'zoom', 'hitl', 'hitr', 'knockl', 'knockr', 'raiser', 'raisel', 'movey', 'dodge', 'attack']           
+            self.characterAnimations = ['jump', 'tremble', 'zoom', 'hitl', 'hitr', 'knockl', 'knockr', 'raiser', 'raisel', 'movey',
+                # Combat animations
+                'dodge', 
+                'attack',
+                'damage',
+                ]          
             self.characterContinuousEvents = ['jumping', 'trembling']
             self.characterActionsEvents = ['move', 'destroy', 'behind'] + self.characterAnimations + self.characterContinuousEvents
             self.fixedHeight = Transform(size=(None, config.screen_height), anchor=(0.5, 0.0),)
@@ -46,11 +51,14 @@ init python:
                 'raisel': RaiseL, 
                 'raiser': RaiseR,
 
-                
+                # Combat
+                'damage': Damage,
             }
 
             self.twoParameterEvents = {
                 'zoom': MyZoom,
+
+                # Combat
                 'dodge': Dodge,
                 'attack': Attack
             }
@@ -153,10 +161,10 @@ init python:
                     appearTime = 0
                     multiAppearTime = 0
                     if len(event['params']) > 1:
-                        appearPosition = float(event['params'][1])
+                        appearPosition = float(event['params'][1]) / 100                 
                 else:
                     if len(event['params']) > 1:
-                        appearPosition = int(event['params'][1])
+                        appearPosition = float(event['params'][1]) / 100                 
                         multiAppearTime = appearPosition                     
 
                     if len(event['params']) > 2:

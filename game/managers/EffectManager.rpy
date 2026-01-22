@@ -25,7 +25,7 @@ init python:
             recievedEffects = [e.strip() for e in effectPrompt.split(',')]
 
             for effect in recievedEffects:
-                effectSplits = [e.strip() for e in effect.split(':')]
+                effectSplits = [e.replace('_', ' ').strip() for e in effect.split(':')]
                 effectName = effectSplits[0]
 
                 if effectName in self.availableSingleEffects:
@@ -61,7 +61,7 @@ init python:
             if len(effectSplits) > 2:
                 times = int(effectSplits[2])
 
-            imageToShow = 'bg ' + effectName                        
+            imageToShow = 'bg ' + effectName.replace(' ', '_')                    
             backgroundManager.postHandleEvents.append('BlinkImage')
             backgroundManager.postHandleParams.append([imageToShow, times, duration])
         

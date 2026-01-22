@@ -22,7 +22,7 @@ label start:
 
     $ currentKey = None
     $ currentDialogue = None    
-    $ firstDialogue = 'ejemplo2/ejemplo2_001_training_field'
+    $ firstDialogue = 'ejemplo2/ejemplo2_004_prepare_powerfull_hit'
     $ lastEmisor = ''
 
     $ routerManager = RouterManager()

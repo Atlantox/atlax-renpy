@@ -13,3 +13,8 @@ transform Attack(x):
 
     linear 0.2: 
         zoom 1
+
+transform Damage(x):
+    xalign x
+    linear 0.1 xalign (x + 0.02)
+    linear 0.1 xalign x

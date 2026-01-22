@@ -14,7 +14,6 @@ transform Jumping(x, intensity):
     0.8
     repeat
 
-
 transform Tremble(x, times):
     animation
     xalign x

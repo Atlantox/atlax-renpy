@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/animations/combat.rpy", line 12: Line is indented, but the preceding ATL statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    zoom 1.15
-    ^
+File "game/managers/EffectManager.rpy", line 28: invalid syntax
+    effectSplits = [e..replace('_', ' ')strip() for e in effect.split(':')]
+                          ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Tue Jan 20 19:50:10 2026
+Thu Jan 22 19:40:39 2026

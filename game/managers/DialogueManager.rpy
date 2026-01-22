@@ -81,6 +81,16 @@ init python:
             self.headers = [s.strip().replace('\ufeff', '') for s in lines[0].split(';')]
             self.rawDialogues = lines[1:] # Ignoramos la primera fila que es la leyenda
 
+            dialogueCheckpoint = True
+            if dialogueCheckpoint:
+                finalDialogues = []
+                for i in range(len(self.rawDialogues)):
+                    line = self.rawDialogues[i]
+                    if line[0] == '*':
+                        self.rawDialogues = self.rawDialogues[i:]
+                        break
+
+
         def PrepareDialogues(self):
             endReached = False
             for dialogue in self.rawDialogues:
