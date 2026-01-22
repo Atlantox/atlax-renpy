@@ -1,16 +1,16 @@
-2026-01-20 23:50:42 UTC
+2026-01-22 00:17:30 UTC
 Windows-11-10.0.26200-SP0
 Ren'Py 8.5.2.26010301
 
-Early init took 23 ms
+Early init took 22 ms
 Loading error handling took 12 ms
-Loading script took 49 ms
-Loading save slot metadata took 11 ms
+Loading script took 48 ms
+Loading save slot metadata took 10 ms
 Loading persistent took 0 ms
-Running init code took 21 ms
-Loading analysis data took 1 ms
+Running init code took 19 ms
+Loading analysis data took 2 ms
 Analyze and compile ATL took 1 ms
-Reloading save slot metadata took 4 ms
+Reloading save slot metadata took 3 ms
 Dump and make backups took 17 ms
 Cleaning cache took 0 ms
 Making clean stores took 0 ms
@@ -18,7 +18,7 @@ Initial gc took 15 ms
 DPI scale factor: 1.500000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: Disabled thread optimizations.
-Creating interface object took 128 ms
+Creating interface object took 135 ms
 Init translation took 0 ms
 Cleaning stores took 0 ms
 Load screen analysis took 9 ms
@@ -26,8 +26,8 @@ Analyze screens took 0 ms
 Save screen analysis took 0 ms
 Save pyanalysis took 0 ms
 Save bytecode took 0 ms
-Running _start took 0 ms
-Interface start took 1070 ms
+Running _start took 1 ms
+Interface start took 1078 ms
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 2560, 1440)
@@ -41,3 +41,47 @@ Screen sizes: virtual=(1920, 1080) physical=(2560, 1334) drawable=(2560, 1334)
 Maximum texture size: 4096x4096
 Screen sizes: virtual=(1920, 1080) physical=(2560, 1334) drawable=(2560, 1334)
 Maximum texture size: 4096x4096
+DisplayOverlayImage
+['red', 0.1, True]
+
+Full traceback:
+  File "game/script.rpy", line 39, in script
+    $ dialogueManager.HandleDialogueEnd()
+  File "renpy/ast.py", line 1187, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1273, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/script.rpy", line 39, in <module>
+    $ dialogueManager.HandleDialogueEnd()
+                  ~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 245, in HandleDialogueEnd
+    self.GoToNewDialogue(nextDialogue)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "game/managers/DialogueManager.rpy", line 285, in GoToNewDialogue
+    self.LoadDialogue()
+    ~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 72, in LoadDialogue
+    with open(renpy.loader.transfn("scenes/" + self.currentFile + '.csv'), mode="r", encoding="utf-8") as f:
+              ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                   
+  File "renpy/loader.py", line 800, in transfn
+    raise Exception("Couldn't find file '%s'." % name)
+Exception: Couldn't find file 'scenes/.csv'.
+
+While running game code:
+  File "game/script.rpy", line 39, in script
+    $ dialogueManager.HandleDialogueEnd()
+  File "game/script.rpy", line 39, in <module>
+    $ dialogueManager.HandleDialogueEnd()
+                  ~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 245, in HandleDialogueEnd
+    self.GoToNewDialogue(nextDialogue)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "game/managers/DialogueManager.rpy", line 285, in GoToNewDialogue
+    self.LoadDialogue()
+    ~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 72, in LoadDialogue
+    with open(renpy.loader.transfn("scenes/" + self.currentFile + '.csv'), mode="r", encoding="utf-8") as f:
+              ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                   
+Exception: Couldn't find file 'scenes/.csv'.

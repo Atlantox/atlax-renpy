@@ -1,116 +1,50 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 87, in script
-    $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
-  File "game/script.rpy", line 87, in <module>
-    $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 46, in DisplayDialogue
-    renpy.say(finalEmisor, finalSentence)
-    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/render.pyx", line 494, in renpy.display.render.render_screen
-  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
-  File "renpy/display/accelerator.pyx", line 1020, in renpy.display.accelerator.RenderTransform.render
-  File "renpy/display/accelerator.pyx", line 439, in renpy.display.accelerator.RenderTransform.render_child
-  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
-  File "renpy/display/accelerator.pyx", line 1043, in renpy.display.accelerator.RenderTransform.render
-  File "renpy/display/accelerator.pyx", line 555, in renpy.display.accelerator.RenderTransform.size_zoom_rotate
-TypeError: must be real number, not tuple
+  File "game/script.rpy", line 39, in script
+    $ dialogueManager.HandleDialogueEnd()
+  File "game/script.rpy", line 39, in <module>
+    $ dialogueManager.HandleDialogueEnd()
+                  ~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 245, in HandleDialogueEnd
+    self.GoToNewDialogue(nextDialogue)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "game/managers/DialogueManager.rpy", line 285, in GoToNewDialogue
+    self.LoadDialogue()
+    ~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 72, in LoadDialogue
+    with open(renpy.loader.transfn("scenes/" + self.currentFile + '.csv'), mode="r", encoding="utf-8") as f:
+              ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                   
+Exception: Couldn't find file 'scenes/.csv'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 87, in script
-    $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
+  File "game/script.rpy", line 39, in script
+    $ dialogueManager.HandleDialogueEnd()
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 87, in <module>
-    $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 46, in DisplayDialogue
-    renpy.say(finalEmisor, finalSentence)
-    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/exports/sayexports.py", line 129, in say
-    who(what, *args, **kwargs)
-    ~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/character.py", line 1565, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
-    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/character.py", line 1220, in do_display
-    display_say(who, what, self.do_show, **display_args)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/character.py", line 902, in display_say
-    rv = renpy.ui.interact(mouse="say", type=type, roll_forward=roll_forward)
-         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/ui.py", line 306, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/core.py", line 2154, in interact
-    repeat, rv = self.interact_core(
-                 ~~~~~~~~~~~~~~~~~~^
-        preloads=preloads,
-        ^^^^^^^^^^^^^^^^^^
-    ...<4 lines>...
-        **kwargs,
-        ^^^^^^^^^
-    )
-    ^
-  File "renpy/display/core.py", line 2833, in interact_core
-    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
-    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/core.py", line 1279, in draw_screen
-    surftree = renpy.display.render.render_screen(
-               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        root_widget,
-        ^^^^^^^^^^^^
-        renpy.config.screen_width,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^
-        renpy.config.screen_height,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "renpy/display/render.pyx", line 494, in renpy.display.render.render_screen
-  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
-  File "renpy/display/layout.py", line 896, in render
-    surf = render(child, width, height, cst, cat)
-           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
-  File "renpy/display/layout.py", line 896, in render
-    surf = render(child, width, height, cst, cat)
-           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
-  File "renpy/display/layout.py", line 896, in render
-    surf = render(child, width, height, cst, cat)
-           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
-  File "renpy/display/transform.py", line 1077, in render
-    return RenderTransform(self).render(width, height, st, at)
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/accelerator.pyx", line 1020, in renpy.display.accelerator.RenderTransform.render
-  File "renpy/display/accelerator.pyx", line 439, in renpy.display.accelerator.RenderTransform.render_child
-  File "renpy/display/render.pyx", line 267, in renpy.display.render.render
-  File "renpy/display/transform.py", line 1077, in render
-    return RenderTransform(self).render(width, height, st, at)
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/accelerator.pyx", line 1043, in renpy.display.accelerator.RenderTransform.render
-  File "renpy/display/accelerator.pyx", line 555, in renpy.display.accelerator.RenderTransform.size_zoom_rotate
-TypeError: must be real number, not tuple
+  File "game/script.rpy", line 39, in <module>
+    $ dialogueManager.HandleDialogueEnd()
+                  ~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 245, in HandleDialogueEnd
+    self.GoToNewDialogue(nextDialogue)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "game/managers/DialogueManager.rpy", line 285, in GoToNewDialogue
+    self.LoadDialogue()
+    ~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 72, in LoadDialogue
+    with open(renpy.loader.transfn("scenes/" + self.currentFile + '.csv'), mode="r", encoding="utf-8") as f:
+              ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                   
+  File "renpy/loader.py", line 800, in transfn
+    raise Exception("Couldn't find file '%s'." % name)
+Exception: Couldn't find file 'scenes/.csv'.
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Tue Jan 20 19:16:52 2026
+Wed Jan 21 20:19:20 2026

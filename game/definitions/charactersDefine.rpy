@@ -13,6 +13,7 @@ define mechero = Character('Mechero', color='#19f060')
 
 # Ejemplo2
 define rafarencio = Character('Rafarencio', color='#ffad65')
+define unknown = Character('???', color='#ffffff')
 define instructor = Character('Instructor', color='#c6c6c6')
 define flint = Character('Flint', color='#396c97')
 
@@ -36,6 +37,7 @@ define characters = {
     # Ejemplo2
     'rafarencio': rafarencio,
     'instructor': instructor,
+    '???': unknown,
     'flint': flint,
 }
 
