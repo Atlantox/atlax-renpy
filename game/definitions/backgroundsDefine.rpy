@@ -1,7 +1,7 @@
 define bgpath = 'images/backgrounds/'
 
 image bg flash =            bgpath + 'flash.png'
-image bg red_2 =              bgpath + 'red 2.png'
+image bg red =              bgpath + 'red.png'
 image bg blackout =         bgpath + 'blackout.png'
 image bg suffocation =      bgpath + 'suffocation.png'
 
@@ -14,3 +14,6 @@ image bg puerkokun =        bgpath + 'puerkokun.png'
 image bg training_field =   bgpath + 'training field.png'
 image bg house_inside =   bgpath + 'house inside.png'
 image bg house_front =   bgpath + 'house front.png'
+image bg smoke =   bgpath + 'smoke.png'
+image bg forest =   bgpath + 'forest.png'
+image bg factory =   bgpath + 'factory.png'

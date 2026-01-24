@@ -244,12 +244,6 @@ init python:
                 eventManager.DestroyAllCharacters()
                 eventManager.ResetEventManager()
                 
-                backgroundManager.transformsToApply = {'any': Dissolve(2)}
-                backgroundManager.currentBgName = 'blackout'
-                backgroundManager.HandleBackground()
-                backgroundManager.ResetBackgroundManager()
-
-                
                 self.clearAfterNewDialogue = False
 
             self.GoToNewDialogue(nextDialogue)
@@ -287,7 +281,9 @@ init python:
 
         def HandleTransition(self):
             self.terminateTransition(*self.terminateParams)
-            renpy.pause(self.terminatePause, hard=True)
+            renpy.pause(self.terminatePause / 2, hard=True)
+            backgroundManager.DestroyCurrentBackground()
+            renpy.pause(self.terminatePause / 2, hard=True)
 
         def GoToNewDialogue(self, newDialogue):
             self.currentFile = newDialogue

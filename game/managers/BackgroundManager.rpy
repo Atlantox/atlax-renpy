@@ -96,8 +96,6 @@ init python:
 
         def HandlePostEventsEffects(self):
             for i in range(len(self.postHandleEvents)):
-                print(self.postHandleEvents[i])
-                print(self.postHandleParams[i])
                 # Calling functions with corresponded params
                 if self.postHandleEvents[i] == 'DisplayOverlayImage':
                     self.DisplayOverlayImage(*self.postHandleParams[i])
@@ -111,11 +109,12 @@ init python:
 
         def DisplayOverlayImage(self, bgName, opacity, isBackground):
             if isBackground:
-                displayTransform = Transform(alpha=opacity)
+                displayTransform = [FromHideToShow(opacity)]
             else:
-                displayTransform = ItemOnScreen(opacity)
+                displayTransform = [ItemOnScreen(opacity)]
                 
-            renpy.show(bgName, at_list=[displayTransform], layer='master')
+            # que aparezca con alpha 0 hasta el indicado
+            renpy.show(bgName, at_list=displayTransform, layer='master')
 
         def DestroyOverlayImage(self, bgName):
             renpy.show(bgName, at_list=[HidingImage()])
@@ -127,7 +126,6 @@ init python:
                 renpy.show('bg red_2', layer='screens')
                 renpy.pause(duration)                
                 renpy.hide(imageToShow, layer="screens")
-                #renpy.show('bg ' + backgroundManager.currentBgName, layer='master', tag='bg')
                 renpy.pause(duration)
 
         def ResetBackgroundManager(self):
@@ -139,3 +137,8 @@ init python:
 
             self.postHandleEvents = []
             self.postHandleParams = []
+
+        def DestroyCurrentBackground(self):
+            commandString = 'bg ' + self.currentBgName
+            renpy.hide(commandString, layer='master')   
+            self.ResetBackgroundManager()

@@ -15,6 +15,9 @@ define mechero = Character('Mechero', color='#19f060')
 define rafarencio = Character('Rafarencio', color='#ffad65')
 define unknown = Character('???', color='#ffffff')
 define instructor = Character('Instructor', color='#c6c6c6')
+define furious_soldier = Character('Soldado furioso', color='#ff6060')
+define soldier = Character('Soldado', color='#ff6060')
+define flint = Character('Flint', color='#396c97')
 define flint = Character('Flint', color='#396c97')
 
 define characters = {
@@ -38,7 +41,10 @@ define characters = {
     'rafarencio': rafarencio,
     'instructor': instructor,
     '???': unknown,
+    'obrero': flint,
     'flint': flint,
+    'soldado furioso': furious_soldier,
+    'soldado': soldier,
 }
 
 define languageDependingNames = {

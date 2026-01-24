@@ -143,6 +143,13 @@ transform ItemOnScreen(opacity):
         alpha opacity
         yalign 0.2
 
+transform FromHideToShow(opacity):
+    alpha 0.0
+
+    linear 1:
+        alpha opacity
+    
+
 transform DisappearCharacter(duration):
     linear duration:
         alpha 0
