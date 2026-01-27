@@ -139,6 +139,9 @@ init python:
             self.postHandleParams = []
 
         def DestroyCurrentBackground(self):
+            if self.currentBgName is None:
+                return
+            
             commandString = 'bg ' + self.currentBgName
             renpy.hide(commandString, layer='master')   
             self.ResetBackgroundManager()

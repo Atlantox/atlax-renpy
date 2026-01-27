@@ -18,7 +18,7 @@ define instructor = Character('Instructor', color='#c6c6c6')
 define furious_soldier = Character('Soldado furioso', color='#ff6060')
 define soldier = Character('Soldado', color='#ff6060')
 define flint = Character('Flint', color='#396c97')
-define flint = Character('Flint', color='#396c97')
+define worker = Character('Flint', color='#396c97')
 
 define characters = {
     '*': None,
@@ -41,7 +41,7 @@ define characters = {
     'rafarencio': rafarencio,
     'instructor': instructor,
     '???': unknown,
-    'obrero': flint,
+    'obrero': worker,
     'flint': flint,
     'soldado furioso': furious_soldier,
     'soldado': soldier,

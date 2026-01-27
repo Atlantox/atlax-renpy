@@ -2,7 +2,7 @@
 ejemplo2_prepare_powerfull_hit_001;;;;;;;;*;Dejo de golpearlo por un momento y preparo mi brazo para darle un gran golpe fuerte.;;;;
 ejemplo2_prepare_powerfull_hit_002;;;;;;;;;Tomo aire y libero mi golpe, puedo ver sus ojos como se fijan en mi puño mientras avanza y veo como esboza una pequeña sonrisa.;;;;
 ejemplo2_prepare_powerfull_hit_003;;;;;;;;;Él realiza una maniobra digna de un circo echándose para atrás como si estuviese jugando limbo.;;;;
-ejemplo2_prepare_powerfull_hit_004;;;;vpunch;;rafarencio:dodge;;;Dicho movimiento tira de mis dientes hasta que la tela de su manga se desgarra, despegándose de mi mordisco.;;;;
+ejemplo2_prepare_powerfull_hit_004;;;;vpunch;;rafarencio pain:dodge;;;Dicho movimiento tira de mis dientes hasta que la tela de su manga se desgarra, despegándose de mi mordisco.;;;;
 ejemplo2_prepare_powerfull_hit_005;;;;;;;;;De esa forma evita mi golpe al mismo tiempo eleva una de sus piernas y logra impactar una patada cerca de mi cabeza.;;;;
 ejemplo2_prepare_powerfull_hit_006;;;;;;;;;Me toma unos instantes recomponerme pero cuando enfoco mi mirada hacia él, lo único que veo es una espada de madera volando directo hacia mi.;;;;
 ejemplo2_prepare_powerfull_hit_007;;;;;;;;;Sin tiempo a reaccionar su espada impacta contra mi cuello y luego cae al suelo.;;;;
@@ -17,7 +17,7 @@ ejemplo2_prepare_powerfull_hit_015;;;;;;;;*;Hago caso a sus palabras y uso mi le
 ejemplo2_prepare_powerfull_hit_016;;;;;;;;;Me topo con el sabor característico y metálico de mi sangre.;;;;
 ejemplo2_prepare_powerfull_hit_017;;;;;;;;;Bastante cansado respondo a Rafa.;;;;g
 ejemplo2_prepare_powerfull_hit_018;;;;;;;;berto;Vaya… necesitaba ir al quiropráctico por el golpe en mi cuello y… parece que ahora tendré que ir a un dentista también.;;;;
-ejemplo2_prepare_powerfull_hit_019;;;;;;;;rafarencio;Oye, no estuviste nada mal, me tomó por sorpresa ese mordisco.;;;;
+ejemplo2_prepare_powerfull_hit_019;;;;;;rafarencio:0.8;;rafarencio;Oye, no estuviste nada mal, me tomó por sorpresa ese mordisco.;;;;
 ejemplo2_prepare_powerfull_hit_020;;;;;;;;berto;¿Ah sí? La verdad es que vi la oportunidad y no la dejé escapar.;;;;
 ejemplo2_prepare_powerfull_hit_021;;;;;;;;;Fue realmente frustrante intentar agarrarte de la muñeca 12 veces sin éxito.;;;;
 ejemplo2_prepare_powerfull_hit_022;;;;;;rafarencio:jump;;rafarencio;¡Jajajaja! Y créeme que disfrute cada intento fallido.;;;;

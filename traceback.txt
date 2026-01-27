@@ -1,36 +1,40 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 39, in script
-    $ dialogueManager.HandleDialogueEnd()
-  File "game/script.rpy", line 39, in <module>
-    $ dialogueManager.HandleDialogueEnd()
-                  ~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 249, in HandleDialogueEnd
-    self.GoToNewDialogue(nextDialogue)
-                         ^^^^^^^^^^^^ 
-UnboundLocalError: cannot access local variable 'nextDialogue' where it is not associated with a value
+  File "game/script.rpy", line 62, in script
+    $ eventManager.PrepareEvents(dialogue['Events'])
+  File "game/script.rpy", line 62, in <module>
+    $ eventManager.PrepareEvents(dialogue['Events'])
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 112, in PrepareEvents
+    self.PrepareCharacterOnScreen(currentEvent)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 149, in PrepareCharacterOnScreen
+    raise Exception('La acción "' + action + '" para los personajes "' + str(buffer['characters']) + '" no existe')
+Exception: La acción "70" para los personajes "[{'name': 'rafarencio', 'fullname': 'rafarencio old'}]" no existe
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 39, in script
-    $ dialogueManager.HandleDialogueEnd()
+  File "game/script.rpy", line 62, in script
+    $ eventManager.PrepareEvents(dialogue['Events'])
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 39, in <module>
-    $ dialogueManager.HandleDialogueEnd()
-                  ~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 249, in HandleDialogueEnd
-    self.GoToNewDialogue(nextDialogue)
-                         ^^^^^^^^^^^^ 
-UnboundLocalError: cannot access local variable 'nextDialogue' where it is not associated with a value
+  File "game/script.rpy", line 62, in <module>
+    $ eventManager.PrepareEvents(dialogue['Events'])
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 112, in PrepareEvents
+    self.PrepareCharacterOnScreen(currentEvent)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 149, in PrepareCharacterOnScreen
+    raise Exception('La acción "' + action + '" para los personajes "' + str(buffer['characters']) + '" no existe')
+Exception: La acción "70" para los personajes "[{'name': 'rafarencio', 'fullname': 'rafarencio old'}]" no existe
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Sat Jan 24 16:43:26 2026
+Tue Jan 27 19:37:24 2026

@@ -117,7 +117,8 @@ init python:
             if len(eventData['params']) >= 1:
                 spawnMethod = eventData['params'][0]
 
-            if spawnMethod not in self.characterSpawnEvents:
+
+            if spawnMethod not in self.characterSpawnEvents and not spawnMethod.isnumeric():
                 raise Exception('El método de aparición "' + action + '" para el personaje "' + character_name + '" no existe')             
 
             buffer = eventData
@@ -134,10 +135,14 @@ init python:
                 return
 
             if len(buffer['params']) == 1:
-                if buffer['params'][0].isnumeric(): # The param is the sprite change duration
-                    # It's a sprite change
+                try:
+                    result = float(buffer['params'][0])
+                    # The param is a sprite change duration
                     self.onScreenCharactersQueue.append(buffer)
                     return
+                except Exception as e:
+                    # The param is an event name
+                    pass                    
 
             action = buffer['params'][0]
             if action not in self.characterActionsEvents:
@@ -229,6 +234,7 @@ init python:
                 self.ShowCharacter(character['fullname'])
 
             renpy.with_statement(Dissolve(changeTime))
+            renpy.pause(changeTime)
 
         def HandleMovement(self, event):            
             movements = {}
@@ -289,7 +295,7 @@ init python:
 
             for character in event['characters']:
                 animation = self.twoParameterEvents[event['action']](*params)
-                self.ShowCharacter(character['name'], [animation])
+                self.ShowCharacter(character['fullname'], [animation])
 
                 if event['action'] == 'zoom':
                     self.characterProperties[character['name']]['zoom'] = params[1]
@@ -337,7 +343,7 @@ init python:
                     yPos, 
                     duration)
                 
-                self.ShowCharacter(character['name'], [movement, self.fixedHeight])
+                self.ShowCharacter(character['fullname'], [movement, self.fixedHeight])
                 self.characterProperties[character['name']]['y'] = yPos
 
         def HandleDestroy(self, event):

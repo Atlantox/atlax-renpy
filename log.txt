@@ -1,33 +1,33 @@
-2026-01-24 20:42:51 UTC
+2026-01-27 23:31:45 UTC
 Windows-11-10.0.26200-SP0
 Ren'Py 8.5.2.26010301
 
-Early init took 23 ms
-Loading error handling took 11 ms
-Loading script took 47 ms
-Loading save slot metadata took 9 ms
+Early init took 26 ms
+Loading error handling took 15 ms
+Loading script took 61 ms
+Loading save slot metadata took 17 ms
 Loading persistent took 0 ms
-Running init code took 19 ms
-Loading analysis data took 1 ms
+Running init code took 29 ms
+Loading analysis data took 3 ms
 Analyze and compile ATL took 1 ms
 Reloading save slot metadata took 4 ms
-Dump and make backups took 17 ms
+Dump and make backups took 28 ms
 Cleaning cache took 0 ms
 Making clean stores took 0 ms
-Initial gc took 16 ms
+Initial gc took 24 ms
 DPI scale factor: 1.500000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: Disabled thread optimizations.
-Creating interface object took 146 ms
+Creating interface object took 256 ms
 Init translation took 0 ms
 Cleaning stores took 0 ms
-Load screen analysis took 9 ms
-Analyze screens took 0 ms
+Load screen analysis took 20 ms
+Analyze screens took 1 ms
 Save screen analysis took 0 ms
 Save pyanalysis took 0 ms
 Save bytecode took 0 ms
-Running _start took 0 ms
-Interface start took 1076 ms
+Running _start took 1 ms
+Interface start took 1502 ms
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 2560, 1440)
@@ -43,29 +43,33 @@ Screen sizes: virtual=(1920, 1080) physical=(2560, 1334) drawable=(2560, 1334)
 Maximum texture size: 4096x4096
 
 Full traceback:
-  File "game/script.rpy", line 39, in script
-    $ dialogueManager.HandleDialogueEnd()
+  File "game/script.rpy", line 62, in script
+    $ eventManager.PrepareEvents(dialogue['Events'])
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 39, in <module>
-    $ dialogueManager.HandleDialogueEnd()
-                  ~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 249, in HandleDialogueEnd
-    self.GoToNewDialogue(nextDialogue)
-                         ^^^^^^^^^^^^ 
-UnboundLocalError: cannot access local variable 'nextDialogue' where it is not associated with a value
+  File "game/script.rpy", line 62, in <module>
+    $ eventManager.PrepareEvents(dialogue['Events'])
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 112, in PrepareEvents
+    self.PrepareCharacterOnScreen(currentEvent)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 149, in PrepareCharacterOnScreen
+    raise Exception('La acción "' + action + '" para los personajes "' + str(buffer['characters']) + '" no existe')
+Exception: La acción "70" para los personajes "[{'name': 'rafarencio', 'fullname': 'rafarencio old'}]" no existe
 
 While running game code:
-  File "game/script.rpy", line 39, in script
-    $ dialogueManager.HandleDialogueEnd()
-  File "game/script.rpy", line 39, in <module>
-    $ dialogueManager.HandleDialogueEnd()
-                  ~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 249, in HandleDialogueEnd
-    self.GoToNewDialogue(nextDialogue)
-                         ^^^^^^^^^^^^ 
-UnboundLocalError: cannot access local variable 'nextDialogue' where it is not associated with a value
+  File "game/script.rpy", line 62, in script
+    $ eventManager.PrepareEvents(dialogue['Events'])
+  File "game/script.rpy", line 62, in <module>
+    $ eventManager.PrepareEvents(dialogue['Events'])
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 112, in PrepareEvents
+    self.PrepareCharacterOnScreen(currentEvent)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 149, in PrepareCharacterOnScreen
+    raise Exception('La acción "' + action + '" para los personajes "' + str(buffer['characters']) + '" no existe')
+Exception: La acción "70" para los personajes "[{'name': 'rafarencio', 'fullname': 'rafarencio old'}]" no existe
