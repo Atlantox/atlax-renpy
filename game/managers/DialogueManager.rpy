@@ -42,7 +42,7 @@ init python:
 
             finalEmisor = characters[finalEmisor]
                 
-            finalSentence = finalSentence.replace('#.,',';')
+            finalSentence = finalSentence.replace('#.,',';').replace('%','%%')
             renpy.say(finalEmisor, finalSentence)
             delayManager.textSpeedDelay = False
 
