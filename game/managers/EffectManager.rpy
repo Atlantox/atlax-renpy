@@ -12,6 +12,7 @@ init python:
             self.defaultWarp = 1.1
             self.defaultSingleEffetDuration = 0.1
             self.defaultBlinkTimes = 4
+            self.defaultBlinkOpacity = 1
             self.defaultOverlayOpacity = 1
 
             self.continuousEffectQueue = []
@@ -54,6 +55,7 @@ init python:
             effectName = effectSplits[0]
             duration = self.defaultSingleEffetDuration
             times = self.defaultBlinkTimes
+            opacity = self.defaultBlinkOpacity
 
             if len(effectSplits) > 1:
                 duration = float(effectSplits[1])
@@ -61,9 +63,12 @@ init python:
             if len(effectSplits) > 2:
                 times = int(effectSplits[2])
 
+            if len(effectSplits) > 3:
+                opacity = float(effectSplits[3])
+
             imageToShow = 'bg ' + effectName.replace(' ', '_')                    
             backgroundManager.postHandleEvents.append('BlinkImage')
-            backgroundManager.postHandleParams.append([imageToShow, times, duration])
+            backgroundManager.postHandleParams.append([imageToShow, times, duration, opacity])
         
         def PrepareContinuousEffect(self, effectPrompt):
             self.prepared = True

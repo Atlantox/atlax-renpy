@@ -8,6 +8,9 @@ init python:
                 'dodge', 
                 'attack',
                 'damage',
+
+                # Movement animations
+                'goup',
                 ]          
             self.characterContinuousEvents = ['jumping', 'trembling']
             self.characterActionsEvents = ['move', 'destroy', 'behind'] + self.characterAnimations + self.characterContinuousEvents
@@ -53,6 +56,9 @@ init python:
 
                 # Combat
                 'damage': Damage,
+
+                # Movement
+                'goup': GoUp,
             }
 
             self.twoParameterEvents = {
@@ -89,7 +95,7 @@ init python:
 
                     sprite = ''
                     if len(character_data) > 1:
-                        sprite = ''.join(character_data[1:])
+                        sprite = ' '.join(character_data[1:])
 
                     fullname = (character_name + ' ' + sprite).strip()
                 
@@ -396,7 +402,7 @@ init python:
                     self.ResetCharacterPosition(character)
                 else:
                     animation = Trembling(self.characterProperties[character['name']]['x'])
-                    self.ShowCharacter(character['name'], [animation, self.fixedHeight])
+                    self.ShowCharacter(character['fullname'], [self.fixedHeight, animation])
 
         def ResetCharacterPosition(self, character):
             position = Position(xalign=self.characterProperties[character['name']]['x'])
@@ -407,8 +413,9 @@ init python:
             final_at_list = at_list
             behind = []
 
-            if character in self.onScreenCharacters:
-                characterProperties = self.characterProperties[character]
+            characterName = character.split(' ')[0]
+            if characterName in self.onScreenCharacters:
+                characterProperties = self.characterProperties[characterName]
                 behind = characterProperties['behind']
                 
                 initialPosition = SetCharacterProperties(
@@ -416,6 +423,7 @@ init python:
                     characterProperties['y'],
                     characterProperties['zoom'],
                 )
+                
                 final_at_list = [initialPosition] + at_list
 
             renpy.show(character, at_list=final_at_list, behind=behind)

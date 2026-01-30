@@ -30,17 +30,19 @@ transform Tremble(x, times):
     
 
 transform Trembling(x):
-    xalign x
-    anchor (0.5, 0.0)
-    animation
+    linear 1:   
+        xalign x
 
-    linear 0.05:
-        anchor (0.52, 0.0)
+    block:
+        linear 0.1:            
+            anchor (0.51, 0.0)
 
-    linear 0.05:
-        anchor (0.48, 0.0)
+        linear 0.1:
+            anchor (0.49, 0.0)
+        
+        repeat
 
-    repeat
+    
 
 transform HitR(x, intensity):
     animation    
@@ -164,3 +166,4 @@ transform HidingImage:
 
 # Import here your custom animations files
 $ import animations.combat
+$ import animations.movement

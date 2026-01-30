@@ -121,9 +121,9 @@ init python:
             renpy.pause(1.4)
             renpy.hide(bgName)
 
-        def BlinkImage(self, imageToShow, times, duration):
+        def BlinkImage(self, imageToShow, times, duration, opacity):
             for _ in range(times):
-                renpy.show('bg red_2', layer='screens')
+                renpy.show(imageToShow, layer='screens', at_list=[Transform(alpha=opacity)])
                 renpy.pause(duration)                
                 renpy.hide(imageToShow, layer="screens")
                 renpy.pause(duration)

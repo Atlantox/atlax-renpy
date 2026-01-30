@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/managers/EventManager.rpy", line 142: invalid syntax
-    except Exception e:
-                     ^
+File "game/definitions/imageProperties.rpy", line 4: transform statement expects a non-empty block.
+    transform SetCharacterProperties(x, y, zoomFactor):
+                                                       ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Tue Jan 27 19:03:11 2026
+Thu Jan 29 19:58:10 2026
