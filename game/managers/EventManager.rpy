@@ -402,7 +402,7 @@ init python:
                     self.ResetCharacterPosition(character)
                 else:
                     animation = Trembling(self.characterProperties[character['name']]['x'])
-                    self.ShowCharacter(character['fullname'], [self.fixedHeight, animation])
+                    self.ShowCharacter(character['fullname'], [animation, self.fixedHeight])
 
         def ResetCharacterPosition(self, character):
             position = Position(xalign=self.characterProperties[character['name']]['x'])

@@ -113,8 +113,8 @@ init python:
             else:
                 displayTransform = [ItemOnScreen(opacity)]
                 
-            # que aparezca con alpha 0 hasta el indicado
-            renpy.show(bgName, at_list=displayTransform, layer='master')
+            # que aparezca con alpha 0 hasta el indicado            
+            renpy.show(bgName, at_list=displayTransform, layer='effects2')
 
         def DestroyOverlayImage(self, bgName):
             renpy.show(bgName, at_list=[HidingImage()])

@@ -1,9 +1,9 @@
 ﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English
 ejemplo2_smoke_factory_002;dark_forest;key in the lock;;;;;;berto;No han atacado aún, ¿Habrá pasado algo?;
-ejemplo2_smoke_factory_003;;;;;;rafarencio old right:appear:33;;rafarencio;La orden que nos dieron fue la de esperar a la señal, no nos queda de otra que confiar.;
-ejemplo2_smoke_factory_004;;;;;;rafarencio old right:trembling;;;Si logramos deshabilitar la fábrica, perderán su principal arma, ganaremos la guerra en menos de una semana.;
+ejemplo2_smoke_factory_003;;;;;suffocation:0.5;rafarencio old right:appear:30;;rafarencio;La orden que nos dieron fue la de esperar a la señal, no nos queda de otra que confiar.;
+ejemplo2_smoke_factory_004;;;;;;;;;Si logramos deshabilitar la fábrica, perderán su principal arma, ganaremos la guerra en menos de una semana.;
 ejemplo2_smoke_factory_005;;;;;;;;;De no ser por ese humo, ya habríamos acabado con este conflicto hace mucho tiempo.;
-ejemplo2_smoke_factory_006;;;;;;rafarencio old right:trembling;;berto;Es una pena que no pudiesen terminar las mascarillas a tiempo, ese humo… desde que leímos aquel informe detallando sus efectos he tenido varias pesadillas.;
+ejemplo2_smoke_factory_006;;;;;;;;berto;Es una pena que no pudiesen terminar las mascarillas a tiempo, ese humo… desde que leímos aquel informe detallando sus efectos he tenido varias pesadillas.;
 ejemplo2_smoke_factory_007;;;;;;;;rafarencio;Y no eres el único, por eso mismo debemos terminar con esto, no podemos permitir q-;
 ejemplo2_smoke_factory_008;;;war horn;;;;4;;Pierre se ha puesto en marcha, es nuestro momento.;
 ejemplo2_smoke_factory_009;forest:dissolve:4;;;;;;;*;Rafarencio y yo avanzamos entre la maleza y nos acercamos al complejo, una fábrica de humo mortal.;
@@ -22,9 +22,9 @@ ejemplo2_smoke_factory_021;;;;;;rafarencio old right:move:50:1, rafarencio old r
 ejemplo2_smoke_factory_022;;;;;;rafarencio old right:destroy;;;Balancea un poco su peso sobre mis hombros para decirme que va a entrar.;
 ejemplo2_smoke_factory_023;;;;;;;;;Se cuela por la ventana, espero unos segundos y al no escuchar ninguna respuesta yo también entro.;
 ejemplo2_smoke_factory_024;;;;;;;;;Doy un vistazo rápido y veo la puerta de antes, tiene pegado una especie de sistema de poleas, era una trampa.;
-ejemplo2_smoke_factory_025;;;;;;rafarencio old right:pop:-20;;;Escucho unos leves sonidos en el piso de arriba, lo que respecta en la plana baja parece no haber nadie.;
+ejemplo2_smoke_factory_025;;;;;;rafarencio old right:pop:-20;;;Escucho unos leves sonidos en el piso de arriba, parece que aquí en la planta baja no hay nadie.;
 ejemplo2_smoke_factory_026;;;;;;;;;El sitio está lleno de tuberías por todas partes, suelo, paredes, techo. Sería un desastre si alguna de esas tuberías se rompiese.;
-ejemplo2_smoke_factory_027;;;;;;rafarencio old right:move:20:2;;;Rafa y yo asentimos y decidimos subir las escaleras con cuidado, podría haber más trampas.;
+ejemplo2_smoke_factory_027;;;;;;rafarencio old right:move:20:1.3;;;Rafa y yo asentimos y decidimos subir las escaleras con cuidado, podría haber más trampas.;
 ejemplo2_smoke_factory_028;factory;;;;;;;;Al llegar al segundo piso entramos en un área abierta, vemos a un obrero de espaldas trabajando en un panel.;
 ejemplo2_smoke_factory_029;;;;;;rafarencio old right:move:-20;;;Deberíamos capturarlo e interrogarlo, me acerco hacia él con cautela.;
 ejemplo2_smoke_factory_030;;;metal hit;;;;;;Una puerta abriéndose de golpe interrumpe mis planes. Rápidamente me escondo observando compulsivamente los al rededores esperando que no venga por este lado.;
@@ -35,7 +35,7 @@ ejemplo2_smoke_factory_034;;;;;;;;*;¿El humo? ¿Van a liberarlo? ¡Mierda!;
 ejemplo2_smoke_factory_035;;;;;;;;;El corazón me da un vuelco solo con imaginarme el escenario con los cuerpos del escuadrón de Pierre, sujeto mi espada preparándome para un ataque frontal. No podemos permitir que eso ocurra.;
 ejemplo2_smoke_factory_036;;;;;;;;;Escucho unos vagos susurros, intuyo que son del obrero, no alcanzo a oír lo que dice, esto es grave.;
 ejemplo2_smoke_factory_037;;;;;;;;;Completamente dispuesto a luchar doy un paso afuera, espero que Rafa pueda seg-;
-ejemplo2_smoke_factory_038;;;;;;;;soldado furioso;¿¡Eres un tonto o qué!? ¿Cómo es posible que la puta fábrica de gas no se pueda defender con su propio gas?;
+ejemplo2_smoke_factory_038;;;;vpunch;;;;soldado furioso;¿¡Eres un tonto o qué!? ¿Cómo es posible que la puta fábrica de gas no se pueda defender con su propio gas?;
 ejemplo2_smoke_factory_039;;;;;;;;obrero;S-señor, ya se lo dije, u-usted debería s-saberlo, nuestras reservas de gas salen por tuberías directamen-;
 ejemplo2_smoke_factory_040;;;;;;;;soldado furioso;¡Y UNA MIERDA!;
 ejemplo2_smoke_factory_041;;;;;;;;;¡Resuelvelo! ¡Cómo sea! Pero si no lo haces, serás entregado como un traidor.;
@@ -54,7 +54,7 @@ ejemplo2_smoke_factory_053;;;;;;;;*;Los ojos del pobre hombre se llenan de humed
 ejemplo2_smoke_factory_054;;;;;;;;berto;Decídete, no tenemos mucho tiempo.;
 ejemplo2_smoke_factory_055;;;;;;rafarencio old right:move:60:1;0.7;*;Entre lágrimas el hombre asiente con su cabeza. Poco a poco lo libero.;
 ejemplo2_smoke_factory_056;;;;;;;;obrero;P-por favor… ¿Tienen agua?;
-ejemplo2_smoke_factory_057;;;;;;;;*;¿Agua? Nos está pidiendo agua? ¿En qué condiciones ha estado trabajando este hombre para que sea lo primero que nos pida?;
+ejemplo2_smoke_factory_057;;;;;;;;*;¿Agua? ¿Nos está pidiendo agua? ¿En qué condiciones ha estado trabajando este hombre para que sea lo primero que nos pida?;
 ejemplo2_smoke_factory_058;;;;;;;;;Miro a Rafa y asentimos, él saca una cantimplora y se la da al hombre, este la sostiene con manos temblorosas y sus ojos se abren.;
 ejemplo2_smoke_factory_059;;;;;;;;obrero;D-de v-verdad… ¿Puedo?;
 ejemplo2_smoke_factory_060;;;;;;;;rafarencio;Bebe.;
@@ -84,7 +84,7 @@ ejemplo2_smoke_factory_083;;;;;;;;*;Los soldados arremeten contra nosotros.;
 ejemplo2_smoke_factory_084;;;;;;;;;Rafa y yo los enfrentamos, no son unos expertos pero tampoco unos novatos, son rápidos.;
 ejemplo2_smoke_factory_085;;;;;;;;;Sus machetes están oxidados y no dudaría de que están contaminados con más cosas, debo evitar que me den a todo costo.;
 ejemplo2_smoke_factory_086;;;;;;;;;Rafa y yo logramos manejarlos bien, haciendo un trabajo en equipo logramos cortarle la mano a uno de ellos.;
-ejemplo2_smoke_factory_087;;;;;;rafarencio old left:move:-20;;;Uno en especial se me acerca para hacerme frente, respondo a sus exigencias y mantenemos un combate cercano.;
+ejemplo2_smoke_factory_087;;;;;;rafarencio old left:move:-20:0.6;;;Uno en especial se me acerca para hacerme frente, respondo a sus exigencias y mantenemos un combate cercano.;
 ejemplo2_smoke_factory_088;;;;;;;;;Los cortes de su machete tienen mucha potencia, no es viable bloquearlos, podría romper mi espada.;
 ejemplo2_smoke_factory_089;;;;;;;;;Es bastante bueno luchando, mantiene las distancias y sabe usar el 100% del alcance de su arma.;
 ejemplo2_smoke_factory_090;;;;;;;;;Sin embargo, su hoja es pesada y no puede atacar tan rápido, si lo fuerzo quizás…;
@@ -95,7 +95,7 @@ ejemplo2_smoke_factory_094;;;;;;rafarencio old right:move:30:0.7;;*;Rafa saca su
 ejemplo2_smoke_factory_095;;;running metal many;;;;2;rafarencio;Ya, pero el problema es otro…;
 ejemplo2_smoke_factory_096;;;;;;;;*;Tres, cuatro, siete guardias suben por las escaleras, no podremos con tantos.;
 ejemplo2_smoke_factory_097;;;;;;;;soldado;¡FLINT TRAIDOR!;
-ejemplo2_smoke_factory_098;;;;;;;;*;Uno de los soldados alza un lanza lanzas y arroja con fuerza una afilada munición directo hacia Flint.;
+ejemplo2_smoke_factory_098;;;;;;;;*;Uno de los soldados alza un lanza lanzas y arroja con fuerza una puntiaguda munición directo hacia Flint.;
 ejemplo2_smoke_factory_099;;;;;;;;;Mierda, no tengo nada a la mano para bloquear su ataque, y si uso mi espada seguramente quede abollada.;
 ejemplo2_smoke_factory_100;;;;;;;;;Más vale que esto funcione.;
 ejemplo2_smoke_factory_101;;;;hpunch;;;;;Aprieto los dientes e intercepto la lanza con mi mano izquierda.;
@@ -133,7 +133,7 @@ ejemplo2_smoke_factory_132;forest;;;;;;;*;Seguimos sus órdenes y tanto Rafa com
 ejemplo2_smoke_factory_133;;;;;;;;flint;Cierren la puerta a la cuenta de tres, 1… 2…;
 ejemplo2_smoke_factory_134;;;;;;;;*;Flint suelta la pieza de la trampa y esta se activa expulsando gran cantidad de humo.;
 ejemplo2_smoke_factory_135;;;;;;;;flint;¡TRES!;
-ejemplo2_smoke_factory_136;;;;;;rafarencio old left:move:65:0.7;;*;Cerramos la puerta con violencia, y empujamos para que no la abran.;
+ejemplo2_smoke_factory_136;;;;;;rafarencio old left:move:65:0.3;;*;Cerramos la puerta con violencia, y empujamos para que no la abran.;
 ejemplo2_smoke_factory_137;;;metal hit:loop;;suffocation:0.4;;;;Parte del humo se filtra por los bordes de la puerta y llega a nuestras narices, Los ojos me empiezan a llorar.;
 ejemplo2_smoke_factory_138;;;;;;;;;Del otro lado de la puerta los soldados forcejean, golpean y empujan, no podemos ceder.;
 ejemplo2_smoke_factory_139;;;;;hpunch;;;berto;*Tos* M-mier-;
@@ -143,7 +143,7 @@ ejemplo2_smoke_factory_140;;;;;;;;*;El humo nos está matando, al otro lado de l
 ejemplo2_smoke_factory_141;;;;;;;;;Siento que me cubren la boca con un pañuelo húmedo, al girar mi cabeza veo a Flint usando sus manos para cubrirnos la boca y la nariz.;
 ejemplo2_smoke_factory_142;;;;;;;;rafarencio;¡QUÉ HA- *Tos*;
 ejemplo2_smoke_factory_143;;;;;;;;flint;No se proecupen, así el gas no- *Tos* No tendrá efecto en *Tos* Ust- *Tos*;
-ejemplo2_smoke_factory_144;;;;;suffocation;;;*;Mis ojos dejan de llorar por el humo, la puerta es golpeada desde el otro lado con fuerza.;
+ejemplo2_smoke_factory_144;;;;;suffocation;rafarencio old left:trembling;;*;Mis ojos dejan de llorar por el humo, la puerta es golpeada desde el otro lado con fuerza.;
 ejemplo2_smoke_factory_145;;;;;;;;;Rafa y yo empujamos la puerta haciendo uso de todos nuestros músculos.;
 ejemplo2_smoke_factory_146;;;metal hit:loop;;;;;;Poco a poco los golpes se van debilitando hasta que no sentimos ningún tipo de resistencia.;
 ejemplo2_smoke_factory_147;;;;;;;;;Nos apartamos y vemos a Flint tirado en el suelo.;
@@ -154,7 +154,7 @@ ejemplo2_smoke_factory_151;;;;;;;;*;Arrastramos a Flint y lo alejamos de la fáb
 ejemplo2_smoke_factory_152;;key in the lock;;;;rafarencio old left:move:50;;rafarencio;Hemos cumplido, daré la señal.;
 ejemplo2_smoke_factory_153;;;;;;;;*;Rafa saca un llavero de silbatos y se pone el verde en la boca.;
 ejemplo2_smoke_factory_154;;;retreat;;;;;;Un agudo sonido resuena por todo el bosque indicando nuestra victoria y dando la señal de que el escuadrón de Pierre se retire.;
-ejemplo2_smoke_factory_155;;;;;;;;flint;Debemos alejarnos… lo máximo posible *Tos* rápido.;
+ejemplo2_smoke_factory_155;;;;;;;;flint;Debemos alejarnos… todo lo que podamos *Tos* rápido.;
 ejemplo2_smoke_factory_156;;;;;;;;rafarencio;¿Eh?;
 ejemplo2_smoke_factory_157;;;;;;;;flint;Ordenen que se los suyos se retiren lo más rápido posible, todo este sitio va a explotar.;
 ejemplo2_smoke_factory_158;;;;;;;;berto;¡¿Cómo?!;

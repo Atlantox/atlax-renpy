@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/definitions/imageProperties.rpy", line 4: transform statement expects a non-empty block.
-    transform SetCharacterProperties(x, y, zoomFactor):
-                                                       ^
+File "game/definitions/configDefine.rpy", line 3: expected statement.
+    renpy.add_layer('effects', 'master')
+                                        ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Thu Jan 29 19:58:10 2026
+Mon Feb  2 18:54:55 2026

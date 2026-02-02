@@ -15,32 +15,25 @@ transform Jumping(x, intensity):
     repeat
 
 transform Tremble(x, times):
-    animation
     xalign x
-    anchor (0.5, 0.0)
+    linear 0.1:            
+        xalign x + 0.002
 
-    linear 0.05:
-        anchor (0.52, 0.0)
-
-    linear 0.05:
-        anchor (0.48, 0.0)
-
+    linear 0.1:
+        xalign x - 0.002
+    
     repeat times
-    anchor (0.5, 0.0)
     
 
 transform Trembling(x):
-    linear 1:   
-        xalign x
+    xalign x
+    linear 0.1:            
+        xalign x + 0.002
 
-    block:
-        linear 0.1:            
-            anchor (0.51, 0.0)
-
-        linear 0.1:
-            anchor (0.49, 0.0)
-        
-        repeat
+    linear 0.1:
+        xalign x - 0.002
+    
+    repeat
 
     
 
