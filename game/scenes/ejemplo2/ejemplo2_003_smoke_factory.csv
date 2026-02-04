@@ -1,10 +1,10 @@
 ﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English
 ejemplo2_smoke_factory_002;dark_forest;key in the lock;;;;;;berto;No han atacado aún, ¿Habrá pasado algo?;
 ejemplo2_smoke_factory_003;;;;;suffocation:0.5;rafarencio old right:appear:30;;rafarencio;La orden que nos dieron fue la de esperar a la señal, no nos queda de otra que confiar.;
-ejemplo2_smoke_factory_004;;;;;;;;;Si logramos deshabilitar la fábrica, perderán su principal arma, ganaremos la guerra en menos de una semana.;
-ejemplo2_smoke_factory_005;;;;;;;;;De no ser por ese humo, ya habríamos acabado con este conflicto hace mucho tiempo.;
-ejemplo2_smoke_factory_006;;;;;;;;berto;Es una pena que no pudiesen terminar las mascarillas a tiempo, ese humo… desde que leímos aquel informe detallando sus efectos he tenido varias pesadillas.;
-ejemplo2_smoke_factory_007;;;;;;;;rafarencio;Y no eres el único, por eso mismo debemos terminar con esto, no podemos permitir q-;
+ejemplo2_smoke_factory_004;;;;;;rafarencio old right:hitl:10;;;Si logramos deshabilitar la fábrica, perderán su principal arma, ganaremos la guerra en menos de una semana.;
+ejemplo2_smoke_factory_005;;;;;;rafarencio old right:raisel;;;De no ser por ese humo, ya habríamos acabado con este conflicto hace mucho tiempo.;
+ejemplo2_smoke_factory_006;;;;;;rafarencio old right:damage;;berto;Es una pena que no pudiesen terminar las mascarillas a tiempo, ese humo… desde que leímos aquel informe detallando sus efectos he tenido varias pesadillas.;
+ejemplo2_smoke_factory_007;;;;;;rafarencio old right:destroy:1;;rafarencio;Y no eres el único, por eso mismo debemos terminar con esto, no podemos permitir q-;
 ejemplo2_smoke_factory_008;;;war horn;;;;4;;Pierre se ha puesto en marcha, es nuestro momento.;
 ejemplo2_smoke_factory_009;forest:dissolve:4;;;;;;;*;Rafarencio y yo avanzamos entre la maleza y nos acercamos al complejo, una fábrica de humo mortal.;
 ejemplo2_smoke_factory_010;;;;;;;;berto;Ahí es, está todo despejado, no hay nadie. Aunque… ¿Esa es la fábrica? No lo parece.;

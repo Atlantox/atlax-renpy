@@ -1,7 +1,4 @@
-transform Jump(x, intensity):
-    animation
-    xalign x
-    anchor (0.5, 0.0)
+transform Jump(x, intensity):    
     linear 0.1 ypos (intensity * -1)
     linear 0.1 ypos 0.
 
@@ -33,15 +30,12 @@ transform Trembling(x):
     linear 0.1:
         xalign x - 0.002
     
-    repeat
-
-    
+    repeat    
 
 transform HitR(x, intensity):
-    animation    
-    ypos -0.059
-    xalign x
-    anchor (0.5, 0.0)
+    rotate_pad False
+    transform_anchor False
+
     linear 0.1:
         rotate intensity
 
@@ -50,42 +44,39 @@ transform HitR(x, intensity):
 
     
 transform HitL(x, intensity):
-    animation    
-    ypos -0.059
-    xalign x
-    anchor (0.5, 0.0)
+    rotate_pad False
+    transform_anchor False
+       
     linear 0.1:
         rotate (intensity * -1)
+        
 
     linear 0.1:
-        rotate 0    
+        rotate 0.
+
+
 
 transform MyZoom(newFactor, duration):
     linear duration:
         zoom newFactor
 
 transform KnockR(x, duration):
-    animation
-    xalign x
-    ypos -0.059
-    anchor (0.5, 0.0)
+    rotate_pad False
+    transform_anchor False
     linear duration:
         yanchor -1.0
         rotate 90
 
 transform KnockL(x, duration):
-    animation
-    xalign x
-    ypos -0.059
-    anchor (0.5, 0.0)
+    rotate_pad False
+    transform_anchor False
+    
     linear duration:
         yanchor -1.0
         rotate -90   
     
 transform RaiseR(x, duration):
-    animation
-    xalign x
-    ypos -0.059
+    ypos -0.053
     anchor (0.5, -1.0)
     rotate 90    
     linear duration:
@@ -93,9 +84,7 @@ transform RaiseR(x, duration):
         anchor (0.5, 0.0)
 
 transform RaiseL(x, duration):
-    animation
-    xalign x
-    ypos -0.059
+    ypos -0.053
     anchor (0.5, -1.0)
     rotate -90
     linear duration:

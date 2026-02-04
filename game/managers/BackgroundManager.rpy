@@ -78,7 +78,7 @@ init python:
             for ker, value in self.transformsToApply.items():
                 transforms.append(value)
 
-            renpy.show(commandString, at_list=transforms, layer='master', tag='bg')             
+            renpy.show(commandString, at_list=transforms, layer='background', tag='bg')             
 
             if not self.backgroundPlaced: # Placing the background without transition             
                 self.backgroundPlaced = True
@@ -114,10 +114,10 @@ init python:
                 displayTransform = [ItemOnScreen(opacity)]
                 
             # que aparezca con alpha 0 hasta el indicado            
-            renpy.show(bgName, at_list=displayTransform, layer='effects2')
+            renpy.show(bgName, at_list=displayTransform, layer='effects')
 
         def DestroyOverlayImage(self, bgName):
-            renpy.show(bgName, at_list=[HidingImage()])
+            renpy.show(bgName, at_list=[HidingImage()], layer='effects')
             renpy.pause(1.4)
             renpy.hide(bgName)
 

@@ -15,6 +15,8 @@ $ import EffectManager
 $ import EventManager
 $ import DelayManager
 
+define config.layers = ['master',  'background', 'characters', 'effects', 'transient',  'screens', 'overlay', ]
+
 label start:    
     $ globalPoints = dict()
     $ globalDecisions = []

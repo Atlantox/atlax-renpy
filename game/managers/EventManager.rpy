@@ -198,6 +198,7 @@ init python:
 
                     self.onScreenCharacters.append(character['name'])
                     self.characterProperties[character['name']] = {}
+                    self.characterProperties[character['name']]['fullname'] = character['fullname']
                     self.characterProperties[character['name']]['x'] = fixedPosition
                     self.characterProperties[character['name']]['y'] = 0.0
                     self.characterProperties[character['name']]['behind'] = []
@@ -285,10 +286,10 @@ init python:
                 params[0] = float(event['params'][1])
 
             for character in event['characters']:
-                self.DestroyCharacter(character['name'])
+                #self.DestroyCharacter(character)
                 params = [self.characterProperties[character['name']]['x']] + params
                 animation = self.oneParameterEvents[event['action']](*params)
-                self.ShowCharacter(character['fullname'], [animation, self.fixedHeight])
+                self.ShowCharacter(character['fullname'], [self.fixedHeight, animation])
 
         def HandleTwoParametersEvent(self, event):            
             params = self.GetDefaultParametersOfAnimation(event['action'])
@@ -301,7 +302,7 @@ init python:
 
             for character in event['characters']:
                 animation = self.twoParameterEvents[event['action']](*params)
-                self.ShowCharacter(character['fullname'], [animation])
+                self.ShowCharacter(character['fullname'], [self.fixedHeight, animation])
 
                 if event['action'] == 'zoom':
                     self.characterProperties[character['name']]['zoom'] = params[1]
@@ -313,7 +314,7 @@ init python:
 
             for character in event['characters']:
                 self.characterProperties[character['name']]['behind'] = behind
-                self.ShowCharacter(character['name'])
+                self.ShowCharacter(character['fullname'])
 
         def GetDefaultParametersOfAnimation(self, animation):
             params = []
@@ -342,7 +343,7 @@ init python:
                 duration = float(event['params'][2])
 
             for character in event['characters']:
-                self.DestroyCharacter(character['name'])
+                self.DestroyCharacter(character)
                 movement = MoveY(
                     self.characterProperties[character['name']]['x'],
                     self.characterProperties[character['name']]['y'],
@@ -359,18 +360,20 @@ init python:
                 duration = float(event['params'][1])
             
             for character in event['characters']:
-                self.DestroyCharacter(character['name'], duration)
+                self.DestroyCharacter(character, duration)
                 del self.characterProperties[character['name']]
                 del self.onScreenCharacters[self.onScreenCharacters.index(character['name'])]
 
         def DestroyCharacter(self, character, duration = 0):
-            renpy.show(character, at_list=[DisappearCharacter(duration)])
+            characterProperties = self.characterProperties[character['name']]
+            behind = characterProperties['behind']
+            renpy.show(character['fullname'], at_list=[DisappearCharacter(duration)], behind=[behind], layer='characters')
             renpy.pause(duration * 1.1)
-            renpy.hide(character)
+            renpy.hide(character['fullname'])
 
         def HandleContinuousEffect(self, event):
             for character in event['characters']:
-                self.DestroyCharacter(character['name'])                
+                self.DestroyCharacter(character)                
 
             if event['action'] == 'jumping':
                 self.HandleJumping(event)
@@ -394,7 +397,7 @@ init python:
                     self.ResetCharacterPosition(character)
                 else:
                     animation = Jumping(self.characterProperties[character['name']]['x'], intensity)
-                    self.ShowCharacter(character['name'], [animation, self.fixedHeight])
+                    self.ShowCharacter(character['fullname'], [animation, self.fixedHeight])
             
         def HandleTrembling(self, event):
             for character in event['characters']:
@@ -426,11 +429,11 @@ init python:
                 
                 final_at_list = [initialPosition] + at_list
 
-            renpy.show(character, at_list=final_at_list, behind=behind)
+            renpy.show(character, at_list=final_at_list, behind=behind, layer='characters')
 
 
         def DestroyAllCharacters(self):
-            for character in self.onScreenCharacters:
+            for character in self.characterProperties:
                 eventManager.DestroyCharacter(character, 2)
 
         def ResetEventManager(self):

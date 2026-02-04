@@ -1,54 +1,48 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 82, in script
-    $ backgroundManager.HandlePostEventsEffects()
-  File "game/script.rpy", line 82, in <module>
-    $ backgroundManager.HandlePostEventsEffects()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/BackgroundManager.rpy", line 101, in HandlePostEventsEffects
-    self.DisplayOverlayImage(*self.postHandleParams[i])
-    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/managers/BackgroundManager.rpy", line 117, in DisplayOverlayImage
-    renpy.show(bgName, at_list=displayTransform, layer='effects2')
-    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Exception: Trying to add something to non-existent layer 'effects2'.
+  File "game/script.rpy", line 75, in script
+    $ eventManager.HandleEvents()
+  File "game/script.rpy", line 75, in <module>
+    $ eventManager.HandleEvents()
+      ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 163, in HandleEvents
+    self.HandleActionEvents()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 215, in HandleActionEvents
+    self.HandleOneParameterEvent(event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "game/managers/EventManager.rpy", line 286, in HandleOneParameterEvent
+    params[0] = float(event['params'][1])
+                ~~~~~^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: ''
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 82, in script
-    $ backgroundManager.HandlePostEventsEffects()
+  File "game/script.rpy", line 75, in script
+    $ eventManager.HandleEvents()
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 82, in <module>
-    $ backgroundManager.HandlePostEventsEffects()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/BackgroundManager.rpy", line 101, in HandlePostEventsEffects
-    self.DisplayOverlayImage(*self.postHandleParams[i])
-    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/managers/BackgroundManager.rpy", line 117, in DisplayOverlayImage
-    renpy.show(bgName, at_list=displayTransform, layer='effects2')
-    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/exports/displayexports.py", line 513, in show
-    sls.add(
-    ~~~~~~~^
-        layer,
-        ^^^^^^
-    ...<8 lines>...
-        transient=transient,
-        ^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "renpy/display/scenelists.py", line 398, in add
-    raise Exception("Trying to add something to non-existent layer '%s'." % layer)
-Exception: Trying to add something to non-existent layer 'effects2'.
+  File "game/script.rpy", line 75, in <module>
+    $ eventManager.HandleEvents()
+      ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 163, in HandleEvents
+    self.HandleActionEvents()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 215, in HandleActionEvents
+    self.HandleOneParameterEvent(event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "game/managers/EventManager.rpy", line 286, in HandleOneParameterEvent
+    params[0] = float(event['params'][1])
+                ~~~~~^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: ''
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Mon Feb  2 19:00:28 2026
+Wed Feb  4 19:22:30 2026
