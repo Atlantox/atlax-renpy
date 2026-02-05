@@ -343,13 +343,12 @@ init python:
                 duration = float(event['params'][2])
 
             for character in event['characters']:
-                self.DestroyCharacter(character)
                 movement = MoveY(
                     self.characterProperties[character['name']]['x'],
                     self.characterProperties[character['name']]['y'],
                     yPos, 
                     duration)
-                
+
                 self.ShowCharacter(character['fullname'], [movement, self.fixedHeight])
                 self.characterProperties[character['name']]['y'] = yPos
 
@@ -369,7 +368,7 @@ init python:
             behind = characterProperties['behind']
             renpy.show(character['fullname'], at_list=[DisappearCharacter(duration)], behind=[behind], layer='characters')
             renpy.pause(duration * 1.1)
-            renpy.hide(character['fullname'])
+            renpy.hide(character['fullname'],  layer='characters')
 
         def HandleContinuousEffect(self, event):
             for character in event['characters']:

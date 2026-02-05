@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/animations/animations.rpy", line 49: property 'anchor' is given a value more than once
-    anchor (0.5, 0.0)
-                     ^
-
-File "game/animations/animations.rpy", line 55: property 'anchor' is given a value more than once
-    anchor (0.5, 0.0)
-                     ^
+File "game/managers/EventManager.rpy", line 371: invalid syntax
+    renpy.hide(character['fullname'], , layer='characters')
+                                      ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Wed Feb  4 19:19:06 2026
+Thu Feb  5 18:45:49 2026

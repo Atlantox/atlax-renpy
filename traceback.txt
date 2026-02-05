@@ -1,48 +1,36 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 75, in script
-    $ eventManager.HandleEvents()
-  File "game/script.rpy", line 75, in <module>
-    $ eventManager.HandleEvents()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 163, in HandleEvents
-    self.HandleActionEvents()
-    ~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 215, in HandleActionEvents
-    self.HandleOneParameterEvent(event)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
-  File "game/managers/EventManager.rpy", line 286, in HandleOneParameterEvent
-    params[0] = float(event['params'][1])
-                ~~~~~^^^^^^^^^^^^^^^^^^^^
-ValueError: could not convert string to float: ''
+  File "game/script.rpy", line 41, in script
+    $ dialogueManager.HandleDialogueEnd()
+  File "game/script.rpy", line 41, in <module>
+    $ dialogueManager.HandleDialogueEnd()
+                  ~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 249, in HandleDialogueEnd
+    self.GoToNewDialogue(nextDialogue)
+                         ^^^^^^^^^^^^ 
+UnboundLocalError: cannot access local variable 'nextDialogue' where it is not associated with a value
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 75, in script
-    $ eventManager.HandleEvents()
+  File "game/script.rpy", line 41, in script
+    $ dialogueManager.HandleDialogueEnd()
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 75, in <module>
-    $ eventManager.HandleEvents()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 163, in HandleEvents
-    self.HandleActionEvents()
-    ~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 215, in HandleActionEvents
-    self.HandleOneParameterEvent(event)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
-  File "game/managers/EventManager.rpy", line 286, in HandleOneParameterEvent
-    params[0] = float(event['params'][1])
-                ~~~~~^^^^^^^^^^^^^^^^^^^^
-ValueError: could not convert string to float: ''
+  File "game/script.rpy", line 41, in <module>
+    $ dialogueManager.HandleDialogueEnd()
+                  ~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 249, in HandleDialogueEnd
+    self.GoToNewDialogue(nextDialogue)
+                         ^^^^^^^^^^^^ 
+UnboundLocalError: cannot access local variable 'nextDialogue' where it is not associated with a value
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Wed Feb  4 19:22:30 2026
+Thu Feb  5 19:22:22 2026

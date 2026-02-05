@@ -143,5 +143,5 @@ init python:
                 return
             
             commandString = 'bg ' + self.currentBgName
-            renpy.hide(commandString, layer='master')   
+            renpy.hide(commandString, layer='background')   
             self.ResetBackgroundManager()
