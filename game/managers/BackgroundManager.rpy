@@ -142,6 +142,7 @@ init python:
             if self.currentBgName is None:
                 return
             
-            commandString = 'bg ' + self.currentBgName
-            renpy.hide(commandString, layer='background')   
+            commandString = 'bg blackout' 
+            #renpy.hide(commandString, layer='background')   
+            renpy.show(commandString, layer='background', tag='bg')
             self.ResetBackgroundManager()

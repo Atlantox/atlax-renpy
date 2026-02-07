@@ -60,7 +60,6 @@ init python:
             
 
         def LoadDialogue(self):
-
             fileName = self.currentFile.split('/')
             if len(fileName) > 1:
                 fileName = fileName[-1]
@@ -210,7 +209,7 @@ init python:
                 fadeDuration = float(splits[2])
                 fadeIn = float(splits[3])
                 fade = Fade(fadeOut, fadeDuration, fadeIn)
-                layer = 'master'
+                layer = 'screens'
                 always = True
 
                 self.terminateTransition = renpy.transition
@@ -237,16 +236,18 @@ init python:
                 nextDialogue = self.terminateData[0]['nextDialogue']
 
             if self.terminateTransition is not None:
-                self.HandleTransition()
+                self.HandleTransition(clear=True)
 
             if self.clearAfterNewDialogue:
-                renpy.scene()
-                eventManager.DestroyAllCharacters()
-                eventManager.ResetEventManager()
-                
-                self.clearAfterNewDialogue = False
+                self.ClearScene()              
 
             self.GoToNewDialogue(nextDialogue)
+
+        def ClearScene(self):
+            renpy.scene()
+            eventManager.DestroyAllCharacters()
+            eventManager.ResetEventManager()
+            self.clearAfterNewDialogue = False
 
         def HandleDecision(self):
             result = renpy.display_menu(self.choices)
@@ -279,10 +280,14 @@ init python:
             globalDecisions.append(targetFork['key'])
             return targetFork['nextDialogue']
 
-        def HandleTransition(self):
+        def HandleTransition(self, clear = False):
             self.terminateTransition(*self.terminateParams)
             renpy.pause(self.terminatePause / 2, hard=True)
             backgroundManager.DestroyCurrentBackground()
+
+            if clear:
+                self.ClearScene()
+
             renpy.pause(self.terminatePause / 2, hard=True)
 
         def GoToNewDialogue(self, newDialogue):

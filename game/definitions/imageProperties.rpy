@@ -14,3 +14,5 @@ transform EmisorEmphasis:
     ease 1:
         zoom 1
         
+transform HorizontalFlip():
+    xzoom -1.0

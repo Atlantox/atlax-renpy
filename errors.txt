@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/managers/EventManager.rpy", line 371: invalid syntax
-    renpy.hide(character['fullname'], , layer='characters')
-                                      ^
+File "game/managers/EventManager.rpy", line 431: invalid syntax
+    contraryExists = = renpy.has_image(name + ' ' + contraryOrientation)
+                     ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Thu Feb  5 18:45:49 2026
+Sat Feb  7 14:58:59 2026

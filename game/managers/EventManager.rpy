@@ -100,7 +100,8 @@ init python:
                     fullname = (character_name + ' ' + sprite).strip()
                 
                     if not renpy.has_image(fullname):
-                        raise Exception('El sprite "' + sprite + '" del personaje "' + character_name + '" no existe') 
+                        if 'left' not in fullname and 'right' not in fullname:
+                            raise Exception('El sprite "' + sprite + '" del personaje "' + character_name + '" no existe') 
 
                     final_characters.append({
                         'name': character_name,
@@ -199,6 +200,7 @@ init python:
                     self.onScreenCharacters.append(character['name'])
                     self.characterProperties[character['name']] = {}
                     self.characterProperties[character['name']]['fullname'] = character['fullname']
+                    self.characterProperties[character['name']]['name'] = character['name']
                     self.characterProperties[character['name']]['x'] = fixedPosition
                     self.characterProperties[character['name']]['y'] = 0.0
                     self.characterProperties[character['name']]['behind'] = []
@@ -364,9 +366,10 @@ init python:
                 del self.onScreenCharacters[self.onScreenCharacters.index(character['name'])]
 
         def DestroyCharacter(self, character, duration = 0):
-            characterProperties = self.characterProperties[character['name']]
-            behind = characterProperties['behind']
-            renpy.show(character['fullname'], at_list=[DisappearCharacter(duration)], behind=[behind], layer='characters')
+            #characterProperties = self.characterProperties[character['name']]
+            #behind = characterProperties['behind']
+            #renpy.show(character['fullname'], at_list=[], behind=[behind], layer='characters')
+            self.ShowCharacter(character['fullname'], [DisappearCharacter(duration)])
             renpy.pause(duration * 1.1)
             renpy.hide(character['fullname'],  layer='characters')
 
@@ -410,12 +413,46 @@ init python:
             position = Position(xalign=self.characterProperties[character['name']]['x'])
             self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
             renpy.with_statement(Dissolve(0))
+        
+        def CharacterNeedsToBeFlippedHorizontally(self, nameSplits):
+            # If the character name is enterely a word, don't flip it            
+            if len(nameSplits) == 1:
+                return False
+
+            name = ' '.join(nameSplits[0:-1])
+            orientation = nameSplits[-1]
+
+            
+            if orientation not in ['left', 'right']:
+                return False
+
+            
+            spriteExists = renpy.has_image(name + ' ' + orientation, exact=True)
+            if spriteExists: # If the sprite exists then it don't need to be flipped
+                return False          
+
+            flipImage = False
+            contraryOrientation = 'left' if orientation == 'right' else 'right'            
+            contraryExists = renpy.has_image(name + ' ' + contraryOrientation, exact=True)
+
+            if(contraryExists):
+                flipImage = True
+            else:
+                error = 'Se intentó mostrar el sprite "' + name + ' ' + orientation
+                error += '" sin embargo no se pudo encontrar su contrario ("' + name + ' ' + contraryOrientation + '")'
+                raise Exception(error)
+         
+
+            return flipImage
 
         def ShowCharacter(self, character, at_list = []):
             final_at_list = at_list
+            final_fullname = character
             behind = []
 
-            characterName = character.split(' ')[0]
+            nameSplits = final_fullname.split(' ')
+            characterName = nameSplits[0]            
+
             if characterName in self.onScreenCharacters:
                 characterProperties = self.characterProperties[characterName]
                 behind = characterProperties['behind']
@@ -428,12 +465,17 @@ init python:
                 
                 final_at_list = [initialPosition] + at_list
 
-            renpy.show(character, at_list=final_at_list, behind=behind, layer='characters')
+            if self.CharacterNeedsToBeFlippedHorizontally(nameSplits):
+                nameSplits[-1] = 'left' if nameSplits[-1] == 'right' else 'right'
+                final_fullname = ' '.join(nameSplits)                
+                final_at_list = [HorizontalFlip()] + final_at_list
+
+            renpy.show(final_fullname, at_list=final_at_list, behind=behind, layer='characters')
 
 
         def DestroyAllCharacters(self):
-            for character in self.characterProperties:
-                eventManager.DestroyCharacter(character, 2)
+            for name, data in self.characterProperties.items():
+                eventManager.DestroyCharacter(data, 0)
 
         def ResetEventManager(self):
             self.onScreenCharacters = []
