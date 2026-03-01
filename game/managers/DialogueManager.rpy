@@ -8,10 +8,13 @@ init python:
 
             self.minHeaderCount = 10
             self.defaultCharacterSpeed = '45'
-            self.admittedTerminateMethods = ['decision', 'condition points', 'condition decision', 'condition scene', 'linear', 'end']
+            self.admittedTerminateMethods = ['decision', 'condition points', 'condition decision', 'condition scene', 'linear', 'credits', 'title']
             self.admittedTerminateTransitions = ['fade', 'video']
             self.admittedPostChangingFilter = ['clear']
+            self.returnToTitleDefaultTransitionParams = [Fade(4.0, 1, 2.0), 'screens', False]
+            self.returnToTitleDefaultTransitionWait = 4.0
 
+            self.returnToTitleScreen = False
             self.currentFile = fileName
             self.clearAfterNewDialogue = False
             self.lastEmisor = ''            
@@ -228,20 +231,30 @@ init python:
             return self.dialogues[self.currentDialogue]    
 
         def HandleDialogueEnd(self):
+            nextDialogue = None
+            
             if self.terminateMethod.lower() == 'decision':
                 nextDialogue = self.HandleDecision()
             elif 'condition' in self.terminateMethod.lower():
                 nextDialogue = self.HandleFork()  
             elif self.terminateMethod.lower() == 'linear':
                 nextDialogue = self.terminateData[0]['nextDialogue']
+            elif self.terminateMethod.lower() == 'title':
+                self.returnToTitleScreen = True
+
+                self.terminateTransition = renpy.transition
+                self.terminateParams = self.returnToTitleDefaultTransitionParams
+                self.terminatePause = self.returnToTitleDefaultTransitionWait
 
             if self.terminateTransition is not None:
                 self.HandleTransition(clear=True)
 
-            if self.clearAfterNewDialogue:
-                self.ClearScene()              
+            if nextDialogue is not None:
+                if self.clearAfterNewDialogue:
+                    self.ClearScene()              
 
-            self.GoToNewDialogue(nextDialogue)
+                self.GoToNewDialogue(nextDialogue)
+
 
         def ClearScene(self):
             renpy.scene()

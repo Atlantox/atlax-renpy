@@ -38,7 +38,11 @@ label start:
 
     while True:
         if dialogueManager.dialogueFinished:
-            $ dialogueManager.HandleDialogueEnd()            
+            $ dialogueManager.HandleDialogueEnd()
+
+            if dialogueManager.returnToTitleScreen:
+                $ dialogueManager.returnToTitleScreen = False
+                return
 
         $ dialogue = dialogueManager.GetNextDialogue()        
             

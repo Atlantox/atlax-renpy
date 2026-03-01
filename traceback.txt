@@ -1,48 +1,36 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 33, in script
-    $ dialogueManager = DialogueManager(firstDialogue)
-  File "game/script.rpy", line 33, in <module>
-    $ dialogueManager = DialogueManager(firstDialogue)
-                        ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 19, in __init__
-    self.LoadDialogue()
-    ~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 76, in LoadDialogue
-    sceneContent = self.DecryptScene(sceneContent)
-                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 59, in DecryptScene
-    return decrypted.decode("utf-8")
-           ~~~~~~~~~~~~~~~~^^^^^^^^^
-UnicodeDecodeError: 'utf-8' codec can't decode byte 0x98 in position 1: invalid start byte
+  File "game/script.rpy", line 41, in script
+    $ dialogueManager.HandleDialogueEnd()
+  File "game/script.rpy", line 41, in <module>
+    $ dialogueManager.HandleDialogueEnd()
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 253, in HandleDialogueEnd
+    self.GoToNewDialogue(nextDialogue)
+                         ^^^^^^^^^^^^ 
+UnboundLocalError: cannot access local variable 'nextDialogue' where it is not associated with a value
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 33, in script
-    $ dialogueManager = DialogueManager(firstDialogue)
+  File "game/script.rpy", line 41, in script
+    $ dialogueManager.HandleDialogueEnd()
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 33, in <module>
-    $ dialogueManager = DialogueManager(firstDialogue)
-                        ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 19, in __init__
-    self.LoadDialogue()
-    ~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 76, in LoadDialogue
-    sceneContent = self.DecryptScene(sceneContent)
-                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 59, in DecryptScene
-    return decrypted.decode("utf-8")
-           ~~~~~~~~~~~~~~~~^^^^^^^^^
-UnicodeDecodeError: 'utf-8' codec can't decode byte 0x98 in position 1: invalid start byte
+  File "game/script.rpy", line 41, in <module>
+    $ dialogueManager.HandleDialogueEnd()
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 253, in HandleDialogueEnd
+    self.GoToNewDialogue(nextDialogue)
+                         ^^^^^^^^^^^^ 
+UnboundLocalError: cannot access local variable 'nextDialogue' where it is not associated with a value
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Sat Feb  7 17:24:04 2026
+Sun Mar  1 12:28:45 2026
