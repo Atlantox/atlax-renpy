@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/custom_scripts/credits.rpy", line 12: 'creditTitle' is not a keyword argument or valid child of the screen statement.
-    creditTitle message at appear
-               ^
+File "game/custom_scripts/credits.rpy", line 20: Line is indented, but the preceding ATL statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    xsize width
+    ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Tue Mar  3 19:51:57 2026
+Wed Mar  4 19:12:10 2026

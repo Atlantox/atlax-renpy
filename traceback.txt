@@ -1,102 +1,75 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While running game code:
+Compiling ATL code at game/custom_scripts/credits.rpy:4
   File "game/script.rpy", line 44, in script call
     $ renpy.call('Credits')
-  File "game/custom_scripts/credits.rpy", line 20, in script
-    pause
-  File "game/custom_scripts/credits.rpy", line 12, in execute
-    screen info_screen(message):
-  File "game/custom_scripts/credits.rpy", line 12, in execute
-    screen info_screen(message):
-  File "game/custom_scripts/credits.rpy", line 13, in execute
-    text message at appear style creditText
-  File "game/custom_scripts/credits.rpy", line 13, in keywords
-    text message at appear style creditText
-  File "game/custom_scripts/credits.rpy", line 13, in <module>
-    text message at appear style creditText
-                                 ^^^^^^^^^^
-NameError: name 'creditText' is not defined
+  File "game/custom_scripts/credits.rpy", line 38, in script
+    show MadeBy  onlayer screens  at scroll_text(100)
+  File "game/custom_scripts/credits.rpy", line 4, in <module>
+    xpos x
+         ^
+NameError: name 'x' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
   File "game/script.rpy", line 44, in script call
     $ renpy.call('Credits')
-  File "game/custom_scripts/credits.rpy", line 20, in script
-    pause
-  File "renpy/ast.py", line 2241, in execute
-    self.call("execute")
-    ~~~~~~~~~^^^^^^^^^^^
-  File "renpy/ast.py", line 2195, in call
-    return renpy.statements.call(method, parsed, *args, **kwargs)
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/statements.py", line 381, in call
-    return method(parsed, *args, **kwargs)
-           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/common/000statements.rpy", line 485, in execute_pause
-    renpy.pause()
-    ~~~~~~~~~~~^^
-  File "renpy/exports/statementexports.py", line 198, in pause
-    rv = renpy.ui.interact(mouse="pause", type="pause", roll_forward=roll_forward, pause=delay, pause_modal=modal)
-         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/ui.py", line 306, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/core.py", line 2154, in interact
-    repeat, rv = self.interact_core(
-                 ~~~~~~~~~~~~~~~~~~^
-        preloads=preloads,
-        ^^^^^^^^^^^^^^^^^^
-    ...<4 lines>...
-        **kwargs,
-        ^^^^^^^^^
+  File "game/custom_scripts/credits.rpy", line 38, in script
+    show MadeBy  onlayer screens  at scroll_text(100)
+  File "renpy/ast.py", line 1357, in execute
+    show_imspec(self.imspec, atl=getattr(self, "atl", None))
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/ast.py", line 730, in show_imspec
+    renpy.config.show(
+    ~~~~~~~~~~~~~~~~~^
+        name, at_list=at_list, layer=layer, what=expression, zorder=zorder, tag=tag, behind=behind, atl=atl
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     )
     ^
-  File "renpy/display/core.py", line 2700, in interact_core
-    root_widget.visit_all(lambda d: d.per_interact())
-    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/displayable.py", line 457, in visit_all
-    d.visit_all(callback, seen)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "renpy/display/displayable.py", line 457, in visit_all
-    d.visit_all(callback, seen)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "renpy/display/displayable.py", line 457, in visit_all
-    d.visit_all(callback, seen)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "renpy/display/screen.py", line 503, in visit_all
-    callback(self)
-    ~~~~~~~~^^^^^^
-  File "renpy/display/core.py", line 2700, in <lambda>
-    root_widget.visit_all(lambda d: d.per_interact())
-                                    ~~~~~~~~~~~~~~^^ 
-  File "renpy/display/screen.py", line 514, in per_interact
-    self.update()
-    ~~~~~~~~~~~^^
-  File "renpy/display/screen.py", line 715, in update
-    self.screen.function(**self.scope)
-    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-  File "game/custom_scripts/credits.rpy", line 12, in execute
-    screen info_screen(message):
-  File "game/custom_scripts/credits.rpy", line 12, in execute
-    screen info_screen(message):
-  File "game/custom_scripts/credits.rpy", line 13, in execute
-    text message at appear style creditText
-  File "game/custom_scripts/credits.rpy", line 13, in keywords
-    text message at appear style creditText
+  File "renpy/exports/displayexports.py", line 513, in show
+    sls.add(
+    ~~~~~~~^
+        layer,
+        ^^^^^^
+    ...<8 lines>...
+        transient=transient,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "renpy/display/scenelists.py", line 464, in add
+    thing.visit_all(lambda d: None)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "renpy/display/displayable.py", line 448, in visit_all
+    for d in self.visit():
+             ~~~~~~~~~~^^ 
+  File "renpy/atl.py", line 739, in visit
+    block = self.compile()
+            ~~~~~~~~~~~~^^
+  File "renpy/atl.py", line 650, in compile
+    block = self.atl.compile(self.context)
+            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "renpy/atl.py", line 844, in compile
+    statements = [i.compile(ctx) for i in self.statements]
+                  ~~~~~~~~~^^^^^                          
+  File "renpy/atl.py", line 1178, in compile
+    value = ctx.eval(expr)
+            ~~~~~~~~^^^^^^
+  File "renpy/atl.py", line 308, in eval
+    return renpy.python.py_eval(expr, locals=self.context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1305, in py_eval
     return py_eval_bytecode(code, globals, locals)
            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1298, in py_eval_bytecode
     return eval(bytecode, globals, locals)
            ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/custom_scripts/credits.rpy", line 13, in <module>
-    text message at appear style creditText
-                                 ^^^^^^^^^^
-NameError: name 'creditText' is not defined
+  File "game/custom_scripts/credits.rpy", line 4, in <module>
+    xpos x
+         ^
+NameError: name 'x' is not defined
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Tue Mar  3 19:42:37 2026
+Wed Mar  4 19:17:03 2026
