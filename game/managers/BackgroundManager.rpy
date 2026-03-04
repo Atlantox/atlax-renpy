@@ -4,6 +4,7 @@ init python:
             self.baseBgPath = 'images/backgrounds/'
             self.defaultTransition = Dissolve
             self.defaultDuration = 2.0
+            self.blackScreenDuration = 7.0
             self.defaultParams = {
                 'dissolve': [2.0],
                 'fade': [1, 0.5, 1],
@@ -127,6 +128,17 @@ init python:
                 renpy.pause(duration)                
                 renpy.hide(imageToShow, layer="screens")
                 renpy.pause(duration)
+
+        def TurnScreenToBlack(self):
+            renpy.show('bg blackout', layer='screens', tag='black_screen')
+            renpy.transition(Dissolve(self.blackScreenDuration))
+            renpy.pause(self.blackScreenDuration, hard=True)
+
+        def ShowMainMenuBackground(self):
+            renpy.show('bg main_menu_background', layer='screens', tag='black_screen')
+            renpy.transition(Dissolve(self.blackScreenDuration))
+            renpy.pause(self.blackScreenDuration, hard=True)
+
 
         def ResetBackgroundManager(self):
             self.targetTransition = None

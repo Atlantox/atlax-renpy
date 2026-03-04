@@ -1,36 +1,102 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 41, in script
-    $ dialogueManager.HandleDialogueEnd()
-  File "game/script.rpy", line 41, in <module>
-    $ dialogueManager.HandleDialogueEnd()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 253, in HandleDialogueEnd
-    self.GoToNewDialogue(nextDialogue)
-                         ^^^^^^^^^^^^ 
-UnboundLocalError: cannot access local variable 'nextDialogue' where it is not associated with a value
+  File "game/script.rpy", line 44, in script call
+    $ renpy.call('Credits')
+  File "game/custom_scripts/credits.rpy", line 20, in script
+    pause
+  File "game/custom_scripts/credits.rpy", line 12, in execute
+    screen info_screen(message):
+  File "game/custom_scripts/credits.rpy", line 12, in execute
+    screen info_screen(message):
+  File "game/custom_scripts/credits.rpy", line 13, in execute
+    text message at appear style creditText
+  File "game/custom_scripts/credits.rpy", line 13, in keywords
+    text message at appear style creditText
+  File "game/custom_scripts/credits.rpy", line 13, in <module>
+    text message at appear style creditText
+                                 ^^^^^^^^^^
+NameError: name 'creditText' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 41, in script
-    $ dialogueManager.HandleDialogueEnd()
-  File "renpy/ast.py", line 1187, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1273, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 41, in <module>
-    $ dialogueManager.HandleDialogueEnd()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 253, in HandleDialogueEnd
-    self.GoToNewDialogue(nextDialogue)
-                         ^^^^^^^^^^^^ 
-UnboundLocalError: cannot access local variable 'nextDialogue' where it is not associated with a value
+  File "game/script.rpy", line 44, in script call
+    $ renpy.call('Credits')
+  File "game/custom_scripts/credits.rpy", line 20, in script
+    pause
+  File "renpy/ast.py", line 2241, in execute
+    self.call("execute")
+    ~~~~~~~~~^^^^^^^^^^^
+  File "renpy/ast.py", line 2195, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/statements.py", line 381, in call
+    return method(parsed, *args, **kwargs)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/common/000statements.rpy", line 485, in execute_pause
+    renpy.pause()
+    ~~~~~~~~~~~^^
+  File "renpy/exports/statementexports.py", line 198, in pause
+    rv = renpy.ui.interact(mouse="pause", type="pause", roll_forward=roll_forward, pause=delay, pause_modal=modal)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/ui.py", line 306, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/core.py", line 2154, in interact
+    repeat, rv = self.interact_core(
+                 ~~~~~~~~~~~~~~~~~~^
+        preloads=preloads,
+        ^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "renpy/display/core.py", line 2700, in interact_core
+    root_widget.visit_all(lambda d: d.per_interact())
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/displayable.py", line 457, in visit_all
+    d.visit_all(callback, seen)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "renpy/display/displayable.py", line 457, in visit_all
+    d.visit_all(callback, seen)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "renpy/display/displayable.py", line 457, in visit_all
+    d.visit_all(callback, seen)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "renpy/display/screen.py", line 503, in visit_all
+    callback(self)
+    ~~~~~~~~^^^^^^
+  File "renpy/display/core.py", line 2700, in <lambda>
+    root_widget.visit_all(lambda d: d.per_interact())
+                                    ~~~~~~~~~~~~~~^^ 
+  File "renpy/display/screen.py", line 514, in per_interact
+    self.update()
+    ~~~~~~~~~~~^^
+  File "renpy/display/screen.py", line 715, in update
+    self.screen.function(**self.scope)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "game/custom_scripts/credits.rpy", line 12, in execute
+    screen info_screen(message):
+  File "game/custom_scripts/credits.rpy", line 12, in execute
+    screen info_screen(message):
+  File "game/custom_scripts/credits.rpy", line 13, in execute
+    text message at appear style creditText
+  File "game/custom_scripts/credits.rpy", line 13, in keywords
+    text message at appear style creditText
+  File "renpy/python.py", line 1305, in py_eval
+    return py_eval_bytecode(code, globals, locals)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1298, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/custom_scripts/credits.rpy", line 13, in <module>
+    text message at appear style creditText
+                                 ^^^^^^^^^^
+NameError: name 'creditText' is not defined
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Sun Mar  1 12:28:45 2026
+Tue Mar  3 19:42:37 2026

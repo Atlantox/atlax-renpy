@@ -1,16 +1,16 @@
-2026-03-01 16:36:16 UTC
+2026-03-03 23:53:23 UTC
 Windows-11-10.0.26200-SP0
 Ren'Py 8.5.2.26010301
 
-Early init took 26 ms
-Loading error handling took 13 ms
-Loading script took 138 ms
-Loading save slot metadata took 10 ms
+Early init took 23 ms
+Loading error handling took 12 ms
+Loading script took 85 ms
+Loading save slot metadata took 11 ms
 Loading persistent took 0 ms
 Running init code took 20 ms
 Loading analysis data took 2 ms
 Analyze and compile ATL took 1 ms
-Reloading save slot metadata took 4 ms
+Reloading save slot metadata took 3 ms
 Backing up script files to 'C:\\Users\\gabos\\AppData\\Roaming/RenPy/backups\\atlax-renpy':
 Dump and make backups took 19 ms
 Cleaning cache took 0 ms
@@ -19,16 +19,16 @@ Initial gc took 17 ms
 DPI scale factor: 1.500000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: Disabled thread optimizations.
-Creating interface object took 150 ms
-Init translation took 0 ms
+Creating interface object took 145 ms
+Init translation took 1 ms
 Cleaning stores took 0 ms
 Load screen analysis took 0 ms
-Analyze screens took 5 ms
-Save screen analysis took 5 ms
-Save pyanalysis took 0 ms
-Save bytecode took 14 ms
+Analyze screens took 4 ms
+Save screen analysis took 6 ms
+Save pyanalysis took 2 ms
+Save bytecode took 0 ms
 Running _start took 1 ms
-Interface start took 1088 ms
+Interface start took 222 ms
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 2560, 1440)
@@ -42,7 +42,3 @@ Screen sizes: virtual=(1920, 1080) physical=(2560, 1334) drawable=(2560, 1334)
 Maximum texture size: 4096x4096
 Screen sizes: virtual=(1920, 1080) physical=(2560, 1334) drawable=(2560, 1334)
 Maximum texture size: 4096x4096
-Cleaning stores took 0 ms
-Load screen analysis took 9 ms
-Analyze screens took 0 ms
-Running _start took 1 ms

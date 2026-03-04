@@ -1,10 +1,11 @@
 define bgpath = 'images/backgrounds/'
 
+image bg main_menu_background =      gui.main_menu_background
+
 image bg flash =            bgpath + 'flash.png'
 image bg red =              bgpath + 'red.png'
 image bg blackout =         bgpath + 'blackout.png'
 image bg suffocation =      bgpath + 'suffocation.png'
-
 # Example1
 image bg city =             bgpath + 'city.png'
 image bg mall =             bgpath + 'mall.png'

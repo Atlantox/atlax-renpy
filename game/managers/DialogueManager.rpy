@@ -11,8 +11,8 @@ init python:
             self.admittedTerminateMethods = ['decision', 'condition points', 'condition decision', 'condition scene', 'linear', 'credits', 'title']
             self.admittedTerminateTransitions = ['fade', 'video']
             self.admittedPostChangingFilter = ['clear']
-            self.returnToTitleDefaultTransitionParams = [Fade(4.0, 1, 2.0), 'screens', False]
-            self.returnToTitleDefaultTransitionWait = 4.0
+            self.returnToTitleDefaultTransitionParams = [Fade(7.0, 7.0, 2.0), 'screens', False]
+            self.returnToTitleDefaultTransitionWait = 15.0
 
             self.returnToTitleScreen = False
             self.currentFile = fileName
@@ -242,9 +242,9 @@ init python:
             elif self.terminateMethod.lower() == 'title':
                 self.returnToTitleScreen = True
 
-                self.terminateTransition = renpy.transition
-                self.terminateParams = self.returnToTitleDefaultTransitionParams
-                self.terminatePause = self.returnToTitleDefaultTransitionWait
+                #self.terminateTransition = renpy.transition
+                #self.terminateParams = self.returnToTitleDefaultTransitionParams
+                #self.terminatePause = self.returnToTitleDefaultTransitionWait
 
             if self.terminateTransition is not None:
                 self.HandleTransition(clear=True)
