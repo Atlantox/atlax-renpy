@@ -7,7 +7,6 @@ $ import definitions.AtlaxEncryptionKey
 
 $ import animations.animations
 
-$ import RouterManager
 $ import DialogueManager
 $ import BackgroundManager
 $ import AudioManager
@@ -27,7 +26,6 @@ label start:
     $ firstDialogue = 'ejemplo2/ejemplo2_001_training_field'
     $ lastEmisor = ''
 
-    $ routerManager = RouterManager()
     $ dialogueManager = DialogueManager(firstDialogue)
     $ dialogueManager.PrepareDialogues()
     $ backgroundManager = BackgroundManager()
