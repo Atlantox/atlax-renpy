@@ -1,6 +1,6 @@
 ﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English
-example2_training_field_001;training_field;Laps arount the air;;;;;;*;Ugh… La verdad no quería regresar aquí pero es mi deber, no me queda de otra, tengo que seguir a pesar del dolor;
-example2_training_field_002;;;;;;;;instructor;Muy bien chicos, hoy continuarán practicando el combate con espada.;
+example2_training_field_001;training_field;Laps arount the air;;;suffocation:0.2;;;*;Ugh… La verdad no quería regresar aquí pero es mi deber, no me queda de otra, tengo que seguir a pesar del dolor;
+example2_training_field_002;forest:dissolve:5,dark_forest:rright,madera:pixel;;;;;;;instructor;Muy bien chicos, hoy continuarán practicando el combate con espada.;
 example2_training_field_003;;;;;;;;;Recuerden que luego podrán aprender a utilizar el arma que ustedes quieran, sin embargo todos ustedes deben ser capaces de manejar una espada correctamente.;
 example2_training_field_004;;;;;;;;;Ya lo saben, lo mismo de siempre, trabajen en sus posturas de combate y sobre todo tengan cuidado al momento de terminar los enfrentamientos.;
 example2_training_field_005;;;;;;;;;En la clase anterior hubo más heridos de los que me gustaría haber reportado a mi jefe.;
@@ -114,5 +114,5 @@ example2_training_field_113;;;;;;rafarencio pain,rafarencio pain:damage;;;Con mi
 example2_training_field_114;;;;;;;;;Recibe el impacto y gruñe, eso le ha dolido bastante pero no será suficiente para derribar a alguien como él.;
 example2_training_field_115;;;;;;;;;Forcejea con su muñeca, puedo sentir como mis encías se esfuerzan todo lo que pueden.;
 example2_training_field_116;;;;;;;;;Sigo golpeando su costado sin cesar, no puedo estar en esta posición para siempre, los dientes me van a quedar todos torcidos después de esto.;
-*;training_field;;;;;;;;El brazo izquierdo se me empieza a cansar, no puedo resistir dar 20 golpes fuertes seguidos sin cansarme empiezo a notarme rígido.;
+example2_training_field_117;training_field;;;;;;;;El brazo izquierdo se me empieza a cansar, no puedo resistir dar 20 golpes fuertes seguidos sin cansarme empiezo a notarme rígido.;
 #title;;;;;;;;;;

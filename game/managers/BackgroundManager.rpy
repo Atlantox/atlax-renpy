@@ -3,10 +3,10 @@ init python:
         def __init__(self):
             self.baseBgPath = 'images/backgrounds/'
             self.defaultTransition = Dissolve
-            self.defaultDuration = 2.0
+            self.defaultDuration = 3.0
             self.blackScreenDuration = 7.0
             self.defaultParams = {
-                'dissolve': [2.0],
+                'dissolve': [3.0],
                 'fade': [1, 0.5, 1],
                 'pixel': [3, 18],
                 'pushup': [1.5, 'pushup'],
@@ -29,15 +29,30 @@ init python:
             self.params = None
             self.transformsToApply = {}
 
+            self.backgroundQueue = []
+
             self.postHandleEvents = []
             self.postHandleParams = []
 
         def PrepareBackground(self, bgPrompt):
             self.prepared = True
+
+            backgrounds = [b.strip() for b in bgPrompt.split(',')]
+            for bg in backgrounds:
+                self.backgroundQueue.append(self.GetBackgroundData(bg))          
+            
+            lastBg = self.backgroundQueue[-1]
+
+            self.currentBgPath = lastBg['path']
+            self.currentBgName = lastBg['name']
+            self.targetTransition = lastBg['transition']
+            self.params = lastBg['params']
+
+        def GetBackgroundData(self, prompt):
             currentTransition = self.defaultTransition
             params = [self.defaultDuration]
                 
-            promptSplits = bgPrompt.split(':')
+            promptSplits = prompt.split(':')
             bgName = promptSplits[0]            
 
             if len(promptSplits) >= 2:
@@ -60,40 +75,42 @@ init python:
                 if recievedTransition in ['rup', 'rright', 'rdown', 'rleft', 'pushup', 'pushright', 'pushdown', 'pushleft']:
                     params[0] = recievedParams[0]
                 else:
-                    params = recievedParams               
+                    params = recievedParams   
 
-
-            backgroundPath = self.baseBgPath + f'{bgName}.png'
-
-            self.currentBgPath = backgroundPath
-            self.currentBgName = bgName
-            self.targetTransition = currentTransition
-            self.params = params
+            return {
+                'path': self.baseBgPath + f'{bgName}.png',
+                'name': bgName,
+                'transition': currentTransition,
+                'params': params
+            }
 
         def HandleBackground(self):
             self.prepared = False
 
-            commandString = 'bg ' + self.currentBgName
+            for currentBg in self.backgroundQueue:
+                commandString = 'bg ' + currentBg['name']
 
-            transforms = [AdjustImage()]
-            for ker, value in self.transformsToApply.items():
-                transforms.append(value)
+                transforms = [AdjustImage()]
+                for key, value in self.transformsToApply.items():
+                    transforms.append(value)
 
-            renpy.show(commandString, at_list=transforms, layer='background', tag='bg')             
+                renpy.show(commandString, at_list=transforms, layer='background', tag='bg')             
 
-            if not self.backgroundPlaced: # Placing the background without transition             
-                self.backgroundPlaced = True
-            else:
-                renpy.transition(self.targetTransition(*self.params))
+                if not self.backgroundPlaced: # Placing the background without transition             
+                    self.backgroundPlaced = True
+                    renpy.transition(Fade(2, 2, 2))
+                    renpy.pause(6)
+                else:
+                    renpy.transition(currentBg['transition'](*currentBg['params']))
 
-                totalPause = 0.5
-                if self.targetTransition in [Dissolve, PushMove, Swing, Pixellate]:
-                    totalPause = self.params[0]
-                elif self.targetTransition == Fade:
-                    for param in self.params:
-                        totalPause += param
+                    totalPause = 0.5
+                    if currentBg['transition'] in [Dissolve, PushMove, Swing, Pixellate]:
+                        totalPause = currentBg['params'][0]
+                    elif currentBg['transition'] in [Fade]:
+                        for param in currentBg['params']:
+                            totalPause += param
 
-                renpy.pause(totalPause)
+                    renpy.pause(totalPause)
 
         def HandlePostEventsEffects(self):
             for i in range(len(self.postHandleEvents)):

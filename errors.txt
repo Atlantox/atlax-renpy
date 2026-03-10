@@ -2,77 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/custom_scripts/credits.rpy", line 138: end of line expected.
-    show madeBy onlayer screens at scroll_text() = Text("Creado por", style="credit_text_title")
-                                                 ^
-
-File "game/custom_scripts/credits.rpy", line 140: end of line expected.
-    show company onlayer screens at scroll_text() = Text("Campanella Studios", style="credit_text")
-                                                  ^
-
-File "game/custom_scripts/credits.rpy", line 143: end of line expected.
-    show direction onlayer screens at scroll_text() = Text("Director", style="credit_text_title")
-                                                    ^
-
-File "game/custom_scripts/credits.rpy", line 145: end of line expected.
-    show directionTeam onlayer screens at scroll_text(40 * 2) = Text("Deimos\nRickle89", style="credit_text")
-                                                              ^
-
-File "game/custom_scripts/credits.rpy", line 148: end of line expected.
-    show writters onlayer screens at scroll_text() = Text("Escritores", style="credit_text_title")
-                                                   ^
-
-File "game/custom_scripts/credits.rpy", line 150: end of line expected.
-    show writtersTeam onlayer screens at scroll_text(40 * 5) = Text("ElRafauricio\nLevi4tan\nCodeNameSix\nMuddyP\nRickle89", style="credit_text")
-                                                             ^
-
-File "game/custom_scripts/credits.rpy", line 153: end of line expected.
-    show artists onlayer screens at scroll_text() = Text("Artistas", style="credit_text_title")
-                                                  ^
-
-File "game/custom_scripts/credits.rpy", line 155: end of line expected.
-    show artistTeam onlayer screens at scroll_text(40 * 3) = Text("Xiloh\nDan_Snogard\nDemienR", style="credit_text")
-                                                           ^
-
-File "game/custom_scripts/credits.rpy", line 158: end of line expected.
-    show programming onlayer screens at scroll_text() = Text("Programación", style="credit_text_title")
-                                                      ^
-
-File "game/custom_scripts/credits.rpy", line 160: end of line expected.
-    show programmingTeam onlayer screens at scroll_text() = Text("Atlantox", style="credit_text")
-                                                          ^
-
-File "game/custom_scripts/credits.rpy", line 163: end of line expected.
-    show musicians onlayer screens at scroll_text() = Text("Música", style="credit_text_title")
-                                                    ^
-
-File "game/custom_scripts/credits.rpy", line 165: end of line expected.
-    show musiciansTeam onlayer screens at scroll_text(40 * 4) = Text("Mauryiskami\nSillxB97\nElRafauricio\nDereckNijima", style="credit_text")
-                                                              ^
-
-File "game/custom_scripts/credits.rpy", line 168: end of line expected.
-    show editors onlayer screens at scroll_text() = Text("Editores", style="credit_text_title")
-                                                  ^
-
-File "game/custom_scripts/credits.rpy", line 170: end of line expected.
-    show editorsTeam onlayer screens at scroll_text(40 * 2) = Text("AJ\nRickle89\nLancelot76", style="credit_text")
-                                                            ^
-
-File "game/custom_scripts/credits.rpy", line 173: end of line expected.
-    show legalSupport onlayer screens at scroll_text() = Text("Soporte legal", style="credit_text_title")
-                                                       ^
-
-File "game/custom_scripts/credits.rpy", line 175: end of line expected.
-    show legalSupportTeam onlayer screens at scroll_text(40 * 3) = Text("Steven-G\nShegall\nDex89", style="credit_text")
-                                                                 ^
-
-File "game/custom_scripts/credits.rpy", line 178: end of line expected.
-    show text8 onlayer screens at scroll_text() = Text("Esto es solo un comienzo...", style="credit_text")
-                                                ^
-
-File "game/custom_scripts/credits.rpy", line 180: end of line expected.
-    show text9 onlayer screens at scroll_text() = Text("Gracias por su increíble apoyo", style="credit_text")
-                                                ^
+File "game/managers/BackgroundManager.rpy", line 82: invalid syntax
+    'name': bgName
+              ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Thu Mar  5 19:56:48 2026
+Tue Mar 10 18:25:11 2026
