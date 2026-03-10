@@ -88,6 +88,11 @@ init python:
             self.prepared = False
 
             for currentBg in self.backgroundQueue:
+                self.LoadBackground(currentBg)
+
+            self.backgroundQueue = []
+
+        def LoadBackground(self, currentBg):
                 commandString = 'bg ' + currentBg['name']
 
                 transforms = [AdjustImage()]
