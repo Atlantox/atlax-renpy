@@ -366,11 +366,10 @@ init python:
                 del self.onScreenCharacters[self.onScreenCharacters.index(character['name'])]
 
         def DestroyCharacter(self, character, duration = 0):
-            #characterProperties = self.characterProperties[character['name']]
-            #behind = characterProperties['behind']
-            #renpy.show(character['fullname'], at_list=[], behind=[behind], layer='characters')
-            self.ShowCharacter(character['fullname'], [DisappearCharacter(duration)])
-            renpy.pause(duration * 1.1)
+            if duration > 0:
+                self.ShowCharacter(character['fullname'], [DisappearCharacter(duration)])
+                renpy.pause(duration * 1.1)
+                
             renpy.hide(character['fullname'],  layer='characters')
 
         def HandleContinuousEffect(self, event):
