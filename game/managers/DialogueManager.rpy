@@ -7,7 +7,6 @@ init python:
             self.ResetDialogueManager()
 
             self.minHeaderCount = 10
-            self.defaultCharacterSpeed = '45'
             self.admittedTerminateMethods = ['decision', 'condition points', 'condition decision', 'condition scene', 'linear', 'credits', 'title']
             self.admittedTerminateTransitions = ['fade', 'video']
             self.admittedPostChangingFilter = ['clear']
@@ -28,7 +27,7 @@ init python:
             if delayManager.textSpeedDelay != False:
                 finalSentence = "{cps=" + str(delayManager.textSpeedDelay) + "}" + dialogue + "{/cps}"     
             else:      
-                finalSentence = "{cps=" + self.defaultCharacterSpeed + "}" + dialogue + "{/cps}"     
+                finalSentence = '{cps=' + str(preferences.text_cps) + '}' + dialogue + '{/cps}'    
 
             if emisor == '':
                 finalEmisor = self.lastEmisor
@@ -46,6 +45,7 @@ init python:
             finalEmisor = characters[finalEmisor]
                 
             finalSentence = finalSentence.replace('#.,',';').replace('%','%%')
+            print(finalSentence)
             renpy.say(finalEmisor, finalSentence)
             delayManager.textSpeedDelay = False
 
