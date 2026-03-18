@@ -71,9 +71,13 @@ init python:
 
             globalScenes.append(fileName)
 
-            with open(renpy.loader.transfn("scenes/" + self.currentFile + '.csv'), mode="r", encoding="utf-8") as f:
-                sceneContent = f.read()
-                f.close()
+            if renpy.mobile:
+                sceneContent = renpy.file("scenes/" + self.currentFile + '.csv', encoding="utf-8")
+                sceneContent = sceneContent.read()
+            else:
+                with open(renpy.loader.transfn("scenes/" + self.currentFile + '.csv'), mode="r", encoding="utf-8") as f:
+                    sceneContent = f.read()
+                    f.close()
 
             if requireSceneEncryption:
                 sceneContent = self.DecryptScene(sceneContent)
@@ -349,4 +353,3 @@ init python:
                 result = globalPoints[key] == value
 
             return result
-                

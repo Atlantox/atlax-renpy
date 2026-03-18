@@ -13,7 +13,7 @@ init python:
             self.defaultSingleEffetDuration = 0.1
             self.defaultBlinkTimes = 4
             self.defaultBlinkOpacity = 1
-            self.defaultOverlayOpacity = 1
+            self.defaultOverlayOpacity = 1.0
 
             self.continuousEffectQueue = []
             self.effectQueue = []
@@ -85,10 +85,8 @@ init python:
                     bg_exists = renpy.exists(backgroundManager.baseBgPath + effectName + '.png')
                     if bg_exists:
                         self.PrepareDisplayImageOverBackground(effectSplits, True)
-                    else:
-                        image_exists = renpy.exists(self.imagesBasePath + effectName + '.png')
-                        if image_exists:
-                            self.PrepareDisplayImageOverBackground(effectSplits, False)
+                    else:                        
+                        self.PrepareDisplayImageOverBackground(effectSplits, False)
 
         def PrepareBackgroundTransform(self, effectSplits):
             effectName = effectSplits[0]
