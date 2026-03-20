@@ -93,7 +93,7 @@ init python:
             self.backgroundQueue = []
 
         def LoadBackground(self, currentBg):
-                commandString = 'bg ' + currentBg['name']
+                commandString = currentBg['name']
 
                 transforms = [AdjustImage()]
                 for key, value in self.transformsToApply.items():

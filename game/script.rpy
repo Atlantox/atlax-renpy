@@ -7,6 +7,7 @@ $ import definitions.AtlaxEncryptionKey
 
 $ import animations.animations
 
+$ import ConfigManager
 $ import DialogueManager
 $ import BackgroundManager
 $ import AudioManager
@@ -21,12 +22,13 @@ label start:
     $ globalDecisions = []
     $ globalScenes = []
 
+    $ configManager = ConfigManager()
+
     $ currentKey = None
     $ currentDialogue = None    
-    $ firstDialogue = 'ejemplo2/ejemplo2_001_training_field'
     $ lastEmisor = ''
 
-    $ dialogueManager = DialogueManager(firstDialogue)
+    $ dialogueManager = DialogueManager(configManager.firstDialogue)
     $ dialogueManager.PrepareDialogues()
     $ backgroundManager = BackgroundManager()
     $ audioManager = AudioManager()

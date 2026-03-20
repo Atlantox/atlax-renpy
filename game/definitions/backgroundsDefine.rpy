@@ -1,6 +1,7 @@
 define bgpath = 'images/backgrounds/'
 
-image bg main_menu_background =      gui.main_menu_background
+$ renpy.image('bg main_menu_background', gui.main_menu_background)
+#image bg main_menu_background =      gui.main_menu_background
 
 image bg flash =            bgpath + 'flash.png'
 image bg red =              bgpath + 'red.png'
@@ -12,7 +13,8 @@ image bg mall =             bgpath + 'mall.png'
 image bg puerkokun =        bgpath + 'puerkokun.png'
 
 # Example2
-image bg training_field =   bgpath + 'training field.png'
+$ renpy.image('training field', bgpath + 'training field.png')
+#image bg training_field =   bgpath + 'training field.png'
 image bg house_inside =   bgpath + 'house inside.png'
 image bg house_front =   bgpath + 'house front.png'
 image bg smoke =   bgpath + 'smoke.png'

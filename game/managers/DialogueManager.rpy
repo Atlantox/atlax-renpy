@@ -45,7 +45,7 @@ init python:
             finalEmisor = characters[finalEmisor]
                 
             finalSentence = finalSentence.replace('#.,',';').replace('%','%%')
-            print(finalSentence)
+            
             renpy.say(finalEmisor, finalSentence)
             delayManager.textSpeedDelay = False
 
@@ -101,6 +101,10 @@ init python:
             endReached = False
             for dialogue in self.rawDialogues:
                 splittedDialogue = [d.strip() for d in dialogue.split(';')]
+
+                if '//' in splittedDialogue[0]:
+                    continue
+
                 result = dict()
 
                 if splittedDialogue[0][0] == '#':
