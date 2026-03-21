@@ -1,4 +1,32 @@
-Key	Value
-background	training field
-background	smoke
-background	forest
+Key;Values;;
+#;;;
+# Base path configs;;;
+#;;;
+path_background;images/backgrounds;;
+path_sound;sounds/;;
+path_music;music/;;
+path_scene;scenes/;;
+path_displayable;images/displayables/;;
+#;;;
+# Background define;;;
+#;;;
+background;training field;;
+background;smoke;;
+background;forest;;
+background;flash;;
+background;red;;
+background;blackout;;
+background;suffocation;;
+background;city;;
+background;mall;;
+background;puerkokun;;
+background;house inside;;
+background;house front;;
+background;smoke;;
+background;forest;;
+background;dark forest;;
+background;dark forest flash;;
+background;factory;;
+#;;;
+# Character define;;;
+#;;;

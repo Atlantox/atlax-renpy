@@ -70,12 +70,13 @@ init python:
                 fileName = fileName[0]
 
             globalScenes.append(fileName)
+            scenePath = basePaths['path_scene'] + self.currentFile + '.csv'
 
             if renpy.mobile:
-                sceneContent = renpy.file("scenes/" + self.currentFile + '.csv', encoding="utf-8")
+                sceneContent = renpy.file(scenePath, encoding="utf-8")
                 sceneContent = sceneContent.read()
             else:
-                with open(renpy.loader.transfn("scenes/" + self.currentFile + '.csv'), mode="r", encoding="utf-8") as f:
+                with open(renpy.loader.transfn(scenePath), mode="r", encoding="utf-8") as f:
                     sceneContent = f.read()
                     f.close()
 

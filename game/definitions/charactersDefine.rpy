@@ -1,8 +1,3 @@
-define saijo = Character('Saijo', color='#8709B4')
-define mutou = Character('Mutou', color='#2595d2')
-define dereck = Character('Dereck', color='#e4e159')
-define keiko = Character('Keiko', color='#b1b1b1')
-
 define berto = Character('Berto', color='#8709B4')
 
 # Ejemplo1
@@ -23,11 +18,6 @@ define worker = Character('Obrero', color='#396c97')
 define characters = {
     '*': None,
     '': None,
-
-    'saijo': saijo,
-    'mutou': mutou,
-    'dereck': dereck,
-    'keiko': keiko,
 
     'berto': berto,
 

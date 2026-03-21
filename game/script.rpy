@@ -22,13 +22,21 @@ label start:
     $ globalDecisions = []
     $ globalScenes = []
 
+    $ basePaths = {
+        'path_background': None,
+        'path_sound': None,
+        'path_music': None,
+        'path_scene': None,
+        'path_displayable': None
+    }
+
     $ configManager = ConfigManager()
 
     $ currentKey = None
     $ currentDialogue = None    
     $ lastEmisor = ''
 
-    $ dialogueManager = DialogueManager(configManager.firstDialogue)
+    $ dialogueManager = DialogueManager(configManager.firstScene)
     $ dialogueManager.PrepareDialogues()
     $ backgroundManager = BackgroundManager()
     $ audioManager = AudioManager()
