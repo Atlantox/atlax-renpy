@@ -17,12 +17,11 @@ $ import DelayManager
 
 define config.layers = ['master',  'background', 'characters', 'effects', 'transient',  'screens', 'overlay', ]
 
-label start:    
-    $ globalPoints = dict()
-    $ globalDecisions = []
-    $ globalScenes = []
-
-    $ basePaths = {
+init -1 python:
+    lobalPoints = dict()
+    globalDecisions = []
+    globalScenes = []   
+    basePaths = {
         'path_background': None,
         'path_sound': None,
         'path_music': None,
@@ -30,11 +29,14 @@ label start:
         'path_displayable': None
     }
 
-    $ configManager = ConfigManager()
+    configManager = ConfigManager()
+    configManager.Loadconfig()
 
+
+label start:    
     $ currentKey = None
     $ currentDialogue = None    
-    $ lastEmisor = ''
+    $ lastEmisor = ''   
 
     $ dialogueManager = DialogueManager(configManager.firstScene)
     $ dialogueManager.PrepareDialogues()

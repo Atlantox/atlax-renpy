@@ -1,8 +1,9 @@
-init python:
+init -10 python:
     class ConfigManager:
         def __init__(self):
             self.configPath = '/config.csv' # the CSV file path
             self.firstScene = None
+            self.characterDefinitions = []
 
         def Loadconfig(self):
             if renpy.mobile:
@@ -13,14 +14,14 @@ init python:
                     rawConfig = f.read()
                     f.close()
 
-            lines = sceneContent.strip().split('\n')
+            lines = rawConfig.strip().split('\n')
 
             for line in lines:
-                splits = lines.split(';')
+                splits = line.split(';')
                 reason = splits[0].strip()
                 content = splits[1:]
 
-                if content[0][0] === '#':
+                if reason[0] == '#':
                     continue
 
                 if reason in basePaths:
@@ -32,8 +33,13 @@ init python:
                     firstScene = content[0]
                     self.firstScene = firstScene
                 elif reason == 'character':
+                    # Llenar la variable character de charactersDefine.rpy
+                    # Algo así: characters[content[0]] = Character(content[2], color=content[1])
+                    # También pensar en los personajes que dependen del idioma
                     uwu = Character()
                     renpy.character()
+
+                    
                     pass
 
             for key, value in basePaths.items():

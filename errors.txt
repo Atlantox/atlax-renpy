@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/managers/BackgroundManager.rpy", line 82: invalid syntax
-    'name': bgName
-              ^
+File "game/managers/ConfigManager.rpy", line 23: invalid syntax
+    if content[0][0] === '#':
+                           ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Tue Mar 10 18:25:11 2026
+Mon Mar 23 18:20:32 2026
