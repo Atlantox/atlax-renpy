@@ -33,17 +33,14 @@ init python:
                 finalEmisor = self.lastEmisor
             elif emisor == '*':
                 finalEmisor = ''
-
-            if finalEmisor != self.lastEmisor:                
-                pass
+            else:
+                if configManager.currentLanguage in configManager.characterDefinitions[finalEmisor]: # If exists a language variation of this emisor, use it
+                    finalEmisor = configManager.characterDefinitions[finalEmisor][configManager.currentLanguage]
+                else: # If don't, then use the Original name
+                    finalEmisor = configManager.characterDefinitions[finalEmisor]['Original']
                 
             self.lastEmisor = finalEmisor
-            
-            if finalEmisor in languageDependingNames:
-                finalEmisor = languageDependingNames[finalEmisor][currentLanguage]
 
-            finalEmisor = characters[finalEmisor]
-                
             finalSentence = finalSentence.replace('#.,',';').replace('%','%%')
             
             renpy.say(finalEmisor, finalSentence)
@@ -72,13 +69,7 @@ init python:
             globalScenes.append(fileName)
             scenePath = basePaths['path_scene'] + self.currentFile + '.csv'
 
-            if renpy.mobile:
-                sceneContent = renpy.file(scenePath, encoding="utf-8")
-                sceneContent = sceneContent.read()
-            else:
-                with open(renpy.loader.transfn(scenePath), mode="r", encoding="utf-8") as f:
-                    sceneContent = f.read()
-                    f.close()
+            sceneContent = configManager.OpenCSVFile(scenePath)
 
             if requireSceneEncryption:
                 sceneContent = self.DecryptScene(sceneContent)
@@ -163,7 +154,7 @@ init python:
 
             elif self.terminateMethod.lower() == 'decision':
                 to_add['nextDialogue'] = terminateSplits[2]
-                to_add['text'] = terminateSplits[allLanguages.index(currentLanguage) + 3]
+                to_add['text'] = terminateSplits[configManager.allLanguages.index(configManager.currentLanguage) + 3]
                 to_add['points'] = {}
 
                 if terminateSplits[1] != '':

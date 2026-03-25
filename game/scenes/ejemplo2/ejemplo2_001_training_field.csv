@@ -1,8 +1,8 @@
 ﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;Spanish;English
-example2_training_field_001;training field;Laps arount the air;;;suffocation:0.2;;;*;Ugh… La verdad no quería regresar aquí pero es mi deber, no me queda de otra, tengo que seguir a pesar del dolor;
+example2_training_field_001;training field;Laps arount the air;;;suffocation:0.2;;;*;Ugh… La verdad no quería regresar aquí pero es mi deber, no me queda de otra, tengo que seguir a pesar del dolor;english 1
 //este es un comentario de ejmplo;;;;;;;;;;
 //;;;;;;;;;;
-example2_training_field_002;forest:dissolve:5,dark_forest:rright,madera:pixel;;;;;;;instructor;Muy bien chicos, hoy continuarán practicando el combate con espada.;
+example2_training_field_002;;;;;;;;instructor;Muy bien chicos, hoy continuarán practicando el combate con espada.;english 2
 example2_training_field_003;;;;;;;;;Recuerden que luego podrán aprender a utilizar el arma que ustedes quieran, sin embargo todos ustedes deben ser capaces de manejar una espada correctamente.;
 example2_training_field_004;;;;;;;;;Ya lo saben, lo mismo de siempre, trabajen en sus posturas de combate y sobre todo tengan cuidado al momento de terminar los enfrentamientos.;
 example2_training_field_005;;;;;;;;;En la clase anterior hubo más heridos de los que me gustaría haber reportado a mi jefe.;

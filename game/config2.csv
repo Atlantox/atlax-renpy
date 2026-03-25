@@ -1,4 +1,4 @@
-Key;Value1;Value2;Spanish;English;Chinese;Portugues
+﻿Key;Value1;Value2;Spanish;English;Chinese;Portugues
 #;;;;;;
 # The first CSV scene / custom scene;;;;;;
 #;;;;;;
@@ -36,4 +36,4 @@ background;factory;;;;;
 #;;;;;;
 character;rafarencio;#ffad65;Rafarencio;;;
 character;tableman;#ffffff;Mesero;Tableman;Mechero;
-character;instructor;#ffffff;Instructor;Instrucotr ingl�s;;
+character;instructor;#ffffff;Instructor;Instrucotr inglés;;

@@ -106,7 +106,7 @@ label start:
         if delayManager.prepared:
             $ delayManager.HandleDelay()
 
-        $ dialogueManager.DisplayDialogue(dialogue[currentLanguage], dialogue['Emisor'])
+        $ dialogueManager.DisplayDialogue(dialogue[configManager.currentLanguage], dialogue['Emisor'])
 
     # Finaliza el juego:
 

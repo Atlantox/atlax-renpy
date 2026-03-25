@@ -1,48 +1,91 @@
 init -10 python:
     class ConfigManager:
         def __init__(self):
-            self.configPath = '/config.csv' # the CSV file path
+            self.configPath = '/config2.csv' # the CSV file path
             self.firstScene = None
-            self.characterDefinitions = []
+            self.allLanguages = ['Spanish', 'English', 'Chinese', 'Portugues']
+            self.currentLanguage = 'Spanish'
+
+            self.characterDefinitions = {
+                '*': None,
+                '': None,
+            }
+            self.configHeaders = []
 
         def Loadconfig(self):
-            if renpy.mobile:
-                rawConfig = renpy.file(self.configPath, encoding="utf-8")
-                rawConfig = rawConfig.read()
-            else:
-                with open(renpy.loader.transfn(self.configPath), mode="r", encoding="utf-8") as f:
-                    rawConfig = f.read()
-                    f.close()
+            rawConfig = self.OpenCSVFile(self.configPath)
 
             lines = rawConfig.strip().split('\n')
+            heading = lines[0] # The first line are the headers
+            lines = lines[1:] # The rest of the lines
+
+            self.configHeaders = [s.strip().replace('\ufeff', '') for s in heading.split(';')]
 
             for line in lines:
-                splits = line.split(';')
-                reason = splits[0].strip()
-                content = splits[1:]
-
-                if reason[0] == '#':
+                if line[0] == '#':
                     continue
 
-                if reason in basePaths:
-                    basePaths[reason] = content[0]
-                elif reason == 'background':
-                    bgName = content[0]
+                configPrompt = self.GetHeadedContent(line)
+
+                if configPrompt['Key'] in basePaths:
+                    basePaths[configPrompt['Key']] = configPrompt['Value1']
+                elif configPrompt['Key'] == 'background':
+                    bgName = configPrompt['Value1']
                     renpy.image(bgName, basePaths['path_background'] + bgName + '.png')
-                elif reason == 'begin':
-                    firstScene = content[0]
+                elif configPrompt['Key'] == 'begin':
+                    firstScene = configPrompt['Value1']
                     self.firstScene = firstScene
-                elif reason == 'character':
-                    # Llenar la variable character de charactersDefine.rpy
-                    # Algo así: characters[content[0]] = Character(content[2], color=content[1])
-                    # También pensar en los personajes que dependen del idioma
-                    uwu = Character()
-                    renpy.character()
+                elif configPrompt['Key'] == 'character':
+                    self.ProcessCharacter(configPrompt)                    
 
-                    
-                    pass
+            self.CheckAllPathsExists()
 
+        def ProcessCharacter(self, prompt):
+            appearTimes = 0
+            firstAppear = None
+            for language in self.allLanguages:
+                if language in prompt:
+                    if prompt[language] != '':
+                        appearTimes += 1
+                        if firstAppear is None:
+                            firstAppear = language
+
+            if appearTimes == 0:
+                raise Exception('No hay nombres para la definición del personaje. Datos: ' + str(prompt))
+
+            characterConfig = {'Original': Character(prompt[firstAppear], color=prompt['Value2'])}
+
+            for language in self.allLanguages:
+                if prompt[language] != '': # If a language variation is empty, take the first one
+                    characterConfig[language] = Character(prompt[language], color=prompt['Value2'])
+
+            self.characterDefinitions[prompt['Value1']] = characterConfig
+            
+
+        def GetHeadedContent(self, line):
+            result = {}
+            splittedContent = line.split(';')
+            for i in range(len(splittedContent)):
+                if i > len(self.configHeaders) - 1:
+                    raise Exception('La cabecera del archivo de configuración no tiene columnas suficientes para cubrir con el siguiente parámetro:\n' + str(splittedContent))
+
+                result[self.configHeaders[i]] = splittedContent[i]
+
+            return result
+
+        def CheckAllPathsExists(self):
             for key, value in basePaths.items():
                 if value is None:
                     raise Exception('El base_path de {0} no tiene un valor definido'.format(key))
                     
+
+        def OpenCSVFile(self, path):
+            if renpy.mobile:
+                rawContent = renpy.file(path, encoding="utf-8")
+                rawContent = rawContent.read()
+            else:
+                with open(renpy.loader.transfn(path), mode="r", encoding="utf-8") as f:
+                    rawContent = f.read()
+                    f.close()
+
+            return rawContent

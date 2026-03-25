@@ -3,10 +3,13 @@
 While running game code:
   File "game/script.rpy", line 20, in script
     init -1 python:
-  File "game/script.rpy", line 32, in <module>
-    configManager = ConfigManager()
-                    ^^^^^^^^^^^^^  
-NameError: name 'ConfigManager' is not defined
+  File "game/script.rpy", line 33, in <module>
+    configManager.Loadconfig()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/ConfigManager.rpy", line 30, in Loadconfig
+    if configPrompt['Key'] in basePaths:
+       ~~~~~~~~~~~~^^^^^^^              
+KeyError: 'Key'
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -19,12 +22,15 @@ Traceback (most recent call last):
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 32, in <module>
-    configManager = ConfigManager()
-                    ^^^^^^^^^^^^^  
-NameError: name 'ConfigManager' is not defined
+  File "game/script.rpy", line 33, in <module>
+    configManager.Loadconfig()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/ConfigManager.rpy", line 30, in Loadconfig
+    if configPrompt['Key'] in basePaths:
+       ~~~~~~~~~~~~^^^^^^^              
+KeyError: 'Key'
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Mon Mar 23 19:14:01 2026
+Wed Mar 25 19:45:56 2026
