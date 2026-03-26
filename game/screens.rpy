@@ -752,6 +752,20 @@ screen preferences():
                 ## Aquí se pueden añadir 'vboxes' adicionales del tipo
                 ## "radio_pref" o "check_pref" para nuevas preferencias.
 
+
+#begin language_picker
+
+                vbox:
+                    style_prefix "radio"
+                    label _("Language")
+
+                    textbutton "English" text_font "playtime.ttf" action Language('english')
+                    textbutton "Español" text_font "playtime.ttf" action Language(None)
+
+
+#end language_picker
+
+
             null height (4 * gui.pref_spacing)
 
             hbox:

@@ -3,8 +3,13 @@ init -10 python:
         def __init__(self):
             self.configPath = '/config2.csv' # the CSV file path
             self.firstScene = None
-            self.allLanguages = ['Spanish', 'English', 'Chinese', 'Portugues']
-            self.currentLanguage = 'Spanish'
+            self.allLanguages = ['spanish', 'english', 'chinese', 'portugues']
+
+            if persistent.language is None:
+                persistent.language = self.allLanguages[0]
+
+            self.currentLanguage = persistent.language
+            raise Exception(self.currentLanguage)
 
             self.characterDefinitions = {
                 '*': None,
@@ -50,8 +55,8 @@ init -10 python:
                         if firstAppear is None:
                             firstAppear = language
 
-            if appearTimes == 0:
-                raise Exception('No hay nombres para la definición del personaje. Datos: ' + str(prompt))
+            if appearTimes == 0 and firstAppear is None:
+                raise Exception('No hay nombres para la definición del personaje en el idioma ' + self.currentLanguage + '. Datos: ' + str(prompt))
 
             characterConfig = {'Original': Character(prompt[firstAppear], color=prompt['Value2'])}
 

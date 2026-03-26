@@ -1,20 +1,19 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 20, in script
+  File "game/script.rpy", line 18, in script
     init -1 python:
-  File "game/script.rpy", line 33, in <module>
-    configManager.Loadconfig()
-    ~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/ConfigManager.rpy", line 30, in Loadconfig
-    if configPrompt['Key'] in basePaths:
-       ~~~~~~~~~~~~^^^^^^^              
-KeyError: 'Key'
+  File "game/script.rpy", line 30, in <module>
+    configManager = ConfigManager()
+                    ~~~~~~~~~~~~~^^
+  File "game/managers/ConfigManager.rpy", line 12, in __init__
+    raise Exception(self.currentLanguage)
+Exception: spanish
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 20, in script
+  File "game/script.rpy", line 18, in script
     init -1 python:
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
@@ -22,15 +21,14 @@ Traceback (most recent call last):
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 33, in <module>
-    configManager.Loadconfig()
-    ~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/ConfigManager.rpy", line 30, in Loadconfig
-    if configPrompt['Key'] in basePaths:
-       ~~~~~~~~~~~~^^^^^^^              
-KeyError: 'Key'
+  File "game/script.rpy", line 30, in <module>
+    configManager = ConfigManager()
+                    ~~~~~~~~~~~~~^^
+  File "game/managers/ConfigManager.rpy", line 12, in __init__
+    raise Exception(self.currentLanguage)
+Exception: spanish
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Wed Mar 25 19:45:56 2026
+Thu Mar 26 18:58:12 2026

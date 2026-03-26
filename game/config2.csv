@@ -1,4 +1,4 @@
-﻿Key;Value1;Value2;Spanish;English;Chinese;Portugues
+﻿Key;Value1;Value2;spanish;english;chinese;portugues
 #;;;;;;
 # The first CSV scene / custom scene;;;;;;
 #;;;;;;
@@ -35,5 +35,5 @@ background;factory;;;;;
 # Character define;;;;;;
 #;;;;;;
 character;rafarencio;#ffad65;Rafarencio;;;
-character;tableman;#ffffff;Mesero;Tableman;Mechero;
+character;tableman;#ffffff;Mesero;Tableman;;
 character;instructor;#ffffff;Instructor;Instrucotr inglés;;

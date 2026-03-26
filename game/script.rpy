@@ -1,8 +1,5 @@
-﻿$ import definitions.languageDefine
-$ import definitions.configDefine
-$ import definitions.backgroundsDefine
-$ import definitions.charactersDefine
-$ import definitions.stylesDefine
+﻿$ import definitions.customConfig
+$ import definitions.customStyles
 $ import definitions.AtlaxEncryptionKey
 
 $ import animations.animations
@@ -16,6 +13,7 @@ $ import EventManager
 $ import DelayManager
 
 define config.layers = ['master',  'background', 'characters', 'effects', 'transient',  'screens', 'overlay', ]
+define config.default_language = 'spanish'
 
 init -1 python:
     lobalPoints = dict()
@@ -86,7 +84,7 @@ label start:
         if dialogue['Delay'] != '':
             $ delayManager.PrepareDelay(dialogue['Delay'])
 
-        #  STATEMENT EXECUTION  
+        #  STATEMENT EXECUTION 
 
         if backgroundManager.prepared:
             $ backgroundManager.HandleBackground()       
