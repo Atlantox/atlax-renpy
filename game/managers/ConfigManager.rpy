@@ -3,13 +3,13 @@ init -10 python:
         def __init__(self):
             self.configPath = '/config2.csv' # the CSV file path
             self.firstScene = None
-            self.allLanguages = ['spanish', 'english', 'chinese', 'portugues']
+            self.allLanguages = ['Spanish', 'English', 'Chinese', 'Portugues']
 
             if persistent.language is None:
                 persistent.language = self.allLanguages[0]
 
             self.currentLanguage = persistent.language
-            raise Exception(self.currentLanguage)
+            #raise Exception(self.currentLanguage)
 
             self.characterDefinitions = {
                 '*': None,
