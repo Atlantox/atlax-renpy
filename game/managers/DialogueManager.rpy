@@ -7,7 +7,16 @@ init python:
             self.ResetDialogueManager()
 
             self.minHeaderCount = 10
-            self.admittedTerminateMethods = ['decision', 'condition points', 'condition decision', 'condition scene', 'linear', 'credits', 'title']
+            self.admittedTerminateMethods = [
+                'decision', 
+                'condition points', 
+                'condition decision', 
+                'condition scene', 
+                'linear', 
+                'credits', 
+                'title',
+                'script',
+                ]
             self.admittedTerminateTransitions = ['fade', 'video']
             self.admittedPostChangingFilter = ['clear']
             self.returnToTitleDefaultTransitionParams = [Fade(7.0, 7.0, 2.0), 'screens', False]
@@ -215,6 +224,10 @@ init python:
                     if dialogue in globalScenes:
                         to_add['match'] = True
 
+            elif self.terminateMethod.lower() == 'credits':
+                if len(terminateSplits) > 1
+                to_add['']
+
             self.terminateData.append(to_add)
 
         def ProcesTerminationTransition(self, transitionData):
@@ -246,7 +259,7 @@ init python:
             return self.currentDialogue
 
         def HandleDialogueEnd(self):
-            nextDialogue = None
+            nextDialogue = None            
             
             if self.terminateMethod.lower() == 'decision':
                 nextDialogue = self.HandleDecision()
@@ -256,10 +269,11 @@ init python:
                 nextDialogue = self.terminateData[0]['nextDialogue']
             elif self.terminateMethod.lower() == 'title':
                 self.returnToTitleScreen = True
+            elif self.terminateMethod.lower() == 'credits':
+                self.customScriptLabel = 'credits'
+            elif self.terminateMethod.lower() == 'script':
+                pass
 
-                #self.terminateTransition = renpy.transition
-                #self.terminateParams = self.returnToTitleDefaultTransitionParams
-                #self.terminatePause = self.returnToTitleDefaultTransitionWait
 
             if self.terminateTransition is not None:
                 self.HandleTransition(clear=True)
@@ -269,6 +283,11 @@ init python:
                     self.ClearScene()              
 
                 self.GoToNewDialogue(nextDialogue)
+
+        def ReturnToMainMenu(self):
+            dialogueManager.returnToTitleScreen = False
+            backgroundManager.TurnScreenToBlack()
+            backgroundManager.ShowMainMenuBackground()
 
 
         def ClearScene(self):

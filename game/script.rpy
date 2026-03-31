@@ -53,14 +53,9 @@ label start:
             $ dialogueManager.HandleDialogueEnd()
 
             if dialogueManager.returnToTitleScreen:
+                $ dialogueManager.ReturnToMainMenu()
                 $ renpy.call('Credits')
                 return
-                '''
-                $ dialogueManager.returnToTitleScreen = False
-                $ backgroundManager.TurnScreenToBlack()
-                $ backgroundManager.ShowMainMenuBackground()
-                return
-                '''
 
         $ dialogue = dialogueManager.GetNextDialogue()        
             
