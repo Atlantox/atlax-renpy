@@ -1,15 +1,14 @@
 init -10 python:
     class ConfigManager:
         def __init__(self):
-            self.configPath = '/config2.csv' # the CSV file path
+            self.configPath = '/config2.csv' # the CSV config file path
             self.firstScene = None
             self.allLanguages = ['Spanish', 'English', 'Chinese', 'Portugues']
 
+            #raise Exception(preferences.language)
             if persistent.language is None:
                 persistent.language = self.allLanguages[0]
-
-            self.currentLanguage = persistent.language
-            #raise Exception(self.currentLanguage)
+                Language(persistent.language)
 
             self.characterDefinitions = {
                 '*': None,
@@ -56,7 +55,7 @@ init -10 python:
                             firstAppear = language
 
             if appearTimes == 0 and firstAppear is None:
-                raise Exception('No hay nombres para la definición del personaje en el idioma ' + self.currentLanguage + '. Datos: ' + str(prompt))
+                raise Exception('No hay nombres para la definición del personaje en el idioma ' + preferences.language + '. Datos: ' + str(prompt))
 
             characterConfig = {'Original': Character(prompt[firstAppear], color=prompt['Value2'])}
 

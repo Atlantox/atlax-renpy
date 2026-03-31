@@ -1,0 +1,7 @@
+Documentar
+
+Decoradores en los personajes: Imágenes o efectos para colocar encima o detrás de personajes
+Custom scripts: Definir el estandar de respuestas al usar custom scripts
+Instalador: Un ejecutable que te cree el sistema de carpetas, archivos de configuración, etc.
+    El instalador debe modificar también el archivo screens.rpy para agregar el ResetStatement en líneas de código con este formato:
+    textbutton "English" text_font "playtime.ttf" action [ Language('English'), If(dialogueManager is None, false=RestartStatement())]

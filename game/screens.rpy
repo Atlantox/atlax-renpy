@@ -472,7 +472,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
     textbutton _("Volver"):
         style "return_button"
 
-        action Return()
+        action [ Return() ]
 
     label title
 
@@ -759,8 +759,8 @@ screen preferences():
                     style_prefix "radio"
                     label _("Language")
 
-                    textbutton "English" text_font "playtime.ttf" action Language('English')
-                    textbutton "Español" text_font "playtime.ttf" action Language('Spanish')
+                    textbutton "English" text_font "playtime.ttf" action [ Language('English'), If(dialogueManager is None, false=RestartStatement())]
+                    textbutton "Español" text_font "playtime.ttf" action [ Language('Spanish'), If(dialogueManager is None, false=RestartStatement())]
 
 
 #end language_picker

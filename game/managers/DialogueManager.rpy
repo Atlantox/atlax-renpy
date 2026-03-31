@@ -20,6 +20,20 @@ init python:
 
             self.LoadDialogue()
 
+        def ResetDialogueManager(self):
+            self.rawDialogues = []
+            self.dialogues = []
+            self.currentDialogue = None
+            self.currentDialogueIndex = -1
+            self.terminateData = []
+            self.terminateMethod = ''
+            self.dialogueFinished = False
+            self.choices = []
+            self.terminatePause = 0
+
+            self.terminateTransition = None
+            self.terminateParams = []
+
         def DisplayDialogue(self, dialogue, emisor):
             finalSentence = dialogue
             finalEmisor = emisor
@@ -34,8 +48,8 @@ init python:
             elif emisor == '*':
                 finalEmisor = ''
             else:
-                if configManager.currentLanguage in configManager.characterDefinitions[finalEmisor]: # If exists a language variation of this emisor, use it
-                    finalEmisor = configManager.characterDefinitions[finalEmisor][configManager.currentLanguage]
+                if preferences.language in configManager.characterDefinitions[finalEmisor]: # If exists a language variation of this emisor, use it
+                    finalEmisor = configManager.characterDefinitions[finalEmisor][preferences.language]
                 else: # If don't, then use the Original name
                     finalEmisor = configManager.characterDefinitions[finalEmisor]['Original']
                 
@@ -154,7 +168,7 @@ init python:
 
             elif self.terminateMethod.lower() == 'decision':
                 to_add['nextDialogue'] = terminateSplits[2]
-                to_add['text'] = terminateSplits[configManager.allLanguages.index(configManager.currentLanguage) + 3]
+                to_add['text'] = terminateSplits[configManager.allLanguages.index(preferences.language) + 3]
                 to_add['points'] = {}
 
                 if terminateSplits[1] != '':
@@ -224,11 +238,12 @@ init python:
                 self.terminateParams = ['videos/' + videoName]
 
         def GetNextDialogue(self):
-            self.currentDialogue += 1
-            if self.currentDialogue + 1 == len(self.dialogues):
+            self.currentDialogueIndex += 1
+            if self.currentDialogueIndex + 1 == len(self.dialogues):
                 self.dialogueFinished = True
 
-            return self.dialogues[self.currentDialogue]    
+            self.currentDialogue = self.dialogues[self.currentDialogueIndex]
+            return self.currentDialogue
 
         def HandleDialogueEnd(self):
             nextDialogue = None
@@ -308,19 +323,6 @@ init python:
             self.ResetDialogueManager()
             self.LoadDialogue()
             self.PrepareDialogues()
-
-        def ResetDialogueManager(self):
-            self.rawDialogues = []
-            self.dialogues = []
-            self.currentDialogue = -1
-            self.terminateData = []
-            self.terminateMethod = ''
-            self.dialogueFinished = False
-            self.choices = []
-            self.terminatePause = 0
-
-            self.terminateTransition = None
-            self.terminateParams = []
 
         def GetConditionResult(self, condition):
             operators = ['<', '>', '=']

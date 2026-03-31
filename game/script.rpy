@@ -16,6 +16,14 @@ define config.layers = ['master',  'background', 'characters', 'effects', 'trans
 define config.default_language = 'spanish'
 
 init -1 python:
+    audioManager = None
+    backgroundManager = None
+    configManager = None
+    delayManager = None    
+    effectManager = None
+    eventManager = None
+    dialogueManager = None
+
     lobalPoints = dict()
     globalDecisions = []
     globalScenes = []   
@@ -32,10 +40,6 @@ init -1 python:
 
 
 label start:    
-    $ currentKey = None
-    $ currentDialogue = None    
-    $ lastEmisor = ''   
-
     $ dialogueManager = DialogueManager(configManager.firstScene)
     $ dialogueManager.PrepareDialogues()
     $ backgroundManager = BackgroundManager()
@@ -60,7 +64,6 @@ label start:
 
         $ dialogue = dialogueManager.GetNextDialogue()        
             
-        $ currentKey = dialogue['Key']
         #  STATEMENT PREPARATION 
 
         if dialogue['Background'] != '':
@@ -104,7 +107,7 @@ label start:
         if delayManager.prepared:
             $ delayManager.HandleDelay()
 
-        $ dialogueManager.DisplayDialogue(dialogue[configManager.currentLanguage], dialogue['Emisor'])
+        $ dialogueManager.DisplayDialogue(dialogue[preferences.language], dialogue['Emisor'])
 
     # Finaliza el juego:
 
