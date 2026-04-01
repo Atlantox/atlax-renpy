@@ -13,16 +13,19 @@ init python:
                 'condition decision', 
                 'condition scene', 
                 'linear', 
+                'script',
+
+                # End games
                 'credits', 
                 'title',
-                'script',
                 ]
             self.admittedTerminateTransitions = ['fade', 'video']
             self.admittedPostChangingFilter = ['clear']
             self.returnToTitleDefaultTransitionParams = [Fade(7.0, 7.0, 2.0), 'screens', False]
             self.returnToTitleDefaultTransitionWait = 15.0
 
-            self.returnToTitleScreen = False
+            self.endGame = False
+            self.keysWalked = []      
             self.currentFile = fileName
             self.clearAfterNewDialogue = False
             self.lastEmisor = ''            
@@ -39,6 +42,10 @@ init python:
             self.dialogueFinished = False
             self.choices = []
             self.terminatePause = 0
+
+            self.customScriptResponse = None
+            self.customScriptLabel = None
+            self.customScriptsForks = {}
 
             self.terminateTransition = None
             self.terminateParams = []
@@ -153,6 +160,11 @@ init python:
 
             self.terminateMethod = method
 
+            if self.terminateMethod == 'script':
+                self.customScriptLabel = splittedDialogue[1]
+                self.customScriptsForks = {}
+                return
+
             if len(splittedDialogue) > 1:
                 transitionSplits = [s.strip() for s in splittedDialogue[1].split(':')]
                 terminateTransition = transitionSplits[0]
@@ -173,10 +185,10 @@ init python:
             }
 
             if self.terminateMethod.lower() == 'linear':
-                to_add['nextDialogue'] = terminateSplits[1]
+                to_add['nextScene'] = terminateSplits[1]
 
             elif self.terminateMethod.lower() == 'decision':
-                to_add['nextDialogue'] = terminateSplits[2]
+                to_add['nextScene'] = terminateSplits[2]
                 to_add['text'] = terminateSplits[configManager.allLanguages.index(preferences.language) + 3]
                 to_add['points'] = {}
 
@@ -191,7 +203,7 @@ init python:
                 self.choices.append((to_add['text'], to_add['key'],))
 
             elif self.terminateMethod.lower() == 'condition points':
-                to_add['nextDialogue'] = terminateSplits[2]
+                to_add['nextScene'] = terminateSplits[2]
                 to_add['match'] = False
 
                 conditions = [s.strip() for s in terminateSplits[1].split(',')]                
@@ -207,16 +219,16 @@ init python:
                         to_add['match'] = True    
 
             elif self.terminateMethod.lower() == 'condition decision':
-                to_add['nextDialogue'] = terminateSplits[2]
+                to_add['nextScene'] = terminateSplits[2]
                 to_add['match'] = False
 
                 decisions = [s.strip() for s in terminateSplits[1].split(',')]
                 for decision in decisions:
-                    if decision in globalDecisions:
+                    if decision in self.keysWalked:
                         to_add['match'] = True
 
             elif self.terminateMethod.lower() == 'condition scene':
-                to_add['nextDialogue'] = terminateSplits[2]
+                to_add['nextScene'] = terminateSplits[2]
                 to_add['match'] = False
 
                 dialogues = [s.strip() for s in terminateSplits[1].split(',')]
@@ -225,8 +237,13 @@ init python:
                         to_add['match'] = True
 
             elif self.terminateMethod.lower() == 'credits':
-                if len(terminateSplits) > 1
-                to_add['']
+                to_add['credits_label'] = 'credits'
+                if len(terminateSplits) > 1:
+                    to_add['credits_label'] = terminateSplits[1]
+
+            elif self.terminateMethod.lower() == 'script':
+                to_add['expected_value'] = terminateSplits[1]
+                to_add['nextScene'] = terminateSplits[2]
 
             self.terminateData.append(to_add)
 
@@ -259,36 +276,51 @@ init python:
             return self.currentDialogue
 
         def HandleDialogueEnd(self):
-            nextDialogue = None            
+            nextScene = None            
             
             if self.terminateMethod.lower() == 'decision':
-                nextDialogue = self.HandleDecision()
+                nextScene = self.HandleDecision()
             elif 'condition' in self.terminateMethod.lower():
-                nextDialogue = self.HandleFork()  
+                nextScene = self.HandleFork()  
             elif self.terminateMethod.lower() == 'linear':
-                nextDialogue = self.terminateData[0]['nextDialogue']
+                nextScene = self.terminateData[0]['nextScene']
+                self.keysWalked.append(self.terminateData[0]['key'])
             elif self.terminateMethod.lower() == 'title':
-                self.returnToTitleScreen = True
+                self.endGame = True
+                self.ReturnToMainMenu()
+                return
             elif self.terminateMethod.lower() == 'credits':
-                self.customScriptLabel = 'credits'
-            elif self.terminateMethod.lower() == 'script':
-                pass
+                backgroundManager.TurnScreenToBlack()
+                renpy.call(self.terminateData[0]['credits_label'])
+                return
+            elif self.terminateMethod.lower() == 'script':     
+                # Custom scripts must finish setting the property dialogueManager.customScriptResponse      
+                # To an available response defiend in the respective .csv control file
+                renpy.call(self.customScriptLabel)
 
+                targetScene =  self.terminateData[-1]
+                
+                for fork in self.terminateData:
+                    if fork['expected_value'] == self.customScriptResponse:
+                        targetScene = fork
+                        break
+
+                nextScene = targetScene['nextScene']
+                key = targetScene['key']
+                self.keysWalked.append(key)
 
             if self.terminateTransition is not None:
                 self.HandleTransition(clear=True)
 
-            if nextDialogue is not None:
+            if nextScene is not None:
                 if self.clearAfterNewDialogue:
                     self.ClearScene()              
 
-                self.GoToNewDialogue(nextDialogue)
+                self.GoToNewScene(nextScene)
 
         def ReturnToMainMenu(self):
-            dialogueManager.returnToTitleScreen = False
             backgroundManager.TurnScreenToBlack()
             backgroundManager.ShowMainMenuBackground()
-
 
         def ClearScene(self):
             renpy.scene()
@@ -310,8 +342,8 @@ init python:
                     else:
                         globalPoints[point] = value
 
-            globalDecisions.append(targetDecision['key'])    
-            return targetDecision['nextDialogue']
+            self.keysWalked.append(targetDecision['key'])    
+            return targetDecision['nextScene']
 
         def HandleFork(self):            
             targetFork = None
@@ -324,8 +356,8 @@ init python:
             if targetFork == None:
                 targetFork = self.terminateData[-1]
 
-            globalDecisions.append(targetFork['key'])
-            return targetFork['nextDialogue']
+            self.keysWalked.append(targetFork['key'])
+            return targetFork['nextScene']
 
         def HandleTransition(self, clear = False):
             self.terminateTransition(*self.terminateParams)
@@ -337,7 +369,7 @@ init python:
 
             renpy.pause(self.terminatePause / 2, hard=True)
 
-        def GoToNewDialogue(self, newDialogue):
+        def GoToNewScene(self, newDialogue):
             self.currentFile = newDialogue
             self.ResetDialogueManager()
             self.LoadDialogue()

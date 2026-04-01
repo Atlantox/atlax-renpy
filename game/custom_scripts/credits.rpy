@@ -48,8 +48,7 @@ style credit_text_title:
     text_align 0.5
     xalign 0.5
 
-image creditsBackground = Solid('#FFF1CA')
-    
+image creditsBackground = Solid('#FFF1CA')    
 
 # Credits texts
 image text1 = Text("En esta vida, todos somos anécdotas en el tiempo", style="credit_text")

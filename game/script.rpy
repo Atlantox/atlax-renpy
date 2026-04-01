@@ -25,7 +25,6 @@ init -1 python:
     dialogueManager = None
 
     lobalPoints = dict()
-    globalDecisions = []
     globalScenes = []   
     basePaths = {
         'path_background': None,
@@ -52,10 +51,10 @@ label start:
         if dialogueManager.dialogueFinished:
             $ dialogueManager.HandleDialogueEnd()
 
-            if dialogueManager.returnToTitleScreen:
-                $ dialogueManager.ReturnToMainMenu()
-                $ renpy.call('Credits')
+            if dialogueManager.endGame:
+                $ dialogueManager.endGame = False
                 return
+                
 
         $ dialogue = dialogueManager.GetNextDialogue()        
             
