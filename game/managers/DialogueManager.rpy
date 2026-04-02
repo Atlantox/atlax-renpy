@@ -296,18 +296,8 @@ init python:
             elif self.terminateMethod.lower() == 'script':     
                 # Custom scripts must finish setting the property dialogueManager.customScriptResponse      
                 # To an available response defiend in the respective .csv control file
-                renpy.call(self.customScriptLabel)
-
-                targetScene =  self.terminateData[-1]
+                renpy.call(self.customScriptLabel)                
                 
-                for fork in self.terminateData:
-                    if fork['expected_value'] == self.customScriptResponse:
-                        targetScene = fork
-                        break
-
-                nextScene = targetScene['nextScene']
-                key = targetScene['key']
-                self.keysWalked.append(key)
 
             if self.terminateTransition is not None:
                 self.HandleTransition(clear=True)
@@ -317,6 +307,20 @@ init python:
                     self.ClearScene()              
 
                 self.GoToNewScene(nextScene)
+
+        def ProcessCustomScriptResponse(self):
+            targetScene =  self.terminateData[-1]
+                
+            for fork in self.terminateData:
+                if fork['expected_value'] == self.customScriptResponse:
+                    targetScene = fork
+                    break
+
+            nextScene = targetScene['nextScene']
+            
+            key = targetScene['key']
+            self.keysWalked.append(key)
+            self.GoToNewScene(nextScene)
 
         def ReturnToMainMenu(self):
             backgroundManager.TurnScreenToBlack()

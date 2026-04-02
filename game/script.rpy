@@ -54,7 +54,9 @@ label start:
             if dialogueManager.endGame:
                 $ dialogueManager.endGame = False
                 return
-                
+
+            if dialogueManager.customScriptResponse is not None:
+                $ dialogueManager.ProcessCustomScriptResponse()
 
         $ dialogue = dialogueManager.GetNextDialogue()        
             

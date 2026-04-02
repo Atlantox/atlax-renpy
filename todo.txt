@@ -1,4 +1,5 @@
 Documentar
+Si el escritor pretende terminar el juego con un custom script, deberá setear dialogueManager.endGame = True
 
 Decoradores en los personajes: Imágenes o efectos para colocar encima o detrás de personajes
 Custom scripts: Definir el estandar de respuestas al usar custom scripts

@@ -1,39 +1,46 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 59, in script
-    $ dialogue = dialogueManager.GetNextDialogue()
-  File "game/script.rpy", line 59, in <module>
-    $ dialogue = dialogueManager.GetNextDialogue()
-                         ~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 275, in GetNextDialogue
-    self.currentDialogue = self.dialogues[self.currentDialogueIndex]
-                           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-IndexError: list index out of range
+  File "game/script.rpy", line 92, in script
+    $ eventManager.HandleEvents()
+  File "game/script.rpy", line 92, in <module>
+    $ eventManager.HandleEvents()
+      ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 163, in HandleEvents
+    self.HandleSpawnEvents()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 195, in HandleSpawnEvents
+    self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 472, in ShowCharacter
+    raise Exception(final_fullname)
+Exception: rafarencio
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 59, in script
-    $ dialogue = dialogueManager.GetNextDialogue()
+  File "game/script.rpy", line 92, in script
+    $ eventManager.HandleEvents()
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 59, in <module>
-    $ dialogue = dialogueManager.GetNextDialogue()
-                         ~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 275, in GetNextDialogue
-    self.currentDialogue = self.dialogues[self.currentDialogueIndex]
-                           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/revertable.py", line 191, in __getitem__
-    rv = list.__getitem__(self, index)
-         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-IndexError: list index out of range
+  File "game/script.rpy", line 92, in <module>
+    $ eventManager.HandleEvents()
+      ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 163, in HandleEvents
+    self.HandleSpawnEvents()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 195, in HandleSpawnEvents
+    self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 472, in ShowCharacter
+    raise Exception(final_fullname)
+Exception: rafarencio
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Wed Apr  1 12:49:47 2026
+Wed Apr  1 20:56:58 2026

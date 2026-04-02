@@ -469,6 +469,7 @@ init python:
                 final_fullname = ' '.join(nameSplits)                
                 final_at_list = [HorizontalFlip()] + final_at_list
 
+            raise Exception(final_fullname)
             renpy.show(final_fullname, at_list=final_at_list, behind=behind, layer='characters')
 
 
