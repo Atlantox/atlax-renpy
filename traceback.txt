@@ -1,25 +1,26 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 92, in script
+  File "game/script.rpy", line 85, in script
     $ eventManager.HandleEvents()
-  File "game/script.rpy", line 92, in <module>
+  File "game/script.rpy", line 85, in <module>
     $ eventManager.HandleEvents()
       ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 163, in HandleEvents
-    self.HandleSpawnEvents()
-    ~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 195, in HandleSpawnEvents
-    self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
-    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/managers/EventManager.rpy", line 472, in ShowCharacter
-    raise Exception(final_fullname)
-Exception: rafarencio
+  File "game/managers/EventManager.rpy", line 178, in HandleEvents
+    self.HandleActionEvents()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 245, in HandleActionEvents
+    self.HandleCharacterDecoration(event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "game/managers/EventManager.rpy", line 361, in HandleCharacterDecoration
+    properties = [FixedHeight(), position]
+                  ^^^^^^^^^^^             
+NameError: name 'FixedHeight' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 92, in script
+  File "game/script.rpy", line 85, in script
     $ eventManager.HandleEvents()
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
@@ -27,20 +28,21 @@ Traceback (most recent call last):
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 92, in <module>
+  File "game/script.rpy", line 85, in <module>
     $ eventManager.HandleEvents()
       ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 163, in HandleEvents
-    self.HandleSpawnEvents()
-    ~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 195, in HandleSpawnEvents
-    self.ShowCharacter(character['fullname'], [position, self.fixedHeight])
-    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/managers/EventManager.rpy", line 472, in ShowCharacter
-    raise Exception(final_fullname)
-Exception: rafarencio
+  File "game/managers/EventManager.rpy", line 178, in HandleEvents
+    self.HandleActionEvents()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 245, in HandleActionEvents
+    self.HandleCharacterDecoration(event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "game/managers/EventManager.rpy", line 361, in HandleCharacterDecoration
+    properties = [FixedHeight(), position]
+                  ^^^^^^^^^^^             
+NameError: name 'FixedHeight' is not defined
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Wed Apr  1 20:56:58 2026
+Thu Apr  2 11:32:51 2026

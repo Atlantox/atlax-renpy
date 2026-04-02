@@ -3,7 +3,20 @@ init python:
         def __init__(self):
             self.prepared = False
             self.characterSpawnEvents = ['appear', 'pop']
-            self.characterAnimations = ['jump', 'tremble', 'zoom', 'hitl', 'hitr', 'knockl', 'knockr', 'raiser', 'raisel', 'movey',
+            self.characterAnimations = [
+                # Default animations
+                'jump', 
+                'tremble', 
+                'zoom', 
+                'hitl', 
+                'hitr', 
+                'knockl', 
+                'knockr', 
+                'raiser', 
+                'raisel', 
+                'movey',
+                'decor',
+
                 # Combat animations
                 'dodge', 
                 'attack',
@@ -13,6 +26,7 @@ init python:
                 'goup',
                 ]          
             self.characterContinuousEvents = ['jumping', 'trembling']
+
             self.characterActionsEvents = ['move', 'destroy', 'behind'] + self.characterAnimations + self.characterContinuousEvents
             self.fixedHeight = Transform(size=(None, config.screen_height), anchor=(0.5, 0.0),)
 
@@ -227,6 +241,8 @@ init python:
                     self.HandleDestroy(event)
                 elif event['action'] == 'behind':
                     self.HandleBehind(event)
+                elif event['action'] == 'decor':                    
+                    self.HandleCharacterDecoration(event)
 
                 if event['action'] in self.characterContinuousEvents:
                     self.HandleContinuousEffect(event)
@@ -317,6 +333,35 @@ init python:
             for character in event['characters']:
                 self.characterProperties[character['name']]['behind'] = behind
                 self.ShowCharacter(character['fullname'])
+
+        def HandleCharacterDecoration(self, event):
+            if len(event['params']) < 2:
+                raise Exception('No se ha especificado la imagen para decorar al personaje')
+
+            decorName = event['params'][1].strip()
+            decorPath = configManager.basePaths['path_displayable'] + decorName + '.png'
+            exists = renpy.exists(decorPath)
+            if not exists:
+                raise Exception('El decorador {decorName} no fue encontrado. Se esperaba el archivo: {decorPath}')
+
+            deep = 'behind'
+
+            if 'front' in event['params']:
+                deep = 'front'
+
+            for character in event['characters']:
+                characterData = self.characterProperties[character['name']]
+                position = Position(xalign=characterData['x'], yalign=characterData['y'])
+
+                behind = characterData['behind']
+
+                if deep == 'behind':
+                    behind.append(character['name'])
+
+                properties = [self.fixedHeight(), position]
+                renpy.show(decorName, behind=behind, at_list=properties, layer='characters', tag=character['name'] + '-' + decorName)
+                renpy.transition(Dissolve(0.1))
+
 
         def GetDefaultParametersOfAnimation(self, animation):
             params = []
@@ -469,7 +514,6 @@ init python:
                 final_fullname = ' '.join(nameSplits)                
                 final_at_list = [HorizontalFlip()] + final_at_list
 
-            raise Exception(final_fullname)
             renpy.show(final_fullname, at_list=final_at_list, behind=behind, layer='characters')
 
 

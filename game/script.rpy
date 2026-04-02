@@ -26,13 +26,6 @@ init -1 python:
 
     lobalPoints = dict()
     globalScenes = []   
-    basePaths = {
-        'path_background': None,
-        'path_sound': None,
-        'path_music': None,
-        'path_scene': None,
-        'path_displayable': None
-    }
 
     configManager = ConfigManager()
     configManager.Loadconfig()

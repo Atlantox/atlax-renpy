@@ -1,7 +1,6 @@
 init python:
     class BackgroundManager:
         def __init__(self):
-            self.baseBgPath = 'images/backgrounds/'
             self.defaultTransition = Dissolve
             self.defaultDuration = 3.0
             self.blackScreenDuration = 7.0
@@ -78,7 +77,7 @@ init python:
                     params = recievedParams   
 
             return {
-                'path': self.baseBgPath + f'{bgName}.png',
+                'path': configManager.basePaths['path_background'] + f'{bgName}.png',
                 'name': bgName,
                 'transition': currentTransition,
                 'params': params
@@ -176,7 +175,6 @@ init python:
             if self.currentBgName is None:
                 return
             
-            commandString = 'bg blackout' 
-            #renpy.hide(commandString, layer='background')   
-            renpy.show(commandString, layer='background', tag='bg')
+            commandString = 'bg ' + self.currentBgName 
+            renpy.hide(commandString, layer='background', tag="bg")   
             self.ResetBackgroundManager()

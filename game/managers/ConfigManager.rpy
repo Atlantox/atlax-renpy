@@ -5,6 +5,14 @@ init -10 python:
             self.firstScene = None
             self.allLanguages = ['Spanish', 'English', 'Chinese', 'Portugues']
 
+            self.basePaths = {
+                'path_background': None,
+                'path_sound': None,
+                'path_music': None,
+                'path_scene': None,
+                'path_displayable': None
+            }
+
             #raise Exception(preferences.language)
             if persistent.language is None:
                 persistent.language = self.allLanguages[0]
@@ -31,11 +39,11 @@ init -10 python:
 
                 configPrompt = self.GetHeadedContent(line)
 
-                if configPrompt['Key'] in basePaths:
-                    basePaths[configPrompt['Key']] = configPrompt['Value1']
+                if configPrompt['Key'] in self.basePaths:
+                    self.basePaths[configPrompt['Key']] = configPrompt['Value1']
                 elif configPrompt['Key'] == 'background':
                     bgName = configPrompt['Value1']
-                    renpy.image(bgName, basePaths['path_background'] + bgName + '.png')
+                    renpy.image('bg ' + bgName, self.basePaths['path_background'] + bgName + '.png')
                 elif configPrompt['Key'] == 'begin':
                     firstScene = configPrompt['Value1']
                     self.firstScene = firstScene
@@ -78,7 +86,7 @@ init -10 python:
             return result
 
         def CheckAllPathsExists(self):
-            for key, value in basePaths.items():
+            for key, value in self.basePaths.items():
                 if value is None:
                     raise Exception('El base_path de {0} no tiene un valor definido'.format(key))
                     

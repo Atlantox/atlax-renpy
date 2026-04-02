@@ -33,7 +33,7 @@ init python:
                     if effectName in ['vpunch', 'hpunch']:
                         self.PrepareShake(effectSplits)
                 else:
-                    exists = renpy.exists(backgroundManager.baseBgPath + effectName + '.png')
+                    exists = renpy.exists(configManager.basePaths['path_background'] + effectName + '.png')
                     self.PrepareImageBlink(effectSplits, exists)
 
         def PrepareShake(self, shakeSplits):
@@ -82,7 +82,7 @@ init python:
                 if effectName in self.backgroundDeformEffects:
                     self.PrepareBackgroundTransform(effectSplits)
                 else:
-                    bg_exists = renpy.exists(backgroundManager.baseBgPath + effectName + '.png')
+                    bg_exists = renpy.exists(configManager.basePaths['path_background'] + effectName + '.png')
                     if bg_exists:
                         self.PrepareDisplayImageOverBackground(effectSplits, True)
                     else:                        

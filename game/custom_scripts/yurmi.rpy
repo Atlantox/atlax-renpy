@@ -1,9 +1,17 @@
-#define rafarencio = Character('Rafarencio', color='#565656', image="rafarencio")
 
-label yurmi:
+label mycustom:
     "aguanile"
     
-    show Tohiro 
+    show bg dark forest onlayer effects:
+        alpha 0.5
+    show rafarencio onlayer characters with dissolve
     "aguanile guanila"
 
-    $ dialogueManager.customScriptResponse = 'uwu'
+    menu:
+        "yes":
+            $ dialogueManager.customScriptResponse = 'uwu'
+        "no":
+            $ dialogueManager.customScriptResponse = 'nada'
+
+
+    $ dialogueManager.endGame = True

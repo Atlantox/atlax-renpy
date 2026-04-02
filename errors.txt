@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/custom_scripts/yurmi.rpy", line 3: end of line expected.
-    show configManager.characterDefinitions['rafarencio']
-                      ^
+File "game/managers/EventManager.rpy", line 338: expected ':'
+    if len(event['params']) < 2
+                               ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Wed Apr  1 20:52:00 2026
+Thu Apr  2 11:30:17 2026

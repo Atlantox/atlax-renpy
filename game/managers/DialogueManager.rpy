@@ -97,7 +97,7 @@ init python:
                 fileName = fileName[0]
 
             globalScenes.append(fileName)
-            scenePath = basePaths['path_scene'] + self.currentFile + '.csv'
+            scenePath = configManager.basePaths['path_scene'] + self.currentFile + '.csv'
 
             sceneContent = configManager.OpenCSVFile(scenePath)
 

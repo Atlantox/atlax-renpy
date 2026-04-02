@@ -1,8 +1,10 @@
 Documentar
 Si el escritor pretende terminar el juego con un custom script, deberá setear dialogueManager.endGame = True
+En los custom script, para mostrar personajes obligatoriamente debe mostrar "onlayer characters"
+Los personajes que coloques en un custom cript serán ajenos al Atlax, por lo tanto, al terminar un custom script, lo ideal es dejar
+la escena con los mismos personajes antes del cutom script (haya o no personajes)
 
 Decoradores en los personajes: Imágenes o efectos para colocar encima o detrás de personajes
-Custom scripts: Definir el estandar de respuestas al usar custom scripts
 Instalador: Un ejecutable que te cree el sistema de carpetas, archivos de configuración, etc.
     El instalador debe modificar también el archivo screens.rpy para agregar el ResetStatement en líneas de código con este formato:
     textbutton "English" text_font "playtime.ttf" action [ Language('English'), If(dialogueManager is None, false=RestartStatement())]
