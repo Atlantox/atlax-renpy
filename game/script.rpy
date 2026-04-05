@@ -30,6 +30,11 @@ init -1 python:
     configManager = ConfigManager()
     configManager.Loadconfig()
 
+    if persistent.language is None:
+        persistent.language = configManager.allLanguages[0]
+        Language(persistent.language)
+        raise Exception(preferences.language)
+
 
 label start:    
     $ dialogueManager = DialogueManager(configManager.firstScene)
@@ -96,6 +101,7 @@ label start:
         if delayManager.prepared:
             $ delayManager.HandleDelay()
 
+        $ raise Exception(dialogue[preferences.language])
         $ dialogueManager.DisplayDialogue(dialogue[preferences.language], dialogue['Emisor'])
 
     # Finaliza el juego:

@@ -2,7 +2,7 @@ init -10 python:
     class ConfigManager:
         def __init__(self):
             self.configPath = '/config2.csv' # the CSV config file path
-            self.allLanguages = ['Spanish', 'English', 'Chinese', 'Portugues']
+            self.allLanguages = []
             self.firstScene = None
 
             self.basePaths = {
@@ -12,10 +12,6 @@ init -10 python:
                 'path_scene': None,
                 'path_displayable': None
             }
-
-            if persistent.language is None:
-                persistent.language = self.allLanguages[0]
-                Language(persistent.language)
 
             self.characterDefinitions = {
                 '*': None,
@@ -31,6 +27,11 @@ init -10 python:
             lines = lines[1:] # The rest of the lines
 
             self.configHeaders = [s.strip().replace('\ufeff', '') for s in heading.split(';')]
+
+            for header in self.configHeaders:
+                if header not in ['Key', 'Value1', 'Value2']:
+                    if header not in self.allLanguages:
+                        self.allLanguages.append(header)
 
             for line in lines:
                 if line[0] == '#':
