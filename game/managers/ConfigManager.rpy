@@ -2,8 +2,8 @@ init -10 python:
     class ConfigManager:
         def __init__(self):
             self.configPath = '/config2.csv' # the CSV config file path
-            self.firstScene = None
             self.allLanguages = ['Spanish', 'English', 'Chinese', 'Portugues']
+            self.firstScene = None
 
             self.basePaths = {
                 'path_background': None,
@@ -13,7 +13,6 @@ init -10 python:
                 'path_displayable': None
             }
 
-            #raise Exception(preferences.language)
             if persistent.language is None:
                 persistent.language = self.allLanguages[0]
                 Language(persistent.language)
@@ -71,8 +70,7 @@ init -10 python:
                 if prompt[language] != '': # If a language variation is empty, take the first one
                     characterConfig[language] = Character(prompt[language], color=prompt['Value2'])
 
-            self.characterDefinitions[prompt['Value1']] = characterConfig
-            
+            self.characterDefinitions[prompt['Value1']] = characterConfig            
 
         def GetHeadedContent(self, line):
             result = {}
@@ -88,8 +86,7 @@ init -10 python:
         def CheckAllPathsExists(self):
             for key, value in self.basePaths.items():
                 if value is None:
-                    raise Exception('El base_path de {0} no tiene un valor definido'.format(key))
-                    
+                    raise Exception('El base_path de {0} no tiene un valor definido'.format(key))                    
 
         def OpenCSVFile(self, path):
             if renpy.mobile:

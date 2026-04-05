@@ -29,6 +29,7 @@ init python:
 
             self.characterActionsEvents = ['move', 'destroy', 'behind'] + self.characterAnimations + self.characterContinuousEvents
             self.fixedHeight = Transform(size=(None, config.screen_height), anchor=(0.5, 0.0),)
+            self.decorationsDefaultTransition = Dissolve(0.15)
 
             #  Default spawn values
             self.defaultCharacterSpawn = self.characterSpawnEvents[0]
@@ -86,6 +87,7 @@ init python:
             self.onScreenCharacters = []
             self.characterProperties = {}
             self.continuousEvents = {}
+            self.characterDecorations = {}
 
             self.newCharactersQueue = []
             self.onScreenCharactersQueue = []
@@ -304,7 +306,6 @@ init python:
                 params[0] = float(event['params'][1])
 
             for character in event['characters']:
-                #self.DestroyCharacter(character)
                 params = [self.characterProperties[character['name']]['x']] + params
                 animation = self.oneParameterEvents[event['action']](*params)
                 self.ShowCharacter(character['fullname'], [self.fixedHeight, animation])
@@ -328,7 +329,12 @@ init python:
         def HandleBehind(self, event):
             behind = []
             if len(event['params']) > 1:
-                behind = [p.strip() for p in event['params'][1].split(',')]                
+                behind_list = [p.strip() for p in event['params'][1].split(',')]
+                behind += behind_list
+
+                for character in behind_list:
+                    if character in self.characterDecorations:
+                        behind += [character + '-' + decor for decor in self.characterDecorations[character]]
 
             for character in event['characters']:
                 self.characterProperties[character['name']]['behind'] = behind
@@ -350,18 +356,22 @@ init python:
                 deep = 'front'
 
             for character in event['characters']:
-                characterData = self.characterProperties[character['name']]
+                characterName = character['name']
+                if characterName in self.characterDecorations:
+                    if decorName in self.characterDecorations[characterName]:
+                        self.DestroyDecoration(decorName, characterName)
+                        continue
+                
+                characterData = self.characterProperties[characterName]
                 position = Position(xalign=characterData['x'], yalign=characterData['y'])
 
                 behind = characterData['behind']
 
                 if deep == 'behind':
-                    behind.append(character['name'])
+                    behind.append(characterName)
 
                 properties = [self.fixedHeight(), position]
-                renpy.show(decorName, behind=behind, at_list=properties, layer='characters', tag=character['name'] + '-' + decorName)
-                renpy.transition(Dissolve(0.1))
-
+                self.ShowCharacterDecoration(decorName, characterName, properties, behind)                
 
         def GetDefaultParametersOfAnimation(self, animation):
             params = []
@@ -416,6 +426,13 @@ init python:
                 renpy.pause(duration * 1.1)
                 
             renpy.hide(character['fullname'],  layer='characters')
+            if character['name'] in self.characterDecorations:
+                for decor in self.characterDecorations[character['name']]:
+                    renpy.hide(character['name'] + '-' + decor, layer='characters')
+
+        def DestroyDecoration(self, decorName, character):
+            renpy.hide(character + '-' + decorName, layer='characters')
+            renpy.transition(self.decorationsDefaultTransition)
 
         def HandleContinuousEffect(self, event):
             for character in event['characters']:
@@ -465,11 +482,9 @@ init python:
 
             name = ' '.join(nameSplits[0:-1])
             orientation = nameSplits[-1]
-
             
             if orientation not in ['left', 'right']:
                 return False
-
             
             spriteExists = renpy.has_image(name + ' ' + orientation, exact=True)
             if spriteExists: # If the sprite exists then it don't need to be flipped
@@ -484,13 +499,13 @@ init python:
             else:
                 error = 'Se intentó mostrar el sprite "' + name + ' ' + orientation
                 error += '" sin embargo no se pudo encontrar su contrario ("' + name + ' ' + contraryOrientation + '")'
-                raise Exception(error)
-         
+                raise Exception(error)         
 
             return flipImage
 
         def ShowCharacter(self, character, at_list = []):
-            final_at_list = at_list
+            character_at_list = at_list
+            decoration_at_list = character_at_list
             final_fullname = character
             behind = []
 
@@ -507,15 +522,27 @@ init python:
                     characterProperties['zoom'],
                 )
                 
-                final_at_list = [initialPosition] + at_list
+                character_at_list = [initialPosition] + at_list
+                decoration_at_list = character_at_list
 
             if self.CharacterNeedsToBeFlippedHorizontally(nameSplits):
                 nameSplits[-1] = 'left' if nameSplits[-1] == 'right' else 'right'
-                final_fullname = ' '.join(nameSplits)                
-                final_at_list = [HorizontalFlip()] + final_at_list
+                final_fullname = ' '.join(nameSplits)        
+                character_at_list = [HorizontalFlip()] + character_at_list
 
-            renpy.show(final_fullname, at_list=final_at_list, behind=behind, layer='characters')
+            renpy.show(final_fullname, at_list=character_at_list, behind=behind, layer='characters')
+            if characterName in self.characterDecorations:
+                if self.characterDecorations != []:
+                    for decor in self.characterDecorations[characterName]:
+                        self.ShowCharacterDecoration(decor, characterName, decoration_at_list, behind)
 
+        def ShowCharacterDecoration(self, decor, character, at_list = [], behind = []):
+            renpy.show(decor, behind=behind, at_list=at_list, layer='characters', tag=character + '-' + decor)
+
+            if character not in self.characterDecorations:
+                renpy.transition(self.decorationsDefaultTransition)
+                self.characterDecorations[character] = []
+                self.characterDecorations[character].append(decor)     
 
         def DestroyAllCharacters(self):
             for name, data in self.characterProperties.items():
@@ -525,3 +552,4 @@ init python:
             self.onScreenCharacters = []
             self.characterProperties = {}
             self.continuousEvents = {}
+            self.characterDecorations = {}
