@@ -759,8 +759,8 @@ screen preferences():
                     style_prefix "radio"
                     label _("Language")
 
-                    textbutton "English" text_font "playtime.ttf" action [ Language('English'), If(dialogueManager is None, false=RestartStatement())]
-                    textbutton "Español" text_font "playtime.ttf" action [ Language('Spanish'), If(dialogueManager is None, false=RestartStatement())]
+                    textbutton "English" text_font "playtime.ttf" action [ Language('english'), If(dialogueManager is None, false=RestartStatement())]
+                    textbutton "Español" text_font "playtime.ttf" action [ Language('spanish'), If(dialogueManager is None, false=RestartStatement())]
 
 
 #end language_picker

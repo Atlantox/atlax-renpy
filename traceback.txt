@@ -1,30 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 103, in script
-    $ raise Exception(dialogue[preferences.language])
-  File "game/script.rpy", line 103, in <module>
-    $ raise Exception(dialogue[preferences.language])
-                      ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^ 
-KeyError: 'spanish'
+  File "game/script.rpy", line 17, in script
+    init -1 python:
+  File "game/script.rpy", line 36, in <module>
+    raise Exception(config.default_language)
+Exception: None
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 103, in script
-    $ raise Exception(dialogue[preferences.language])
+  File "game/script.rpy", line 17, in script
+    init -1 python:
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 103, in <module>
-    $ raise Exception(dialogue[preferences.language])
-                      ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^ 
-KeyError: 'spanish'
+  File "game/script.rpy", line 36, in <module>
+    raise Exception(config.default_language)
+Exception: None
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Sun Apr  5 15:03:21 2026
+Mon Apr  6 19:42:00 2026

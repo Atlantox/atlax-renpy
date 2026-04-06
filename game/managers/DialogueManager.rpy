@@ -37,6 +37,7 @@ init python:
             self.dialogues = []
             self.currentDialogue = None
             self.currentDialogueIndex = -1
+            self.currentDialogueIsCustomScript = False
             self.terminateData = []
             self.terminateMethod = ''
             self.dialogueFinished = False
@@ -90,6 +91,12 @@ init python:
             
 
         def LoadDialogue(self):
+            if renpy.has_label(self.currentFile): # Verify if is a custom script
+                self.currentDialogueIsCustomScript = True
+                self.customScriptLabel = self.currentFile
+                return
+
+
             fileName = self.currentFile.split('/')
             if len(fileName) > 1:
                 fileName = fileName[-1]
@@ -293,11 +300,8 @@ init python:
                 backgroundManager.TurnScreenToBlack()
                 renpy.call(self.terminateData[0]['credits_label'])
                 return
-            elif self.terminateMethod.lower() == 'script':     
-                # Custom scripts must finish setting the property dialogueManager.customScriptResponse      
-                # To an available response defiend in the respective .csv control file
-                renpy.call(self.customScriptLabel)                
-                
+            elif self.terminateMethod.lower() == 'script':
+                CallCustomScript()              
 
             if self.terminateTransition is not None:
                 self.HandleTransition(clear=True)
@@ -378,6 +382,13 @@ init python:
             self.ResetDialogueManager()
             self.LoadDialogue()
             self.PrepareDialogues()
+
+        def CallCustomScript(self):
+            # Custom scripts must finish setting the property dialogueManager.customScriptResponse      
+            # To an available response defiend in the respective .csv control file
+            renpy.call(self.customScriptLabel) 
+            self.ProcessCustomScriptResponse()
+
 
         def GetConditionResult(self, condition):
             operators = ['<', '>', '=']

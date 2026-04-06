@@ -13,7 +13,6 @@ $ import EventManager
 $ import DelayManager
 
 define config.layers = ['master',  'background', 'characters', 'effects', 'transient',  'screens', 'overlay', ]
-define config.default_language = 'spanish'
 
 init -1 python:
     audioManager = None
@@ -33,17 +32,22 @@ init -1 python:
     if persistent.language is None:
         persistent.language = configManager.allLanguages[0]
         Language(persistent.language)
-        raise Exception(preferences.language)
+        
+        raise Exception(config.default_language)
 
 
-label start:    
-    $ dialogueManager = DialogueManager(configManager.firstScene)
-    $ dialogueManager.PrepareDialogues()
+label start:        
     $ backgroundManager = BackgroundManager()
     $ audioManager = AudioManager()
     $ effectManager = EffectManager()
     $ eventManager = EventManager()
     $ delayManager = DelayManager()
+    $ dialogueManager = DialogueManager(configManager.firstScene)
+
+    if dialogueManager.currentDialogueIsCustomScript:
+        $ dialogueManager.CallCustomScript()
+    else:
+        $ dialogueManager.PrepareDialogues()
 
     while True:
         if dialogueManager.dialogueFinished:

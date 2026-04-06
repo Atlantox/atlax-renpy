@@ -1,3 +1,4 @@
+define config.enable_language_autodetect = False
 define config.has_sync = False
 define config.fadeout_audio = 3 
 

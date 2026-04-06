@@ -105,6 +105,12 @@ label Credits:
     $ renpy.pause(defaultPause)
     hide text1
 
+    $ dialogueManager.customScriptResponse = 'kkk'
+    $ dialogueManager.terminateData = [
+        {'kkk': 'ejemplo2/ejemplo2_001_training_field'}
+    ]
+    return
+
     show text2 onlayer screens at scroll_text()
     $ renpy.pause(defaultPause)
     hide text2
