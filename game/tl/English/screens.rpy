@@ -1,6 +1,6 @@
 ﻿# TODO: Translation updated at 2026-03-27 19:34
 
-translate English strings:
+translate english strings:
 
     # screens.rpy:261
     old "Atrás"

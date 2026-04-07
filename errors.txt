@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/managers/EventManager.rpy", line 338: expected ':'
-    if len(event['params']) < 2
-                               ^
+File "game/custom_scripts/my_credits.rpy", line 108: invalid syntax
+    'expected_value':'kkk',
+                          ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Thu Apr  2 11:30:17 2026
+Tue Apr  7 18:00:30 2026

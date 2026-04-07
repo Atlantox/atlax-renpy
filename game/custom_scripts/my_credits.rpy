@@ -95,7 +95,7 @@ image theNextStepLogo = 'images/displayables/the next step logo.png'
 image dereckImage = 'images/displayables/dereck.png'
 image raideImage = 'images/displayables/raide.png'
 
-label Credits:
+label my_credits:
     $ quick_menu = False
     $ defaultPause = 6.0
 
@@ -105,11 +105,7 @@ label Credits:
     $ renpy.pause(defaultPause)
     hide text1
 
-    $ dialogueManager.customScriptResponse = 'kkk'
-    $ dialogueManager.terminateData = [
-        {'kkk': 'ejemplo2/ejemplo2_001_training_field'}
-    ]
-    return
+    
 
     show text2 onlayer screens at scroll_text()
     $ renpy.pause(defaultPause)

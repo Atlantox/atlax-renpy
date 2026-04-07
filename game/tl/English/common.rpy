@@ -1,6 +1,6 @@
 ﻿# TODO: Translation updated at 2026-03-27 19:34
 
-translate English strings:
+translate english strings:
 
     # renpy/common/000statements.rpy:28
     old "Click to play the video."

@@ -1,28 +1,42 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 17, in script
-    init -1 python:
-  File "game/script.rpy", line 36, in <module>
-    raise Exception(config.default_language)
-Exception: None
+  File "game/script.rpy", line 81, in script
+    $ eventManager.PrepareEvents(dialogue['Events'])
+  File "game/script.rpy", line 81, in <module>
+    $ eventManager.PrepareEvents(dialogue['Events'])
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 133, in PrepareEvents
+    self.PrepareNewCharacter(currentEvent)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 145, in PrepareNewCharacter
+    raise Exception('El método de aparición "' + action + '" para el personaje "' + character_name + '" no existe')
+                                                 ^^^^^^                                                            
+NameError: name 'action' is not defined. Did you mean: 'Action'?
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 17, in script
-    init -1 python:
+  File "game/script.rpy", line 81, in script
+    $ eventManager.PrepareEvents(dialogue['Events'])
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 36, in <module>
-    raise Exception(config.default_language)
-Exception: None
+  File "game/script.rpy", line 81, in <module>
+    $ eventManager.PrepareEvents(dialogue['Events'])
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 133, in PrepareEvents
+    self.PrepareNewCharacter(currentEvent)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 145, in PrepareNewCharacter
+    raise Exception('El método de aparición "' + action + '" para el personaje "' + character_name + '" no existe')
+                                                 ^^^^^^                                                            
+NameError: name 'action' is not defined. Did you mean: 'Action'?
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Mon Apr  6 19:42:00 2026
+Tue Apr  7 18:26:51 2026

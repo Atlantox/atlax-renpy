@@ -96,7 +96,6 @@ init python:
                 self.customScriptLabel = self.currentFile
                 return
 
-
             fileName = self.currentFile.split('/')
             if len(fileName) > 1:
                 fileName = fileName[-1]
@@ -298,10 +297,10 @@ init python:
                 return
             elif self.terminateMethod.lower() == 'credits':
                 backgroundManager.TurnScreenToBlack()
-                renpy.call(self.terminateData[0]['credits_label'])
+                renpy.call('my_credits')
                 return
             elif self.terminateMethod.lower() == 'script':
-                CallCustomScript()              
+                self.CallCustomScript()              
 
             if self.terminateTransition is not None:
                 self.HandleTransition(clear=True)
@@ -385,10 +384,8 @@ init python:
 
         def CallCustomScript(self):
             # Custom scripts must finish setting the property dialogueManager.customScriptResponse      
-            # To an available response defiend in the respective .csv control file
-            renpy.call(self.customScriptLabel) 
-            self.ProcessCustomScriptResponse()
-
+            # To an available response defiend in the respective .csv control file            
+            renpy.call(self.customScriptLabel)            
 
         def GetConditionResult(self, condition):
             operators = ['<', '>', '=']

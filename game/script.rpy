@@ -29,12 +29,9 @@ init -1 python:
     configManager = ConfigManager()
     configManager.Loadconfig()
 
-    if persistent.language is None:
-        persistent.language = configManager.allLanguages[0]
-        Language(persistent.language)
-        
-        raise Exception(config.default_language)
-
+    if preferences.language is None:
+        preferences.language = configManager.allLanguages[0]
+        Language(preferences.language)
 
 label start:        
     $ backgroundManager = BackgroundManager()
@@ -46,6 +43,7 @@ label start:
 
     if dialogueManager.currentDialogueIsCustomScript:
         $ dialogueManager.CallCustomScript()
+        $ dialogueManager.ProcessCustomScriptResponse()        
     else:
         $ dialogueManager.PrepareDialogues()
 
@@ -105,7 +103,6 @@ label start:
         if delayManager.prepared:
             $ delayManager.HandleDelay()
 
-        $ raise Exception(dialogue[preferences.language])
         $ dialogueManager.DisplayDialogue(dialogue[preferences.language], dialogue['Emisor'])
 
     # Finaliza el juego:

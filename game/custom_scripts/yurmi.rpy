@@ -1,5 +1,5 @@
 
-label mycustom:
+label yurmi:
     "aguanile"
     
     show bg dark forest onlayer effects:
@@ -14,4 +14,4 @@ label mycustom:
             $ dialogueManager.customScriptResponse = 'nada'
 
 
-    $ dialogueManager.endGame = True
+    
