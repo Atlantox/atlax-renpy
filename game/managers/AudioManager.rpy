@@ -25,7 +25,7 @@ init python:
             if len(promptSplits) == 2:
                 fadein = float(promptSplits[1])
 
-            self.currentMusicName = musicName.replace('_', ' ')
+            self.currentMusicName = musicName
             self.currentFadeIn = fadein
 
         def PrepareSound(self, soundPrompt):
