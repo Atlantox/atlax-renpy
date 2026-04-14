@@ -11,5 +11,8 @@ mypython/sceneEncrypter/build
 mypython/sceneEncrypter/dist
 mypython/sceneEncrypter/sceneEncrypter.spec
 
+mypython/installer/game
+
+
 apps/scene_encrypter/encrypted/*
 apps/scene_encrypter/to_encrypt/*
