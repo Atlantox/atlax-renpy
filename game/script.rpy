@@ -23,7 +23,7 @@ init -1 python:
     eventManager = None
     dialogueManager = None
 
-    lobalPoints = dict()
+    globalPoints = dict()
     globalScenes = []   
 
     configManager = ConfigManager()
@@ -34,6 +34,9 @@ init -1 python:
         Language(preferences.language)
 
 label start:        
+    $ globalPoints = dict(amistad=-1, calificacion=8, inteligencia=3)
+    $ dialogueManager.keysWalked = ['give_sushi', 'studying_for_exam', 'first_kiss']
+
     $ backgroundManager = BackgroundManager()
     $ audioManager = AudioManager()
     $ effectManager = EffectManager()

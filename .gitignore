@@ -3,6 +3,7 @@ game/cache/
 game/pythonlibs
 game/definitions/AtlaxEncryptionKey.rpy
 game/python-packages
+game/videos/videos/*
 
 mypython/sceneEncrypter/encryption.key
 mypython/sceneEncrypter/to_encrypt/*
@@ -12,6 +13,8 @@ mypython/sceneEncrypter/dist
 mypython/sceneEncrypter/sceneEncrypter.spec
 
 mypython/installer/game
+mypython/installer/build
+mypython/installer/dist
 
 
 apps/scene_encrypter/encrypted/*
