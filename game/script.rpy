@@ -34,15 +34,15 @@ init -1 python:
         Language(preferences.language)
 
 label start:        
-    $ globalPoints = dict(amistad=-1, calificacion=8, inteligencia=3)
-    $ dialogueManager.keysWalked = ['give_sushi', 'studying_for_exam', 'first_kiss']
-
     $ backgroundManager = BackgroundManager()
     $ audioManager = AudioManager()
     $ effectManager = EffectManager()
     $ eventManager = EventManager()
     $ delayManager = DelayManager()
     $ dialogueManager = DialogueManager(configManager.firstScene)
+
+    $ globalPoints = dict(amistad=-1, calificacion=8, inteligencia=3)
+    $ dialogueManager.keysWalked = ['give_sushi', 'studying_for_exam', 'first_kiss']
 
     if dialogueManager.currentDialogueIsCustomScript:
         $ dialogueManager.CallCustomScript()

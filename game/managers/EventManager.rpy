@@ -106,7 +106,7 @@ init python:
                     character_data = [s.strip() for s in character.split(' ')]
                     character_name = character_data[0]
 
-                    if(character_name not in globals()):
+                    if(character_name not in configManager.characterDefinitions):
                         raise Exception('El personaje "' + character_name + '" no está definido, verifica que el nombre está bien escrito')
 
                     sprite = ''
