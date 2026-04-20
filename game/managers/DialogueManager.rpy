@@ -28,7 +28,8 @@ init python:
             self.keysWalked = []      
             self.currentFile = fileName
             self.clearAfterNewDialogue = False
-            self.lastEmisor = ''            
+            self.lastEmisor = ''       
+            self.finalSentence = ''     
 
             self.LoadDialogue()
 
@@ -72,10 +73,22 @@ init python:
                 
             self.lastEmisor = finalEmisor
 
-            finalSentence = finalSentence.replace('#.,',';').replace('%','%%')
+            self.finalSentence = finalSentence.replace('#.,',';').replace('%','%%')
             
-            renpy.say(finalEmisor, finalSentence)
-            delayManager.textSpeedDelay = False
+            renpy.say(finalEmisor, self.finalSentence)
+
+        def AutopassDialogue(self):
+            # preferences.text_cps
+            if delayManager.textSpeedDelay != False:
+                targetSpeed = delayManager.textSpeedDelay
+            else:
+                targetSpeed = preferences.text_cps
+
+            if targetSpeed == 0:
+                waitTime = 0
+            else:
+                waitTime = len(self.finalSentence) / targetSpeed
+            renpy.pause(waitTime)
 
         def GetBytes(self, data):
             key = hashlib.sha256(atlax_encryption_key.encode()).digest()

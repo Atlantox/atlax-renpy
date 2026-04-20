@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/custom_scripts/my_credits.rpy", line 108: invalid syntax
-    'expected_value':'kkk',
-                          ^
+File "game/managers/DialogueManager.rpy", line 87: invalid syntax
+    if targetSpeed === 0:
+                     ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Tue Apr  7 18:00:30 2026
+Mon Apr 20 19:39:17 2026

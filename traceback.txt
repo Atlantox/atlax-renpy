@@ -1,34 +1,36 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 84, in script
-    $ eventManager.PrepareEvents(dialogue['Events'])
-  File "game/script.rpy", line 84, in <module>
-    $ eventManager.PrepareEvents(dialogue['Events'])
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
-  File "game/managers/EventManager.rpy", line 110, in PrepareEvents
-    raise Exception('El personaje "' + character_name + '" no está definido, verifica que el nombre está bien escrito')
-Exception: El personaje "rafarencio" no está definido, verifica que el nombre está bien escrito
+  File "game/script.rpy", line 112, in script
+    $ dialogueManager.AutopassDialogue()
+  File "game/script.rpy", line 112, in <module>
+    $ dialogueManager.AutopassDialogue()
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 87, in AutopassDialogue
+    waitTime = len(self.finalSentence) / targetSpeed
+               ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+ZeroDivisionError: division by zero
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 84, in script
-    $ eventManager.PrepareEvents(dialogue['Events'])
+  File "game/script.rpy", line 112, in script
+    $ dialogueManager.AutopassDialogue()
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 84, in <module>
-    $ eventManager.PrepareEvents(dialogue['Events'])
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
-  File "game/managers/EventManager.rpy", line 110, in PrepareEvents
-    raise Exception('El personaje "' + character_name + '" no está definido, verifica que el nombre está bien escrito')
-Exception: El personaje "rafarencio" no está definido, verifica que el nombre está bien escrito
+  File "game/script.rpy", line 112, in <module>
+    $ dialogueManager.AutopassDialogue()
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 87, in AutopassDialogue
+    waitTime = len(self.finalSentence) / targetSpeed
+               ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+ZeroDivisionError: division by zero
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Sun Apr 19 10:38:34 2026
+Mon Apr 20 19:38:45 2026

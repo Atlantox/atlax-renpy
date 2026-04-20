@@ -108,6 +108,13 @@ label start:
 
         $ dialogueManager.DisplayDialogue(dialogue[preferences.language], dialogue['Emisor'])
 
+        if delayManager.autopass:
+            $ dialogueManager.AutopassDialogue()
+            $ delayManager.ResetDelayManager()
+            pass
+
+        $ delayManager.ResetDelayManager()
+
     # Finaliza el juego:
 
     return

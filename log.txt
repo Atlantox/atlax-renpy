@@ -1,34 +1,34 @@
-2026-04-19 14:39:46 UTC
+2026-04-20 23:39:25 UTC
 Windows-11-10.0.26200-SP0
 Ren'Py 8.5.2.26010301
 
-Early init took 24 ms
-Loading error handling took 12 ms
-Loading script took 100 ms
-Loading save slot metadata took 10 ms
+Early init took 22 ms
+Loading error handling took 13 ms
+Loading script took 103 ms
+Loading save slot metadata took 11 ms
 Loading persistent took 0 ms
-Running init code took 21 ms
-Loading analysis data took 3 ms
+Running init code took 20 ms
+Loading analysis data took 4 ms
 Analyze and compile ATL took 1 ms
 Reloading save slot metadata took 4 ms
 Backing up script files to 'C:\\Users\\gabos\\AppData\\Roaming/RenPy/backups\\atlax-renpy':
-Dump and make backups took 24 ms
-Cleaning cache took 1 ms
+Dump and make backups took 19 ms
+Cleaning cache took 0 ms
 Making clean stores took 0 ms
-Initial gc took 17 ms
+Initial gc took 16 ms
 DPI scale factor: 1.500000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: Disabled thread optimizations.
-Creating interface object took 147 ms
+Creating interface object took 143 ms
 Init translation took 0 ms
 Cleaning stores took 1 ms
 Load screen analysis took 0 ms
-Analyze screens took 5 ms
-Save screen analysis took 7 ms
+Analyze screens took 6 ms
+Save screen analysis took 6 ms
 Save pyanalysis took 0 ms
-Save bytecode took 19 ms
+Save bytecode took 16 ms
 Running _start took 1 ms
-Interface start took 160 ms
+Interface start took 164 ms
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 2560, 1440)
@@ -38,5 +38,7 @@ Vendor: 'NVIDIA Corporation'
 Renderer: 'NVIDIA GeForce RTX 5070 Laptop GPU/PCIe/SSE2'
 Version: '4.6.0 NVIDIA 591.59'
 Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 255, 0), 'shifts': (16, 8, 0, 0), 'losses': (0, 0, 0, 8), 'current_w': 2560, 'current_h': 1440, 'refresh_rate': 165, 'hw': False, 'wm': True, 'video_mem': 268435456, 'blit_hw': False, 'blit_hw_CC': False, 'blit_hw_A': False, 'blit_sw': False, 'blit_sw_CC': False, 'blit_sw_A': False})>
-Screen sizes: virtual=(1920, 1080) physical=(2379, 1338) drawable=(2379, 1338)
+Screen sizes: virtual=(1920, 1080) physical=(2560, 1334) drawable=(2560, 1334)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(1920, 1080) physical=(2560, 1334) drawable=(2560, 1334)
 Maximum texture size: 4096x4096
