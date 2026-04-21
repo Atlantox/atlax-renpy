@@ -56,10 +56,15 @@ init python:
             finalSentence = dialogue
             finalEmisor = emisor
 
-            if delayManager.textSpeedDelay != False:
-                finalSentence = "{cps=" + str(delayManager.textSpeedDelay) + "}" + dialogue + "{/cps}"     
-            else:      
-                finalSentence = '{cps=' + str(preferences.text_cps) + '}' + dialogue + '{/cps}'    
+            finalSpeed = preferences.text_cps
+
+            if delayManager.textSpeed != False:
+                finalSpeed = delayManager.textSpeed
+
+            if finalSpeed == 0 and delayManager.autopass:
+                finalSpeed = 180
+
+            finalSentence = '{cps=' + str(finalSpeed) + '}' + dialogue + '{/cps}'    
 
             if emisor == '':
                 finalEmisor = self.lastEmisor
@@ -74,21 +79,11 @@ init python:
             self.lastEmisor = finalEmisor
 
             self.finalSentence = finalSentence.replace('#.,',';').replace('%','%%')
+
+            if delayManager.autopass:
+                self.finalSentence += '{nw}'
             
             renpy.say(finalEmisor, self.finalSentence)
-
-        def AutopassDialogue(self):
-            # preferences.text_cps
-            if delayManager.textSpeedDelay != False:
-                targetSpeed = delayManager.textSpeedDelay
-            else:
-                targetSpeed = preferences.text_cps
-
-            if targetSpeed == 0:
-                waitTime = 0
-            else:
-                waitTime = len(self.finalSentence) / targetSpeed
-            renpy.pause(waitTime)
 
         def GetBytes(self, data):
             key = hashlib.sha256(atlax_encryption_key.encode()).digest()

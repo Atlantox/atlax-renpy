@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/managers/DialogueManager.rpy", line 87: invalid syntax
-    if targetSpeed === 0:
-                     ^
+File "game/script.rpy", line 54: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    $ if dialogueManager.dialogueFinished:
+    ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Mon Apr 20 19:39:17 2026
+Tue Apr 21 17:21:21 2026

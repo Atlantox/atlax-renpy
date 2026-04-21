@@ -4,7 +4,7 @@ init python:
             self.ResetDelayManager()
 
         def ResetDelayManager(self):
-            self.textSpeedDelay = False
+            self.textSpeed = False
             self.dialogueDelay = False
             self.prepared = False
             self.autopass = False
@@ -24,7 +24,7 @@ init python:
                 self.dialogueDelay = float(delaySplits[0])
 
             if len(delaySplits) > 1:
-                self.textSpeedDelay = float(delaySplits[1])            
+                self.textSpeed = float(delaySplits[1])            
 
         def HandleDelay(self):
             renpy.pause(self.dialogueDelay)

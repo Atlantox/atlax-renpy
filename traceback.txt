@@ -1,36 +1,36 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 112, in script
-    $ dialogueManager.AutopassDialogue()
-  File "game/script.rpy", line 112, in <module>
-    $ dialogueManager.AutopassDialogue()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 87, in AutopassDialogue
-    waitTime = len(self.finalSentence) / targetSpeed
-               ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
-ZeroDivisionError: division by zero
+  File "game/script.rpy", line 87, in script
+    $ delayManager.PrepareDelay(dialogue['Delay'])
+  File "game/script.rpy", line 87, in <module>
+    $ delayManager.PrepareDelay(dialogue['Delay'])
+      ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "game/managers/DelayManager.rpy", line 24, in PrepareDelay
+    self.dialogueDelay = float(delaySplits[0])
+                         ~~~~~^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: '0,041666667'
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 112, in script
-    $ dialogueManager.AutopassDialogue()
+  File "game/script.rpy", line 87, in script
+    $ delayManager.PrepareDelay(dialogue['Delay'])
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 112, in <module>
-    $ dialogueManager.AutopassDialogue()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 87, in AutopassDialogue
-    waitTime = len(self.finalSentence) / targetSpeed
-               ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
-ZeroDivisionError: division by zero
+  File "game/script.rpy", line 87, in <module>
+    $ delayManager.PrepareDelay(dialogue['Delay'])
+      ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "game/managers/DelayManager.rpy", line 24, in PrepareDelay
+    self.dialogueDelay = float(delaySplits[0])
+                         ~~~~~^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: '0,041666667'
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Mon Apr 20 19:38:45 2026
+Tue Apr 21 17:57:13 2026
