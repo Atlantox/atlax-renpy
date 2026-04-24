@@ -115,6 +115,6 @@ example2_training_field_113;;;;;;rafarencio pain,rafarencio pain:damage;;;Con mi
 example2_training_field_115;;;;;;rafarencio:jump, rafarencio:decor:stars, flint left:decor:annoying, rafarencio:decor:annoying;pass;;Forcejea con su muñeca, puedo sentir como mis encías se esfuerzan todo lo que pueden.;
 example2_training_field_116;;;;;;rafarencio:decor:stars;pass;;Sigo golpeando su costado sin cesar, no puedo estar en esta posición para siempre, los dientes me van a quedar todos torcidos después de esto.;
 example2_training_field_117;;;;;;rafarencio:destroy;;;El brazo izquierdo se me empieza a cansar, no puedo resistir dar 20 golpes fuertes seguidos sin cansarme empiezo a notarme rígido.;
-#script;yurmi;;;;;;;;;
-yurmi1;uwu;ejemplo2/ejemplo2_004_prepare_powerfull_hit;;;;;;;;
-yurmi2;nada;ejemplo2/ejemplo2_005_ruined_future;;;;;;;;
+#decision;;;;;;;;;;
+keep_punching;;ejemplo2/ejemplo2_002_keep_hitting;;Forzarte y seguir golpeando;;;;;;
+big_punch;;ejemplo2/ejemplo2_004_prepare_powerfull_hit;;Preparar un golpe fuerte;;;;;;

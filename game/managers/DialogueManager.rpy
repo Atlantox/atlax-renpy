@@ -203,7 +203,10 @@ init python:
 
             elif self.terminateMethod.lower() == 'decision':
                 to_add['nextScene'] = terminateSplits[2]
-                to_add['text'] = terminateSplits[configManager.allLanguages.index(preferences.language) + 3]
+
+                to_add['text'] = terminateSplits[4]
+                if to_add['text'] in ['', None]:
+                    to_add['text'] = terminateSplits[configManager.allLanguages.index(preferences.language) + 4]
                 to_add['points'] = {}
 
                 if terminateSplits[1] != '':
