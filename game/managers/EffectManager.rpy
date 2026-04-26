@@ -95,7 +95,7 @@ init python:
             if effectName in self.currentContinuousEffects:  # The effect it's in progress, then stop it
                 effectIdx = self.currentContinuousEffects.index(effectName)
                 del self.currentContinuousEffects[effectIdx]
-                del backgroundManager.transformsToApply[effectName]
+                del backgroundManager.transformsToApply[effectName]               
             else: # The effect isn't in progress, then prepare it
                 self.currentContinuousEffects.append(effectName)
                 recievedParam = len(effectSplits) > 1  # A param was recieved
@@ -116,6 +116,8 @@ init python:
                     return
 
                 backgroundManager.transformsToApply[effectName] = targetEffect
+
+            backgroundManager.reloadBackground = True
 
         def PrepareDisplayImageOverBackground(self, effectSplits, isBackbround = True):
             imageName = effectSplits[0]
@@ -142,10 +144,13 @@ init python:
             if len(self.effectQueue) > 0:
                 for e in self.effectQueue:                    
                     renpy.transition(e)
-                    #renpy.with_statement(e)
                     renpy.pause(.5)
 
                 self.effectQueue = []
+
+            if backgroundManager.reloadBackground:
+                backgroundManager.ApplyTransformsToCurrentBackground()
+                backgroundManager.reloadBackground = False
 
             if len(self.continuousEffectQueue) > 0:
                 pass

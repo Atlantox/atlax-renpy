@@ -153,7 +153,7 @@ init python:
                     continue             
 
                 if len(splittedDialogue) < self.minHeaderCount:
-                    error = 'Error en el diálogo {0}: No cumple con el mínimo número de columnas'.format(splittedDialogue[0])
+                    error = 'Error en el diálogo {0}: Tiene un número inferior de columnas que la cabecera'.format(splittedDialogue[0])
                     raise Exception(error)
 
                 headerIdx = 0
@@ -169,7 +169,8 @@ init python:
         def ProcessTerminationMethod(self, splittedDialogue):  
             method = splittedDialogue[0][1:]
             if method not in self.admittedTerminateMethods:
-                error = 'Error en el diálogo {0}: El método de terminación {1} no existe, los que se admiten son: '.format(splittedDialogue[0], method)
+                error = 'Error en la escena ' + self.currentFile + ': '
+                error += 'El método de finalización {0} no existe, los que se admiten son: '.format(method)
                 raise Exception(error + str(self.admittedTerminateMethods))
 
             self.terminateMethod = method
@@ -184,7 +185,8 @@ init python:
                 terminateTransition = transitionSplits[0]
 
                 if terminateTransition not in self.admittedTerminateTransitions and terminateTransition != '':
-                    error = 'Error en el diálogo {0}: La transicion de terminación {1} no existe, los que se admiten son: '.format(splittedDialogue[0], terminateTransition)
+                    error = 'Error en la escena ' + self.currentFile + ': '
+                    error = 'La transicion de finalización {0} no existe, los que se admiten son: '.format(terminateTransition)
                     raise Exception(error + str(self.admittedTerminateTransitions))
 
             if len(splittedDialogue) > 2:
@@ -408,13 +410,15 @@ init python:
                     splits = [s.strip() for s in condition.split(operator)]
 
             if targetOperator == None:
-                raise Exception('Operador inválido para ' + condition)
+                error = 'Error en la escena ' + self.currentFile + ': Operador de comparación inválido: ' + condition
+                raise Exception(error)
 
             key = splits[0]
             value = int(splits[1])
 
             if key not in globalPoints:
-                raise Exception('El punto ' + key + ' no existe')
+                error = 'Error en la escena ' + self.currentFile + ': El punto ' + key + ' no existe, verifica que esté bien escrito.'
+                raise Exception(error)
 
             result = None
             if targetOperator == '>':
@@ -425,3 +429,6 @@ init python:
                 result = globalPoints[key] == value
 
             return result
+
+        def GetErrorText(self):
+            return 'Error en el diálogo ' + self.currentDialogue['Key'] + ': '

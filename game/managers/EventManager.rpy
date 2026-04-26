@@ -109,7 +109,9 @@ init python:
                     character_name = character_data[0]
 
                     if(character_name not in configManager.characterDefinitions):
-                        raise Exception('El personaje "' + character_name + '" no está definido, verifica que el nombre está bien escrito')
+                        error = dialogueManager.GetErrorText()
+                        error += 'El personaje "' + character_name + '" no está definido, verifica que el nombre está bien escrito'
+                        raise Exception(error)
 
                     sprite = ''
                     if len(character_data) > 1:
@@ -119,7 +121,9 @@ init python:
                 
                     if not renpy.has_image(fullname):
                         if 'left' not in fullname and 'right' not in fullname:
-                            raise Exception('El sprite "' + sprite + '" del personaje "' + character_name + '" no existe') 
+                            error = dialogueManager.GetErrorText()
+                            error += 'El sprite "' + sprite + '" del personaje "' + character_name + '" no existe'
+                            raise Exception(error) 
 
                     final_characters.append({
                         'name': character_name,
@@ -144,7 +148,9 @@ init python:
 
 
             if spawnMethod not in self.characterSpawnEvents and not spawnMethod.isnumeric():
-                raise Exception('El método de aparición "' + action + '" para el personaje "' + character_name + '" no existe')             
+                error = dialogueManager.GetErrorText()
+                error += 'El método de aparición "' + action + '" para el personaje "' + character_name + '" no existe'
+                raise Exception(error)             
 
             buffer = eventData
             buffer['spawnMethod'] = spawnMethod
@@ -171,7 +177,9 @@ init python:
 
             action = buffer['params'][0]
             if action not in self.characterActionsEvents:
-                raise Exception('La acción "' + action + '" para los personajes "' + str(buffer['characters']) + '" no existe')
+                error = dialogueManager.GetErrorText()
+                error += 'La acción "' + action + '" para los personajes "' + str(buffer['characters']) + '" no existe'
+                raise Exception(error)
 
             buffer['action'] = action
             self.onScreenCharactersQueue.append(buffer)
@@ -344,13 +352,17 @@ init python:
 
         def HandleCharacterDecoration(self, event):
             if len(event['params']) < 2:
-                raise Exception('No se ha especificado la imagen para decorar al personaje')
+                error = dialogueManager.GetErrorText()
+                error += 'No se ha especificado la imagen para decorar al personaje'
+                raise Exception(error)
 
             decorName = event['params'][1].strip()
             decorPath = configManager.basePaths['path_displayable'] + decorName + '.png'
             exists = renpy.exists(decorPath)
             if not exists:
-                raise Exception('El decorador {decorName} no fue encontrado. Se esperaba el archivo: {decorPath}')
+                error = dialogueManager.GetErrorText()
+                error += 'El decorador {decorName} no fue encontrado. Se esperaba el archivo: {decorPath}'
+                raise Exception(error)
 
             deep = 'behind'
 
@@ -499,7 +511,8 @@ init python:
             if(contraryExists):
                 flipImage = True
             else:
-                error = 'Se intentó mostrar el sprite "' + name + ' ' + orientation
+                error = dialogueManager.GetErrorText()
+                error += 'Se intentó mostrar el sprite "' + name + ' ' + orientation
                 error += '" sin embargo no se pudo encontrar su contrario ("' + name + ' ' + contraryOrientation + '")'
                 raise Exception(error)         
 

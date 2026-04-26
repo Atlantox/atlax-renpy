@@ -19,16 +19,19 @@ init python:
             }
 
             self.prepared = False
-
             self.backgroundPlaced = False
+            self.params = None
+            self.backgroundQueue = []
+            self.ResetBackgroundManager()
 
+        def ResetBackgroundManager(self):
             self.targetTransition = None
             self.currentBgPath = None
             self.currentBgName = None
+            self.reloadBackground = False
             self.params = None
+            
             self.transformsToApply = {}
-
-            self.backgroundQueue = []
 
             self.postHandleEvents = []
             self.postHandleParams = []
@@ -98,7 +101,7 @@ init python:
                 for key, value in self.transformsToApply.items():
                     transforms.append(value)
 
-                renpy.show(commandString, at_list=transforms, layer='background', tag='bg')             
+                renpy.show(commandString, at_list=transforms, layer='background', tag='bg')   
 
                 if not self.backgroundPlaced: # Placing the background without transition             
                     self.backgroundPlaced = True
@@ -115,6 +118,19 @@ init python:
                             totalPause += param
 
                     renpy.pause(totalPause)
+
+        def ApplyTransformsToCurrentBackground(self):
+            commandString = self.currentBgName
+
+            transforms = [AdjustImage()]
+            for key, value in self.transformsToApply.items():
+                transforms.append(value)
+
+            if dialogueManager.currentDialogue['Key'] == 'example2_training_field_116':
+                renpy.show('bg dark forest', layer='background', tag='bg')  
+                #raise Exception(len(transforms))
+
+            renpy.show(commandString, at_list=transforms, layer='background', tag='bg')  
 
         def HandlePostEventsEffects(self):
             for i in range(len(self.postHandleEvents)):
@@ -159,17 +175,6 @@ init python:
             renpy.show('bg main_menu_background', layer='screens', tag='black_screen')
             renpy.transition(Dissolve(self.blackScreenDuration))
             renpy.pause(self.blackScreenDuration, hard=True)
-
-
-        def ResetBackgroundManager(self):
-            self.targetTransition = None
-            self.currentBgPath = None
-            self.currentBgName = None
-            self.params = None
-            self.transformsToApply = {}
-
-            self.postHandleEvents = []
-            self.postHandleParams = []
 
         def DestroyCurrentBackground(self):
             if self.currentBgName is None:

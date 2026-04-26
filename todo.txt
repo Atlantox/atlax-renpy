@@ -1,7 +1,4 @@
-Documentar
-
-DECORADORES
-Autopass en columna delay   
+No está documentado los comentarios en los diálogos, estos empiezan con //
 
 Instalador: Un ejecutable que te cree el sistema de carpetas, archivos de configuración, etc.
     El instalador debe modificar también el archivo screens.rpy para agregar el ResetStatement en líneas de código con este formato:

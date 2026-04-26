@@ -63,7 +63,9 @@ init -10 python:
                             firstAppear = language
 
             if appearTimes == 0 and firstAppear is None:
-                raise Exception('No hay nombres para la definición del personaje en el idioma ' + preferences.language + '. Datos: ' + str(prompt))
+                error = 'El personaje ' + prompt['Value1'] + ' no tiene ni una variación de nombre. '
+                error += 'Datos: ' + str(prompt)
+                raise Exception(error)
 
             characterConfig = {'Original': Character(prompt[firstAppear], color=prompt['Value2'])}
 
@@ -78,7 +80,9 @@ init -10 python:
             splittedContent = line.split(';')
             for i in range(len(splittedContent)):
                 if i > len(self.configHeaders) - 1:
-                    raise Exception('La cabecera del archivo de configuración no tiene columnas suficientes para cubrir con el siguiente parámetro:\n' + str(splittedContent))
+                    error = 'Una fila del archivo de control presenta un número de columnas distintas al de la cabecera. '
+                    error += 'Fila: ' + str(splittedContent)
+                    raise Exception(error)
 
                 result[self.configHeaders[i]] = splittedContent[i]
 
@@ -87,7 +91,8 @@ init -10 python:
         def CheckAllPathsExists(self):
             for key, value in self.basePaths.items():
                 if value is None:
-                    raise Exception('El base_path de {0} no tiene un valor definido'.format(key))                    
+                    error = 'Una ruta base está sin definir: ' + key
+                    raise Exception(error)                    
 
         def OpenCSVFile(self, path):
             if renpy.mobile:

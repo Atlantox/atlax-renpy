@@ -1,66 +1,40 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 95, in script
-    $ eventManager.HandleEvents()
-  File "game/script.rpy", line 95, in <module>
-    $ eventManager.HandleEvents()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 182, in HandleEvents
-    self.HandleActionEvents()
-    ~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 235, in HandleActionEvents
-    self.HandleOneParameterEvent(event)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
-  File "game/managers/EventManager.rpy", line 312, in HandleOneParameterEvent
-    animation = self.oneParameterEvents[event['action']](*params)
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
-Exception: Not a displayable: 0.5
+  File "game/script.rpy", line 101, in script
+    $ effectManager.HandleEffects()
+  File "game/script.rpy", line 101, in <module>
+    $ effectManager.HandleEffects()
+              ~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EffectManager.rpy", line 152, in HandleEffects
+    backgroundManager.ApplyTransformsToCurrentBackground()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/BackgroundManager.rpy", line 131, in ApplyTransformsToCurrentBackground
+    raise Exception(len(transforms))
+Exception: 1
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 95, in script
-    $ eventManager.HandleEvents()
+  File "game/script.rpy", line 101, in script
+    $ effectManager.HandleEffects()
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 95, in <module>
-    $ eventManager.HandleEvents()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 182, in HandleEvents
-    self.HandleActionEvents()
-    ~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 235, in HandleActionEvents
-    self.HandleOneParameterEvent(event)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
-  File "game/managers/EventManager.rpy", line 312, in HandleOneParameterEvent
-    animation = self.oneParameterEvents[event['action']](*params)
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
-  File "renpy/atl.py", line 604, in __call__
-    rv = renpy.display.motion.ATLTransform(
-         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        atl=self.atl,
-        ^^^^^^^^^^^^^
-    ...<4 lines>...
-        _args=_args,
-        ^^^^^^^^^^^^
-    )
-    ^
-  File "renpy/display/transform.py", line 1234, in __init__
-    Transform.__init__(self, child=child, **properties)
-    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/transform.py", line 743, in __init__
-    child = renpy.easy.displayable_or_none(child)
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
-  File "renpy/easy.py", line 97, in displayable_or_none
-    raise Exception(f"Not a displayable: {d!r}")
-Exception: Not a displayable: 0.5
+  File "game/script.rpy", line 101, in <module>
+    $ effectManager.HandleEffects()
+              ~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EffectManager.rpy", line 152, in HandleEffects
+    backgroundManager.ApplyTransformsToCurrentBackground()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/BackgroundManager.rpy", line 131, in ApplyTransformsToCurrentBackground
+    raise Exception(len(transforms))
+Exception: 1
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Sat Apr 25 21:46:09 2026
+Sun Apr 26 13:14:45 2026
