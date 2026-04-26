@@ -16,6 +16,7 @@ init python:
                 'raisel', 
                 'movey',
                 'decor',
+                'dance',
 
                 # Combat animations
                 'dodge', 
@@ -68,6 +69,7 @@ init python:
                 'knockr': KnockR, 
                 'raisel': RaiseL, 
                 'raiser': RaiseR,
+                'dance': Dance,
 
                 # Combat
                 'damage': Damage,

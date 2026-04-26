@@ -1,34 +1,34 @@
-2026-04-24 21:56:40 UTC
+2026-04-26 01:55:59 UTC
 Windows-11-10.0.26200-SP0
 Ren'Py 8.5.2.26010301
 
 Early init took 22 ms
-Loading error handling took 11 ms
-Loading script took 118 ms
-Loading save slot metadata took 10 ms
+Loading error handling took 13 ms
+Loading script took 81 ms
+Loading save slot metadata took 11 ms
 Loading persistent took 0 ms
-Running init code took 21 ms
+Running init code took 22 ms
 Loading analysis data took 3 ms
 Analyze and compile ATL took 1 ms
-Reloading save slot metadata took 5 ms
+Reloading save slot metadata took 4 ms
 Backing up script files to 'C:\\Users\\gabos\\AppData\\Roaming/RenPy/backups\\atlax-renpy':
-Dump and make backups took 21 ms
+Dump and make backups took 23 ms
 Cleaning cache took 0 ms
-Making clean stores took 1 ms
-Initial gc took 17 ms
+Making clean stores took 0 ms
+Initial gc took 15 ms
 DPI scale factor: 1.500000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: Disabled thread optimizations.
-Creating interface object took 150 ms
+Creating interface object took 147 ms
 Init translation took 0 ms
 Cleaning stores took 0 ms
-Load screen analysis took 0 ms
+Load screen analysis took 1 ms
 Analyze screens took 5 ms
-Save screen analysis took 5 ms
+Save screen analysis took 7 ms
 Save pyanalysis took 0 ms
-Save bytecode took 15 ms
-Running _start took 1 ms
-Interface start took 162 ms
+Save bytecode took 0 ms
+Running _start took 0 ms
+Interface start took 195 ms
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 2560, 1440)

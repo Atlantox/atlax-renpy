@@ -142,6 +142,22 @@ transform HidingImage:
         alpha 0
         yalign 1.0
 
+
+transform Dance(x):    
+    rotate_pad False
+    rotate 0
+
+    linear 0.2:
+        rotate 5
+
+    linear 0.4:
+        rotate -5
+
+    linear 0.2:
+        rotate 0
+
+    repeat 2
+
 # Import here your custom animations files
 $ import animations.combat
 $ import animations.movement
