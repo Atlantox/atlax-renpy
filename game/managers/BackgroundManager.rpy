@@ -126,10 +126,6 @@ init python:
             for key, value in self.transformsToApply.items():
                 transforms.append(value)
 
-            if dialogueManager.currentDialogue['Key'] == 'example2_training_field_116':
-                renpy.show('bg dark forest', layer='background', tag='bg')  
-                #raise Exception(len(transforms))
-
             renpy.show(commandString, at_list=transforms, layer='background', tag='bg')  
 
         def HandlePostEventsEffects(self):

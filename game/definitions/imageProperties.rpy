@@ -1,11 +1,15 @@
 transform AdjustImage:
+    rotate_pad False
     fit "contain"
+    blur 0.0
+    rotate 0
+    xsize 1.0
+    ysize 1.0
 
 transform SetCharacterProperties(x, y, zoomFactor):
     xalign x
     ypos y
     anchor (0.5, 0.0)
-    #zoom zoomFactor
 
 transform EmisorEmphasis:
     ease 1:

@@ -91,14 +91,20 @@ init python:
         def PrepareBackgroundTransform(self, effectSplits):
             effectName = effectSplits[0]
             backgroundManager.prepared = True
+            recievedParam = len(effectSplits) > 1  # A param was recieved
 
-            if effectName in self.currentContinuousEffects:  # The effect it's in progress, then stop it
-                effectIdx = self.currentContinuousEffects.index(effectName)
-                del self.currentContinuousEffects[effectIdx]
-                del backgroundManager.transformsToApply[effectName]               
-            else: # The effect isn't in progress, then prepare it
-                self.currentContinuousEffects.append(effectName)
-                recievedParam = len(effectSplits) > 1  # A param was recieved
+            if effectName in self.currentContinuousEffects:
+                if not recievedParam:
+                    # If no parameters was recieved, then delete the effect
+                    effectIdx = self.currentContinuousEffects.index(effectName)
+                    del self.currentContinuousEffects[effectIdx]
+                    #raise Exception(effectName)
+                    del backgroundManager.transformsToApply[effectName]               
+            else: 
+                # The effect isn't in progress, then prepare it
+
+                if effectName not in self.currentContinuousEffects:
+                    self.currentContinuousEffects.append(effectName)                
 
                 if effectName == 'blur':
                     intensity = float(effectSplits[1]) if recievedParam else self.defaultBlurIntensity

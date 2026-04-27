@@ -6,12 +6,12 @@ While running game code:
   File "game/script.rpy", line 101, in <module>
     $ effectManager.HandleEffects()
               ~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EffectManager.rpy", line 152, in HandleEffects
+  File "game/managers/EffectManager.rpy", line 158, in HandleEffects
     backgroundManager.ApplyTransformsToCurrentBackground()
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/BackgroundManager.rpy", line 131, in ApplyTransformsToCurrentBackground
+  File "game/managers/BackgroundManager.rpy", line 129, in ApplyTransformsToCurrentBackground
     raise Exception(len(transforms))
-Exception: 1
+Exception: 2
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -27,14 +27,14 @@ Traceback (most recent call last):
   File "game/script.rpy", line 101, in <module>
     $ effectManager.HandleEffects()
               ~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EffectManager.rpy", line 152, in HandleEffects
+  File "game/managers/EffectManager.rpy", line 158, in HandleEffects
     backgroundManager.ApplyTransformsToCurrentBackground()
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/BackgroundManager.rpy", line 131, in ApplyTransformsToCurrentBackground
+  File "game/managers/BackgroundManager.rpy", line 129, in ApplyTransformsToCurrentBackground
     raise Exception(len(transforms))
-Exception: 1
+Exception: 2
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Sun Apr 26 13:14:45 2026
+Mon Apr 27 19:12:08 2026
