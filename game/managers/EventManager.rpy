@@ -357,7 +357,7 @@ init python:
                 raise Exception(error)
 
             decorName = event['params'][1].strip()
-            decorPath = configManager.basePaths['path_displayable'] + decorName + '.png'
+            decorPath = configManager.basePaths['path_displayable'] + 'decors/' + decorName + '.png'
             exists = renpy.exists(decorPath)
             if not exists:
                 error = dialogueManager.GetErrorText()

@@ -98,8 +98,9 @@ init python:
                 commandString = currentBg['name']
 
                 transforms = [AdjustImage()]
-                for key, value in self.transformsToApply.items():
-                    transforms.append(value)
+                
+                if len(self.transformsToApply) > 0:
+                    transforms.append(Transform(**self.transformsToApply))
 
                 renpy.show(commandString, at_list=transforms, layer='background', tag='bg')   
 
@@ -123,9 +124,8 @@ init python:
             commandString = self.currentBgName
 
             transforms = [AdjustImage()]
-            for key, value in self.transformsToApply.items():
-                transforms.append(value)
-
+            if len(self.transformsToApply) > 0:                    
+                transforms.append(Transform(**self.transformsToApply))
             renpy.show(commandString, at_list=transforms, layer='background', tag='bg')  
 
         def HandlePostEventsEffects(self):

@@ -1,40 +1,46 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 101, in script
-    $ effectManager.HandleEffects()
-  File "game/script.rpy", line 101, in <module>
-    $ effectManager.HandleEffects()
-              ~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EffectManager.rpy", line 158, in HandleEffects
-    backgroundManager.ApplyTransformsToCurrentBackground()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/BackgroundManager.rpy", line 129, in ApplyTransformsToCurrentBackground
-    raise Exception(len(transforms))
-Exception: 2
+  File "game/script.rpy", line 95, in script
+    $ eventManager.HandleEvents()
+  File "game/script.rpy", line 95, in <module>
+    $ eventManager.HandleEvents()
+      ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 190, in HandleEvents
+    self.HandleActionEvents()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 257, in HandleActionEvents
+    self.HandleCharacterDecoration(event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "game/managers/EventManager.rpy", line 365, in HandleCharacterDecoration
+    raise Exception(error)
+Exception: Error en el diálogo example2_training_field_116: El decorador {decorName} no fue encontrado. Se esperaba el archivo: {decorPath}
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 101, in script
-    $ effectManager.HandleEffects()
+  File "game/script.rpy", line 95, in script
+    $ eventManager.HandleEvents()
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 101, in <module>
-    $ effectManager.HandleEffects()
-              ~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EffectManager.rpy", line 158, in HandleEffects
-    backgroundManager.ApplyTransformsToCurrentBackground()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/BackgroundManager.rpy", line 129, in ApplyTransformsToCurrentBackground
-    raise Exception(len(transforms))
-Exception: 2
+  File "game/script.rpy", line 95, in <module>
+    $ eventManager.HandleEvents()
+      ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 190, in HandleEvents
+    self.HandleActionEvents()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/EventManager.rpy", line 257, in HandleActionEvents
+    self.HandleCharacterDecoration(event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "game/managers/EventManager.rpy", line 365, in HandleCharacterDecoration
+    raise Exception(error)
+Exception: Error en el diálogo example2_training_field_116: El decorador {decorName} no fue encontrado. Se esperaba el archivo: {decorPath}
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Mon Apr 27 19:12:08 2026
+Thu Apr 30 19:58:55 2026

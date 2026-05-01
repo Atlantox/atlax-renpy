@@ -93,35 +93,48 @@ init python:
             backgroundManager.prepared = True
             recievedParam = len(effectSplits) > 1  # A param was recieved
 
-            if effectName in self.currentContinuousEffects:
-                if not recievedParam:
-                    # If no parameters was recieved, then delete the effect
-                    effectIdx = self.currentContinuousEffects.index(effectName)
-                    del self.currentContinuousEffects[effectIdx]
-                    #raise Exception(effectName)
-                    del backgroundManager.transformsToApply[effectName]               
+            if effectName in self.currentContinuousEffects and not recievedParam:
+                # If no parameters was recieved, then delete the effect
+                effectIdx = self.currentContinuousEffects.index(effectName)
+                del self.currentContinuousEffects[effectIdx]
+
+                if effectName == 'blur':
+                    backgroundManager.transformsToApply[effectName] = 0.0
+                elif effectName == 'rotate':
+                    backgroundManager.transformsToApply['rotate'] = 0
+                    
+                elif effectName == 'hwarp':
+                    backgroundManager.transformsToApply['xzoom'] = 1.0
+                    backgroundManager.transformsToApply['xanchor'] = 0.0
+                elif effectName == 'vwarp':
+                    backgroundManager.transformsToApply['yzoom'] = 1.0
+                    backgroundManager.transformsToApply['yanchor'] = 0.0
             else: 
                 # The effect isn't in progress, then prepare it
-
                 if effectName not in self.currentContinuousEffects:
-                    self.currentContinuousEffects.append(effectName)                
+                    self.currentContinuousEffects.append(effectName)    
 
                 if effectName == 'blur':
                     intensity = float(effectSplits[1]) if recievedParam else self.defaultBlurIntensity
-                    targetEffect = Transform(blur=intensity)
+                    backgroundManager.transformsToApply['blur'] = intensity
                 elif effectName == 'rotate':
                     degrees = float(effectSplits[1]) if recievedParam else self.defaultRotationDegrees
-                    targetEffect = Transform(rotate=degrees, rotate_pad=False, transform_anchor=True)
+                    backgroundManager.transformsToApply['rotate'] = degrees
+                    backgroundManager.transformsToApply['rotate_pad'] = False
+                    backgroundManager.transformsToApply['transform_anchor'] = True
                 elif effectName in ['hwarp', 'vwarp']:
                     factor = float(effectSplits[1]) if recievedParam else self.defaultWarp
-                    if effectName == 'hwarp':                        
-                        targetEffect = Transform(xsize=factor)
+                    anchorFactor = (factor * 0.25) / 2.0
+                    if effectName == 'hwarp':
+                        backgroundManager.transformsToApply['xzoom'] = factor
+                        backgroundManager.transformsToApply['xanchor'] = anchorFactor
                     else:
-                        targetEffect = Transform(ysize=factor)
+                        backgroundManager.transformsToApply['yzoom'] = factor
+                        backgroundManager.transformsToApply['yanchor'] = anchorFactor
                 else:
                     return
-
-                backgroundManager.transformsToApply[effectName] = targetEffect
+                
+                #backgroundManager.transformsToApply[effectName] = Transform(transformProperties*)
 
             backgroundManager.reloadBackground = True
 
