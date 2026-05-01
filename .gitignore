@@ -1,7 +1,6 @@
 game/saves/
 game/cache/
 game/pythonlibs
-game/definitions/AtlaxEncryptionKey.rpy
 game/python-packages
 game/videos/videos/*
 
