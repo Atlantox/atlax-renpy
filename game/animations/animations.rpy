@@ -58,22 +58,22 @@ transform MyZoom(newFactor, duration):
 transform KnockR(x, duration):
     rotate_pad False
     linear duration:
-        yanchor -1.0
+        yanchor 1.0
         rotate 90
-        ypos 1.0
+        ypos 2.0
 
 transform KnockL(x, duration):
     rotate_pad False
     
     linear duration:
-        yanchor -1.0
+        yanchor 1.0
         rotate -90   
-        ypos 1.0
+        ypos 2.0
     
 transform RaiseR(x, duration):
     rotate_pad False
 
-    yanchor -2.0
+    yanchor -2.5
     rotate 90    
     linear duration:
         rotate 0    
@@ -82,11 +82,11 @@ transform RaiseR(x, duration):
 transform RaiseL(x, duration):
     rotate_pad False
 
-    yanchor -2.0
+    yanchor -2.5
     rotate -90
     linear duration:
         rotate 0    
-        yanchor 0.0   
+        anchor (0.5, 0.0) 
 
 
 transform MoveY(x, y, destination, duration):

@@ -1,46 +1,34 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 95, in script
-    $ eventManager.HandleEvents()
-  File "game/script.rpy", line 95, in <module>
-    $ eventManager.HandleEvents()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 190, in HandleEvents
-    self.HandleActionEvents()
-    ~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 257, in HandleActionEvents
-    self.HandleCharacterDecoration(event)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
-  File "game/managers/EventManager.rpy", line 365, in HandleCharacterDecoration
+  File "game/script.rpy", line 84, in script
+    $ eventManager.PrepareEvents(dialogue['Events'])
+  File "game/script.rpy", line 84, in <module>
+    $ eventManager.PrepareEvents(dialogue['Events'])
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 114, in PrepareEvents
     raise Exception(error)
-Exception: Error en el diálogo example2_training_field_116: El decorador {decorName} no fue encontrado. Se esperaba el archivo: {decorPath}
+Exception: Error en el diálogo example2_training_field_115: El personaje "flintright" no está definido, verifica que el nombre está bien escrito
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 95, in script
-    $ eventManager.HandleEvents()
+  File "game/script.rpy", line 84, in script
+    $ eventManager.PrepareEvents(dialogue['Events'])
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 95, in <module>
-    $ eventManager.HandleEvents()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 190, in HandleEvents
-    self.HandleActionEvents()
-    ~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/EventManager.rpy", line 257, in HandleActionEvents
-    self.HandleCharacterDecoration(event)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
-  File "game/managers/EventManager.rpy", line 365, in HandleCharacterDecoration
+  File "game/script.rpy", line 84, in <module>
+    $ eventManager.PrepareEvents(dialogue['Events'])
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "game/managers/EventManager.rpy", line 114, in PrepareEvents
     raise Exception(error)
-Exception: Error en el diálogo example2_training_field_116: El decorador {decorName} no fue encontrado. Se esperaba el archivo: {decorPath}
+Exception: Error en el diálogo example2_training_field_115: El personaje "flintright" no está definido, verifica que el nombre está bien escrito
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Thu Apr 30 19:58:55 2026
+Sat May  2 09:15:02 2026
