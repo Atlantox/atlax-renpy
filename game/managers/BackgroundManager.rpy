@@ -163,12 +163,12 @@ init python:
                 renpy.pause(duration)
 
         def TurnScreenToBlack(self):
-            renpy.show('bg blackout', layer='screens', tag='black_screen')
+            renpy.show('blackout', layer='screens', tag='black_screen')
             renpy.transition(Dissolve(self.blackScreenDuration))
             renpy.pause(self.blackScreenDuration, hard=True)
 
         def ShowMainMenuBackground(self):
-            renpy.show('bg main_menu_background', layer='screens', tag='black_screen')
+            renpy.show('main_menu_background', layer='screens', tag='black_screen')
             renpy.transition(Dissolve(self.blackScreenDuration))
             renpy.pause(self.blackScreenDuration, hard=True)
 
@@ -176,6 +176,5 @@ init python:
             if self.currentBgName is None:
                 return
             
-            commandString = 'bg ' + self.currentBgName 
-            renpy.hide(commandString, layer='background', tag="bg")   
+            renpy.hide(self.currentBgName , layer='background')   
             self.ResetBackgroundManager()

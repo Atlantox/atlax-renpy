@@ -1,34 +1,48 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 84, in script
-    $ eventManager.PrepareEvents(dialogue['Events'])
-  File "game/script.rpy", line 84, in <module>
-    $ eventManager.PrepareEvents(dialogue['Events'])
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
-  File "game/managers/EventManager.rpy", line 114, in PrepareEvents
-    raise Exception(error)
-Exception: Error en el diálogo example2_training_field_115: El personaje "flintright" no está definido, verifica que el nombre está bien escrito
+  File "game/script.rpy", line 55, in script
+    $ dialogueManager.HandleDialogueEnd()
+  File "game/script.rpy", line 55, in <module>
+    $ dialogueManager.HandleDialogueEnd()
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 319, in HandleDialogueEnd
+    self.HandleTransition(clear=True)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "game/managers/DialogueManager.rpy", line 385, in HandleTransition
+    backgroundManager.DestroyCurrentBackground()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/BackgroundManager.rpy", line 179, in DestroyCurrentBackground
+    renpy.hide(self.currentBgName , layer='background', tag="bg")
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: hide() got an unexpected keyword argument 'tag'
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 84, in script
-    $ eventManager.PrepareEvents(dialogue['Events'])
+  File "game/script.rpy", line 55, in script
+    $ dialogueManager.HandleDialogueEnd()
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 84, in <module>
-    $ eventManager.PrepareEvents(dialogue['Events'])
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
-  File "game/managers/EventManager.rpy", line 114, in PrepareEvents
-    raise Exception(error)
-Exception: Error en el diálogo example2_training_field_115: El personaje "flintright" no está definido, verifica que el nombre está bien escrito
+  File "game/script.rpy", line 55, in <module>
+    $ dialogueManager.HandleDialogueEnd()
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 319, in HandleDialogueEnd
+    self.HandleTransition(clear=True)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "game/managers/DialogueManager.rpy", line 385, in HandleTransition
+    backgroundManager.DestroyCurrentBackground()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/BackgroundManager.rpy", line 179, in DestroyCurrentBackground
+    renpy.hide(self.currentBgName , layer='background', tag="bg")
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: hide() got an unexpected keyword argument 'tag'
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Sat May  2 09:15:02 2026
+Wed May  6 18:10:51 2026

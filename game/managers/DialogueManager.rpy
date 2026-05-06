@@ -284,7 +284,7 @@ init python:
             elif transitionName == 'video':
                 videoName = splits[1]
                 self.terminateTransition = renpy.movie_cutscene
-                self.terminateParams = ['videos/' + videoName]
+                self.terminateParams = ['videos/' + videoName + '.webm']
 
         def GetNextDialogue(self):
             self.currentDialogueIndex += 1
