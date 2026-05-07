@@ -1,8 +1,9 @@
-Key;Value1;Value2;spanish;english;chinese;portugues
+﻿Key;Value1;Value2;spanish;english;chinese;portugues
 #;;;;;;
 # The first CSV scene / custom scene;;;;;;
 #;;;;;;
-begin;ejemplo2/ejemplo2_001_training_field;;;;;
+#begin;ejemplo2/ejemplo2_001_training_field;;;;;
+begin;ejemplo2/ejemplo2_004_prepare_powerfull_hit;;;;;
 #;;;;;;
 # Base path configs, preferably not touch;;;;;;
 #;;;;;;
@@ -35,5 +36,8 @@ background;factory;;;;;
 # Character define;;;;;;
 #;;;;;;
 character;rafarencio;#ffad65;Rafarencio;;;
-character;tableman;#ffffff;Mesero;Tableman;Mechero;
-character;instructor;#ffffff;Instructor;Instrucotr ingl�s;;
+character;tableman;#ffffff;Mesero;Tableman;;
+character;instructor;#ffffff;Instructor;;;
+character;flint;#ffad65;Flint;;;
+character;katy;#F255D0;Katy;;;
+character;berto;#8709B4;Berto;;;

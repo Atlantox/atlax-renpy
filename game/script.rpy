@@ -41,8 +41,8 @@ label start:
     $ delayManager = DelayManager()
     $ dialogueManager = DialogueManager(configManager.firstScene)
 
-    $ globalPoints = dict(amistad=-1, calificacion=8, inteligencia=3)
-    $ dialogueManager.keysWalked = ['give_sushi', 'studying_for_exam', 'first_kiss']
+    $ globalPoints = dict()
+    $ dialogueManager.keysWalked = []
 
     if dialogueManager.currentDialogueIsCustomScript:
         $ dialogueManager.CallCustomScript()
@@ -63,7 +63,7 @@ label start:
 
         $ dialogue = dialogueManager.GetNextDialogue()        
             
-        #  STATEMENT PREPARATION 
+        ########  STATEMENT PREPARATION ########
 
         if dialogue['Background'] != '':
             $ backgroundManager.PrepareBackground(dialogue['Background'])
@@ -86,7 +86,7 @@ label start:
         if dialogue['Delay'] != '':
             $ delayManager.PrepareDelay(dialogue['Delay'])
 
-        #  STATEMENT EXECUTION 
+        ########  STATEMENT EXECUTION ########
 
         if backgroundManager.prepared:
             $ backgroundManager.HandleBackground()       
@@ -110,6 +110,6 @@ label start:
 
         $ delayManager.ResetDelayManager()
 
-    # Finaliza el juego:
+    # Game end
 
     return

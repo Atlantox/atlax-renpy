@@ -18,3 +18,5 @@ mypython/installer/dist
 
 apps/scene_encrypter/encrypted/*
 apps/scene_encrypter/to_encrypt/*
+
+installer/

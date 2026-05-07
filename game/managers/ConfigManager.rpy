@@ -1,7 +1,7 @@
 init -10 python:
     class ConfigManager:
         def __init__(self):
-            self.configPath = '/config2.csv' # the CSV config file path
+            self.configPath = '/config.csv' # the CSV config file path
             self.allLanguages = []
             self.firstScene = None
 

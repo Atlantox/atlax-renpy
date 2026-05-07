@@ -175,6 +175,6 @@ init python:
         def DestroyCurrentBackground(self):
             if self.currentBgName is None:
                 return
-            
+
             renpy.hide(self.currentBgName , layer='background')   
             self.ResetBackgroundManager()

@@ -1,5 +1,5 @@
 ﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;spanish;english
-ejemplo2_smoke_factory_002;dark_forest;key in the lock;;;;;;berto;No han atacado aún, ¿Habrá pasado algo?;
+ejemplo2_smoke_factory_002;dark forest;key in the lock;;;;;;berto;No han atacado aún, ¿Habrá pasado algo?;
 ejemplo2_smoke_factory_003;;;;;;rafarencio old right:appear:30;;rafarencio;La orden que nos dieron fue la de esperar a la señal, no nos queda de otra que confiar.;
 ejemplo2_smoke_factory_004;;;;;;;;;Si logramos deshabilitar la fábrica, perderán su principal arma, ganaremos la guerra en menos de una semana.;
 ejemplo2_smoke_factory_005;;;;;;;;;De no ser por ese humo, ya habríamos acabado con este conflicto hace mucho tiempo.;
@@ -164,7 +164,7 @@ ejemplo2_smoke_factory_161;;;;;;;;*;Rafa duda un poco pero al final entiende la 
 ejemplo2_smoke_factory_162;;;retreat;;;;;;Mientras Rafa da la señal de retirada inmediata, por mi parte aplico primeros auxilios en mi mano herida, suerte que empuño la espada con la derecha.;
 ejemplo2_smoke_factory_163;;;;;;;;rafarencio;Más te vale que lo que hayas hecho haya funcionado, estamos confiando ciegamente en tí.;
 ejemplo2_smoke_factory_164;;;;;;;;flint;Para que entiendan lo que hice, tengo que explicarles una cosa.;
-ejemplo2_smoke_factory_165;dark_forest;;;;;;;*;Iniciamos el viaje de regreso ayudando a Flint a caminar mientras nos explica lo que hizo.;
+ejemplo2_smoke_factory_165;dark forest;;;;;;;*;Iniciamos el viaje de regreso ayudando a Flint a caminar mientras nos explica lo que hizo.;
 ejemplo2_smoke_factory_166;;;;;;flint left:appear:77;;flint;Ese humo lo llamamos humo lloroso, esa es la única fábrica y solo esa basta para abastecer las estaciones de llenado.;
 ejemplo2_smoke_factory_167;;;;;;;;;Las estaciones de llenado están bastante lejos de aquí, allí reciben el humo lloroso mediante tuberías y lo vierten en cápsulas para su uso bélico.;
 ejemplo2_smoke_factory_168;;;;;;;;;El detalle es que para probarlo y asegurarnos de que funcione, en cada estación de llenado, lo someten a una prueba de fuego.;

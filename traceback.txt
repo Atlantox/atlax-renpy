@@ -12,10 +12,9 @@ While running game code:
   File "game/managers/DialogueManager.rpy", line 385, in HandleTransition
     backgroundManager.DestroyCurrentBackground()
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/BackgroundManager.rpy", line 179, in DestroyCurrentBackground
-    renpy.hide(self.currentBgName , layer='background', tag="bg")
-    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: hide() got an unexpected keyword argument 'tag'
+  File "game/managers/BackgroundManager.rpy", line 178, in DestroyCurrentBackground
+    raise Exception('kkk')
+Exception: kkk
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -37,12 +36,11 @@ Traceback (most recent call last):
   File "game/managers/DialogueManager.rpy", line 385, in HandleTransition
     backgroundManager.DestroyCurrentBackground()
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/BackgroundManager.rpy", line 179, in DestroyCurrentBackground
-    renpy.hide(self.currentBgName , layer='background', tag="bg")
-    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: hide() got an unexpected keyword argument 'tag'
+  File "game/managers/BackgroundManager.rpy", line 178, in DestroyCurrentBackground
+    raise Exception('kkk')
+Exception: kkk
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Wed May  6 18:10:51 2026
+Thu May  7 19:30:08 2026
