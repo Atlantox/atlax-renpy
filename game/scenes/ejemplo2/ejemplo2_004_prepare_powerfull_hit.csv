@@ -29,5 +29,5 @@ ejemplo2_prepare_powerfull_hit_027;;;;;;;;*;Él se abre de brazos.;;;;
 ejemplo2_prepare_powerfull_hit_028;;;;;;;;rafarencio;La próxima vez será, aquí estaré para enseñarte cómo se esquiva.;;;;
 *;training field;;;;;rafarencio pain;;berto;Claro.;;;;
 ejemplo2_prepare_powerfull_hit_030;;*;;;;rafarencio:destroy:1;;*;Sin más, me acerco al instructor y solo con verme señala hacia la enfermería casi al instante.;;;;
-#linear;fade:1:3:0;;;;;;;;;;;;
+#linear;video:desierto;;;;;;;;;;;;
 to_ruined_future;ejemplo2/ejemplo2_005_ruined_future;;;;;;;;;;;;

@@ -19,7 +19,7 @@ init python:
                 'credits', 
                 'title',
                 ]
-            self.admittedTerminateTransitions = ['fade', 'video']
+            self.admittedTerminateTransitions = ['video']
             self.admittedPostChangingFilter = ['clear']
             self.returnToTitleDefaultTransitionParams = [Fade(7.0, 7.0, 2.0), 'screens', False]
             self.returnToTitleDefaultTransitionWait = 15.0
@@ -270,18 +270,7 @@ init python:
             splits = [s.strip() for s in transitionData.split(':')]
             transitionName = splits[0]
 
-            if transitionName == 'fade':
-                fadeOut = float(splits[1])
-                fadeDuration = float(splits[2])
-                fadeIn = float(splits[3])
-                fade = Fade(fadeOut, fadeDuration, fadeIn)
-                layer = 'screens'
-                always = True
-
-                self.terminateTransition = renpy.transition
-                self.terminateParams = [fade, layer, always]
-                self.terminatePause = fadeOut + fadeDuration + fadeIn
-            elif transitionName == 'video':
+            if transitionName == 'video':
                 videoName = splits[1]
                 self.terminateTransition = renpy.movie_cutscene
                 self.terminateParams = ['videos/' + videoName + '.webm']
@@ -380,9 +369,12 @@ init python:
             return targetFork['nextScene']
 
         def HandleTransition(self, clear = False):
-            self.terminateTransition(*self.terminateParams)
-            renpy.pause(self.terminatePause / 2, hard=True)
+            backgroundManager.TurnScreenToBlack()
+            renpy.pause(3, hard=True)
+            renpy.hide('black_screen', layer='screens')
+            renpy.pause(3, hard=True)
             backgroundManager.DestroyCurrentBackground()
+            self.terminateTransition(*self.terminateParams)
 
             if clear:
                 self.ClearScene()
