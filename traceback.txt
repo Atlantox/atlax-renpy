@@ -6,12 +6,15 @@ While running game code:
   File "game/script.rpy", line 55, in <module>
     $ dialogueManager.HandleDialogueEnd()
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 319, in HandleDialogueEnd
+  File "game/managers/DialogueManager.rpy", line 308, in HandleDialogueEnd
     self.HandleTransition(clear=True)
     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 383, in HandleTransition
-    raise Exception('kkk')
-Exception: kkk
+  File "game/managers/DialogueManager.rpy", line 372, in HandleTransition
+    backgroundManager.DestroyCurrentBackground()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/BackgroundManager.rpy", line 179, in DestroyCurrentBackground
+    raise Exception(self.currentBgName)
+Exception: training field
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -27,14 +30,17 @@ Traceback (most recent call last):
   File "game/script.rpy", line 55, in <module>
     $ dialogueManager.HandleDialogueEnd()
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 319, in HandleDialogueEnd
+  File "game/managers/DialogueManager.rpy", line 308, in HandleDialogueEnd
     self.HandleTransition(clear=True)
     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 383, in HandleTransition
-    raise Exception('kkk')
-Exception: kkk
+  File "game/managers/DialogueManager.rpy", line 372, in HandleTransition
+    backgroundManager.DestroyCurrentBackground()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/BackgroundManager.rpy", line 179, in DestroyCurrentBackground
+    raise Exception(self.currentBgName)
+Exception: training field
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Fri May  8 20:50:50 2026
+Sat May  9 10:24:33 2026

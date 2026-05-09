@@ -23,6 +23,7 @@ init python:
             self.admittedPostChangingFilter = ['clear']
             self.returnToTitleDefaultTransitionParams = [Fade(7.0, 7.0, 2.0), 'screens', False]
             self.returnToTitleDefaultTransitionWait = 15.0
+            self.videoTransitionDissolve = 2.5
 
             self.endGame = False
             self.keysWalked = []      
@@ -369,11 +370,8 @@ init python:
             return targetFork['nextScene']
 
         def HandleTransition(self, clear = False):
-            backgroundManager.TurnScreenToBlack()
-            renpy.pause(3, hard=True)
-            renpy.hide('black_screen', layer='screens')
-            renpy.pause(3, hard=True)
-            backgroundManager.DestroyCurrentBackground()
+            renpy.show('blackout', layer='background', tag='bg')
+            renpy.with_statement(Dissolve(self.videoTransitionDissolve))
             self.terminateTransition(*self.terminateParams)
 
             if clear:
