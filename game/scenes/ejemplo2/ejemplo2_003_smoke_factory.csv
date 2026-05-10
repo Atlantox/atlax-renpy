@@ -1,5 +1,5 @@
 ﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;spanish;english
-ejemplo2_smoke_factory_002;dark forest;key in the lock;;;;;;berto;No han atacado aún, ¿Habrá pasado algo?;
+ejemplo2_smoke_factory_002;dark forest:fade:1:3:0;key in the lock;;;;;;berto;No han atacado aún, ¿Habrá pasado algo?;
 ejemplo2_smoke_factory_003;;;;;;rafarencio old right:appear:30;;rafarencio;La orden que nos dieron fue la de esperar a la señal, no nos queda de otra que confiar.;
 ejemplo2_smoke_factory_004;;;;;;;;;Si logramos deshabilitar la fábrica, perderán su principal arma, ganaremos la guerra en menos de una semana.;
 ejemplo2_smoke_factory_005;;;;;;;;;De no ser por ese humo, ya habríamos acabado con este conflicto hace mucho tiempo.;
@@ -136,7 +136,7 @@ ejemplo2_smoke_factory_135;;;;;;;;flint;¡TRES!;
 ejemplo2_smoke_factory_136;;;;;;rafarencio old left:move:65:0.3;;*;Cerramos la puerta con violencia, y empujamos para que no la abran.;
 ejemplo2_smoke_factory_137;;;metal hit:loop;;suffocation:0.4;;;;Parte del humo se filtra por los bordes de la puerta y llega a nuestras narices, Los ojos me empiezan a llorar.;
 ejemplo2_smoke_factory_138;;;;;;;;;Del otro lado de la puerta los soldados forcejean, golpean y empujan, no podemos ceder.;
-ejemplo2_smoke_factory_139;;;;;hpunch;;;berto;*Tos* M-mier-;
+ejemplo2_smoke_factory_139;;;;hpunch;;;;berto;*Tos* M-mier-;
 ejemplo2_smoke_factory_140;;;;;;rafarencio old left:trembling;;rafarencio;¡Kkkkg! ¡A-Aaagh!;
 ejemplo2_smoke_factory_141;;;;;;;;*;Mis piernas… No puedo mantenerlas firmes.;
 ejemplo2_smoke_factory_140;;;;;;;;*;El humo nos está matando, al otro lado de la puerta ellos son más que nosotros, no creo que podamos mantenerla por demasiado tiempo…;
@@ -194,5 +194,6 @@ ejemplo2_smoke_factory_190;;;;;;;;;Aunque tú tendrás que reposar, la administr
 ejemplo2_smoke_factory_191;;;;;;;;berto;Jeje, ya me sé todos sus sermones de memoria.;
 ejemplo2_smoke_factory_192;;;;;;;;rafarencio;Y yo.;
 ejemplo2_smoke_factory_193;;;;;;;;berto;Muy buen trabajo Flint.;
-ejemplo2_smoke_factory_194;;;;;;;;flint;Jeje… por cierto… ¿Tienen algo para comer?;
+ejemplo2_smoke_factory_193;;;;;;;;flint;Jeje… por cierto… ¿Tienen algo para comer?;
 ejemplo2_smoke_factory_195;;;;;;;;berto;Jajajaja, por supuesto, nos aseguraremos de que te reciban con un banquete en el cuartel.;
+#credits;;;;;;;;;;

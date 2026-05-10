@@ -51,61 +51,62 @@ style credit_text_title:
 image creditsBackground = Solid('#FFF1CA')    
 
 # Credits texts
-image text1 = Text("En esta vida, todos somos anécdotas en el tiempo", style="credit_text")
-image text2 = Text("Son las cosas que hacemos las que pueden dejar huella en los demás", style="credit_text")
-image text3 = Text("Y mientras perduren esas acciones, esas cosas que hacemos, nuestra memoria también lo hará...", style="credit_text")
-image text4 = Text("Para siempre", style="credit_text_big")
-image text5 = Text("En recuerdo amoroso de", style="credit_text")
-image text6 = Text("Nunca olvidaremos cada cosa que ustedes han creado", style="credit_text")
-image text7 = Text("Katawa Shoujo The Next Step\n{b}DEMO{/b}", style="credit_text")
+image text1 = Text("Your project title", style="credit_text_title")
+image text2 = Text("Some text", style="credit_text")
+image text3 = Text("Mooore text", style="credit_text")
 
 image madeBy = Text("Creado por", style="credit_text_title")
-image company = Text("Campanella Studios", style="credit_text")
+image company = Text("Your company", style="credit_text")
 
 image direction = Text("Director", style="credit_text_title")
-image directionTeam = Text("Deimos\nRickle89", style="credit_text")
+image directionTeam = Text("name1", style="credit_text")
 
 image writters = Text("Escritores", style="credit_text_title")
-image writtersTeam = Text("ElRafauricio\nLevi4tan\nCodeNameSix\nMuddyP\nRickle89", style="credit_text")
+image writtersTeam = Text("name1\nname2\nname3", style="credit_text")
 
 image artists = Text("Artistas", style="credit_text_title")
-image artistTeam = Text("Xiloh\nDan_Snogard\nDemienR", style="credit_text")
+image artistTeam = Text("name1\nname2\nname3", style="credit_text")
 
 image programming = Text("Programación", style="credit_text_title")
-image programmingTeam = Text("Atlantox", style="credit_text")
+image programmingTeam = Text("name1\nname2\nname3", style="credit_text")
 
 image musicians = Text("Música", style="credit_text_title")
-image musiciansTeam = Text("Mauryiskami\nSillxB97\nElRafauricio\nDereckNijima", style="credit_text")
+image musiciansTeam = Text("name1\nname2\nname3", style="credit_text")
 
 image editors = Text("Editores", style="credit_text_title")
-image editorsTeam = Text("AJ\nRickle89\nLancelot76", style="credit_text")
+image editorsTeam = Text("name1\nname2\nname3", style="credit_text")
 
 image legalSupport = Text("Soporte legal", style="credit_text_title")
-image legalSupportTeam = Text("Steven-G\nShegall\nDex89", style="credit_text")
+image legalSupportTeam = Text("name1\nname2\nname3", style="credit_text")
 
-image text8 = Text("Esto es solo un comienzo...", style="credit_text")
-image text9 = Text("Gracias por su increíble apoyo", style="credit_text")
+image thanks = Text("Gracias por su increíble apoyo", style="credit_text")
 
-image raideText = Text("Raide", style="credit_text")
-image dereckText = Text("Dereck Nijima", style="credit_text")
+image poweredBy = Text('Hecho en', style="credit_text_title")
+image poweredByText = Text('Atlax Renpy', style="credit_text")
 
 # Credit images
-image campanellaLogo = 'images/displayables/campanella.png'
-image theNextStepLogo = 'images/displayables/the next step logo.png'
-image dereckImage = 'images/displayables/dereck.png'
-image raideImage = 'images/displayables/raide.png'
+image projectIcon = 'images/displayables/example project image.png'
+image atlaxRenpyLogo = 'images/displayables/Atlax Renpy.png'
 
 label my_credits:
+    python:
+        def TeamMembersWait(membersNumber):
+            return 2.5 + (0.2 * membersNumber)
+
+    $ dialogueManager.endGame = True
     $ quick_menu = False
     $ defaultPause = 6.0
+    $ linePause = 0.4
+    $ imagePause = 0.7
 
-    scene creditsBackground onlayer background with Dissolve(2)
-    
+    scene creditsBackground onlayer background
+    hide black_screen onlayer screens with Dissolve(2) # This line removes the black screen placed before the credits. So keep it.
+
     show text1 onlayer screens at scroll_text()
+    $ renpy.pause(imagePause)
+    show projectIcon onlayer screens at scroll_image(300, 300)
     $ renpy.pause(defaultPause)
-    hide text1
-
-    
+    hide text1   
 
     show text2 onlayer screens at scroll_text()
     $ renpy.pause(defaultPause)
@@ -115,85 +116,56 @@ label my_credits:
     $ renpy.pause(defaultPause)
     hide text3
 
-    show text4 onlayer screens at scroll_text(height=60)
-    $ renpy.pause(defaultPause)
-    hide text4
-    
-    show text5 onlayer screens at scroll_text()
-    $ renpy.pause(0.7)
-    show raideText onlayer screens at scroll_text(x=0.33)
-    show dereckText onlayer screens at scroll_text(x=0.66)
-    $ renpy.pause(0.5)
-    show raideImage onlayer screens at  scroll_image(300, 230, 0.33)
-    show dereckImage onlayer screens at scroll_image(300, 230, 0.66)
-
-    $ renpy.pause(3.0)
-    hide text5
-    hide raideText
-    hide dereckText
-    hide raideImage
-    hide dereckImage
-
-    show text6 onlayer screens at scroll_text()
-    $ renpy.pause(defaultPause)
-    hide text6
-
-    show text7 onlayer screens at scroll_text(height=80)
-    $ renpy.pause(0.25)
-    show theNextStepLogo onlayer screens at scroll_image(500, 400)
-    $ renpy.pause(defaultPause)
-    hide text7
-    hide theNextStepLogo
-
-
-    $ creditsPause = 0.4
     show madeBy onlayer screens at scroll_text()
-    $ renpy.pause(creditsPause)
+    $ renpy.pause(linePause)
     show company onlayer screens at scroll_text()
     $ renpy.pause(4)
 
     show direction onlayer screens at scroll_text()
-    $ renpy.pause(creditsPause)
-    show directionTeam onlayer screens at scroll_text(40 * 2)
-    $ renpy.pause(2.5 + (0.2 * 2))
+    $ renpy.pause(linePause)
+    show directionTeam onlayer screens at scroll_text(40 * 1) # 40 Times the quantity of members
+    $ renpy.pause(TeamMembersWait(1)) # Place here the correct quantity of members
 
     show writters onlayer screens at scroll_text()
-    $ renpy.pause(creditsPause)
-    show writtersTeam onlayer screens at scroll_text(40 * 5)
-    $ renpy.pause(2.5 + (0.2 * 5))
+    $ renpy.pause(linePause)
+    show writtersTeam onlayer screens at scroll_text(40 * 3) # 40 Times the quantity of members
+    $ renpy.pause(TeamMembersWait(3)) # Place here the correct quantity of members
 
     show artists onlayer screens at scroll_text()
-    $ renpy.pause(creditsPause)
-    show artistTeam onlayer screens at scroll_text(40 * 3)
-    $ renpy.pause(2.5 + (0.2 * 3))
+    $ renpy.pause(linePause)
+    show artistTeam onlayer screens at scroll_text(40 * 3) # 40 Times the quantity of members
+    $ renpy.pause(TeamMembersWait(3)) # Place here the correct quantity of members
 
     show programming onlayer screens at scroll_text()
-    $ renpy.pause(creditsPause)
-    show programmingTeam onlayer screens at scroll_text()
-    $ renpy.pause(2.5 + (0.2 * 1))
+    $ renpy.pause(linePause)
+    show programmingTeam onlayer screens at scroll_text(40 * 3) # 40 Times the quantity of members
+    $ renpy.pause(TeamMembersWait(3)) # Place here the correct quantity of members
 
     show musicians onlayer screens at scroll_text()
-    $ renpy.pause(creditsPause)
-    show musiciansTeam onlayer screens at scroll_text(40 * 4)
-    $ renpy.pause(2.5 + (0.2 * 4))
+    $ renpy.pause(linePause)
+    show musiciansTeam onlayer screens at scroll_text(40 * 3)  # 40 Times the quantity of members
+    $ renpy.pause(TeamMembersWait(3)) # Place here the correct quantity of members
 
     show editors onlayer screens at scroll_text()
-    $ renpy.pause(creditsPause)
-    show editorsTeam onlayer screens at scroll_text(40 * 3)
-    $ renpy.pause(2.5 + (0.2 * 3))
+    $ renpy.pause(linePause)
+    show editorsTeam onlayer screens at scroll_text(40 * 3)  # 40 Times the quantity of members
+    $ renpy.pause(TeamMembersWait(3)) # Place here the correct quantity of members
 
     show legalSupport onlayer screens at scroll_text()
-    $ renpy.pause(creditsPause)
-    show legalSupportTeam onlayer screens at scroll_text(40 * 3)
+    $ renpy.pause(linePause)
+    show legalSupportTeam onlayer screens at scroll_text(40 * 3)  # 40 Times the quantity of members
     $ renpy.pause(defaultPause)
 
-    show text8 onlayer screens at scroll_text()
-    $ renpy.pause(defaultPause)
-    show text9 onlayer screens at scroll_text_to_middle()
+    show poweredBy onlayer screens at scroll_text()
+    $ renpy.pause(linePause)
+    show poweredByText onlayer screens at scroll_text()
+    $ renpy.pause(imagePause)
+    show atlaxRenpyLogo onlayer screens at scroll_image(300, 300)
+    $ renpy.pause(defaultPause * 2)
+
+    show thanks onlayer screens at scroll_text_to_middle()
 
     $ renpy.pause(15)
     scene bg blackout onlayer screens with Dissolve(5)
     scene bg main_menu_background onlayer screens with Dissolve(5)
     return
-
-

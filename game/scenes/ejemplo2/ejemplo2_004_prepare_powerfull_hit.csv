@@ -25,9 +25,9 @@ ejemplo2_prepare_powerfull_hit_023;;;;;;;;*;Su rostro cambia por completo a uno 
 ejemplo2_prepare_powerfull_hit_024;;;;;;;;rafarencio;Oye no estás parando de sangrar, creo que deberías ir a revisarte.;;;;
 ejemplo2_prepare_powerfull_hit_025;;;;;;;;*;Esta vez me llevo la mano a la boca y veo que en efecto sigo sangrando.;;;;
 ejemplo2_prepare_powerfull_hit_026;;;;;;;;berto;Ay…. Yo quería seguir luchando.;;;;
-ejemplo2_prepare_powerfull_hit_027;;;;;;;;*;Él se abre de brazos.;;;;
+ejemplo2_prepare_powerfull_hit_027;;;;;;;;*;Él se encoge de hombros mientras extiende los brazos.;;;;
 ejemplo2_prepare_powerfull_hit_028;;;;;;;;rafarencio;La próxima vez será, aquí estaré para enseñarte cómo se esquiva.;;;;
-*;training field;;;;;rafarencio pain;;berto;Claro.;;;;
-ejemplo2_prepare_powerfull_hit_030;;*;;;;rafarencio:destroy:1;;*;Sin más, me acerco al instructor y solo con verme señala hacia la enfermería casi al instante.;;;;
-#linear;video:desierto;;;;;;;;;;;;
+ejemplo2_prepare_powerfull_hit_029;;;;;;;;berto;Claro.;;;;
+ejemplo2_prepare_powerfull_hit_030;;*;;;;rafarencio:destroy;;*;Sin más, me acerco al instructor y solo con verme señala hacia la enfermería casi al instante.;;;;
+#linear;;clear;;;;;;;;;;;
 to_ruined_future;ejemplo2/ejemplo2_005_ruined_future;;;;;;;;;;;;

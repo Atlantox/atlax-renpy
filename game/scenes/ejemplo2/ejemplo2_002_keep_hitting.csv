@@ -34,5 +34,5 @@ ejemplo2_keep_hitting_032;;;;;;rafarencio:movey:0;;*;Rafa se pone de pie mientra
 ejemplo2_keep_hitting_033;;;;;;;;berto;Por supuesto que lo sé.;
 ejemplo2_keep_hitting_034;;;;;;;;*;Con mi brazo aún entumecido, me pongo de pie.;
 ejemplo2_keep_hitting_035;;;;;;;;;Nos colocamos en posición y continuamos entrenando hasta ser incapaz de levantarnos.;
-#linear;fade:1:3:0;clear;;;;;;;;
+#linear;;clear;;;;;;;;
 to_smoke_factory;ejemplo2/ejemplo2_003_smoke_factory;;;;;;;;;

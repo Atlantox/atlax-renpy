@@ -3,7 +3,7 @@ init python:
         def __init__(self):
             self.defaultTransition = Dissolve
             self.defaultDuration = 3.0
-            self.blackScreenDuration = 7.0
+            self.blackScreenDuration = 3.0
             self.defaultParams = {
                 'dissolve': [3.0],
                 'fade': [1, 0.5, 1],
@@ -164,6 +164,11 @@ init python:
 
         def TurnScreenToBlack(self):
             renpy.show('blackout', layer='screens', tag='black_screen')
+            renpy.transition(Dissolve(self.blackScreenDuration))
+            renpy.pause(self.blackScreenDuration, hard=True)
+
+        def RemoveBlackScreen(self):
+            renpy.hide('black_screen', layer='screens')
             renpy.transition(Dissolve(self.blackScreenDuration))
             renpy.pause(self.blackScreenDuration, hard=True)
 

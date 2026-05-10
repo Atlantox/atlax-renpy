@@ -1,46 +1,39 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 55, in script
-    $ dialogueManager.HandleDialogueEnd()
-  File "game/script.rpy", line 55, in <module>
-    $ dialogueManager.HandleDialogueEnd()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 308, in HandleDialogueEnd
-    self.HandleTransition(clear=True)
-    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 372, in HandleTransition
-    backgroundManager.DestroyCurrentBackground()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/BackgroundManager.rpy", line 179, in DestroyCurrentBackground
-    raise Exception(self.currentBgName)
-Exception: training field
+  File "game/script.rpy", line 64, in script
+    $ dialogue = dialogueManager.GetNextDialogue()
+  File "game/script.rpy", line 64, in <module>
+    $ dialogue = dialogueManager.GetNextDialogue()
+                         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 289, in GetNextDialogue
+    self.currentDialogue = self.dialogues[self.currentDialogueIndex]
+                           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 55, in script
-    $ dialogueManager.HandleDialogueEnd()
+  File "game/script.rpy", line 64, in script
+    $ dialogue = dialogueManager.GetNextDialogue()
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1273, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/script.rpy", line 55, in <module>
-    $ dialogueManager.HandleDialogueEnd()
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/DialogueManager.rpy", line 308, in HandleDialogueEnd
-    self.HandleTransition(clear=True)
-    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-  File "game/managers/DialogueManager.rpy", line 372, in HandleTransition
-    backgroundManager.DestroyCurrentBackground()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "game/managers/BackgroundManager.rpy", line 179, in DestroyCurrentBackground
-    raise Exception(self.currentBgName)
-Exception: training field
+  File "game/script.rpy", line 64, in <module>
+    $ dialogue = dialogueManager.GetNextDialogue()
+                         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "game/managers/DialogueManager.rpy", line 289, in GetNextDialogue
+    self.currentDialogue = self.dialogues[self.currentDialogueIndex]
+                           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/revertable.py", line 191, in __getitem__
+    rv = list.__getitem__(self, index)
+         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+IndexError: list index out of range
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.2.26010301
 TheNextStepDemo 1.0
-Sat May  9 10:24:33 2026
+Sun May 10 14:54:58 2026

@@ -45,11 +45,13 @@ init python:
             self.dialogueFinished = False
             self.choices = []
             self.terminatePause = 0
+            self.videoNextBackground = None
 
             self.customScriptResponse = None
             self.customScriptLabel = None
             self.customScriptsForks = {}
 
+            self.terminateTransitionName = None
             self.terminateTransition = None
             self.terminateParams = []
 
@@ -183,11 +185,11 @@ init python:
 
             if len(splittedDialogue) > 1:
                 transitionSplits = [s.strip() for s in splittedDialogue[1].split(':')]
-                terminateTransition = transitionSplits[0]
+                self.terminateTransitionName = transitionSplits[0].lower()
 
-                if terminateTransition not in self.admittedTerminateTransitions and terminateTransition != '':
+                if self.terminateTransitionName not in self.admittedTerminateTransitions and self.terminateTransitionName != '':
                     error = 'Error en la escena ' + self.currentFile + ': '
-                    error = 'La transicion de finalización {0} no existe, los que se admiten son: '.format(terminateTransition)
+                    error = 'La transicion de finalización {0} no existe, los que se admiten son: '.format(self.terminateTransitionName)
                     raise Exception(error + str(self.admittedTerminateTransitions))
 
             if len(splittedDialogue) > 2:
@@ -269,10 +271,13 @@ init python:
 
         def ProcesTerminationTransition(self, transitionData):
             splits = [s.strip() for s in transitionData.split(':')]
-            transitionName = splits[0]
 
-            if transitionName == 'video':
+            if self.terminateTransitionName == 'video':
                 videoName = splits[1]
+
+                if len(splits) > 2:
+                    self.videoNextBackground = splits[2]                    
+                
                 self.terminateTransition = renpy.movie_cutscene
                 self.terminateParams = ['videos/' + videoName + '.webm']
 
@@ -306,7 +311,7 @@ init python:
                 self.CallCustomScript()              
 
             if self.terminateTransition is not None:
-                self.HandleTransition(clear=True)
+                self.HandleTransition()
 
             if nextScene is not None:
                 if self.clearAfterNewDialogue:
@@ -369,13 +374,20 @@ init python:
             self.keysWalked.append(targetFork['key'])
             return targetFork['nextScene']
 
-        def HandleTransition(self, clear = False):
-            renpy.show('blackout', layer='background', tag='bg')
-            renpy.with_statement(Dissolve(self.videoTransitionDissolve))
-            self.terminateTransition(*self.terminateParams)
+        def HandleTransition(self):
+            if self.terminateTransitionName == 'video':
+                backgroundManager.TurnScreenToBlack()
 
-            if clear:
-                self.ClearScene()
+                if self.videoNextBackground is not None:
+                    renpy.show(self.videoNextBackground, layer='background', tag='bg')
+
+                if self.clearAfterNewDialogue:
+                    self.ClearScene()
+
+                self.terminateTransition(*self.terminateParams)
+                backgroundManager.RemoveBlackScreen()
+
+            
 
             renpy.pause(self.terminatePause / 2, hard=True)
 
