@@ -14,15 +14,19 @@ mypython/sceneEncrypter/sceneEncrypter.spec
 mypython/installer/game
 mypython/installer/build
 mypython/installer/dist
+mypython/installer/atlax_renpy_installer.spec
+mypython/installer/game.zip
 
 game/videos/desierto.webm
+
+apps/installer
 
 log.txt
 traceback.txt
 errors.txt
 Manual de desarrollo en Atlax Renpy.docx
 
+installer/*
+
 apps/scene_encrypter/encrypted/*
 apps/scene_encrypter/to_encrypt/*
-
-installer/
