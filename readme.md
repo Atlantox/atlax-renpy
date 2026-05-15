@@ -20,7 +20,7 @@ Por supuesto que también puedes crear consecuencias basadas en decisiones pasad
 
 # ¿Cómo instalarlo?
 
-1. Descarga el release más reciente de Atlax Renpy **[aquí]**(https://github.com/Atlantox/atlax-renpy/releases)
+1. Descarga el release más reciente de Atlax Renpy [**aquí**](https://github.com/Atlantox/atlax-renpy/releases)
 2. Descomprime el archivo .zip
 3. Obtendrás un instalador .exe y el manual del motor .pdf
 4. Mueve el instalador a un proyecto recién creado en Renpy.
