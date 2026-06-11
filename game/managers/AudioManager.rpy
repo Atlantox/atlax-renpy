@@ -66,7 +66,14 @@ init python:
 
         def PlaySound(self):
             if len(self.oneTimeSoundsQueue) > 0:
-                renpy.music.play(self.oneTimeSoundsQueue, channel='sound')
+                channelIdx = 1
+                for sound in self.oneTimeSoundsQueue:
+                    channelName = 'sfx{0}'.format(channelIdx)
+                    renpy.music.play(sound, channel=channelName, synchro_start=True)
+                    channelIdx += 1
+                    if channelIdx > simultaneousSounds:
+                        channelIdx = simultaneousSounds
+
                 if len(self.currentLoopedSounds) > 0:
                     # If a sound are looped and play a single sound, all loops break, so restart the looped sound list
                     self.currentLoopedSounds = []

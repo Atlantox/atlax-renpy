@@ -131,7 +131,7 @@ ejemplo2_smoke_factory_130;;;;;;;;;Flint rápidamente toma una pieza de la tramp
 ejemplo2_smoke_factory_131;;;;;;;;flint;¡Vayan por la derecha!;
 ejemplo2_smoke_factory_132;forest;;;;;;;*;Seguimos sus órdenes y tanto Rafa como yo salimos por la derecha.;
 ejemplo2_smoke_factory_133;;;;;;;;flint;Cierren la puerta a la cuenta de tres, 1… 2…;
-ejemplo2_smoke_factory_134;;;;;;;;*;Flint suelta la pieza de la trampa y esta se activa expulsando gran cantidad de humo.;
+*;forest;critic combat;;;;rafarencio old left:pop:55;;*;Flint suelta la pieza de la trampa y esta se activa expulsando gran cantidad de humo.;
 ejemplo2_smoke_factory_135;;;;;;;;flint;¡TRES!;
 ejemplo2_smoke_factory_136;;;;;;rafarencio old left:move:65:0.3;;*;Cerramos la puerta con violencia, y empujamos para que no la abran.;
 ejemplo2_smoke_factory_137;;;metal hit:loop;;suffocation:0.4;;;;Parte del humo se filtra por los bordes de la puerta y llega a nuestras narices, Los ojos me empiezan a llorar.;

@@ -72,8 +72,9 @@ init python:
                 elif recievedTransition in ['rup', 'rright', 'rdown', 'rleft']:
                     currentTransition = Swing
             
-            if len(promptSplits) == 3:
-                recievedParams = [float(s.strip()) for s in promptSplits[2].split(':') if s != '']
+            if len(promptSplits) >= 3:
+                recievedParams = [float(s.strip()) for s in promptSplits[2:] if s != '']
+                
                 if recievedTransition in ['rup', 'rright', 'rdown', 'rleft', 'pushup', 'pushright', 'pushdown', 'pushleft']:
                     params[0] = recievedParams[0]
                 else:
