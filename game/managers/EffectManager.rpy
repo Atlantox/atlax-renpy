@@ -101,10 +101,7 @@ init python:
                 if effectName == 'blur':
                     backgroundManager.transformsToApply[effectName] = 0.0
                 elif effectName == 'rotate':
-                    backgroundManager.transformsToApply['rotate'] = 0
-                    backgroundManager.transformsToApply['xalign'] = 0.5
-                    backgroundManager.transformsToApply['yalign'] = 0.5
-                    
+                    backgroundManager.transformsToApply['rotate'] = 0                    
                 elif effectName == 'hwarp':
                     backgroundManager.transformsToApply['xzoom'] = 1.0
                 elif effectName == 'vwarp':
@@ -122,6 +119,8 @@ init python:
                     backgroundManager.transformsToApply['rotate'] = degrees
                     backgroundManager.transformsToApply['rotate_pad'] = False
                     backgroundManager.transformsToApply['transform_anchor'] = True
+                    backgroundManager.transformsToApply['xalign'] = 0.5
+                    backgroundManager.transformsToApply['yalign'] = 0.5
                 elif effectName in ['hwarp', 'vwarp']:
                     factor = float(effectSplits[1]) if recievedParam else self.defaultWarp
                     if effectName == 'hwarp':
