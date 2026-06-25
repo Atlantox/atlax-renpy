@@ -124,17 +124,14 @@ init python:
                     backgroundManager.transformsToApply['transform_anchor'] = True
                 elif effectName in ['hwarp', 'vwarp']:
                     factor = float(effectSplits[1]) if recievedParam else self.defaultWarp
-                    anchorFactor = (factor * 0.25) / 2.0
                     if effectName == 'hwarp':
                         backgroundManager.transformsToApply['xzoom'] = factor
-                        backgroundManager.transformsToApply['xanchor'] = anchorFactor
+                        backgroundManager.transformsToApply['xalign'] = 0.5
                     else:
                         backgroundManager.transformsToApply['yzoom'] = factor
-                        backgroundManager.transformsToApply['yanchor'] = anchorFactor
+                        backgroundManager.transformsToApply['yalign'] = 0.5
                 else:
                     return
-                
-                #backgroundManager.transformsToApply[effectName] = Transform(transformProperties*)
 
             backgroundManager.reloadBackground = True
 
