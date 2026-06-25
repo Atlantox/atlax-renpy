@@ -13,6 +13,7 @@ init python:
             self.currentFadeIn = None
             self.musicPrepared = False
             self.soundPrepared = False
+            self.soundChannels = {}
 
         def PrepareMusic(self,musicPrompt):
             self.prepared = True
@@ -64,36 +65,48 @@ init python:
             else:
                 renpy.music.play(self.baseMusicPath.format(self.currentMusicName), channel='music', fadein=self.currentFadeIn)
 
-        def PlaySound(self):
+        def PlaySound(self):           
             if len(self.oneTimeSoundsQueue) > 0:
-                channelIdx = 1
                 for sound in self.oneTimeSoundsQueue:
-                    channelName = 'sfx{0}'.format(channelIdx)
+                    channelName = self.GetNextChannel()
+                    self.soundChannels[sound] = channelName
                     renpy.music.play(sound, channel=channelName, synchro_start=True, loop=False)
-                    channelIdx += 1
-                    if channelIdx > simultaneousSounds:
-                        channelIdx = simultaneousSounds
-
-                if len(self.currentLoopedSounds) > 0:
-                    # If a sound are looped and play a single sound, all loops break, so restart the looped sound list
-                    self.currentLoopedSounds = []
 
             toPlaySounds = []
             toStopSounds = []
-            # TODO: sacar de la lista de sonidos en loop cuando se reproduce un sonido nuevo
 
             for sound in self.loopedSoundsQueue:
-
                 if sound in self.currentLoopedSounds:
-                    toStopSounds.append(self.baseSoundPath.format(sound))
+                    toStopSounds.append(self.soundChannels[sound])
                     soundIdx = self.currentLoopedSounds.index(sound)
-                    del self.currentLoopedSounds[soundIdx]
+                    del self.currentLoopedSounds[soundIdx]      
+                    del self.soundChannels[sound]              
                 else:
-                    toPlaySounds.append(self.baseSoundPath.format(sound))
+                    channelName = self.GetNextChannel()
+                    self.soundChannels[sound] = channelName
+                    toPlaySounds.append({'name': sound, 'channel': channelName})
                     self.currentLoopedSounds.append(sound)
 
-            if len(toPlaySounds) > 0: renpy.music.play(toPlaySounds, channel='sound', loop=True)
-            if len(toStopSounds) > 0: renpy.music.stop(channel='sound')
+            if len(toPlaySounds) > 0: 
+                for sound in toPlaySounds:
+                    renpy.music.play(self.baseSoundPath.format(sound['name']), channel=sound['channel'], loop=True)
+
+            if len(toStopSounds) > 0: 
+                for sound in toStopSounds:
+                    renpy.music.stop(channel=sound)
 
             self.oneTimeSoundsQueue = []
             self.loopedSoundsQueue = []
+
+        def GetNextChannel(self):
+            result = 'sfx1'
+
+            for idx in range(1, simultaneousSounds + 1):
+                channelName = 'sfx{0}'.format(idx)
+                if(channelName in self.soundChannels.values()):
+                    continue
+                else:
+                    result = channelName
+                    break
+
+            return result
