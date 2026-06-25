@@ -4,6 +4,7 @@ init python:
             self.defaultTransition = Dissolve
             self.defaultDuration = 3.0
             self.blackScreenDuration = 3.0
+            self.effectTransitionDuration = 0.5
             self.defaultParams = {
                 'dissolve': [3.0],
                 'fade': [1, 0.5, 1],
@@ -99,13 +100,10 @@ init python:
                 commandString = currentBg['name']
 
                 transforms = [AdjustImage()]
-                
-                if len(self.transformsToApply) > 0:
-                    transforms.append(Transform(**self.transformsToApply))
 
-                renpy.show(commandString, at_list=transforms, layer='background', tag='bg')   
+                renpy.show(commandString, at_list=transforms, layer='background', tag='bg')                
 
-                if not self.backgroundPlaced: # Placing the background without transition             
+                if self.backgroundPlaced == False: # Placing the background without transition             
                     self.backgroundPlaced = True
                     renpy.transition(Fade(2, 2, 2))
                     renpy.pause(6)
@@ -127,7 +125,9 @@ init python:
             transforms = [AdjustImage()]
             if len(self.transformsToApply) > 0:                    
                 transforms.append(Transform(**self.transformsToApply))
-            renpy.show(commandString, at_list=transforms, layer='background', tag='bg')  
+
+            renpy.show(commandString, at_list=transforms, layer='background', tag='bg')
+            renpy.transition(Dissolve(self.effectTransitionDuration)) 
 
         def HandlePostEventsEffects(self):
             for i in range(len(self.postHandleEvents)):
