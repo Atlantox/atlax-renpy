@@ -69,7 +69,7 @@ init python:
                 channelIdx = 1
                 for sound in self.oneTimeSoundsQueue:
                     channelName = 'sfx{0}'.format(channelIdx)
-                    renpy.music.play(sound, channel=channelName, synchro_start=True)
+                    renpy.music.play(sound, channel=channelName, synchro_start=True, loop=False)
                     channelIdx += 1
                     if channelIdx > simultaneousSounds:
                         channelIdx = simultaneousSounds
