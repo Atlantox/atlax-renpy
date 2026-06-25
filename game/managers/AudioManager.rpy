@@ -69,7 +69,6 @@ init python:
             if len(self.oneTimeSoundsQueue) > 0:
                 for sound in self.oneTimeSoundsQueue:
                     channelName = self.GetNextChannel()
-                    self.soundChannels[sound] = channelName
                     renpy.music.play(sound, channel=channelName, synchro_start=True, loop=False)
 
             toPlaySounds = []
