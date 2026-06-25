@@ -102,6 +102,8 @@ init python:
                     backgroundManager.transformsToApply[effectName] = 0.0
                 elif effectName == 'rotate':
                     backgroundManager.transformsToApply['rotate'] = 0
+                    backgroundManager.transformsToApply['xalign'] = 0.5
+                    backgroundManager.transformsToApply['yalign'] = 0.5
                     
                 elif effectName == 'hwarp':
                     backgroundManager.transformsToApply['xzoom'] = 1.0
