@@ -105,10 +105,8 @@ init python:
                     
                 elif effectName == 'hwarp':
                     backgroundManager.transformsToApply['xzoom'] = 1.0
-                    backgroundManager.transformsToApply['xanchor'] = 0.0
                 elif effectName == 'vwarp':
                     backgroundManager.transformsToApply['yzoom'] = 1.0
-                    backgroundManager.transformsToApply['yanchor'] = 0.0
             else: 
                 # The effect isn't in progress, then prepare it
                 if effectName not in self.currentContinuousEffects:
