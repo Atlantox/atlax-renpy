@@ -412,13 +412,14 @@ init python:
             self.customScriptResponse = 'anything'
 
         def GetConditionResult(self, condition):
-            operators = ['<', '>', '=']
+            operators = ['<=', '>=', '<', '>', '=']
             targetOperator = None
 
             for operator in operators:
                 if operator in condition:
                     targetOperator = operator
                     splits = [s.strip() for s in condition.split(operator)]
+                    break
 
             if targetOperator == None:
                 error = 'Error en la escena ' + self.currentFile + ': Operador de comparación inválido: ' + condition
@@ -438,6 +439,10 @@ init python:
                 result = globalPoints[key] < valu
             elif targetOperator == '=':
                 result = globalPoints[key] == value
+            elif targetOperator == '<=':
+                result = globalPoints[key] <= value
+            elif targetOperator == '>=':
+                result = globalPoints[key] >= value
 
             return result
 
