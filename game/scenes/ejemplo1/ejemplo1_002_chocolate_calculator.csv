@@ -1,0 +1,7 @@
+﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;spanish;english
+ejemplo1_chocolate_calculator_01;;;;;;;;tableman;V-vaya, esto… si es lo que desea, nuestros profesionales se encargarán y lo tendrán listo cuando terminen su comida.;
+ejemplo1_chocolate_calculator_02;;;;;;;;berto;O-ok, gracias.;
+ejemplo1_chocolate_calculator_03;;;;;;tableman:zoom:1;;*;Parece que fue algo chocante para él que le pidieran una calculadora, de todas formas creo que le gustará bastante.;
+ejemplo1_chocolate_calculator_04;;;;;;;;;Después de todo, es una herramienta que usa casi todas sus clases.;
+#linear;;;;;;;;;;
+chocolate_calculator_to_eating;ejemplo1/ejemplo1_003_eating;;;;;;;;;
