@@ -1,8 +1,0 @@
-﻿Key;Background;Music;Sound;Single effect;Continuous effect;Events;Delay;Emisor;spanish;english
-ejemplo1_chocolate_alice_01;;;;;;;;tableman;Alice? Eh… ¿del país de las maravillas?;
-ejemplo1_chocolate_alice_02;;;;;;;;berto;Oh no, es de una serie reciente bastante popular, quizás los cocineros la conozcan, sino… estaría bien un… ¿corazón?.;
-ejemplo1_chocolate_alice_03;;;;;;;;tableman;Comprendo, haremos lo posible para hacer el chocolate de esa Alice y lo traeremos cuando hayan terminado su comida.;
-ejemplo1_chocolate_alice_04;;;;;;tableman:zoom:1;;berto;Muy amable, muchas gracias.;
-ejemplo1_chocolate_alice_05;;;;;;;;*;Es muy probable que en la cocina nadie conozca a Alice pero con la suficiente suerte podré darle un buen detalle.;
-#linear;;;;;;;;;;
-chocolate_alice_to_eating;ejemplo1/ejemplo1_003_eating;;;;;;;;;

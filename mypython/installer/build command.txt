@@ -1,1 +1,0 @@
-pyinstaller --onefile --icon=icon.ico --add-data "game.zip;." atlax_renpy_installer.py
