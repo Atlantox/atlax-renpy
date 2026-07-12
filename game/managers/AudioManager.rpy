@@ -100,7 +100,7 @@ init python:
         def GetNextChannel(self):
             result = 'sfx1'
 
-            for idx in range(1, simultaneousSounds + 1):
+            for idx in range(1, configManager.simultaneousSounds + 1):
                 channelName = 'sfx{0}'.format(idx)
                 if(channelName in self.soundChannels.values()):
                     continue

@@ -22,7 +22,6 @@ init -1 python:
     effectManager = None
     eventManager = None
     dialogueManager = None
-    simultaneousSounds = 5
 
     globalPoints = dict()
     globalScenes = []   
@@ -34,7 +33,7 @@ init -1 python:
         preferences.language = configManager.allLanguages[0]
         Language(preferences.language)
 
-    for i in range(1, simultaneousSounds + 1):
+    for i in range(1, configManager.simultaneousSounds + 1):
         renpy.music.register_channel('sfx{0}'.format(i), 'sfx')
 
 label start:        

@@ -21,6 +21,7 @@ game/videos/desierto.webm
 
 apps/installer/
 
+*.rpyc
 log.txt
 TODO.txt
 traceback.txt

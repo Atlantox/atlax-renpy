@@ -4,6 +4,7 @@ init -10 python:
             self.configPath = '/config.csv' # the CSV config file path
             self.allLanguages = []
             self.firstScene = None
+            self.simultaneousSounds = 5
 
             self.basePaths = {
                 'path_background': None,

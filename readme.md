@@ -4,7 +4,7 @@
 
 # Hazlo más sencillo
 
-Este motor funciona utilizando archivos de control en formato **CSV*** que están conectados entre sí. Estos archivos contienen los diálogos, cambios de fondo, canciones, efectos de sonido, efectos de la pantalla y por supuesto, los movimientos de los personajes.
+Este motor funciona utilizando archivos de control en formato **CSV** que están conectados entre sí. Estos archivos contienen los diálogos, cambios de fondo, canciones, efectos de sonido, efectos de la pantalla y por supuesto, los movimientos de los personajes.
 
 Todo esto mediante mínimos conocimientos informáticos y de programación. A efectos prácticos crearás tus novelas visuales utilizando **Excel**.
 
@@ -14,7 +14,7 @@ Todo esto mediante mínimos conocimientos informáticos y de programación. A ef
 
 # Maneja decisiones y consecuencias
 
-Crea todas las decisioens y ramificaciones que necesites. ¿Tu novela trabaja con puntos de amistad? ¿Quizás utiliza puntos de fuerza, inteligencia, etc? ¡No hay ningún problema! con **Atlax Renpy** puedes definir las putuaciones que requieras y crear consecuencias.
+Crea todas las decisioens y ramificaciones que necesites. ¿Tu novela trabaja con puntos de amistad? ¿Quizás utiliza puntos de fuerza, inteligencia, etc? ¡No hay ningún problema! con **Atlax Renpy** puedes definir las puntuaciones que requieras y crear consecuencias.
 
 Por supuesto que también puedes crear consecuencias basadas en decisiones pasadas o en escenas vistas. ¡Puedes bifurcar tu historia tanto como necesites!
 
@@ -36,4 +36,11 @@ Por supuesto que también puedes crear consecuencias basadas en decisiones pasad
 
 Siéntete libre de descargar **Atlax Renpy** y modificarlo todo lo que necesites, este proyecto es enteramente código abierto para que cualquiera pueda utilizarlo.
 
-# ¿Qué esperas? Comienza a traer a la vida esa gran historia que tienes en mente.
+## ¿Qué esperas? Comienza a traer a la vida esa gran historia que tienes en mente.
+
+### Notas de la versión 1.1
+
+1. Se arreglaron varios problemas relacionados a mostrar ciertos efectos como hwarp, vwarp y rotate.
+2. Se refactorizó el AudioManager para que utlizara canales de audio permitiendo así la reproducción de múltiples audios a la vez, incluso en loop y durante un loop.
+3. No estaban las condiciones mayor o igual y menor o igual en las condiciones por puntos.
+4. Se añadió el archivo adding_language_selector.rpy la peiza de código correspondiente para colocar los botones de cambio de idioma en el menú de preferencias.
