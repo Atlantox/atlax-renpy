@@ -15,11 +15,9 @@ mypython/installer/game
 mypython/installer/build
 mypython/installer/dist
 mypython/installer/atlax_renpy_installer.spec
-mypython/installer/game.zip
+mypython/installer/installer_extraction.zip
 
 game/videos/desierto.webm
-
-apps/installer/
 
 *.rpyc
 log.txt

@@ -79,7 +79,7 @@ init python:
                 
             self.lastEmisor = finalEmisor
 
-            self.finalSentence = finalSentence.replace('#.,',';').replace('%','%%')
+            self.finalSentence = finalSentence.replace('.,',';').replace('%','%%')
 
             if delayManager.autopass:
                 self.finalSentence += '{nw}'

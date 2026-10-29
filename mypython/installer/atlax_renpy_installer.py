@@ -22,5 +22,5 @@ def extract_zip(zip_name):
     print("Atlax Renpy installacion ready!:", base_path)
 
 if __name__ == "__main__":
-    extract_zip("game.zip")
+    extract_zip("installer_extraction.zip")
     input("Press any key to exit...")
